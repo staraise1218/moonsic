@@ -44,4 +44,9 @@
 
     <!-- VedioFinish -->
     <string name="play_finish">播放结束</string>
+
+    <!-- VedioSong -->
+    <string name="song_lyrics">歌词列表</string>
+    <string name="song_sing">导唱</string>
+    <string name="song_accompaniment">伴唱</string>
 </resources>

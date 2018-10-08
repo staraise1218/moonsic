@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/ic_bg_dance">
@@ -10,105 +8,271 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_homepage"
+        <RelativeLayout
+            android:id="@+id/rl_homepage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="120dp"
-            android:layout_marginTop="50dp"
-            android:src="@mipmap/ic_dance_homepage" />
+            android:layout_marginTop="50dp">
 
-        <ImageView
-            android:id="@+id/iv_back"
+            <ImageView
+                android:id="@+id/iv_homepage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_homepage" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/homepage"
+                android:textSize="@dimen/text_main"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="120dp"
-            android:layout_marginTop="50dp"
-            android:src="@mipmap/ic_dance_back" />
+            android:layout_marginTop="50dp">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/back"
+                android:textSize="@dimen/text_main"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_dance_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv_homepage"
+            android:layout_alignTop="@+id/rl_homepage"
             android:layout_centerHorizontal="true"
             android:text="视频列表"
             android:textSize="30sp" />
 
-        <ImageView
-            android:id="@+id/iv_dance_boom"
+        <RelativeLayout
+            android:id="@+id/rl_dance_first"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="152dp"
-            android:layout_marginTop="135dp"
-            android:src="@mipmap/ic_dance_boom" />
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="135dp" >
 
-        <ImageView
-            android:id="@+id/iv_dance_sky"
+            <ImageView
+                android:id="@+id/iv_dance_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_boom" />
+
+            <TextView
+                android:id="@+id/tv_dance_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_dance_first"
+                android:layout_marginTop="5dp"
+                android:text="轰轰隆隆整天响" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dance_second"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv_dance_boom"
-            android:layout_toRightOf="@+id/iv_dance_boom"
-            android:layout_marginLeft="30dp"
-            android:src="@mipmap/ic_dance_sky" />
+            android:layout_alignTop="@+id/rl_dance_first"
+            android:layout_toRightOf="@+id/rl_dance_first"
+            android:layout_marginLeft="30dp">
 
-        <ImageView
-            android:id="@+id/iv_dance_dark"
+            <ImageView
+                android:id="@+id/iv_dance_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_sky" />
+
+            <TextView
+                android:id="@+id/tv_dance_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_dance_second"
+                android:layout_marginTop="2dp"
+                android:text="天边飘来一朵云" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dance_third"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv_dance_boom"
-            android:layout_toRightOf="@+id/iv_dance_sky"
-            android:layout_marginLeft="30dp"
-            android:src="@mipmap/ic_dance_dark" />
+            android:layout_alignTop="@+id/rl_dance_first"
+            android:layout_toRightOf="@+id/rl_dance_second"
+            android:layout_marginLeft="30dp">
 
-        <ImageView
-            android:id="@+id/iv_dance_clouds"
+            <ImageView
+                android:id="@+id/iv_dance_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_dark" />
+
+            <TextView
+                android:id="@+id/tv_dance_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_dance_third"
+                android:layout_marginTop="5dp"
+                android:text="突然变得黑漆漆" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dance_four"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv_dance_boom"
-            android:layout_toRightOf="@+id/iv_dance_dark"
-            android:layout_marginLeft="30dp"
-            android:src="@mipmap/ic_dance_clouds" />
+            android:layout_alignTop="@+id/rl_dance_first"
+            android:layout_toRightOf="@+id/rl_dance_third"
+            android:layout_marginLeft="30dp">
 
-        <ImageView
-            android:id="@+id/iv_dance_safe"
+            <ImageView
+                android:id="@+id/iv_dance_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_clouds" />
+
+            <TextView
+                android:id="@+id/tv_dance_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_dance_four"
+                android:layout_marginTop="5dp"
+                android:text="云朵闪出一道光" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dance_five"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/iv_dance_boom"
-            android:layout_below="@+id/iv_dance_boom"
-            android:layout_marginTop="60dp"
-            android:src="@mipmap/ic_dance_safe" />
+            android:layout_alignStart="@+id/rl_dance_first"
+            android:layout_below="@+id/rl_dance_first"
+            android:layout_marginTop="30dp">
 
-        <ImageView
-            android:id="@+id/iv_dance_ipad"
+            <ImageView
+                android:id="@+id/iv_dance_five"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_safe" />
+
+            <TextView
+                android:id="@+id/tv_dance_five"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_dance_five"
+                android:layout_marginTop="5dp"
+                android:text="安全用电放第一" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dance_six"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv_dance_safe"
-            android:layout_toRightOf="@+id/iv_dance_safe"
-            android:layout_marginLeft="30dp"
-            android:src="@mipmap/ic_dance_ipad" />
+            android:layout_alignTop="@+id/rl_dance_five"
+            android:layout_toRightOf="@+id/rl_dance_five"
+            android:layout_marginLeft="30dp">
 
-        <ImageView
-            android:id="@+id/iv_dance_computer"
+            <ImageView
+                android:id="@+id/iv_dance_six"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_ipad" />
+
+            <TextView
+                android:id="@+id/tv_dance_six"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_dance_six"
+                android:layout_marginTop="5dp"
+                android:text="ipad手机充电器" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dance_seven"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv_dance_safe"
-            android:layout_toRightOf="@+id/iv_dance_ipad"
-            android:layout_marginLeft="30dp"
-            android:src="@mipmap/ic_dance_computer" />
+            android:layout_alignTop="@+id/rl_dance_five"
+            android:layout_toRightOf="@+id/rl_dance_six"
+            android:layout_marginLeft="30dp">
 
-        <ImageView
-            android:id="@+id/iv_dance_thunder"
+            <ImageView
+                android:id="@+id/iv_dance_seven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_computer" />
+
+            <TextView
+                android:id="@+id/tv_dance_seven"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_dance_seven"
+                android:layout_marginTop="5dp"
+                android:text="电脑开关电视机" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dance_eight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/iv_dance_safe"
-            android:layout_toRightOf="@+id/iv_dance_computer"
-            android:layout_marginLeft="30dp"
-            android:src="@mipmap/ic_dance_thunder" />
+            android:layout_alignTop="@+id/rl_dance_five"
+            android:layout_toRightOf="@+id/rl_dance_seven"
+            android:layout_marginLeft="30dp">
+
+            <ImageView
+                android:id="@+id/iv_dance_eight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_thunder" />
+
+            <TextView
+                android:id="@+id/tv_dance_eight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iv_dance_eight"
+                android:layout_marginTop="5dp"
+                android:text="打雷下雨要关闭" />
+        </RelativeLayout>
 
     </RelativeLayout>
 

@@ -69,7 +69,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="歌词列表"
+                android:text="@string/song_lyrics"
                 android:textSize="30sp" />
 
             <LinearLayout
@@ -253,12 +253,13 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="导唱"
+                android:text="@string/song_sing"
                 android:textSize="@dimen/text_main"
                 android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_song_accompaniment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/rl_song_sing"
@@ -276,7 +277,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="伴唱"
+                android:text="@string/song_accompaniment"
                 android:textSize="@dimen/text_main"
                 android:textStyle="bold" />
         </RelativeLayout>
