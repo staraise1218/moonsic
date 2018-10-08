@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ic_bg_class_selection"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_vedio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="100dp"
+            android:focusable="true"
+            android:nextFocusDown="@id/rl_audio"
+            android:nextFocusRight="@id/iv_reception_last_semester">
+
+            <ImageView
+                android:id="@+id/iv_vedio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_main_vedio" />
+
+            <TextView
+                android:id="@+id/tv_vedio_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="70dp"
+                android:text="@string/vedio"
+                android:textSize="@dimen/text_main"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_audio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_vedio"
+            android:nextFocusRight="@id/iv_reception_last_semester"
+            android:nextFocusUp="@id/rl_vedio">
+
+            <ImageView
+                android:id="@+id/iv_audio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_main_audio" />
+
+            <TextView
+                android:id="@+id/tv_audio_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="110dp"
+                android:text="@string/audio"
+                android:textSize="@dimen/text_main"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_reception_last_semester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="300dp"
+            android:layout_marginTop="105dp"
+            android:nextFocusDown="@id/iv_reception_next_semester"
+            android:nextFocusRight="@id/iv_middle_last_semester">
+
+            <ImageView
+                android:id="@+id/iv_reception_last_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/ic_main_reception_last_semester" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/ic_main_semester_frame" />
+
+            <TextView
+                android:id="@+id/tv_receptin_last_semester_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="@string/reception_last_semester"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_middle_last_semester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/rl_reception_last_semester"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="270dp"
+            android:nextFocusDown="@id/iv_middle_next_semester"
+            android:nextFocusLeft="@id/rl_reception_last_semester"
+            android:nextFocusRight="@id/iv_big_last_semester">
+
+            <ImageView
+                android:id="@+id/iv_middle_last_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/ic_main_middle_last_semester" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/ic_main_semester_frame" />
+
+            <TextView
+                android:id="@+id/tv_middle_last_semester_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="@string/middle_last_semester"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_big_last_semester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/rl_reception_last_semester"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="66dp"
+            android:nextFocusDown="@id/iv_big_next_semester"
+            android:nextFocusLeft="@id/rl_middle_last_semester"
+            android:nextFocusRight="@id/iv_reception_next_semester">
+
+            <ImageView
+                android:id="@+id/iv_big_last_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/ic_main_big_last_semester" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/ic_main_semester_frame" />
+
+            <TextView
+                android:id="@+id/tv_big_last_semester_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="@string/big_last_semester"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_reception_next_semester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/rl_reception_last_semester"
+            android:layout_marginBottom="120dp"
+            android:nextFocusLeft="@id/rl_big_last_semester"
+            android:nextFocusRight="@id/iv_middle_next_semester"
+            android:nextFocusUp="@id/iv_reception_last_semester">
+
+            <ImageView
+                android:id="@+id/iv_reception_next_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/ic_main_reception_next_semester" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/ic_main_semester_frame" />
+
+            <TextView
+                android:id="@+id/tv_receptin_next_semester_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="@string/reception_next_semester"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_middle_next_semester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/rl_middle_last_semester"
+            android:layout_alignTop="@+id/rl_reception_next_semester"
+            android:nextFocusLeft="@id/rl_reception_next_semester"
+            android:nextFocusRight="@id/iv_big_next_semester"
+            android:nextFocusUp="@id/rl_middle_last_semester">
+
+            <ImageView
+                android:id="@+id/iv_middle_next_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/ic_main_middle_next_semester" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/ic_main_semester_frame" />
+
+            <TextView
+                android:id="@+id/tv_middle_next_semester_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="@string/middle_next_semester"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_big_next_semester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/rl_big_last_semester"
+            android:layout_alignTop="@+id/rl_reception_next_semester"
+            android:nextFocusLeft="@id/rl_middle_next_semester"
+            android:nextFocusRight="@id/rl_reception_last_semester"
+            android:nextFocusUp="@id/rl_big_last_semester">
+
+            <ImageView
+                android:id="@+id/iv_big_next_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/ic_main_big_next_semester" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/ic_main_semester_frame" />
+
+            <TextView
+                android:id="@+id/tv_big_next_semester_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="@string/big_next_semester"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

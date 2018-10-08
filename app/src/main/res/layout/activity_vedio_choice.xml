@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ic_bg_choice_course">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_homepage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="120dp"
+            android:layout_marginTop="50dp">
+
+            <ImageView
+                android:id="@+id/iv_homepage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_choice_homepage" />
+
+            <TextView
+                android:id="@+id/tv_homepage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/homepage"
+                android:textSize="@dimen/text_main"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_course_semester"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="120dp">
+
+            <ImageView
+                android:id="@+id/iv_course_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@mipmap/ic_choice_course_semester" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/ic_main_semester_frame" />
+
+            <TextView
+                android:id="@+id/tv_course_semester_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="@string/reception_last_semester"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_course_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="90dp"
+                android:text="@string/curriculum_name"
+                android:textSize="@dimen/text_detail"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_course_semester_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/rl_course_semester"
+            android:layout_marginLeft="330dp"
+            android:layout_marginRight="200dp">
+
+            <ImageView
+                android:id="@+id/iv_course_semester_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_choice_sourse_text" />
+
+            <LinearLayout
+                android:id="@+id/ll_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_detail_title_curriculum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/curriculum_name"
+                    android:textSize="@dimen/text_semester"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textSize="@dimen/text_semester"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_detail_title_semester"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/reception_last_semester"
+                    android:textSize="@dimen/text_semester"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_detail_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/ll_detail_title"
+                android:layout_below="@+id/ll_detail_title"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"
+                android:text="@string/curriculum_detail"
+                android:textSize="@dimen/text_detail"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/rl_course_semester"
+            android:layout_alignRight="@+id/rl_course_semester_detail"
+            android:layout_below="@+id/rl_course_semester_detail"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tv_number_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="@string/number"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_number_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/tv_number_name"
+                android:text="@string/number_value"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_last_time_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="@string/last_time_value"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_last_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="3dp"
+                android:layout_toLeftOf="@+id/tv_last_time_value"
+                android:text="@string/last_time"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/cv_course"
+            android:layout_width="699dp"
+            android:layout_height="match_parent"
+            android:layout_alignLeft="@+id/rl_number"
+            android:layout_below="@+id/rl_number"
+            android:layout_marginBottom="120dp"
+            android:layout_marginTop="10dp" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
