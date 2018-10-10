@@ -1,80 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/ic_bg_class_selection"
-    tools:context=".MainActivity">
+    android:background="@mipmap/ic_bg_dance">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <RelativeLayout
-            android:id="@+id/rl_vedio"
+            android:id="@+id/rl_homepage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="100dp"
-            android:focusable="true"
-            android:nextFocusDown="@id/rl_audio"
-            android:nextFocusRight="@id/rl_reception_last">
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="120dp"
+            android:layout_marginTop="50dp">
 
             <ImageView
-                android:id="@+id/iv_vedio"
+                android:id="@+id/iv_homepage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_main_vedio" />
+                android:src="@mipmap/ic_play_homepage" />
 
             <TextView
-                android:id="@+id/tv_vedio_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="45dp"
-                android:layout_marginTop="70dp"
-                android:text="@string/vedio"
-                android:textSize="@dimen/text_main"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_audio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rl_vedio"
-            android:nextFocusRight="@id/rl_reception_last"
-            android:nextFocusUp="@id/rl_vedio">
-
-            <ImageView
-                android:id="@+id/iv_audio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_main_audio" />
-
-            <TextView
-                android:id="@+id/tv_audio_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="110dp"
-                android:text="@string/audio"
+                android:text="@string/homepage"
                 android:textSize="@dimen/text_main"
                 android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_reception_last"
+            android:id="@+id/rl_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="50dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_play_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/back"
+                android:textSize="@dimen/text_main"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_safe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="280dp"
+            android:layout_marginStart="170dp"
             android:layout_marginTop="105dp"
-            android:nextFocusDown="@id/rl_reception_next"
-            android:nextFocusRight="@id/rl_middle_last">
+            android:nextFocusDown="@id/rl_pop"
+            android:nextFocusRight="@id/rl_hygiene">
 
             <ImageView
-                android:id="@+id/iv_reception_last"
+                android:id="@+id/iv_safe"
                 android:layout_width="180dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="10dp"
@@ -87,29 +83,29 @@
                 android:src="@mipmap/ic_main_semester_frame" />
 
             <TextView
-                android:id="@+id/tv_reception_last_name"
+                android:id="@+id/tv_safe_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/reception_last_semester"
+                android:text="@string/curriculum_safe"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_middle_last"
+            android:id="@+id/rl_hygiene"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/rl_reception_last"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/rl_reception_last"
-            android:nextFocusDown="@id/rl_middle_next"
-            android:nextFocusLeft="@id/rl_reception_last"
-            android:nextFocusRight="@id/rl_big_last">
+            android:layout_alignBottom="@+id/rl_safe"
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@+id/rl_safe"
+            android:nextFocusDown="@id/rl_world"
+            android:nextFocusLeft="@id/rl_safe"
+            android:nextFocusRight="@id/rl_nation">
 
             <ImageView
-                android:id="@+id/iv_middle_last"
+                android:id="@+id/iv_hygiene"
                 android:layout_width="180dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="10dp"
@@ -122,29 +118,29 @@
                 android:src="@mipmap/ic_main_semester_frame" />
 
             <TextView
-                android:id="@+id/tv_middle_last_name"
+                android:id="@+id/tv_hygiene_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/middle_last_semester"
+                android:text="@string/curriculum_hygiene"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_big_last"
+            android:id="@+id/rl_nation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/rl_reception_last"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/rl_middle_last"
-            android:nextFocusDown="@id/rl_big_next"
-            android:nextFocusLeft="@id/rl_middle_last"
-            android:nextFocusRight="@id/rl_reception_next">
+            android:layout_alignBottom="@+id/rl_safe"
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@+id/rl_hygiene"
+            android:nextFocusDown="@id/rl_china"
+            android:nextFocusLeft="@id/rl_hygiene"
+            android:nextFocusRight="@id/rl_pop">
 
             <ImageView
-                android:id="@+id/iv_big_last"
+                android:id="@+id/iv_nation"
                 android:layout_width="180dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="10dp"
@@ -157,29 +153,29 @@
                 android:src="@mipmap/ic_main_semester_frame" />
 
             <TextView
-                android:id="@+id/tv_big_last_name"
+                android:id="@+id/tv_nation_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/big_last_semester"
+                android:text="@string/curriculum_nation"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_reception_next"
+            android:id="@+id/rl_pop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/rl_reception_last"
-            android:layout_below="@+id/rl_reception_last"
-            android:layout_marginTop="35dp"
-            android:nextFocusLeft="@id/rl_big_last"
-            android:nextFocusRight="@id/rl_middle_next"
-            android:nextFocusUp="@id/rl_reception_last">
+            android:layout_below="@+id/rl_safe"
+            android:layout_marginTop="50dp"
+            android:layout_alignStart="@+id/rl_safe"
+            android:nextFocusLeft="@id/rl_nation"
+            android:nextFocusRight="@id/rl_world"
+            android:nextFocusUp="@id/rl_pop">
 
             <ImageView
-                android:id="@+id/iv_reception_next"
+                android:id="@+id/iv_pop"
                 android:layout_width="180dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="10dp"
@@ -192,28 +188,28 @@
                 android:src="@mipmap/ic_main_semester_frame" />
 
             <TextView
-                android:id="@+id/tv_reception_next_name"
+                android:id="@+id/tv_pop_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/reception_next_semester"
+                android:text="@string/curriculum_pop"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_middle_next"
+            android:id="@+id/rl_world"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/rl_middle_last"
-            android:layout_alignTop="@+id/rl_reception_next"
-            android:nextFocusLeft="@id/rl_reception_next"
-            android:nextFocusRight="@id/rl_big_next"
-            android:nextFocusUp="@id/rl_middle_last">
+            android:layout_alignStart="@+id/rl_hygiene"
+            android:layout_alignTop="@+id/rl_pop"
+            android:nextFocusLeft="@id/rl_pop"
+            android:nextFocusRight="@id/rl_china"
+            android:nextFocusUp="@id/rl_hygiene">
 
             <ImageView
-                android:id="@+id/iv_middle_next"
+                android:id="@+id/iv_world"
                 android:layout_width="180dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="10dp"
@@ -226,28 +222,28 @@
                 android:src="@mipmap/ic_main_semester_frame" />
 
             <TextView
-                android:id="@+id/tv_middle_next_name"
+                android:id="@+id/tv_world_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/middle_next_semester"
+                android:text="@string/curriculum_world"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_big_next"
+            android:id="@+id/rl_china"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/rl_big_last"
-            android:layout_alignTop="@+id/rl_reception_next"
-            android:nextFocusLeft="@id/rl_middle_next"
-            android:nextFocusRight="@id/rl_reception_last"
-            android:nextFocusUp="@id/rl_big_last">
+            android:layout_alignStart="@+id/rl_nation"
+            android:layout_alignTop="@+id/rl_pop"
+            android:nextFocusLeft="@id/rl_world"
+            android:nextFocusRight="@id/rl_safe"
+            android:nextFocusUp="@id/rl_nation">
 
             <ImageView
-                android:id="@+id/iv_big_next"
+                android:id="@+id/iv_china"
                 android:layout_width="180dp"
                 android:layout_height="120dp"
                 android:layout_marginTop="10dp"
@@ -260,15 +256,16 @@
                 android:src="@mipmap/ic_main_semester_frame" />
 
             <TextView
-                android:id="@+id/tv_big_next_name"
+                android:id="@+id/tv_china_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/big_next_semester"
+                android:text="@string/curriculum_china"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
         </RelativeLayout>
+
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

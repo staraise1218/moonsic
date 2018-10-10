@@ -8,67 +8,106 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.baby.happyball.bean.Semester;
 import cn.baby.happyball.constant.HttpConstant;
-import cn.baby.happyball.vedio.VedioChoiceActiviy;
+import cn.baby.happyball.constant.SystemConfig;
+import cn.baby.happyball.vedio.VedioCurriculumActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/**
+ * @author DRH
+ */
 public class MainActivity extends BaseActivity implements View.OnFocusChangeListener {
 
+    /**
+     * 视频
+     */
     @BindView(R.id.rl_vedio)
     RelativeLayout rlVedio;
     @BindView(R.id.iv_vedio)
     ImageView ivVedio;
+    /**
+     * 音频
+     */
     @BindView(R.id.rl_audio)
     RelativeLayout rlAudio;
     @BindView(R.id.iv_audio)
     ImageView ivAudio;
-    @BindView(R.id.rl_reception_last_semester)
+    /**
+     * 小班上学期
+     */
+    @BindView(R.id.rl_reception_last)
     RelativeLayout rlReceptionLast;
-    @BindView(R.id.iv_reception_last_semester)
+    @BindView(R.id.iv_reception_last)
     ImageView ivReceptionLast;
-    @BindView(R.id.tv_receptin_last_semester_name)
+    @BindView(R.id.tv_reception_last_name)
     TextView tvReceptionLast;
-    @BindView(R.id.rl_reception_next_semester)
+    /**
+     * 小班下学期
+     */
+    @BindView(R.id.rl_reception_next)
     RelativeLayout rlReceptionNext;
-    @BindView(R.id.iv_reception_next_semester)
+    @BindView(R.id.iv_reception_next)
     ImageView ivReceptionNext;
-    @BindView(R.id.tv_receptin_next_semester_name)
+    @BindView(R.id.tv_reception_next_name)
     TextView tvReceptionNext;
-    @BindView(R.id.rl_middle_last_semester)
+    /**
+     * 中班上学期
+     */
+    @BindView(R.id.rl_middle_last)
     RelativeLayout rlMiddleLast;
-    @BindView(R.id.iv_middle_last_semester)
+    @BindView(R.id.iv_middle_last)
     ImageView ivMiddleLast;
-    @BindView(R.id.tv_middle_last_semester_name)
+    @BindView(R.id.tv_middle_last_name)
     TextView tvMiddleLast;
-    @BindView(R.id.rl_middle_next_semester)
+    /**
+     * 中班下学期
+     */
+    @BindView(R.id.rl_middle_next)
     RelativeLayout rlMiddleNext;
-    @BindView(R.id.iv_middle_next_semester)
+    @BindView(R.id.iv_middle_next)
     ImageView ivMiddleNext;
-    @BindView(R.id.tv_middle_next_semester_name)
+    @BindView(R.id.tv_middle_next_name)
     TextView tvMiddleNext;
-    @BindView(R.id.rl_big_last_semester)
+    /**
+     * 大班上学期
+     */
+    @BindView(R.id.rl_big_last)
     RelativeLayout rlBigLast;
-    @BindView(R.id.iv_big_last_semester)
+    @BindView(R.id.iv_big_last)
     ImageView ivBigLast;
-    @BindView(R.id.tv_big_last_semester_name)
+    @BindView(R.id.tv_big_last_name)
     TextView tvBigLast;
-    @BindView(R.id.rl_big_next_semester)
+    /**
+     * 大班下学期
+     */
+    @BindView(R.id.rl_big_next)
     RelativeLayout rlBigNext;
-    @BindView(R.id.iv_big_next_semester)
+    @BindView(R.id.iv_big_next)
     ImageView ivBigNext;
-    @BindView(R.id.tv_big_next_semester_name)
+    @BindView(R.id.tv_big_next_name)
     TextView tvBigNext;
+
+    /** 0:视频 1:音频 **/
+    private int mMode = 0;
+    List<Semester> mSemesters = new ArrayList<>(6);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,44 +140,95 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                String errString = e.toString();
+
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String responseStr = response.body().string();
+                try {
+                    String data = (new JSONObject(responseStr)).optString("data");
+                    mSemesters = JSON.parseArray(data, Semester.class);
+                    runOnUiThread(() -> initData());
+                } catch (Exception e) {
+                }
             }
         });
     }
 
-    @OnClick(R.id.iv_reception_last_semester)
+    private void initData() {
+        for (Semester semester : mSemesters) {
+            String imageUrl = HttpConstant.IMGURL + semester.getImage();
+            switch (semester.getId()) {
+                case 1:
+                    tvBigNext.setText(semester.getName());
+                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivBigNext);
+                    break;
+
+                case 2:
+                    tvMiddleNext.setText(semester.getName());
+                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivMiddleNext);
+                    break;
+
+                case 3:
+                    tvReceptionNext.setText(semester.getName());
+                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivReceptionNext);
+                    break;
+
+                case 4:
+                    tvBigLast.setText(semester.getName());
+                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivBigLast);
+                    break;
+
+                case 5:
+                    tvMiddleLast.setText(semester.getName());
+                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivMiddleLast);
+                    break;
+
+                case 6 :
+                    tvReceptionLast.setText(semester.getName());
+                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivReceptionLast);
+                    break;
+
+                    default:break;
+            }
+        }
+    }
+
+    @OnClick({R.id.iv_reception_last, R.id.rl_reception_last})
     public void onReceptionLastSemester() {
-        startActivity(new Intent(MainActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(MainActivity.this, VedioCurriculumActivity.class)
+                .putExtra(SystemConfig.SEMESTER, 6));
     }
 
-    @OnClick(R.id.iv_reception_next_semester)
+    @OnClick({R.id.iv_reception_next, R.id.rl_reception_next})
     public void onReceptionNextSemester() {
-        startActivity(new Intent(MainActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(MainActivity.this, VedioCurriculumActivity.class)
+                .putExtra(SystemConfig.SEMESTER, 3));
     }
 
-    @OnClick(R.id.iv_middle_last_semester)
+    @OnClick({R.id.iv_middle_last, R.id.rl_middle_last})
     public void onMiddleLastSemester() {
-        startActivity(new Intent(MainActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(MainActivity.this, VedioCurriculumActivity.class)
+                .putExtra(SystemConfig.SEMESTER, 5));
     }
 
-    @OnClick(R.id.iv_middle_next_semester)
+    @OnClick({R.id.iv_middle_next, R.id.rl_middle_next})
     public void onMiddleNextSemester() {
-        startActivity(new Intent(MainActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(MainActivity.this, VedioCurriculumActivity.class)
+                .putExtra(SystemConfig.SEMESTER, 2));
     }
 
-    @OnClick(R.id.iv_big_last_semester)
+    @OnClick({R.id.iv_big_last, R.id.rl_big_last})
     public void onBigLastSemester() {
-        startActivity(new Intent(MainActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(MainActivity.this, VedioCurriculumActivity.class)
+                .putExtra(SystemConfig.SEMESTER, 4));
     }
 
-    @OnClick(R.id.iv_big_next_semester)
+    @OnClick({R.id.iv_big_next, R.id.rl_big_next})
     public void onBigNextSemester() {
-        startActivity(new Intent(MainActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(MainActivity.this, VedioCurriculumActivity.class)
+                .putExtra(SystemConfig.SEMESTER, 1));
     }
 
     @Override
@@ -156,37 +246,37 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 }
                 break;
 
-            case R.id.iv_reception_last_semester:
+            case R.id.rl_reception_last:
                 if (b) {
                 } else {
                 }
                 break;
 
-            case R.id.iv_reception_next_semester:
+            case R.id.rl_reception_next:
                 if (b) {
                 } else {
                 }
                 break;
 
-            case R.id.iv_middle_last_semester:
+            case R.id.rl_middle_last:
                 if (b) {
                 } else {
                 }
                 break;
 
-            case R.id.iv_middle_next_semester:
+            case R.id.rl_middle_next:
                 if (b) {
                 } else {
                 }
                 break;
 
-            case R.id.iv_big_last_semester:
+            case R.id.rl_big_last:
                 if (b) {
                 } else {
                 }
                 break;
 
-            case R.id.iv_big_next_semester:
+            case R.id.rl_big_next:
                 if (b) {
                 } else {
                 }

@@ -30,6 +30,14 @@
     <string name="big_last_semester">大班上学期</string>
     <string name="big_next_semester">大班下学期</string>
 
+    <!-- Curriculum -->
+    <string name="curriculum_safe">幼儿安全教育</string>
+    <string name="curriculum_hygiene">幼儿卫生常识</string>
+    <string name="curriculum_nation">名族列车</string>
+    <string name="curriculum_pop">流行歌舞</string>
+    <string name="curriculum_world">世界魅力</string>
+    <string name="curriculum_china">中国魅力</string>
+
     <!-- Choice -->
     <string name="curriculum_name">幼儿安全教育</string>
     <string name="curriculum_detail">幼儿安全教育-小班上学期，是针对于幼儿小班小朋友的XXXXXXX.幼儿安全教育-小班上学期，是针对于幼儿小班小朋友的XXXXXXX.幼儿安全教育-小班上学期，是针对于幼儿小班小朋友的</string>

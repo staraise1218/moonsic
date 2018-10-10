@@ -11,8 +11,11 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,6 +24,7 @@
         <activity android:name=".MainActivity"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -29,34 +33,46 @@
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".vedio.VedioCurriculumActivity"
+            android:icon="@drawable/app_icon_your_company"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:logo="@drawable/app_icon_your_company">
+        </activity>
         <activity android:name=".vedio.VedioChoiceActiviy"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".vedio.VedioPlayActivity"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".vedio.VedioFinishActivity"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".vedio.VedioSongActivity"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".vedio.VedioDanceActivity"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".vedio.VedioKnowledgeActivity"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
+            android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
     </application>
