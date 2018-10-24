@@ -17,10 +17,7 @@ import cn.baby.happyball.R;
 import cn.baby.happyball.bean.Episode;
 import cn.baby.happyball.constant.SystemConfig;
 
-/**
- * @author DRH
- */
-public class VedioFinishActivity extends BaseActivity implements View.OnFocusChangeListener{
+public class VedioStudyActivity extends BaseActivity implements View.OnFocusChangeListener {
 
     /**
      * 主页
@@ -37,43 +34,37 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     @BindView(R.id.iv_back)
     ImageView ivBack;
     /**
-     * 重播
+     * 学唱歌
      */
-    @BindView(R.id.ll_replay)
-    LinearLayout llReplay;
+    @BindView(R.id.rl_song)
+    RelativeLayout rlSong;
+    @BindView(R.id.iv_song)
+    ImageView ivSong;
     /**
-     * 学习
+     * 学跳舞
      */
-    @BindView(R.id.rl_study)
-    RelativeLayout rlStudy;
-    @BindView(R.id.iv_study)
-    ImageView ivStudy;
-    /**
-     * 知识点
-     */
-    @BindView(R.id.rl_knowledge)
-    RelativeLayout rlKnowledge;
-    @BindView(R.id.iv_knowledge)
-    ImageView ivKnowledge;
+    @BindView(R.id.rl_dance)
+    RelativeLayout rlDance;
+    @BindView(R.id.iv_dance)
+    ImageView ivDance;
 
     private Episode mEpisode;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vedio_finish);
+        setContentView(R.layout.activity_vedio_study);
         ButterKnife.bind(this);
-        bindEvnets();
+        bindEvents();
         getData();
         initData();
     }
 
-    private void bindEvnets() {
+    private void bindEvents() {
         rlBack.setOnFocusChangeListener(this);
         rlHomePage.setOnFocusChangeListener(this);
-        llReplay.setOnFocusChangeListener(this);
-        rlStudy.setOnFocusChangeListener(this);
-        rlKnowledge.setOnFocusChangeListener(this);
+        rlSong.setOnFocusChangeListener(this);
+        rlDance.setOnFocusChangeListener(this);
     }
 
     private void getData() {
@@ -81,36 +72,31 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     }
 
     private void initData() {
-//        obtainViewFocus(rlStudy);
-//        rlStudy.requestFocus();
-//        rlStudy.setFocusable(true);
+//        obtainViewFocus(rlSong);
+//        rlSong.requestFocus();
+//        rlSong.setFocusable(true);
     }
 
-    @OnClick(R.id.ll_replay)
-    public void onReplay() {
-        startActivity(new Intent(VedioFinishActivity.this, VedioPlayActivity.class));
+    @OnClick({R.id.iv_song, R.id.rl_song})
+    public void onSong() {
+        startActivity(new Intent(VedioStudyActivity.this, VedioSongActivity.class)
+                            .putExtra(SystemConfig.EPISODE, mEpisode));
+    }
+
+    @OnClick({R.id.iv_dance, R.id.rl_dance})
+    public void onDance() {
+        startActivity(new Intent(VedioStudyActivity.this, VedioDanceActivity.class)
+                .putExtra(SystemConfig.EPISODE, mEpisode));
     }
 
     @OnClick({R.id.iv_back, R.id.rl_back})
     public void onBack() {
-        startActivity(new Intent(VedioFinishActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(VedioStudyActivity.this, VedioFinishActivity.class));
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})
     public void onHomepage() {
-        startActivity(new Intent(VedioFinishActivity.this, MainActivity.class));
-    }
-
-    @OnClick({R.id.iv_study, R.id.rl_study})
-    public void onSong() {
-        startActivity(new Intent(VedioFinishActivity.this, VedioStudyActivity.class)
-                .putExtra(SystemConfig.EPISODE, mEpisode));
-    }
-
-    @OnClick({R.id.iv_knowledge, R.id.rl_knowledge})
-    public void onDance() {
-        startActivity(new Intent(VedioFinishActivity.this, VedioKnowledgeActivity.class)
-                .putExtra(SystemConfig.EPISODE, mEpisode));
+        startActivity(new Intent(VedioStudyActivity.this, MainActivity.class));
     }
 
     @Override

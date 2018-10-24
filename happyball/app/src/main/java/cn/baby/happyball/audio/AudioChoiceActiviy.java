@@ -1,4 +1,4 @@
-package cn.baby.happyball.vedio;
+package cn.baby.happyball.audio;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,6 +33,7 @@ import cn.baby.happyball.bean.Lesson;
 import cn.baby.happyball.bean.Semester;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
+import cn.baby.happyball.vedio.VedioPlayActivity;
 import cn.baby.happyball.vedio.adapter.EpisodeAdapter;
 import cn.baby.happyball.view.recyclerView.TvRecyclerView;
 import okhttp3.Call;
@@ -45,7 +46,7 @@ import okhttp3.Response;
 /**
  * @author DRH
  */
-public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChangeListener {
+public class AudioChoiceActiviy extends BaseActivity implements View.OnFocusChangeListener {
 
     private static final String CLASSES_ID = "classes_id";
     private static final String LESSON_ID = "lesson_id";
@@ -69,9 +70,7 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
     TextView tvSemeterName;
     @BindView(R.id.tv_lesson_name)
     TextView tvLessonName;
-    /**
-     * 班级课程描述
-     */
+
     @BindView(R.id.rl_course_semester_detail)
     RelativeLayout rlCourseSemesterDetail;
     @BindView(R.id.iv_course_semester_detail)
@@ -82,18 +81,12 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
     TextView tvDetailTitleLesson;
     @BindView(R.id.tv_detail_content)
     TextView tvDetailContent;
-    /**
-     * 历史纪录
-     */
     @BindView(R.id.tv_number_value)
     TextView tvNumber;
     @BindView(R.id.tv_last_time)
     TextView tvLastTime;
     @BindView(R.id.tv_last_time_value)
     TextView tvLastTimeValue;
-    /**
-     * 集数选择
-     */
     @BindView(R.id.cv_course)
     TvRecyclerView cvCourse;
 
@@ -122,7 +115,7 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
         String json = JSON.toJSONString(map);
         OkHttpClient okHttpClient = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url(HttpConstant.URL + HttpConstant.VIDEO_EPISODE)
+                .url(HttpConstant.URL + HttpConstant.AUDIO_EPISODE)
                 .post(RequestBody.create(HttpConstant.JSON, json))
                 .build();
         Call call = okHttpClient.newCall(request);
@@ -166,7 +159,7 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
         Picasso.with(getApplicationContext()).load(imageUrl).into(ivCourseSemester);
 
         cvCourse.setItemAnimator(new DefaultItemAnimator());
-        mEpisodeAdapter = new EpisodeAdapter(VedioChoiceActiviy.this, mEpisodes);
+        mEpisodeAdapter = new EpisodeAdapter(AudioChoiceActiviy.this, mEpisodes);
         mLayoutManager = new StaggeredGridLayoutManager(LINE_NUM, StaggeredGridLayoutManager.HORIZONTAL);
         mLayoutManager.setAutoMeasureEnabled(true);
         cvCourse.setLayoutManager(mLayoutManager);
@@ -177,7 +170,7 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})
     public void onHomepage() {
-        startActivity(new Intent(VedioChoiceActiviy.this, MainActivity.class));
+        startActivity(new Intent(AudioChoiceActiviy.this, MainActivity.class));
     }
 
     @Override
@@ -192,7 +185,7 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
             StringBuilder builder = new StringBuilder();
             builder.append(SystemConfig.EPISODE_NUM).append(mSemester.getId()).append(mLesson.getId());
             setValue(builder.toString(), mEpisodes.get(position).getEpisode());
-            startActivity(new Intent(VedioChoiceActiviy.this, VedioPlayActivity.class)
+            startActivity(new Intent(AudioChoiceActiviy.this, AudioPlayActivity.class)
                     .putExtra(SystemConfig.EPISODE, mEpisodes.get(position))
                     .putExtra(SystemConfig.SEMESTER, mSemester)
                     .putExtra(SystemConfig.LESSON, mLesson));

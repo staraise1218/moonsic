@@ -34,4 +34,12 @@ public class Lesson implements Serializable {
     public String getImage() {
         return image;
     }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }

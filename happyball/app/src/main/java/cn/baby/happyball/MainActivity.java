@@ -2,9 +2,9 @@ package cn.baby.happyball;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,10 +20,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.baby.happyball.audio.AudioLessonActivity;
 import cn.baby.happyball.bean.Semester;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
-import cn.baby.happyball.vedio.VedioCurriculumActivity;
+import cn.baby.happyball.vedio.VedioLessonActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -104,8 +105,12 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     ImageView ivBigNext;
     @BindView(R.id.tv_big_next_name)
     TextView tvBigNext;
+    @BindView(R.id.pb_loading)
+    ProgressBar pbLoading;
 
-    /** 0:视频 1:音频 **/
+    /**
+     * 0:视频 1:音频
+     **/
     private int mMode = 0;
     List<Semester> mSemesters = new ArrayList<>(6);
 
@@ -119,21 +124,29 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     }
 
     public void bindEvent() {
-        rlVedio.setFocusable(true);
         rlVedio.setOnFocusChangeListener(this);
         rlAudio.setOnFocusChangeListener(this);
-        ivReceptionLast.setOnFocusChangeListener(this);
-        ivReceptionNext.setOnFocusChangeListener(this);
-        ivMiddleLast.setOnFocusChangeListener(this);
-        ivMiddleNext.setOnFocusChangeListener(this);
-        ivBigLast.setOnFocusChangeListener(this);
-        ivBigNext.setOnFocusChangeListener(this);
+        rlReceptionLast.setOnFocusChangeListener(this);
+        rlReceptionNext.setOnFocusChangeListener(this);
+        rlMiddleLast.setOnFocusChangeListener(this);
+        rlMiddleNext.setOnFocusChangeListener(this);
+        rlBigLast.setOnFocusChangeListener(this);
+        rlBigNext.setOnFocusChangeListener(this);
     }
 
     public void getData() {
+        showLoading(true);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(HttpConstant.URL);
+        if (mMode == 0) {
+            stringBuilder.append(HttpConstant.VIDEO_CLASSES);
+        } else if (mMode == 1) {
+            stringBuilder.append(HttpConstant.AUDIO_CLASSES);
+        }
+        String url = stringBuilder.toString();
         OkHttpClient okHttpClient = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url(HttpConstant.URL + HttpConstant.CLASSES)
+                .url(url)
                 .post(RequestBody.create(HttpConstant.JSON, ""))
                 .build();
         Call call = okHttpClient.newCall(request);
@@ -158,7 +171,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
 
     private void initData() {
         for (Semester semester : mSemesters) {
-            String imageUrl = HttpConstant.IMGURL + semester.getImage();
+            String imageUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(semester.getImage())).toString();
             switch (semester.getId()) {
                 case 1:
                     tvBigNext.setText(semester.getName());
@@ -185,50 +198,116 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                     Picasso.with(getApplicationContext()).load(imageUrl).into(ivMiddleLast);
                     break;
 
-                case 6 :
+                case 6:
                     tvReceptionLast.setText(semester.getName());
                     Picasso.with(getApplicationContext()).load(imageUrl).into(ivReceptionLast);
                     break;
 
-                    default:break;
+                default:
+                    break;
             }
+        }
+        showLoading(false);
+
+        if (mMode == 0) {
+            obtainViewFocus(rlVedio);
+            loseViewFocus(rlAudio);
+            rlVedio.requestFocus();
+            rlVedio.setFocusable(true);
+        } else {
+            obtainViewFocus(rlAudio);
+            loseViewFocus(rlVedio);
+            rlAudio.requestFocus();
+            rlAudio.setFocusable(true);
         }
     }
 
     @OnClick({R.id.iv_reception_last, R.id.rl_reception_last})
     public void onReceptionLastSemester() {
-        startActivity(new Intent(MainActivity.this, VedioCurriculumActivity.class)
-                .putExtra(SystemConfig.SEMESTER, 6));
+//        switchFocusView(0);
+        if (mMode == 0) {
+            startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(0)));
+        } else {
+            startActivity(new Intent(MainActivity.this, AudioLessonActivity.class)
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(0)));
+        }
     }
 
     @OnClick({R.id.iv_reception_next, R.id.rl_reception_next})
     public void onReceptionNextSemester() {
-        startActivity(new Intent(MainActivity.this, VedioCurriculumActivity.class)
-                .putExtra(SystemConfig.SEMESTER, 3));
+//        switchFocusView(3);
+        if (mMode == 0) {
+            startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(3)));
+        } else {
+            startActivity(new Intent(MainActivity.this, AudioLessonActivity.class)
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(3)));
+        }
     }
 
     @OnClick({R.id.iv_middle_last, R.id.rl_middle_last})
     public void onMiddleLastSemester() {
-        startActivity(new Intent(MainActivity.this, VedioCurriculumActivity.class)
-                .putExtra(SystemConfig.SEMESTER, 5));
+//        switchFocusView(1);
+        if (mMode == 0) {
+            startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(1)));
+        } else {
+            startActivity(new Intent(MainActivity.this, AudioLessonActivity.class)
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(1)));
+        }
     }
 
     @OnClick({R.id.iv_middle_next, R.id.rl_middle_next})
     public void onMiddleNextSemester() {
-        startActivity(new Intent(MainActivity.this, VedioCurriculumActivity.class)
-                .putExtra(SystemConfig.SEMESTER, 2));
+//        switchFocusView(4);
+        if (mMode == 0) {
+            startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(4)));
+        } else {
+            startActivity(new Intent(MainActivity.this, AudioLessonActivity.class)
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(4)));
+        }
     }
 
     @OnClick({R.id.iv_big_last, R.id.rl_big_last})
     public void onBigLastSemester() {
-        startActivity(new Intent(MainActivity.this, VedioCurriculumActivity.class)
-                .putExtra(SystemConfig.SEMESTER, 4));
+//        switchFocusView(2);
+        if (mMode == 0) {
+            startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(2)));
+        } else {
+            startActivity(new Intent(MainActivity.this, AudioLessonActivity.class)
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(2)));
+        }
     }
 
     @OnClick({R.id.iv_big_next, R.id.rl_big_next})
     public void onBigNextSemester() {
-        startActivity(new Intent(MainActivity.this, VedioCurriculumActivity.class)
-                .putExtra(SystemConfig.SEMESTER, 1));
+//        switchFocusView(5);
+        if (mMode == 0) {
+            startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(5)));
+        } else {
+            startActivity(new Intent(MainActivity.this, AudioLessonActivity.class)
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(5)));
+        }
+    }
+
+    @OnClick(R.id.rl_vedio)
+    public void onVedio() {
+        if (mMode != 0) {
+            mMode = 0;
+            getData();
+        }
+    }
+
+    @OnClick(R.id.rl_audio)
+    public void onAudio() {
+        if (mMode != 1) {
+            mMode = 1;
+            getData();
+        }
     }
 
     @Override
@@ -236,85 +315,104 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         switch (view.getId()) {
             case R.id.rl_vedio:
                 if (b) {
-                } else {
+                    mMode = 0;
+                    getData();
                 }
                 break;
 
             case R.id.rl_audio:
                 if (b) {
-                } else {
+                    mMode = 1;
+                    getData();
                 }
                 break;
 
             case R.id.rl_reception_last:
                 if (b) {
+                    obtainViewFocus(rlReceptionLast);
+                    rlReceptionLast.requestFocus();
+                    rlReceptionLast.setFocusable(true);
+                    if (mMode == 0) {
+                        ivReceptionLast.setNextFocusRightId(R.id.rl_vedio);
+                    } else {
+                        ivReceptionLast.setNextFocusRightId(R.id.rl_audio);
+                    }
                 } else {
+                    loseViewFocus(rlReceptionLast);
                 }
                 break;
-
-            case R.id.rl_reception_next:
-                if (b) {
-                } else {
-                }
-                break;
-
-            case R.id.rl_middle_last:
-                if (b) {
-                } else {
-                }
-                break;
-
-            case R.id.rl_middle_next:
-                if (b) {
-                } else {
-                }
-                break;
-
-            case R.id.rl_big_last:
-                if (b) {
-                } else {
-                }
-                break;
-
-            case R.id.rl_big_next:
-                if (b) {
-                } else {
-                }
-                break;
-
             default:
+                if (b) {
+                    obtainViewFocus(view);
+                } else {
+                    loseViewFocus(view);
+                }
                 break;
         }
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            //模拟器测试时键盘中的的Enter键，模拟ok键（推荐TV开发中使用蓝叠模拟器）
-            case KeyEvent.KEYCODE_ENTER:
+    private void switchFocusView(int index) {
+        switch (index) {
+            case 0:
+                obtainViewFocus(rlReceptionLast);
+                loseViewFocus(rlReceptionNext);
+                loseViewFocus(rlMiddleLast);
+                loseViewFocus(rlMiddleNext);
+                loseViewFocus(rlBigLast);
+                loseViewFocus(rlBigNext);
                 break;
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-
+            case 3:
+                loseViewFocus(rlReceptionLast);
+                obtainViewFocus(rlReceptionNext);
+                loseViewFocus(rlMiddleLast);
+                loseViewFocus(rlMiddleNext);
+                loseViewFocus(rlBigLast);
+                loseViewFocus(rlBigNext);
                 break;
-
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-
+            case 1:
+                loseViewFocus(rlReceptionLast);
+                loseViewFocus(rlReceptionNext);
+                obtainViewFocus(rlMiddleLast);
+                loseViewFocus(rlMiddleNext);
+                loseViewFocus(rlBigLast);
+                loseViewFocus(rlBigNext);
                 break;
-
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-
+            case 4:
+                loseViewFocus(rlReceptionLast);
+                loseViewFocus(rlReceptionNext);
+                loseViewFocus(rlMiddleLast);
+                obtainViewFocus(rlMiddleNext);
+                loseViewFocus(rlBigLast);
+                loseViewFocus(rlBigNext);
                 break;
-
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-
+            case 2:
+                loseViewFocus(rlReceptionLast);
+                loseViewFocus(rlReceptionNext);
+                loseViewFocus(rlMiddleLast);
+                loseViewFocus(rlMiddleNext);
+                obtainViewFocus(rlBigLast);
+                loseViewFocus(rlBigNext);
                 break;
-
-            case KeyEvent.KEYCODE_DPAD_UP:
-
+            case 5:
+                loseViewFocus(rlReceptionLast);
+                loseViewFocus(rlReceptionNext);
+                loseViewFocus(rlMiddleLast);
+                loseViewFocus(rlMiddleNext);
+                loseViewFocus(rlBigLast);
+                obtainViewFocus(rlBigNext);
                 break;
             default:
+                loseViewFocus(rlReceptionLast);
+                loseViewFocus(rlReceptionNext);
+                loseViewFocus(rlMiddleLast);
+                loseViewFocus(rlMiddleNext);
+                loseViewFocus(rlBigLast);
+                loseViewFocus(rlBigNext);
                 break;
         }
-        return super.onKeyDown(keyCode, event);
+    }
+
+    public void showLoading(boolean show) {
+        pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 }

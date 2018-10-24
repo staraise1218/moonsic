@@ -10,6 +10,104 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tv_play_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="200dp"
+            android:text="@string/play_finish"
+            android:textSize="36sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_replay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_play_finish"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/ic_finish_replay_frame"
+            android:focusable="true"
+            android:gravity="center"
+            android:nextFocusLeft="@id/rl_study"
+            android:nextFocusUp="@id/rl_study"
+            android:nextFocusRight="@id/rl_knowledge"
+            android:nextFocusDown="@id/rl_knowledge"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_finish_replay" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="18dp"
+                android:text="@string/replay"
+                android:textSize="@dimen/text_semester" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_study"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="166dp"
+            android:nextFocusLeft="@id/rl_back"
+            android:nextFocusRight="@id/ll_replay"
+            android:nextFocusDown="@id/ll_replay">
+
+            <ImageView
+                android:id="@+id/iv_study"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_finish_song" />
+
+            <TextView
+                android:id="@+id/tv_study"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="180dp"
+                android:text="@string/study"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_knowledge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="166dp"
+            android:nextFocusRight="@id/rl_homepage"
+            android:nextFocusLeft="@id/ll_replay"
+            android:nextFocusUp="@id/ll_replay">
+
+            <ImageView
+                android:id="@+id/iv_knowledge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_finish_dance" />
+
+            <TextView
+                android:id="@+id/tv_knowledge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="180dp"
+                android:text="@string/knowledge"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/rl_homepage"
             android:layout_width="wrap_content"
@@ -56,94 +154,6 @@
                 android:text="@string/back"
                 android:textSize="@dimen/text_main"
                 android:textStyle="bold" />
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="播放结束"
-                android:textSize="36sp" />
-
-            <LinearLayout
-                android:id="@+id/ll_replay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:background="@mipmap/ic_finish_replay_frame"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_finish_replay" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="18dp"
-                    android:text="重播"
-                    android:textSize="@dimen/text_semester" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_song"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="166dp">
-
-            <ImageView
-                android:id="@+id/iv_song"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_finish_song" />
-
-            <TextView
-                android:id="@+id/tv_song"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="180dp"
-                android:text="学儿歌"
-                android:textSize="@dimen/text_semester"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_dance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="166dp">
-
-            <ImageView
-                android:id="@+id/iv_dance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_finish_dance" />
-
-            <TextView
-                android:id="@+id/tv_dance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="180dp"
-                android:text="学跳舞"
-                android:textSize="@dimen/text_semester"
-                android:textStyle="bold" />
-
         </RelativeLayout>
     </RelativeLayout>
 

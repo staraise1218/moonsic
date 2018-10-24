@@ -15,9 +15,9 @@
             android:id="@+id/rl_vedio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="100dp"
-            android:focusable="true"
             android:nextFocusDown="@id/rl_audio"
             android:nextFocusRight="@id/rl_reception_last">
 
@@ -268,6 +268,17 @@
                 android:text="@string/big_next_semester"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/pb_loading"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
         </RelativeLayout>
     </RelativeLayout>
 

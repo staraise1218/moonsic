@@ -63,6 +63,7 @@
             android:id="@+id/rl_safe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
             android:layout_alignParentStart="true"
             android:layout_marginStart="170dp"
             android:layout_marginTop="105dp"
@@ -88,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/curriculum_safe"
+                android:text="@string/lesson_safe"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -123,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/curriculum_hygiene"
+                android:text="@string/lesson_hygiene"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -158,7 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/curriculum_nation"
+                android:text="@string/lesson_nation"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -193,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/curriculum_pop"
+                android:text="@string/lesson_pop"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -227,7 +228,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/curriculum_world"
+                android:text="@string/lesson_world"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -261,9 +262,20 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="@string/curriculum_china"
+                android:text="@string/lesson_china"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/pb_loading"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
         </RelativeLayout>
 
     </RelativeLayout>

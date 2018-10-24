@@ -1,8 +1,6 @@
-package cn.baby.happyball.vedio;
+package cn.baby.happyball.audio;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
@@ -23,29 +21,22 @@ import cn.baby.happyball.bean.Lesson;
 import cn.baby.happyball.bean.Semester;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
+import cn.baby.happyball.vedio.VedioChoiceActiviy;
+import cn.baby.happyball.vedio.VedioFinishActivity;
 
 /**
  * @author DRH
  */
-public class VedioPlayActivity extends BaseActivity {
+public class AudioPlayActivity extends BaseActivity {
 
-    /**
-     * 主页
-     */
     @BindView(R.id.rl_homepage)
     RelativeLayout rlHomaPage;
     @BindView(R.id.iv_homepage)
     ImageView ivHomePage;
-    /**
-     * 返回
-     */
     @BindView(R.id.rl_back)
     RelativeLayout rlBack;
     @BindView(R.id.iv_back)
     ImageView ivBack;
-    /**
-     * 视频播放
-     */
     @BindView(R.id.iv_play)
     ImageView ivPlay;
     @BindView(R.id.tv_play_number)
@@ -73,20 +64,19 @@ public class VedioPlayActivity extends BaseActivity {
 
     public void onPlay() {
         setValue(mKey, getString(R.string.played));
-        startActivity(new Intent(VedioPlayActivity.this, VedioFinishActivity.class)
-                                .putExtra(SystemConfig.EPISODE, mEpisode));
+        startActivity(new Intent(AudioPlayActivity.this, AudioChoiceActiviy.class));
     }
 
     @OnClick({R.id.iv_back, R.id.rl_back})
     public void onBack() {
         setValue(mKey, String.valueOf(videoPlay.getCurrentPosition()));
-        startActivity(new Intent(VedioPlayActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(AudioPlayActivity.this, AudioChoiceActiviy.class));
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})
     public void onHomepage() {
         setValue(mKey, String.valueOf(videoPlay.getCurrentPosition()));
-        startActivity(new Intent(VedioPlayActivity.this, MainActivity.class));
+        startActivity(new Intent(AudioPlayActivity.this, MainActivity.class));
     }
 
     private void getData() {

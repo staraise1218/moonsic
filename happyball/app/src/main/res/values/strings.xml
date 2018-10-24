@@ -30,31 +30,46 @@
     <string name="big_last_semester">大班上学期</string>
     <string name="big_next_semester">大班下学期</string>
 
-    <!-- Curriculum -->
-    <string name="curriculum_safe">幼儿安全教育</string>
-    <string name="curriculum_hygiene">幼儿卫生常识</string>
-    <string name="curriculum_nation">名族列车</string>
-    <string name="curriculum_pop">流行歌舞</string>
-    <string name="curriculum_world">世界魅力</string>
-    <string name="curriculum_china">中国魅力</string>
+    <!-- Lesson -->
+    <string name="lesson_safe">幼儿安全教育</string>
+    <string name="lesson_hygiene">幼儿卫生常识</string>
+    <string name="lesson_nation">名族列车</string>
+    <string name="lesson_pop">流行歌舞</string>
+    <string name="lesson_world">世界魅力</string>
+    <string name="lesson_china">中国魅力</string>
 
     <!-- Choice -->
-    <string name="curriculum_name">幼儿安全教育</string>
-    <string name="curriculum_detail">幼儿安全教育-小班上学期，是针对于幼儿小班小朋友的XXXXXXX.幼儿安全教育-小班上学期，是针对于幼儿小班小朋友的XXXXXXX.幼儿安全教育-小班上学期，是针对于幼儿小班小朋友的</string>
+    <string name="lesson_name">幼儿安全教育</string>
+    <string name="lesson_detail">幼儿安全教育-小班上学期，是针对于幼儿小班小朋友的XXXXXXX.幼儿安全教育-小班上学期，是针对于幼儿小班小朋友的XXXXXXX.幼儿安全教育-小班上学期，是针对于幼儿小班小朋友的</string>
     <string name="number">集数</string>
     <string name="number_value">1-%d</string>
     <string name="last_time">上次播放至第%d集</string>
     <string name="last_time_value">13:14</string>
+    <string name="last_no_playing">还未观看过</string>
+    <string name="the_number">第%s集</string>
 
     <!-- VedioPlay -->
     <string name="playback">26.7万</string>
     <string name="playlength">05:16</string>
+    <string name="played">已播放</string>
 
     <!-- VedioFinish -->
     <string name="play_finish">播放结束</string>
+    <string name="study">学习</string>
+    <string name="replay">重播</string>
+    <string name="knowledge">知识点</string>
+
+    <!-- VedioStudy -->
+    <string name="study_song">学儿歌</string>
+    <string name="study_dance">学跳舞</string>
 
     <!-- VedioSong -->
     <string name="song_lyrics">歌词列表</string>
     <string name="song_sing">导唱</string>
     <string name="song_accompaniment">伴唱</string>
+
+    <!-- VedioKnowLedge -->
+    <string name="knowledge_answer">答案</string>
+    <string name="knowledge_title">乐球知识点</string>
+    <string name="knowledge_question">Q: %s</string>
 </resources>

@@ -1,9 +1,11 @@
-package cn.baby.happyball.vedio;
+package cn.baby.happyball.audio;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,8 +25,10 @@ import cn.baby.happyball.BaseActivity;
 import cn.baby.happyball.MainActivity;
 import cn.baby.happyball.R;
 import cn.baby.happyball.bean.Lesson;
+import cn.baby.happyball.bean.Semester;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
+import cn.baby.happyball.vedio.VedioChoiceActiviy;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -35,7 +39,7 @@ import okhttp3.Response;
 /**
  * @author DRH
  */
-public class VedioCurriculumActivity extends BaseActivity {
+public class AudioLessonActivity extends BaseActivity implements View.OnFocusChangeListener {
 
     /**
      * 主页
@@ -105,24 +109,36 @@ public class VedioCurriculumActivity extends BaseActivity {
     ImageView ivChina;
     @BindView(R.id.tv_china_name)
     TextView tvChina;
+    @BindView(R.id.pb_loading)
+    ProgressBar pbLoading;
 
-    private int mSemesterId;
+    private Semester mSemester;
     List<Lesson> mLessons = new ArrayList<>(6);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vedio_curriculum);
+        setContentView(R.layout.activity_vedio_lesson);
         ButterKnife.bind(this);
+        bindEvents();
         getData();
+    }
+    private void bindEvents() {
+        rlSafe.setOnFocusChangeListener(this);
+        rlHygiene.setOnFocusChangeListener(this);
+        rlNation.setOnFocusChangeListener(this);
+        rlPop.setOnFocusChangeListener(this);
+        rlWorld.setOnFocusChangeListener(this);
+        rlChina.setOnFocusChangeListener(this);
     }
 
     public void getData() {
-        mSemesterId = getIntent().getIntExtra(SystemConfig.SEMESTER, 6);
-
+        showLoading(true);
+        mSemester = (Semester) getIntent().getSerializableExtra(SystemConfig.SEMESTER);
+        String url = (new StringBuilder().append(HttpConstant.URL).append(HttpConstant.AUDIO_LESSON)).toString();
         OkHttpClient okHttpClient = new OkHttpClient();
         final Request request = new Request.Builder()
-                .url(HttpConstant.URL + HttpConstant.LESSON)
+                .url(url)
                 .post(RequestBody.create(HttpConstant.JSON, ""))
                 .build();
         Call call = okHttpClient.newCall(request);
@@ -148,7 +164,7 @@ public class VedioCurriculumActivity extends BaseActivity {
 
     private void initData() {
         for (Lesson lesson : mLessons) {
-            String imageUrl = HttpConstant.IMGURL + lesson.getImage();
+            String imageUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(lesson.getImage())).toString();
             switch (lesson.getId()) {
                 case 1:
                     tvChina.setText(lesson.getName());
@@ -183,57 +199,141 @@ public class VedioCurriculumActivity extends BaseActivity {
                 default:break;
             }
         }
+        showLoading(false);
+        obtainViewFocus(rlSafe);
+        rlSafe.requestFocus();
+        rlSafe.setFocusable(true);
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        if (b) {
+            obtainViewFocus(view);
+        } else {
+            loseViewFocus(view);
+        }
     }
 
     @OnClick({R.id.rl_homepage, R.id.iv_homepage})
     public void onHomePage() {
-        startActivity(new Intent(VedioCurriculumActivity.this, MainActivity.class));
+        startActivity(new Intent(AudioLessonActivity.this, MainActivity.class));
     }
 
     @OnClick({R.id.rl_back, R.id.iv_back})
     public void onBack() {
-        startActivity(new Intent(VedioCurriculumActivity.this, MainActivity.class));
+        startActivity(new Intent(AudioLessonActivity.this, MainActivity.class));
     }
 
     @OnClick({R.id.iv_safe, R.id.rl_safe})
     public void onSafe() {
-        startActivity(new Intent(VedioCurriculumActivity.this, VedioChoiceActiviy.class)
-                .putExtra(SystemConfig.SEMESTER, mSemesterId)
-                .putExtra(SystemConfig.LESSON, 6));
+//        switchFoucsView(0);
+        startActivity(new Intent(AudioLessonActivity.this, AudioChoiceActiviy.class)
+                .putExtra(SystemConfig.SEMESTER, mSemester)
+                .putExtra(SystemConfig.LESSON, mLessons.get(0)));
     }
 
     @OnClick({R.id.iv_hygiene, R.id.rl_hygiene})
     public void onHygiene() {
-        startActivity(new Intent(VedioCurriculumActivity.this, VedioChoiceActiviy.class)
-                .putExtra(SystemConfig.SEMESTER, mSemesterId)
-                .putExtra(SystemConfig.LESSON, 5));
+//        switchFoucsView(1);
+        startActivity(new Intent(AudioLessonActivity.this, AudioChoiceActiviy.class)
+                .putExtra(SystemConfig.SEMESTER, mSemester)
+                .putExtra(SystemConfig.LESSON, mLessons.get(1)));
     }
 
     @OnClick({R.id.iv_nation, R.id.rl_nation})
     public void onNation() {
-        startActivity(new Intent(VedioCurriculumActivity.this, VedioChoiceActiviy.class)
-                .putExtra(SystemConfig.SEMESTER, mSemesterId)
-                .putExtra(SystemConfig.LESSON, 4));
+//        switchFoucsView(2);
+        startActivity(new Intent(AudioLessonActivity.this, AudioChoiceActiviy.class)
+                .putExtra(SystemConfig.SEMESTER, mSemester)
+                .putExtra(SystemConfig.LESSON, mLessons.get(2)));
     }
 
     @OnClick({R.id.iv_pop, R.id.rl_pop})
     public void onPop() {
-        startActivity(new Intent(VedioCurriculumActivity.this, VedioChoiceActiviy.class)
-                .putExtra(SystemConfig.SEMESTER, mSemesterId)
-                .putExtra(SystemConfig.LESSON, 3));
+//        switchFoucsView(3);
+        startActivity(new Intent(AudioLessonActivity.this, AudioChoiceActiviy.class)
+                .putExtra(SystemConfig.SEMESTER, mSemester)
+                .putExtra(SystemConfig.LESSON, mLessons.get(3)));
     }
 
     @OnClick({R.id.iv_world, R.id.rl_world})
     public void onWorld() {
-        startActivity(new Intent(VedioCurriculumActivity.this, VedioChoiceActiviy.class)
-                .putExtra(SystemConfig.SEMESTER, mSemesterId)
-                .putExtra(SystemConfig.LESSON, 2));
+//        switchFoucsView(4);
+        startActivity(new Intent(AudioLessonActivity.this, AudioChoiceActiviy.class)
+                .putExtra(SystemConfig.SEMESTER, mSemester)
+                .putExtra(SystemConfig.LESSON, mLessons.get(4)));
     }
 
     @OnClick({R.id.iv_china, R.id.rl_china})
     public void onChina() {
-        startActivity(new Intent(VedioCurriculumActivity.this, VedioChoiceActiviy.class)
-                .putExtra(SystemConfig.SEMESTER, mSemesterId)
-                .putExtra(SystemConfig.LESSON, 1));
+//        switchFoucsView(5);
+        startActivity(new Intent(AudioLessonActivity.this, AudioChoiceActiviy.class)
+                .putExtra(SystemConfig.SEMESTER, mSemester)
+                .putExtra(SystemConfig.LESSON, mLessons.get(5)));
+    }
+
+    private void switchFoucsView(int index) {
+        switch (index) {
+            case 0:
+                obtainViewFocus(rlSafe);
+                loseViewFocus(rlHygiene);
+                loseViewFocus(rlNation);
+                loseViewFocus(rlPop);
+                loseViewFocus(rlWorld);
+                loseViewFocus(rlChina);
+                break;
+            case 1:
+                loseViewFocus(rlSafe);
+                obtainViewFocus(rlHygiene);
+                loseViewFocus(rlNation);
+                loseViewFocus(rlPop);
+                loseViewFocus(rlWorld);
+                loseViewFocus(rlChina);
+                break;
+            case 2:
+                loseViewFocus(rlSafe);
+                loseViewFocus(rlHygiene);
+                obtainViewFocus(rlNation);
+                loseViewFocus(rlPop);
+                loseViewFocus(rlWorld);
+                loseViewFocus(rlChina);
+                break;
+            case 3:
+                loseViewFocus(rlSafe);
+                loseViewFocus(rlHygiene);
+                loseViewFocus(rlNation);
+                obtainViewFocus(rlPop);
+                loseViewFocus(rlWorld);
+                loseViewFocus(rlChina);
+                break;
+            case 4:
+                loseViewFocus(rlSafe);
+                loseViewFocus(rlHygiene);
+                loseViewFocus(rlNation);
+                loseViewFocus(rlPop);
+                obtainViewFocus(rlWorld);
+                loseViewFocus(rlChina);
+                break;
+            case 5:
+                loseViewFocus(rlSafe);
+                loseViewFocus(rlHygiene);
+                loseViewFocus(rlNation);
+                loseViewFocus(rlPop);
+                loseViewFocus(rlWorld);
+                obtainViewFocus(rlChina);
+                break;
+            default:
+                loseViewFocus(rlSafe);
+                loseViewFocus(rlHygiene);
+                loseViewFocus(rlNation);
+                loseViewFocus(rlPop);
+                obtainViewFocus(rlWorld);
+                loseViewFocus(rlChina);
+                break;
+        }
+    }
+
+    public void showLoading(boolean show) {
+        pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 }

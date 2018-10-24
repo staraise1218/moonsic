@@ -17,32 +17,217 @@
             android:layout_marginTop="10dp"
             android:src="@mipmap/ic_knowledge_frame" />
 
-        <ImageView
-            android:id="@+id/iv_homepage"
+        <RelativeLayout
+            android:id="@+id/rl_homepage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="120dp"
             android:layout_marginTop="50dp"
-            android:src="@mipmap/ic_knowledge_homepage" />
+            android:nextFocusDown="@id/rl_knowledge_four"
+            android:nextFocusLeft="@id/rl_back">
 
-        <ImageView
-            android:id="@+id/iv_back"
+            <ImageView
+                android:id="@+id/iv_homepage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_knowledge_homepage" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/homepage"
+                android:textSize="@dimen/text_main"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="120dp"
             android:layout_marginTop="50dp"
-            android:src="@mipmap/ic_knowledge_back" />
+            android:nextFocusDown="@id/rl_knowledge_first"
+            android:nextFocusRight="@id/rl_homepage">
 
-        <ImageView
-            android:id="@+id/iv_knowledge_answer"
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_knowledge_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/back"
+                android:textSize="@dimen/text_main"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_answer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/iv_homepage"
+            android:layout_alignEnd="@+id/rl_homepage"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="50dp"
-            android:src="@mipmap/ic_knowledge_answer" />
+            android:layout_marginBottom="50dp">
+
+            <ImageView
+                android:id="@+id/iv_answer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_knowledge_answer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="@string/knowledge_answer"
+                android:textSize="@dimen/text_main"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_knowledge_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="130dp"
+            android:text="@string/knowledge_title"
+            android:textSize="@dimen/text_title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_knowledge_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_knowledge_title"
+            android:layout_below="@+id/tv_knowledge_title"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:text="@string/knowledge_question"
+            android:textSize="@dimen/text_song"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:id="@+id/rl_knowledge_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tv_knowledge_question"
+            android:layout_below="@+id/tv_knowledge_question"
+            android:layout_marginTop="20dp"
+            android:nextFocusLeft="@id/rl_back"
+            android:nextFocusRight="@id/rl_knowledge_second">
+
+            <ImageView
+                android:id="@+id/iv_knowledge_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_boom" />
+
+            <TextView
+                android:id="@+id/tv_knowledge_first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_knowledge_first"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="电视机"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_knowledge_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/rl_knowledge_first"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/rl_knowledge_first"
+            android:nextFocusLeft="@id/rl_knowledge_first"
+            android:nextFocusRight="@id/rl_knowledge_third">
+
+            <ImageView
+                android:id="@+id/iv_knowledge_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_boom" />
+
+            <TextView
+                android:id="@+id/tv_knowledge_second"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_knowledge_second"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="冰箱"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_knowledge_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/rl_knowledge_first"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/rl_knowledge_second"
+            android:nextFocusLeft="@id/rl_knowledge_second"
+            android:nextFocusRight="@id/rl_knowledge_four">
+
+            <ImageView
+                android:id="@+id/iv_knowledge_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_boom" />
+
+            <TextView
+                android:id="@+id/tv_knowledge_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_knowledge_third"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="话筒"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_knowledge_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/rl_knowledge_first"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@+id/rl_knowledge_third"
+            android:nextFocusLeft="@id/rl_knowledge_third"
+            android:nextFocusRight="@id/rl_homepage">
+
+            <ImageView
+                android:id="@+id/iv_knowledge_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_dance_boom" />
+
+            <TextView
+                android:id="@+id/tv_knowledge_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_knowledge_four"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="洗衣机"
+                android:textSize="@dimen/text_semester"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
     </RelativeLayout>
 
