@@ -18,41 +18,40 @@
 
             <ImageView
                 android:id="@+id/iv_homepage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="170dp"
+                android:layout_height="80dp"
                 android:src="@mipmap/ic_choice_homepage" />
 
             <TextView
                 android:id="@+id/tv_homepage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="16dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
                 android:text="@string/homepage"
-                android:textSize="@dimen/text_main"
+                android:textSize="@dimen/text_home"
                 android:textStyle="bold" />
-
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_course_semester"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="260dp"
+            android:layout_height="230dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="130dp"
-            android:layout_marginTop="120dp">
+            android:layout_marginStart="190dp"
+            android:layout_marginTop="140dp">
 
             <ImageView
                 android:id="@+id/iv_course_semester"
-                android:layout_width="180dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="240dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="20dp"
                 android:src="@mipmap/ic_choice_course_semester" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="58dp"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/ic_main_semester_frame" />
 
@@ -61,9 +60,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/reception_last_semester"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_main"
                 android:textStyle="bold" />
 
             <TextView
@@ -71,32 +70,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="90dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="50dp"
                 android:text="@string/lesson_name"
-                android:textSize="@dimen/text_detail"
+                android:textSize="@dimen/text_song"
                 android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_course_semester_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="800dp"
+            android:layout_height="200dp"
             android:layout_alignTop="@+id/rl_course_semester"
-            android:layout_marginLeft="330dp"
-            android:layout_marginRight="200dp">
+            android:layout_toRightOf="@+id/rl_course_semester"
+            android:layout_marginLeft="20dp">
 
             <ImageView
                 android:id="@+id/iv_course_semester_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="800dp"
+                android:layout_height="200dp"
                 android:src="@mipmap/ic_choice_sourse_text" />
 
             <LinearLayout
                 android:id="@+id/ll_detail_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="45dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginLeft="65dp"
+                android:layout_marginTop="50dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -104,14 +104,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/lesson_name"
-                    android:textSize="@dimen/text_semester"
+                    android:textSize="@dimen/text_lesson"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="-"
-                    android:textSize="@dimen/text_semester"
+                    android:textSize="@dimen/text_lesson"
                     android:textStyle="bold" />
 
                 <TextView
@@ -119,7 +119,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/reception_last_semester"
-                    android:textSize="@dimen/text_semester"
+                    android:textSize="@dimen/text_lesson"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -133,7 +133,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"
                 android:text="@string/lesson_detail"
-                android:textSize="@dimen/text_detail"
+                android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
 
         </RelativeLayout>
@@ -145,7 +145,7 @@
             android:layout_alignLeft="@+id/rl_course_semester"
             android:layout_alignRight="@+id/rl_course_semester_detail"
             android:layout_below="@+id/rl_course_semester_detail"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/tv_number_name"
@@ -154,7 +154,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:text="@string/number"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_song"
                 android:textStyle="bold" />
 
             <TextView
@@ -164,7 +164,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_toRightOf="@+id/tv_number_name"
                 android:text="@string/number_value"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_song"
                 android:textStyle="bold" />
 
             <TextView
@@ -174,7 +174,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="@string/last_time_value"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_song"
                 android:textStyle="bold" />
 
             <TextView
@@ -185,21 +185,22 @@
                 android:layout_marginRight="3dp"
                 android:layout_toLeftOf="@+id/tv_last_time_value"
                 android:text="@string/last_time"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_song"
                 android:textStyle="bold" />
 
         </RelativeLayout>
 
         <cn.baby.happyball.view.recyclerView.TvRecyclerView
             android:id="@+id/cv_course"
-            android:layout_width="700dp"
-            android:padding="10dp"
-            android:focusable="true"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/rl_number"
             android:layout_below="@+id/rl_number"
-            android:layout_marginBottom="120dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginBottom="100dp"
+            android:layout_marginRight="180dp"
+            android:layout_marginTop="10dp"
+            android:focusable="true"
+            android:padding="10dp" />
 
     </RelativeLayout>
 

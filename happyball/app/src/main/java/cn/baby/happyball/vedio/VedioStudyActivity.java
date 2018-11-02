@@ -3,9 +3,11 @@ package cn.baby.happyball.vedio;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import butterknife.BindView;
@@ -47,6 +49,9 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
     RelativeLayout rlDance;
     @BindView(R.id.iv_dance)
     ImageView ivDance;
+
+    @BindView(R.id.pb_loading)
+    ProgressBar pbLoading;
 
     private Episode mEpisode;
 
@@ -101,10 +106,81 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
 
     @Override
     public void onFocusChange(View view, boolean b) {
-        if (b) {
-            obtainViewFocus(view);
-        } else {
-            loseViewFocus(view);
+        switch (view.getId()) {
+            case R.id.rl_back:
+                if (b) {
+                    obtainViewFocus(rlBack);
+                    rlBack.setNextFocusRightId(R.id.rl_homepage);
+                    rlBack.setNextFocusDownId(R.id.rl_song);
+                } else {
+                    loseViewFocus(rlBack);
+                }
+                break;
+            case R.id.rl_homepage:
+                if (b) {
+                    obtainViewFocus(rlHomePage);
+                    rlHomePage.setNextFocusLeftId(R.id.rl_back);
+                    rlHomePage.setNextFocusDownId(R.id.rl_dance);
+                } else {
+                    loseViewFocus(rlHomePage);
+                }
+                break;
+            case R.id.rl_song:
+                if (b) {
+                    obtainViewFocus(rlSong);
+                    rlSong.setNextFocusUpId(R.id.rl_back);
+                    rlSong.setNextFocusRightId(R.id.rl_dance);
+                } else {
+                    loseViewFocus(rlSong);
+                }
+                break;
+            case R.id.rl_dance:
+                if (b) {
+                    obtainViewFocus(rlDance);
+                    rlDance.setNextFocusUpId(R.id.rl_homepage);
+                    rlDance.setNextFocusLeftId(R.id.rl_song);
+                } else {
+                    loseViewFocus(rlDance);
+                }
+                break;
+            default:
+                if (b) {
+                    obtainViewFocus(view);
+                } else {
+                    loseViewFocus(view);
+                }
+                break;
         }
+    }
+
+    boolean isFirst = true;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                break;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if (isFirst) {
+                    obtainViewFocus(rlSong);
+                    rlSong.requestFocus();
+                    rlSong.setFocusable(true);
+                    rlSong.setNextFocusUpId(R.id.rl_back);
+                    rlSong.setNextFocusRightId(R.id.rl_dance);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void showLoading(boolean show) {
+        pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 }

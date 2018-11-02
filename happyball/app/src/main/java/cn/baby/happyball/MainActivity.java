@@ -2,6 +2,7 @@ package cn.baby.happyball;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -214,17 +215,20 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             loseViewFocus(rlAudio);
             rlVedio.requestFocus();
             rlVedio.setFocusable(true);
+            rlVedio.setNextFocusRightId(R.id.rl_reception_last);
+            rlVedio.setNextFocusDownId(R.id.rl_audio);
         } else {
             obtainViewFocus(rlAudio);
             loseViewFocus(rlVedio);
             rlAudio.requestFocus();
             rlAudio.setFocusable(true);
+            rlAudio.setNextFocusRightId(R.id.rl_reception_last);
+            rlAudio.setNextFocusUpId(R.id.rl_vedio);
         }
     }
 
     @OnClick({R.id.iv_reception_last, R.id.rl_reception_last})
     public void onReceptionLastSemester() {
-//        switchFocusView(0);
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(0)));
@@ -236,7 +240,6 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
 
     @OnClick({R.id.iv_reception_next, R.id.rl_reception_next})
     public void onReceptionNextSemester() {
-//        switchFocusView(3);
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(3)));
@@ -248,7 +251,6 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
 
     @OnClick({R.id.iv_middle_last, R.id.rl_middle_last})
     public void onMiddleLastSemester() {
-//        switchFocusView(1);
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(1)));
@@ -260,7 +262,6 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
 
     @OnClick({R.id.iv_middle_next, R.id.rl_middle_next})
     public void onMiddleNextSemester() {
-//        switchFocusView(4);
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(4)));
@@ -272,7 +273,6 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
 
     @OnClick({R.id.iv_big_last, R.id.rl_big_last})
     public void onBigLastSemester() {
-//        switchFocusView(2);
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(2)));
@@ -284,7 +284,6 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
 
     @OnClick({R.id.iv_big_next, R.id.rl_big_next})
     public void onBigNextSemester() {
-//        switchFocusView(5);
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(5)));
@@ -314,31 +313,78 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void onFocusChange(View view, boolean b) {
         switch (view.getId()) {
             case R.id.rl_vedio:
-                if (b) {
+                if (b && mMode != 0) {
                     mMode = 0;
                     getData();
                 }
                 break;
-
             case R.id.rl_audio:
-                if (b) {
+                if (b && mMode != 1) {
                     mMode = 1;
                     getData();
                 }
                 break;
-
             case R.id.rl_reception_last:
                 if (b) {
                     obtainViewFocus(rlReceptionLast);
-                    rlReceptionLast.requestFocus();
-                    rlReceptionLast.setFocusable(true);
                     if (mMode == 0) {
-                        ivReceptionLast.setNextFocusRightId(R.id.rl_vedio);
+                        rlReceptionLast.setNextFocusLeftId(R.id.rl_vedio);
                     } else {
-                        ivReceptionLast.setNextFocusRightId(R.id.rl_audio);
+                        rlReceptionLast.setNextFocusLeftId(R.id.rl_audio);
                     }
+                    rlReceptionLast.setNextFocusRightId(R.id.rl_middle_last);
+                    rlReceptionLast.setNextFocusDownId(R.id.rl_reception_next);
                 } else {
                     loseViewFocus(rlReceptionLast);
+                }
+                break;
+            case R.id.rl_middle_last:
+                if (b) {
+                    obtainViewFocus(rlMiddleLast);
+                    rlMiddleLast.setNextFocusLeftId(R.id.rl_reception_last);
+                    rlMiddleLast.setNextFocusRightId(R.id.rl_big_last);
+                    rlMiddleLast.setNextFocusDownId(R.id.rl_middle_next);
+                } else {
+                    loseViewFocus(rlMiddleLast);
+                }
+                break;
+            case R.id.rl_big_last:
+                if (b) {
+                    obtainViewFocus(rlBigLast);
+                    rlBigLast.setNextFocusLeftId(R.id.rl_middle_last);
+                    rlBigLast.setNextFocusRightId(R.id.rl_reception_next);
+                    rlBigLast.setNextFocusDownId(R.id.rl_big_next);
+                } else {
+                    loseViewFocus(rlBigLast);
+                }
+                break;
+            case R.id.rl_reception_next:
+                if (b) {
+                    obtainViewFocus(rlReceptionNext);
+                    rlReceptionNext.setNextFocusLeftId(R.id.rl_big_last);
+                    rlReceptionNext.setNextFocusRightId(R.id.rl_middle_next);
+                    rlReceptionNext.setNextFocusUpId(R.id.rl_reception_last);
+                } else {
+                    loseViewFocus(rlReceptionNext);
+                }
+                break;
+            case R.id.rl_middle_next:
+                if (b) {
+                    obtainViewFocus(rlMiddleNext);
+                    rlMiddleNext.setNextFocusLeftId(R.id.rl_reception_next);
+                    rlMiddleNext.setNextFocusRightId(R.id.rl_big_next);
+                    rlMiddleNext.setNextFocusUpId(R.id.rl_middle_last);
+                } else {
+                    loseViewFocus(rlMiddleNext);
+                }
+                break;
+            case R.id.rl_big_next:
+                if (b) {
+                    obtainViewFocus(rlBigNext);
+                    rlBigNext.setNextFocusLeftId(R.id.rl_middle_next);
+                    rlBigNext.setNextFocusUpId(R.id.rl_big_last);
+                } else {
+                    loseViewFocus(rlBigNext);
                 }
                 break;
             default:
@@ -351,65 +397,32 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         }
     }
 
-    private void switchFocusView(int index) {
-        switch (index) {
-            case 0:
-                obtainViewFocus(rlReceptionLast);
-                loseViewFocus(rlReceptionNext);
-                loseViewFocus(rlMiddleLast);
-                loseViewFocus(rlMiddleNext);
-                loseViewFocus(rlBigLast);
-                loseViewFocus(rlBigNext);
+    boolean isFirst = true;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_CENTER:
                 break;
-            case 3:
-                loseViewFocus(rlReceptionLast);
-                obtainViewFocus(rlReceptionNext);
-                loseViewFocus(rlMiddleLast);
-                loseViewFocus(rlMiddleNext);
-                loseViewFocus(rlBigLast);
-                loseViewFocus(rlBigNext);
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if (isFirst) {
+                    obtainViewFocus(rlVedio);
+                    loseViewFocus(rlAudio);
+                    rlVedio.requestFocus();
+                    rlVedio.setFocusable(true);
+                    rlVedio.setNextFocusRightId(R.id.rl_reception_last);
+                    rlVedio.setNextFocusDownId(R.id.rl_audio);
+                    isFirst = false;
+                }
                 break;
-            case 1:
-                loseViewFocus(rlReceptionLast);
-                loseViewFocus(rlReceptionNext);
-                obtainViewFocus(rlMiddleLast);
-                loseViewFocus(rlMiddleNext);
-                loseViewFocus(rlBigLast);
-                loseViewFocus(rlBigNext);
+            case KeyEvent.KEYCODE_DPAD_LEFT:
                 break;
-            case 4:
-                loseViewFocus(rlReceptionLast);
-                loseViewFocus(rlReceptionNext);
-                loseViewFocus(rlMiddleLast);
-                obtainViewFocus(rlMiddleNext);
-                loseViewFocus(rlBigLast);
-                loseViewFocus(rlBigNext);
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
                 break;
-            case 2:
-                loseViewFocus(rlReceptionLast);
-                loseViewFocus(rlReceptionNext);
-                loseViewFocus(rlMiddleLast);
-                loseViewFocus(rlMiddleNext);
-                obtainViewFocus(rlBigLast);
-                loseViewFocus(rlBigNext);
-                break;
-            case 5:
-                loseViewFocus(rlReceptionLast);
-                loseViewFocus(rlReceptionNext);
-                loseViewFocus(rlMiddleLast);
-                loseViewFocus(rlMiddleNext);
-                loseViewFocus(rlBigLast);
-                obtainViewFocus(rlBigNext);
-                break;
-            default:
-                loseViewFocus(rlReceptionLast);
-                loseViewFocus(rlReceptionNext);
-                loseViewFocus(rlMiddleLast);
-                loseViewFocus(rlMiddleNext);
-                loseViewFocus(rlBigLast);
-                loseViewFocus(rlBigNext);
+            case KeyEvent.KEYCODE_DPAD_UP:
                 break;
         }
+        return super.onKeyDown(keyCode, event);
     }
 
     public void showLoading(boolean show) {

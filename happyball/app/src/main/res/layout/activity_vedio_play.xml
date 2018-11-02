@@ -36,8 +36,8 @@
 
             <ImageView
                 android:id="@+id/iv_homepage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="170dp"
+                android:layout_height="80dp"
                 android:src="@mipmap/ic_play_homepage" />
 
             <TextView
@@ -46,7 +46,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="@string/homepage"
-                android:textSize="@dimen/text_main"
+                android:textSize="@dimen/text_home"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -60,8 +60,8 @@
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="170dp"
+                android:layout_height="80dp"
                 android:src="@mipmap/ic_play_back" />
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="@string/back"
-                android:textSize="@dimen/text_main"
+                android:textSize="@dimen/text_home"
                 android:textStyle="bold" />
 
         </RelativeLayout>

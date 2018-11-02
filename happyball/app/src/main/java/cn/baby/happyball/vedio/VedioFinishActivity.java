@@ -3,9 +3,11 @@ package cn.baby.happyball.vedio;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import butterknife.BindView;
@@ -20,7 +22,7 @@ import cn.baby.happyball.constant.SystemConfig;
 /**
  * @author DRH
  */
-public class VedioFinishActivity extends BaseActivity implements View.OnFocusChangeListener{
+public class VedioFinishActivity extends BaseActivity implements View.OnFocusChangeListener {
 
     /**
      * 主页
@@ -56,6 +58,9 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     @BindView(R.id.iv_knowledge)
     ImageView ivKnowledge;
 
+    @BindView(R.id.pb_loading)
+    ProgressBar pbLoading;
+
     private Episode mEpisode;
 
     @Override
@@ -81,9 +86,11 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     }
 
     private void initData() {
-//        obtainViewFocus(rlStudy);
-//        rlStudy.requestFocus();
-//        rlStudy.setFocusable(true);
+        obtainViewFocus(llReplay);
+        llReplay.requestFocus();
+        llReplay.setFocusable(true);
+        llReplay.setNextFocusLeftId(R.id.rl_study);
+        llReplay.setNextFocusRightId(R.id.rl_knowledge);
     }
 
     @OnClick(R.id.ll_replay)
@@ -115,10 +122,90 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
 
     @Override
     public void onFocusChange(View view, boolean b) {
-        if (b) {
-            obtainViewFocus(view);
-        } else {
-            loseViewFocus(view);
+        switch (view.getId()) {
+            case R.id.rl_back:
+                if (b) {
+                    obtainViewFocus(rlBack);
+                    rlBack.setNextFocusRightId(R.id.rl_homepage);
+                    rlBack.setNextFocusDownId(R.id.rl_study);
+                } else {
+                    loseViewFocus(rlBack);
+                }
+                break;
+            case R.id.rl_homepage:
+                if (b) {
+                    obtainViewFocus(rlHomePage);
+                    rlHomePage.setNextFocusLeftId(R.id.rl_back);
+                    rlHomePage.setNextFocusDownId(R.id.rl_knowledge);
+                } else {
+                    loseViewFocus(rlHomePage);
+                }
+                break;
+            case R.id.ll_replay:
+                if (b) {
+                    obtainViewFocus(llReplay);
+                    llReplay.setNextFocusLeftId(R.id.rl_study);
+                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
+                } else {
+                    loseViewFocus(llReplay);
+                }
+                break;
+            case R.id.rl_study:
+                if (b) {
+                    obtainViewFocus(rlStudy);
+                    rlStudy.setNextFocusUpId(R.id.rl_back);
+                    rlStudy.setNextFocusRightId(R.id.ll_replay);
+                } else {
+                    loseViewFocus(rlStudy);
+                }
+                break;
+            case R.id.rl_knowledge:
+                if (b) {
+                    obtainViewFocus(rlHomePage);
+                    rlKnowledge.setNextFocusLeftId(R.id.ll_replay);
+                    rlKnowledge.setNextFocusUpId(R.id.rl_homepage);
+                } else {
+                    loseViewFocus(rlHomePage);
+                }
+                break;
+            default:
+                if (b) {
+                    obtainViewFocus(view);
+                } else {
+                    loseViewFocus(view);
+                }
+                break;
         }
+    }
+
+    boolean isFirst = true;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                break;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if (isFirst) {
+                    obtainViewFocus(llReplay);
+                    llReplay.requestFocus();
+                    llReplay.setFocusable(true);
+                    llReplay.setNextFocusLeftId(R.id.rl_study);
+                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    public void showLoading(boolean show) {
+        pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 }

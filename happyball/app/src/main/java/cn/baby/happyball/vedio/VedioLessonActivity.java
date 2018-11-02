@@ -3,6 +3,7 @@ package cn.baby.happyball.vedio;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -206,15 +207,103 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
         obtainViewFocus(rlSafe);
         rlSafe.requestFocus();
         rlSafe.setFocusable(true);
+        rlSafe.setNextFocusDownId(R.id.rl_pop);
+        rlSafe.setNextFocusRightId(R.id.rl_hygiene);
     }
 
     @Override
     public void onFocusChange(View view, boolean b) {
-        if (b) {
-            obtainViewFocus(view);
-        } else {
-            loseViewFocus(view);
+        switch (view.getId()) {
+            case R.id.rl_safe:
+                if (b) {
+                    obtainViewFocus(rlSafe);
+                    rlSafe.setNextFocusRightId(R.id.rl_hygiene);
+                    rlSafe.setNextFocusDownId(R.id.rl_pop);
+                } else {
+                    loseViewFocus(rlSafe);
+                }
+                break;
+            case R.id.rl_hygiene:
+                if (b) {
+                    obtainViewFocus(rlHygiene);
+                    rlHygiene.setNextFocusLeftId(R.id.rl_safe);
+                    rlHygiene.setNextFocusRightId(R.id.rl_nation);
+                    rlHygiene.setNextFocusDownId(R.id.rl_world);
+                } else {
+                    loseViewFocus(rlHygiene);
+                }
+                break;
+            case R.id.rl_nation:
+                if (b) {
+                    obtainViewFocus(rlNation);
+                    rlNation.setNextFocusLeftId(R.id.rl_hygiene);
+                    rlNation.setNextFocusRightId(R.id.rl_pop);
+                    rlNation.setNextFocusDownId(R.id.rl_china);
+                } else {
+                    loseViewFocus(rlNation);
+                }
+                break;
+            case R.id.rl_pop:
+                if (b) {
+                    obtainViewFocus(rlPop);
+                    rlPop.setNextFocusLeftId(R.id.rl_nation);
+                    rlPop.setNextFocusRightId(R.id.rl_world);
+                    rlPop.setNextFocusUpId(R.id.rl_safe);
+                } else {
+                    loseViewFocus(rlPop);
+                }
+                break;
+            case R.id.rl_world:
+                if (b) {
+                    obtainViewFocus(rlWorld);
+                    rlWorld.setNextFocusLeftId(R.id.rl_pop);
+                    rlWorld.setNextFocusRightId(R.id.rl_china);
+                    rlWorld.setNextFocusUpId(R.id.rl_hygiene);
+                } else {
+                    loseViewFocus(rlWorld);
+                }
+                break;
+            case R.id.rl_china:
+                if (b) {
+                    obtainViewFocus(rlChina);
+                    rlChina.setNextFocusLeftId(R.id.rl_world);
+                    rlChina.setNextFocusUpId(R.id.rl_nation);
+                } else {
+                    loseViewFocus(rlChina);
+                }
+                break;
+            default:
+                if (b) {
+                    obtainViewFocus(view);
+                } else {
+                    loseViewFocus(view);
+                }
+                break;
         }
+    }
+
+    boolean isFirst = true;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                break;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if (isFirst) {
+                    obtainViewFocus(rlSafe);
+                    rlSafe.setNextFocusRightId(R.id.rl_hygiene);
+                    rlSafe.setNextFocusDownId(R.id.rl_pop);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @OnClick({R.id.rl_homepage, R.id.iv_homepage})
@@ -229,7 +318,6 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
 
     @OnClick({R.id.iv_safe, R.id.rl_safe})
     public void onSafe() {
-//        switchFoucsView(0);
         startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
                 .putExtra(SystemConfig.SEMESTER, mSemester)
                 .putExtra(SystemConfig.LESSON, mLessons.get(0)));
@@ -237,7 +325,6 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
 
     @OnClick({R.id.iv_hygiene, R.id.rl_hygiene})
     public void onHygiene() {
-//        switchFoucsView(1);
         startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
                 .putExtra(SystemConfig.SEMESTER, mSemester)
                 .putExtra(SystemConfig.LESSON, mLessons.get(1)));
@@ -245,7 +332,6 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
 
     @OnClick({R.id.iv_nation, R.id.rl_nation})
     public void onNation() {
-//        switchFoucsView(2);
         startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
                 .putExtra(SystemConfig.SEMESTER, mSemester)
                 .putExtra(SystemConfig.LESSON, mLessons.get(2)));
@@ -253,7 +339,6 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
 
     @OnClick({R.id.iv_pop, R.id.rl_pop})
     public void onPop() {
-//        switchFoucsView(3);
         startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
                 .putExtra(SystemConfig.SEMESTER, mSemester)
                 .putExtra(SystemConfig.LESSON, mLessons.get(3)));
@@ -261,7 +346,6 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
 
     @OnClick({R.id.iv_world, R.id.rl_world})
     public void onWorld() {
-        switchFoucsView(4);
         startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
                 .putExtra(SystemConfig.SEMESTER, mSemester)
                 .putExtra(SystemConfig.LESSON, mLessons.get(4)));
@@ -269,71 +353,9 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
 
     @OnClick({R.id.iv_china, R.id.rl_china})
     public void onChina() {
-//        switchFoucsView(5);
         startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
                 .putExtra(SystemConfig.SEMESTER, mSemester)
                 .putExtra(SystemConfig.LESSON, mLessons.get(5)));
-    }
-
-    private void switchFoucsView(int index) {
-        switch (index) {
-            case 0:
-                obtainViewFocus(rlSafe);
-                loseViewFocus(rlHygiene);
-                loseViewFocus(rlNation);
-                loseViewFocus(rlPop);
-                loseViewFocus(rlWorld);
-                loseViewFocus(rlChina);
-                break;
-            case 1:
-                loseViewFocus(rlSafe);
-                obtainViewFocus(rlHygiene);
-                loseViewFocus(rlNation);
-                loseViewFocus(rlPop);
-                loseViewFocus(rlWorld);
-                loseViewFocus(rlChina);
-                break;
-            case 2:
-                loseViewFocus(rlSafe);
-                loseViewFocus(rlHygiene);
-                obtainViewFocus(rlNation);
-                loseViewFocus(rlPop);
-                loseViewFocus(rlWorld);
-                loseViewFocus(rlChina);
-                break;
-            case 3:
-                loseViewFocus(rlSafe);
-                loseViewFocus(rlHygiene);
-                loseViewFocus(rlNation);
-                obtainViewFocus(rlPop);
-                loseViewFocus(rlWorld);
-                loseViewFocus(rlChina);
-                break;
-            case 4:
-                loseViewFocus(rlSafe);
-                loseViewFocus(rlHygiene);
-                loseViewFocus(rlNation);
-                loseViewFocus(rlPop);
-                obtainViewFocus(rlWorld);
-                loseViewFocus(rlChina);
-                break;
-            case 5:
-                loseViewFocus(rlSafe);
-                loseViewFocus(rlHygiene);
-                loseViewFocus(rlNation);
-                loseViewFocus(rlPop);
-                loseViewFocus(rlWorld);
-                obtainViewFocus(rlChina);
-                break;
-            default:
-                loseViewFocus(rlSafe);
-                loseViewFocus(rlHygiene);
-                loseViewFocus(rlNation);
-                loseViewFocus(rlPop);
-                obtainViewFocus(rlWorld);
-                loseViewFocus(rlChina);
-                break;
-        }
     }
 
     public void showLoading(boolean show) {

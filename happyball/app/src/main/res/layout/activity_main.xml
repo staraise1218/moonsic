@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,18 +22,18 @@
 
             <ImageView
                 android:id="@+id/iv_vedio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="225dp"
+                android:layout_height="200dp"
                 android:src="@mipmap/ic_main_vedio" />
 
             <TextView
                 android:id="@+id/tv_vedio_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="45dp"
-                android:layout_marginTop="70dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="110dp"
                 android:text="@string/vedio"
-                android:textSize="@dimen/text_main"
+                android:textSize="@dimen/text_home"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -44,12 +43,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rl_vedio"
             android:nextFocusRight="@id/rl_reception_last"
+            android:layout_marginTop="3dp"
             android:nextFocusUp="@id/rl_vedio">
 
             <ImageView
                 android:id="@+id/iv_audio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="310dp"
+                android:layout_height="120dp"
                 android:src="@mipmap/ic_main_audio" />
 
             <TextView
@@ -57,9 +57,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="150dp"
                 android:text="@string/audio"
-                android:textSize="@dimen/text_main"
+                android:textSize="@dimen/text_home"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -68,21 +68,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="280dp"
-            android:layout_marginTop="105dp"
+            android:layout_marginStart="380dp"
+            android:layout_marginTop="110dp"
             android:nextFocusDown="@id/rl_reception_next"
             android:nextFocusRight="@id/rl_middle_last">
 
             <ImageView
                 android:id="@+id/iv_reception_last"
-                android:layout_width="180dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="240dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="20dp"
                 android:src="@mipmap/ic_main_reception_last" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="56dp"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/ic_main_semester_frame" />
 
@@ -91,9 +91,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/reception_last_semester"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_main"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -102,7 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/rl_reception_last"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="40dp"
             android:layout_toRightOf="@+id/rl_reception_last"
             android:nextFocusDown="@id/rl_middle_next"
             android:nextFocusLeft="@id/rl_reception_last"
@@ -110,14 +110,14 @@
 
             <ImageView
                 android:id="@+id/iv_middle_last"
-                android:layout_width="180dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="240dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="20dp"
                 android:src="@mipmap/ic_main_middle_last" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="58dp"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/ic_main_semester_frame" />
 
@@ -126,9 +126,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/middle_last_semester"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_main"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -137,7 +137,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/rl_reception_last"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="40dp"
             android:layout_toRightOf="@+id/rl_middle_last"
             android:nextFocusDown="@id/rl_big_next"
             android:nextFocusLeft="@id/rl_middle_last"
@@ -145,14 +145,14 @@
 
             <ImageView
                 android:id="@+id/iv_big_last"
-                android:layout_width="180dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="240dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="20dp"
                 android:src="@mipmap/ic_main_big_last" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="58dp"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/ic_main_semester_frame" />
 
@@ -161,9 +161,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/big_last_semester"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_main"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -173,21 +173,21 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/rl_reception_last"
             android:layout_below="@+id/rl_reception_last"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="70dp"
             android:nextFocusLeft="@id/rl_big_last"
             android:nextFocusRight="@id/rl_middle_next"
             android:nextFocusUp="@id/rl_reception_last">
 
             <ImageView
                 android:id="@+id/iv_reception_next"
-                android:layout_width="180dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="240dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="20dp"
                 android:src="@mipmap/ic_main_reception_next" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="58dp"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/ic_main_semester_frame" />
 
@@ -196,9 +196,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/reception_next_semester"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_main"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -214,14 +214,14 @@
 
             <ImageView
                 android:id="@+id/iv_middle_next"
-                android:layout_width="180dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="240dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="20dp"
                 android:src="@mipmap/ic_main_middle_next" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="58dp"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/ic_main_semester_frame" />
 
@@ -230,9 +230,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/middle_next_semester"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_main"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -248,14 +248,14 @@
 
             <ImageView
                 android:id="@+id/iv_big_next"
-                android:layout_width="180dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="240dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="20dp"
                 android:src="@mipmap/ic_main_big_next" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="58dp"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/ic_main_semester_frame" />
 
@@ -264,11 +264,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/big_next_semester"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_main"
                 android:textStyle="bold" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
