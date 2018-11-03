@@ -101,7 +101,7 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
 
     @OnClick({R.id.iv_back, R.id.rl_back})
     public void onBack() {
-        startActivity(new Intent(VedioKnowledgeActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(VedioKnowledgeActivity.this, VedioFinishActivity.class));
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})

@@ -3,6 +3,7 @@ package cn.baby.happyball.vedio;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -226,10 +227,138 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
 
     @Override
     public void onFocusChange(View view, boolean b) {
-        if (b) {
-            obtainViewFocus(view);
-        } else {
-            loseViewFocus(view);
+        switch (view.getId()) {
+            case R.id.rl_dance_first:
+                if (b) {
+                    obtainViewFocus(rlDanceFirst);
+                    rlDanceFirst.setNextFocusUpId(R.id.rl_back);
+                    rlDanceFirst.setNextFocusRightId(R.id.rl_dance_second);
+                    rlDanceFirst.setNextFocusDownId(R.id.rl_dance_five);
+                } else {
+                    loseViewFocus(rlDanceFirst);
+                }
+                break;
+            case R.id.rl_dance_second:
+                if (b) {
+                    obtainViewFocus(rlDanceSecond);
+                    rlDanceSecond.setNextFocusLeftId(R.id.rl_dance_first);
+                    rlDanceSecond.setNextFocusRightId(R.id.rl_dance_third);
+                    rlDanceSecond.setNextFocusDownId(R.id.rl_dance_six);
+                } else {
+                    loseViewFocus(rlDanceSecond);
+                }
+                break;
+            case R.id.rl_dance_third:
+                if (b) {
+                    obtainViewFocus(rlDanceThird);
+                    rlDanceThird.setNextFocusLeftId(R.id.rl_dance_second);
+                    rlDanceThird.setNextFocusRightId(R.id.rl_dance_four);
+                    rlDanceThird.setNextFocusDownId(R.id.rl_dance_seven);
+                } else {
+                    loseViewFocus(rlDanceThird);
+                }
+                break;
+            case R.id.rl_dance_four:
+                if (b) {
+                    obtainViewFocus(rlDanceFour);
+                    rlDanceFour.setNextFocusLeftId(R.id.rl_dance_third);
+                    rlDanceFour.setNextFocusRightId(R.id.rl_dance_five);
+                    rlDanceFour.setNextFocusDownId(R.id.rl_dance_eight);
+                } else {
+                    loseViewFocus(rlDanceFour);
+                }
+                break;
+            case R.id.rl_dance_five:
+                if (b) {
+                    obtainViewFocus(rlDanceFive);
+                    rlDanceFive.setNextFocusLeftId(R.id.rl_dance_four);
+                    rlDanceFive.setNextFocusRightId(R.id.rl_dance_six);
+                    rlDanceFive.setNextFocusUpId(R.id.rl_dance_first);
+                } else {
+                    loseViewFocus(rlDanceFive);
+                }
+                break;
+            case R.id.rl_dance_six:
+                if (b) {
+                    obtainViewFocus(rlDanceSix);
+                    rlDanceSix.setNextFocusLeftId(R.id.rl_dance_five);
+                    rlDanceSix.setNextFocusRightId(R.id.rl_dance_seven);
+                    rlDanceSix.setNextFocusUpId(R.id.rl_dance_second);
+                } else {
+                    loseViewFocus(rlDanceSix);
+                }
+                break;
+            case R.id.rl_dance_seven:
+                if (b) {
+                    obtainViewFocus(rlDanceSeven);
+                    rlDanceSeven.setNextFocusLeftId(R.id.rl_dance_six);
+                    rlDanceSeven.setNextFocusRightId(R.id.rl_dance_eight);
+                    rlDanceSeven.setNextFocusUpId(R.id.rl_dance_third);
+                } else {
+                    loseViewFocus(rlDanceSeven);
+                }
+                break;
+            case R.id.rl_dance_eight:
+                if (b) {
+                    obtainViewFocus(rlDanceEight);
+                    rlDanceEight.setNextFocusLeftId(R.id.rl_dance_seven);
+                    rlDanceEight.setNextFocusUpId(R.id.rl_dance_four);
+                } else {
+                    loseViewFocus(rlDanceEight);
+                }
+                break;
+            case R.id.rl_back:
+                if (b) {
+                    obtainViewFocus(rlBack);
+                    rlBack.setNextFocusDownId(R.id.rl_dance_first);
+                    rlBack.setNextFocusUpId(R.id.rl_homepage);
+                } else {
+                    loseViewFocus(rlBack);
+                }
+                break;
+            case R.id.rl_homepage:
+                if (b) {
+                    obtainViewFocus(rlHomePage);
+                    rlHomePage.setNextFocusDownId(R.id.rl_dance_four);
+                    rlHomePage.setNextFocusLeftId(R.id.rl_back);
+                } else {
+                    loseViewFocus(rlHomePage);
+                }
+                break;
+            default:
+                if (b) {
+                    obtainViewFocus(view);
+                } else {
+                    loseViewFocus(view);
+                }
+                break;
         }
     }
+
+//    boolean isFirst = true;
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        switch (keyCode) {
+//            case KeyEvent.KEYCODE_DPAD_CENTER:
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_DOWN:
+//                if (isFirst) {
+//                    obtainViewFocus(rlDanceFirst);
+//                    rlDanceFirst.requestFocus();
+//                    rlDanceFirst.setFocusable(true);
+//                    rlDanceFirst.setNextFocusUpId(R.id.rl_back);
+//                    rlDanceFirst.setNextFocusRightId(R.id.rl_dance);
+//                    isFirst = false;
+//                }
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_LEFT:
+//
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_RIGHT:
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_UP:
+//                break;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
 }

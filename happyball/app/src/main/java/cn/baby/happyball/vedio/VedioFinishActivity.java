@@ -161,11 +161,11 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
                 break;
             case R.id.rl_knowledge:
                 if (b) {
-                    obtainViewFocus(rlHomePage);
+                    obtainViewFocus(rlKnowledge);
                     rlKnowledge.setNextFocusLeftId(R.id.ll_replay);
                     rlKnowledge.setNextFocusUpId(R.id.rl_homepage);
                 } else {
-                    loseViewFocus(rlHomePage);
+                    loseViewFocus(rlKnowledge);
                 }
                 break;
             default:
@@ -178,32 +178,31 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
         }
     }
 
-    boolean isFirst = true;
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-                break;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (isFirst) {
-                    obtainViewFocus(llReplay);
-                    llReplay.requestFocus();
-                    llReplay.setFocusable(true);
-                    llReplay.setNextFocusLeftId(R.id.rl_study);
-                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                break;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+//    boolean isFirst = true;
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        switch (keyCode) {
+//            case KeyEvent.KEYCODE_DPAD_CENTER:
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_DOWN:
+//                if (isFirst) {
+//                    obtainViewFocus(llReplay);
+//                    llReplay.requestFocus();
+//                    llReplay.setFocusable(true);
+//                    llReplay.setNextFocusLeftId(R.id.rl_study);
+//                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
+//                    isFirst = false;
+//                }
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_LEFT:
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_RIGHT:
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_UP:
+//                break;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
 
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);

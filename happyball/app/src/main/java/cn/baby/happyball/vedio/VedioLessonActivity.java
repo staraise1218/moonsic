@@ -49,13 +49,6 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     @BindView(R.id.iv_homepage)
     ImageView ivHomePage;
     /**
-     * 返回
-     */
-    @BindView(R.id.rl_back)
-    RelativeLayout rlBack;
-    @BindView(R.id.iv_back)
-    ImageView ivBack;
-    /**
      * 幼儿安全教育
      */
     @BindView(R.id.rl_safe)
@@ -282,37 +275,32 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
         }
     }
 
-    boolean isFirst = true;
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-                break;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (isFirst) {
-                    obtainViewFocus(rlSafe);
-                    rlSafe.setNextFocusRightId(R.id.rl_hygiene);
-                    rlSafe.setNextFocusDownId(R.id.rl_pop);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                break;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+//    boolean isFirst = true;
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        switch (keyCode) {
+//            case KeyEvent.KEYCODE_DPAD_CENTER:
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_DOWN:
+//                if (isFirst) {
+//                    obtainViewFocus(rlSafe);
+//                    rlSafe.setNextFocusRightId(R.id.rl_hygiene);
+//                    rlSafe.setNextFocusDownId(R.id.rl_pop);
+//                    isFirst = false;
+//                }
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_LEFT:
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_RIGHT:
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_UP:
+//                break;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
 
     @OnClick({R.id.rl_homepage, R.id.iv_homepage})
     public void onHomePage() {
-        startActivity(new Intent(VedioLessonActivity.this, MainActivity.class));
-    }
-
-    @OnClick({R.id.rl_back, R.id.iv_back})
-    public void onBack() {
         startActivity(new Intent(VedioLessonActivity.this, MainActivity.class));
     }
 
