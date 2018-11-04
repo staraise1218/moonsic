@@ -86,16 +86,17 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     }
 
     private void initData() {
-        obtainViewFocus(llReplay);
-        llReplay.requestFocus();
-        llReplay.setFocusable(true);
-        llReplay.setNextFocusLeftId(R.id.rl_study);
-        llReplay.setNextFocusRightId(R.id.rl_knowledge);
+//        obtainViewFocus(llReplay);
+//        llReplay.requestFocus();
+//        llReplay.setFocusable(true);
+//        llReplay.setNextFocusLeftId(R.id.rl_study);
+//        llReplay.setNextFocusRightId(R.id.rl_knowledge);
     }
 
     @OnClick(R.id.ll_replay)
     public void onReplay() {
-        startActivity(new Intent(VedioFinishActivity.this, VedioPlayActivity.class));
+        startActivity(new Intent(VedioFinishActivity.this, VedioPlayActivity.class)
+                            .putExtra(SystemConfig.EPISODE, mEpisode));
     }
 
     @OnClick({R.id.iv_back, R.id.rl_back})
@@ -178,31 +179,57 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
         }
     }
 
-//    boolean isFirst = true;
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        switch (keyCode) {
-//            case KeyEvent.KEYCODE_DPAD_CENTER:
-//                break;
-//            case KeyEvent.KEYCODE_DPAD_DOWN:
-//                if (isFirst) {
-//                    obtainViewFocus(llReplay);
-//                    llReplay.requestFocus();
-//                    llReplay.setFocusable(true);
-//                    llReplay.setNextFocusLeftId(R.id.rl_study);
-//                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
-//                    isFirst = false;
-//                }
-//                break;
-//            case KeyEvent.KEYCODE_DPAD_LEFT:
-//                break;
-//            case KeyEvent.KEYCODE_DPAD_RIGHT:
-//                break;
-//            case KeyEvent.KEYCODE_DPAD_UP:
-//                break;
-//        }
-//        return super.onKeyDown(keyCode, event);
-//    }
+    boolean isFirst = true;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                startActivity(new Intent(VedioFinishActivity.this, VedioPlayActivity.class)
+                        .putExtra(SystemConfig.EPISODE, mEpisode));
+                break;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if (isFirst) {
+                    obtainViewFocus(llReplay);
+                    llReplay.requestFocus();
+                    llReplay.setFocusable(true);
+                    llReplay.setNextFocusLeftId(R.id.rl_study);
+                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                if (isFirst) {
+                    obtainViewFocus(llReplay);
+                    llReplay.requestFocus();
+                    llReplay.setFocusable(true);
+                    llReplay.setNextFocusLeftId(R.id.rl_study);
+                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                if (isFirst) {
+                    obtainViewFocus(llReplay);
+                    llReplay.requestFocus();
+                    llReplay.setFocusable(true);
+                    llReplay.setNextFocusLeftId(R.id.rl_study);
+                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                if (isFirst) {
+                    obtainViewFocus(llReplay);
+                    llReplay.requestFocus();
+                    llReplay.setFocusable(true);
+                    llReplay.setNextFocusLeftId(R.id.rl_study);
+                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
+                    isFirst = false;
+                }
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);

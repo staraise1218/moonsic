@@ -6,12 +6,12 @@
     <RelativeLayout
         android:id="@+id/rl_episode"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_height="wrap_content" >
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="140dp"
+            android:layout_height="56dp"
+            android:layout_margin="10dp"
             android:src="@mipmap/ic_choice_episode" />
 
         <TextView
@@ -22,8 +22,8 @@
             android:maxEms="4"
             android:maxLines="1"
             android:text="@string/the_number"
-            android:layout_marginTop="3dp"
-            android:textSize="12sp"
+            android:layout_marginTop="15dp"
+            android:textSize="@dimen/text_semester"
             android:textStyle="bold" />
 
         <TextView
@@ -34,7 +34,8 @@
             android:layout_centerHorizontal="true"
             android:maxEms="4"
             android:maxLines="1"
-            android:textSize="12sp"
+            android:layout_marginTop="3dp"
+            android:textSize="@dimen/text_detail"
             android:text="快乐宝贝"
             android:textStyle="bold" />
     </RelativeLayout>

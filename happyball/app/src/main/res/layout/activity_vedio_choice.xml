@@ -79,16 +79,15 @@
 
         <RelativeLayout
             android:id="@+id/rl_course_semester_detail"
-            android:layout_width="800dp"
-            android:layout_height="200dp"
+            android:layout_width="645dp"
+            android:layout_height="210dp"
             android:layout_alignTop="@+id/rl_course_semester"
-            android:layout_toRightOf="@+id/rl_course_semester"
-            android:layout_marginLeft="20dp">
+            android:layout_toRightOf="@+id/rl_course_semester">
 
             <ImageView
                 android:id="@+id/iv_course_semester_detail"
-                android:layout_width="800dp"
-                android:layout_height="200dp"
+                android:layout_width="645dp"
+                android:layout_height="210dp"
                 android:src="@mipmap/ic_choice_sourse_text" />
 
             <LinearLayout
@@ -199,8 +198,7 @@
             android:layout_marginBottom="100dp"
             android:layout_marginRight="180dp"
             android:layout_marginTop="10dp"
-            android:focusable="true"
-            android:padding="10dp" />
+            android:focusable="true" />
 
     </RelativeLayout>
 

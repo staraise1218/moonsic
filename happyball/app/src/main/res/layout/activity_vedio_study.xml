@@ -74,7 +74,7 @@
             android:focusable="true"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/ll_center"
-            android:layout_marginRight="80dp"
+            android:layout_marginRight="160dp"
             android:nextFocusLeft="@id/rl_back"
             android:nextFocusRight="@id/rl_dance">
 
@@ -102,7 +102,7 @@
             android:layout_height="340dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/ll_center"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="160dp"
             android:nextFocusRight="@id/rl_homepage"
             android:nextFocusLeft="@id/rl_song">
 

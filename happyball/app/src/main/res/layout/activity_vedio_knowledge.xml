@@ -23,15 +23,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="120dp"
-            android:layout_marginTop="50dp"
-            android:nextFocusDown="@id/rl_knowledge_four"
-            android:nextFocusLeft="@id/rl_back">
+            android:layout_marginTop="50dp">
 
             <ImageView
                 android:id="@+id/iv_homepage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_knowledge_homepage" />
+                android:layout_width="170dp"
+                android:layout_height="80dp"
+                android:src="@mipmap/ic_finish_homepage" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -39,7 +37,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="@string/homepage"
-                android:textSize="@dimen/text_main"
+                android:textSize="@dimen/text_home"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -49,15 +47,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="120dp"
-            android:layout_marginTop="50dp"
-            android:nextFocusDown="@id/rl_knowledge_first"
-            android:nextFocusRight="@id/rl_homepage">
+            android:layout_marginTop="50dp">
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_knowledge_back" />
+                android:layout_width="170dp"
+                android:layout_height="80dp"
+                android:src="@mipmap/ic_finish_back" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,7 +61,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="@string/back"
-                android:textSize="@dimen/text_main"
+                android:textSize="@dimen/text_home"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -79,8 +75,8 @@
 
             <ImageView
                 android:id="@+id/iv_answer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="180dp"
+                android:layout_height="65dp"
                 android:src="@mipmap/ic_knowledge_answer" />
 
             <TextView
@@ -99,8 +95,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="130dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginStart="235dp"
+            android:layout_marginTop="161dp"
             android:text="@string/knowledge_title"
             android:textSize="@dimen/text_title"
             android:textStyle="bold" />
@@ -111,8 +107,8 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/tv_knowledge_title"
             android:layout_below="@+id/tv_knowledge_title"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
             android:text="@string/knowledge_question"
             android:textSize="@dimen/text_song"
             android:textStyle="bold" />
@@ -123,14 +119,14 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/tv_knowledge_question"
             android:layout_below="@+id/tv_knowledge_question"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="55dp"
             android:nextFocusLeft="@id/rl_back"
             android:nextFocusRight="@id/rl_knowledge_second">
 
             <ImageView
                 android:id="@+id/iv_knowledge_first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:src="@mipmap/ic_dance_boom" />
 
             <TextView
@@ -141,7 +137,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="电视机"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_lesson"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -150,15 +146,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/rl_knowledge_first"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="25dp"
             android:layout_toRightOf="@+id/rl_knowledge_first"
             android:nextFocusLeft="@id/rl_knowledge_first"
             android:nextFocusRight="@id/rl_knowledge_third">
 
             <ImageView
                 android:id="@+id/iv_knowledge_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:src="@mipmap/ic_dance_boom" />
 
             <TextView
@@ -169,7 +165,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="冰箱"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_lesson"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -178,15 +174,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/rl_knowledge_first"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="25dp"
             android:layout_toRightOf="@+id/rl_knowledge_second"
             android:nextFocusLeft="@id/rl_knowledge_second"
             android:nextFocusRight="@id/rl_knowledge_four">
 
             <ImageView
                 android:id="@+id/iv_knowledge_third"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:src="@mipmap/ic_dance_boom" />
 
             <TextView
@@ -197,7 +193,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="话筒"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_lesson"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -206,15 +202,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/rl_knowledge_first"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="25dp"
             android:layout_toRightOf="@+id/rl_knowledge_third"
             android:nextFocusLeft="@id/rl_knowledge_third"
             android:nextFocusRight="@id/rl_homepage">
 
             <ImageView
                 android:id="@+id/iv_knowledge_four"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:src="@mipmap/ic_dance_boom" />
 
             <TextView
@@ -225,7 +221,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="洗衣机"
-                android:textSize="@dimen/text_semester"
+                android:textSize="@dimen/text_lesson"
                 android:textStyle="bold" />
         </RelativeLayout>
 

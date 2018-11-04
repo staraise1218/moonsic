@@ -106,7 +106,7 @@
             android:focusable="true"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/ll_replay"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="80dp"
             android:nextFocusLeft="@id/rl_back"
             android:nextFocusRight="@id/ll_replay"
             android:nextFocusDown="@id/ll_replay">
@@ -135,7 +135,7 @@
             android:layout_height="340dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/ll_replay"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="80dp"
             android:nextFocusRight="@id/rl_homepage"
             android:nextFocusLeft="@id/ll_replay"
             android:nextFocusUp="@id/ll_replay">

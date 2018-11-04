@@ -12,16 +12,15 @@
             android:id="@+id/rl_homepage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:nextFocusUp="@id/rl_song_accompaniment"
             android:layout_alignParentRight="true"
             android:layout_marginRight="120dp"
             android:layout_marginTop="50dp">
 
             <ImageView
                 android:id="@+id/iv_homepage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_song_homepage" />
+                android:layout_width="170dp"
+                android:layout_height="80dp"
+                android:src="@mipmap/ic_finish_homepage" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -29,7 +28,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="@string/homepage"
-                android:textSize="@dimen/text_main"
+                android:textSize="@dimen/text_home"
                 android:textStyle="bold" />
         </RelativeLayout>
 
@@ -37,16 +36,15 @@
             android:id="@+id/rl_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:nextFocusDown="@id/rl_song_sing"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="120dp"
             android:layout_marginTop="50dp">
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_song_back" />
+                android:layout_width="170dp"
+                android:layout_height="80dp"
+                android:src="@mipmap/ic_finish_back" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -54,7 +52,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:text="@string/back"
-                android:textSize="@dimen/text_main"
+                android:textSize="@dimen/text_home"
                 android:textStyle="bold" />
         </RelativeLayout>
 

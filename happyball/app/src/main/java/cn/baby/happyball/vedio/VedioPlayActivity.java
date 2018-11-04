@@ -2,6 +2,7 @@ package cn.baby.happyball.vedio;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -74,7 +75,7 @@ public class VedioPlayActivity extends BaseActivity {
     public void onPlay() {
         setValue(mKey, getString(R.string.played));
         startActivity(new Intent(VedioPlayActivity.this, VedioFinishActivity.class)
-                                .putExtra(SystemConfig.EPISODE, mEpisode));
+                .putExtra(SystemConfig.EPISODE, mEpisode));
     }
 
     @OnClick({R.id.iv_back, R.id.rl_back})
@@ -102,7 +103,15 @@ public class VedioPlayActivity extends BaseActivity {
         String videoUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getVideofile())).toString();
         videoPlay.setVideoPath(videoUrl);
         videoPlay.setMediaController(new MediaController(this));
-        videoPlay.setOnPreparedListener(mp -> videoPlay.start());
+        videoPlay.setOnPreparedListener(mp -> {
+            mp.setOnInfoListener((mp1, what, extra) ->  {
+                    if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
+                        videoPlay.setBackgroundColor(Color.TRANSPARENT);
+                    }
+                return true;
+            });
+            videoPlay.start();
+        });
         videoPlay.setOnCompletionListener(mp -> videoPlay.start());
         videoPlay.setOnCompletionListener(mediaPlayer -> onPlay());
         videoPlay.requestFocus();

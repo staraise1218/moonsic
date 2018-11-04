@@ -335,30 +335,54 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
         }
     }
 
-//    boolean isFirst = true;
-//    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//        switch (keyCode) {
-//            case KeyEvent.KEYCODE_DPAD_CENTER:
-//                break;
-//            case KeyEvent.KEYCODE_DPAD_DOWN:
-//                if (isFirst) {
-//                    obtainViewFocus(rlDanceFirst);
-//                    rlDanceFirst.requestFocus();
-//                    rlDanceFirst.setFocusable(true);
-//                    rlDanceFirst.setNextFocusUpId(R.id.rl_back);
-//                    rlDanceFirst.setNextFocusRightId(R.id.rl_dance);
-//                    isFirst = false;
-//                }
-//                break;
-//            case KeyEvent.KEYCODE_DPAD_LEFT:
-//
-//                break;
-//            case KeyEvent.KEYCODE_DPAD_RIGHT:
-//                break;
-//            case KeyEvent.KEYCODE_DPAD_UP:
-//                break;
-//        }
-//        return super.onKeyDown(keyCode, event);
-//    }
+    boolean isFirst = true;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+
+                break;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if (isFirst) {
+                    obtainViewFocus(rlDanceFirst);
+                    rlDanceFirst.requestFocus();
+                    rlDanceFirst.setFocusable(true);
+                    rlDanceFirst.setNextFocusUpId(R.id.rl_back);
+                    rlDanceFirst.setNextFocusRightId(R.id.rl_dance);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                if (isFirst) {
+                    obtainViewFocus(rlDanceFirst);
+                    rlDanceFirst.requestFocus();
+                    rlDanceFirst.setFocusable(true);
+                    rlDanceFirst.setNextFocusUpId(R.id.rl_back);
+                    rlDanceFirst.setNextFocusRightId(R.id.rl_dance);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                if (isFirst) {
+                    obtainViewFocus(rlDanceFirst);
+                    rlDanceFirst.requestFocus();
+                    rlDanceFirst.setFocusable(true);
+                    rlDanceFirst.setNextFocusUpId(R.id.rl_back);
+                    rlDanceFirst.setNextFocusRightId(R.id.rl_dance);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                if (isFirst) {
+                    obtainViewFocus(rlDanceFirst);
+                    rlDanceFirst.requestFocus();
+                    rlDanceFirst.setFocusable(true);
+                    rlDanceFirst.setNextFocusUpId(R.id.rl_back);
+                    rlDanceFirst.setNextFocusRightId(R.id.rl_dance);
+                    isFirst = false;
+                }
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
