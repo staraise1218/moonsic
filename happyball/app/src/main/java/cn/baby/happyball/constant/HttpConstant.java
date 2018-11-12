@@ -19,7 +19,9 @@ public class HttpConstant {
     /** 视频集数选择 **/
     public static final String VIDEO_EPISODE = "/Api/Video/episode";
     /** 单一舞蹈动作 **/
-    public static final String MOBILDECODE = "/Api/Auth/sendMobileCode";
+    public static final String VIDEO_SINGLEDANCE = "/Api/Video/singledance";
+    /** 知识点 **/
+    public static final String VIDEO_QUESTION = "/Api/Video/question";
     /** 视频班级分类 **/
     public static final String AUDIO_CLASSES = "/Api/Video/classes";
     /** 视频课程列表 **/

@@ -10,6 +10,7 @@ public class SingleDance implements Serializable {
 
     private String title;
     private String video;
+    private String image;
 
     public void setTitle(String title) {
         this.title = title;
@@ -25,5 +26,13 @@ public class SingleDance implements Serializable {
 
     public String getVideo() {
         return video;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
     }
 }

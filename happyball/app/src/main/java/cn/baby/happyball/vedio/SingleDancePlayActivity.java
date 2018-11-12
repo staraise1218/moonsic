@@ -1,23 +1,18 @@
 package cn.baby.happyball.vedio;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.support.annotation.Nullable;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,13 +23,14 @@ import cn.baby.happyball.R;
 import cn.baby.happyball.bean.Episode;
 import cn.baby.happyball.bean.Lesson;
 import cn.baby.happyball.bean.Semester;
+import cn.baby.happyball.bean.SingleDance;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
 
 /**
  * @author DRH
  */
-public class VedioPlayActivity extends BaseActivity {
+public class SingleDancePlayActivity extends BaseActivity {
 
     /**
      * 主页
@@ -61,8 +57,6 @@ public class VedioPlayActivity extends BaseActivity {
     ProgressBar pbPlay;
     @BindView(R.id.tv_play_time)
     TextView tvPlayTime;
-    //    @BindView(R.id.vv_play)
-//    VideoView videoPlay;
     @BindView(R.id.sv_play)
     SurfaceView svPlay;
 
@@ -73,10 +67,7 @@ public class VedioPlayActivity extends BaseActivity {
     ProgressBar pbLoading;
 
     private MediaPlayer mMediaPlayer;
-    private Episode mEpisode;
-    private Semester mSemester;
-    private Lesson mLesson;
-    private String mKey;
+    private SingleDance mSingleDance;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,46 +78,30 @@ public class VedioPlayActivity extends BaseActivity {
         initData();
     }
 
-    public void onPlay() {
-        setValue(mKey, getString(R.string.played));
-        startActivity(new Intent(VedioPlayActivity.this, VedioFinishActivity.class)
-                .putExtra(SystemConfig.EPISODE, mEpisode));
-    }
-
     @OnClick({R.id.iv_back, R.id.rl_back})
     public void onBack() {
-        setValue(mKey, String.valueOf(mMediaPlayer.getCurrentPosition()));
-        startActivity(new Intent(VedioPlayActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(SingleDancePlayActivity.this, VedioChoiceActiviy.class));
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})
     public void onHomepage() {
-        setValue(mKey, String.valueOf(mMediaPlayer.getCurrentPosition()));
-        startActivity(new Intent(VedioPlayActivity.this, MainActivity.class));
+        startActivity(new Intent(SingleDancePlayActivity.this, MainActivity.class));
     }
 
     private void getData() {
-        mEpisode = (Episode) getIntent().getSerializableExtra(SystemConfig.EPISODE);
-        mSemester = (Semester) getIntent().getSerializableExtra(SystemConfig.SEMESTER);
-        mLesson = (Lesson) getIntent().getSerializableExtra(SystemConfig.LESSON);
-        StringBuilder builder = new StringBuilder();
-        builder.append(SystemConfig.EPISODE_TIME).append(mSemester.getId()).append(mLesson.getId());
-        mKey = builder.toString();
+        mSingleDance = (SingleDance) getIntent().getSerializableExtra(SystemConfig.SINGLEDANCE);
     }
 
     private void initData() {
         showLoading(true);
-        final String videoUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getVideofile())).toString();
+        final String videoUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDance.getVideo())).toString();
         mMediaPlayer = new MediaPlayer();
         SurfaceHolder surfaceHolder = svPlay.getHolder();
-        // 使用唤醒锁
-//        mMediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
         mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
             showLoading(false);
             mediaPlayer.start();
         });
         mMediaPlayer.setOnCompletionListener(mp -> mMediaPlayer.start());
-        mMediaPlayer.setOnCompletionListener(mediaPlayer -> onPlay());
         surfaceHolder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
@@ -138,13 +113,11 @@ public class VedioPlayActivity extends BaseActivity {
                         mediaPlayer.start();
                     });
                     mMediaPlayer.setOnCompletionListener(mp -> mMediaPlayer.start());
-                    mMediaPlayer.setOnCompletionListener(mediaPlayer -> onPlay());
                 }
                 try {
                     mMediaPlayer.reset();
                     mMediaPlayer.setDisplay(surfaceHolder);
-                    mMediaPlayer.setDataSource(VedioPlayActivity.this, Uri.parse(videoUrl));
-//                    mMediaPlayer.prepare();
+                    mMediaPlayer.setDataSource(SingleDancePlayActivity.this, Uri.parse(videoUrl));
                     mMediaPlayer.prepareAsync();
                 } catch (Exception e) {
                     showLoading(false);
@@ -177,20 +150,6 @@ public class VedioPlayActivity extends BaseActivity {
             }
             return true;
         });
-//        videoPlay.setVideoPath(videoUrl);
-//        videoPlay.setMediaController(new MediaController(this));
-//        videoPlay.setOnPreparedListener(mp -> {
-//            mp.setOnInfoListener((mp1, what, extra) ->  {
-//                    if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
-//                        videoPlay.setBackgroundColor(Color.TRANSPARENT);
-//                    }
-//                return true;
-//            });
-//            videoPlay.start();
-//        });
-//        videoPlay.setOnCompletionListener(mp -> videoPlay.start());
-//        videoPlay.setOnCompletionListener(mediaPlayer -> onPlay());
-//        videoPlay.requestFocus();
     }
 
     public void showLoading(boolean show) {

@@ -1,12 +1,18 @@
 package cn.baby.happyball.vedio;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,6 +21,7 @@ import cn.baby.happyball.BaseActivity;
 import cn.baby.happyball.MainActivity;
 import cn.baby.happyball.R;
 import cn.baby.happyball.bean.Episode;
+import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
 
 public class VedioSongActivity extends BaseActivity implements View.OnFocusChangeListener {
@@ -66,8 +73,15 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     TextView tvSongTwoThird;
     @BindView(R.id.tv_song_two_four)
     TextView tvSongTwoFour;
+    /**
+     * 加载
+     */
+    @BindView(R.id.pb_loading)
+    ProgressBar pbLoading;
 
     private Episode mEpisode;
+    private MediaPlayer mMediaPlayer;
+    private int mSeek;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,9 +105,41 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     }
 
     public void initData() {
+        showLoading(true);
+        final String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+        mMediaPlayer = new MediaPlayer();
+        try {
+            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            // 使用唤醒锁
+//            mMediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
+            mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(songUrl));
+            mMediaPlayer.prepare();
+        } catch (Exception e) {
+            showLoading(false);
+            Toast.makeText(VedioSongActivity.this, "音频加载失败", Toast.LENGTH_SHORT).show();
+        }
+        mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
+            showLoading(false);
+            mediaPlayer.start();
+        });
+        mMediaPlayer.setOnCompletionListener(mediaPlayer -> play() );
 //        obtainViewFocus(rlSongSing);
 //        rlSongSing.requestFocus();
 //        rlSongSing.setFocusable(true);
+    }
+
+    private void play() {
+        try {
+            showLoading(false);
+            if (mSeek != 0) {
+                mMediaPlayer.seekTo(mSeek);
+            }
+            mMediaPlayer.reset();
+            mMediaPlayer.prepare();
+            mMediaPlayer.start();
+        } catch (Exception e) {
+
+        }
     }
 
     @OnClick({R.id.iv_back, R.id.rl_back})
@@ -108,12 +154,39 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
 
     @OnClick({R.id.iv_song_accompaniment, R.id.rl_song_accompaniment})
     public void onSongAccompaniment() {
-
+        if (mMediaPlayer != null) {
+            mSeek = mMediaPlayer.getCurrentPosition();
+        } else {
+            mMediaPlayer = new MediaPlayer();
+        }
+        mMediaPlayer.reset();
+        String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getAccompaniment_file())).toString();
+        try {
+            mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(songUrl));
+        } catch (Exception e) {
+            showLoading(false);
+            Toast.makeText(VedioSongActivity.this, "音频加载失败", Toast.LENGTH_SHORT).show();
+        }
+        mMediaPlayer.setOnCompletionListener(mediaPlayer -> play() );
     }
 
     @OnClick({R.id.iv_song_sing, R.id.rl_song_sing})
     public void onSongSing() {
-
+        if (mMediaPlayer != null) {
+            mSeek = mMediaPlayer.getCurrentPosition();
+        } else {
+            mMediaPlayer = new MediaPlayer();
+        }
+        mMediaPlayer.reset();
+        String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+        try {
+            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(songUrl));
+        } catch (Exception e) {
+            showLoading(false);
+            Toast.makeText(VedioSongActivity.this, "音频加载失败", Toast.LENGTH_SHORT).show();
+        }
+        mMediaPlayer.setOnCompletionListener(mediaPlayer -> play() );
     }
 
     @Override
@@ -123,5 +196,18 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
         } else {
             loseViewFocus(view);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mMediaPlayer.isPlaying()) {
+            mMediaPlayer.stop();
+        }
+        mMediaPlayer.release();
+        super.onDestroy();
+    }
+
+    public void showLoading(boolean show) {
+        pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 }
