@@ -164,6 +164,8 @@ public class AlphaFilter extends Filter {
             }
         }
         bitmap.setPixels(srcPixels, 0, width, 0, 0, width, height);
+        overlay.recycle();
+        overlayCopy.recycle();
         return bitmap;
     }
 

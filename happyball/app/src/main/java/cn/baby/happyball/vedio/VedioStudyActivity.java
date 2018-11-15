@@ -3,6 +3,7 @@ package cn.baby.happyball.vedio;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
@@ -57,6 +58,8 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
     ProgressBar pbLoading;
 
     private Episode mEpisode;
+    private Bitmap song;
+    private Bitmap dance;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,27 +84,13 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
     }
 
     private void initData() {
-        Bitmap songFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_song);
-        Bitmap songBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_study);
-        Bitmap song = AlphaFilter.overlay(songBitmap, songFrame);
-        ivSong.setImageBitmap(song);
-        songBitmap.recycle();
-        songFrame.recycle();
-
-        Bitmap danceFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_dance);
-        Bitmap danceBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_knowledge);
-        Bitmap dance = AlphaFilter.overlay(danceBitmap, danceFrame);
-        ivDance.setImageBitmap(dance);
-        danceBitmap.recycle();
-        danceFrame.recycle();
-
-        showLoading(false);
+        new LoadImagerAsytask().execute();
     }
 
     @OnClick({R.id.iv_song, R.id.rl_song})
     public void onSong() {
         startActivity(new Intent(VedioStudyActivity.this, VedioSongActivity.class)
-                            .putExtra(SystemConfig.EPISODE, mEpisode));
+                .putExtra(SystemConfig.EPISODE, mEpisode));
     }
 
     @OnClick({R.id.iv_dance, R.id.rl_dance})
@@ -170,6 +159,7 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
     }
 
     boolean isFirst = true;
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
@@ -223,5 +213,33 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
 
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    private class LoadImagerAsytask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Bitmap songFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_song);
+            Bitmap songBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_study);
+            song = AlphaFilter.overlay(songBitmap, songFrame);
+            songBitmap.recycle();
+            songFrame.recycle();
+
+            Bitmap danceFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_dance);
+            Bitmap danceBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_knowledge);
+            dance = AlphaFilter.overlay(danceBitmap, danceFrame);
+            danceBitmap.recycle();
+            danceFrame.recycle();
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            ivSong.setImageBitmap(song);
+            ivDance.setImageBitmap(dance);
+            showLoading(false);
+        }
     }
 }

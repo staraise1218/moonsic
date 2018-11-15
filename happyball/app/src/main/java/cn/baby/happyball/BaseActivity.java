@@ -101,6 +101,7 @@ public class BaseActivity extends Activity {
             @Override
             public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
                 imageView.setImageResource(resouces);
+                frameBitmap.recycle();
             }
 
             @Override
@@ -109,6 +110,7 @@ public class BaseActivity extends Activity {
                     Bitmap bitmap = AlphaFilter.overlay(loadedImage, frameBitmap);
                     ((ImageView) view).setImageBitmap(bitmap);
                 }
+                frameBitmap.recycle();
             }
 
             @Override

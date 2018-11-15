@@ -3,6 +3,7 @@ package cn.baby.happyball.vedio;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,6 +68,8 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     ProgressBar pbLoading;
 
     private Episode mEpisode;
+    private Bitmap study;
+    private Bitmap knowledge;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,21 +95,7 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     }
 
     private void initData() {
-        Bitmap studyFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_song);
-        Bitmap studyBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_study);
-        Bitmap study = AlphaFilter.overlay(studyBitmap, studyFrame);
-        ivStudy.setImageBitmap(study);
-        studyBitmap.recycle();
-        studyFrame.recycle();
-
-        Bitmap knowledgeFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_dance);
-        Bitmap knowledgeitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_knowledge);
-        Bitmap knowledge = AlphaFilter.overlay(knowledgeitmap, knowledgeFrame);
-        ivKnowledge.setImageBitmap(knowledge);
-        knowledgeitmap.recycle();
-        knowledgeFrame.recycle();
-
-        showLoading(false);
+        new LoadImagerAsytask().execute();
     }
 
     @OnClick(R.id.ll_replay)
@@ -248,4 +239,32 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
+
+    private class LoadImagerAsytask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Bitmap studyFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_song);
+            Bitmap studyBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_study);
+            study = AlphaFilter.overlay(studyBitmap, studyFrame);
+            studyBitmap.recycle();
+            studyFrame.recycle();
+
+            Bitmap knowledgeFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_dance);
+            Bitmap knowledgeitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_knowledge);
+            knowledge = AlphaFilter.overlay(knowledgeitmap, knowledgeFrame);
+            knowledgeitmap.recycle();
+            knowledgeFrame.recycle();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            ivStudy.setImageBitmap(study);
+            ivKnowledge.setImageBitmap(knowledge);
+            showLoading(false);
+            super.onPostExecute(aVoid);
+        }
+    }
+
 }
