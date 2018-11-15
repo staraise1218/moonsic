@@ -1,6 +1,8 @@
 package cn.baby.happyball.vedio;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
@@ -18,6 +20,7 @@ import cn.baby.happyball.MainActivity;
 import cn.baby.happyball.R;
 import cn.baby.happyball.bean.Episode;
 import cn.baby.happyball.constant.SystemConfig;
+import cn.baby.happyball.util.AlphaFilter;
 
 public class VedioStudyActivity extends BaseActivity implements View.OnFocusChangeListener {
 
@@ -73,15 +76,26 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
     }
 
     private void getData() {
+        showLoading(true);
         mEpisode = (Episode) getIntent().getSerializableExtra(SystemConfig.EPISODE);
     }
 
     private void initData() {
-//        obtainViewFocus(rlSong);
-//        rlSong.requestFocus();
-//        rlSong.setFocusable(true);
-//        rlSong.setNextFocusUpId(R.id.rl_back);
-//        rlSong.setNextFocusRightId(R.id.rl_dance);
+        Bitmap songFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_song);
+        Bitmap songBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_study);
+        Bitmap song = AlphaFilter.overlay(songBitmap, songFrame);
+        ivSong.setImageBitmap(song);
+        songBitmap.recycle();
+        songFrame.recycle();
+
+        Bitmap danceFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_dance);
+        Bitmap danceBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_knowledge);
+        Bitmap dance = AlphaFilter.overlay(danceBitmap, danceFrame);
+        ivDance.setImageBitmap(dance);
+        danceBitmap.recycle();
+        danceFrame.recycle();
+
+        showLoading(false);
     }
 
     @OnClick({R.id.iv_song, R.id.rl_song})

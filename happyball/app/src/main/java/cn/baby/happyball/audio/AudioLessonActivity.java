@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -29,7 +28,6 @@ import cn.baby.happyball.bean.Lesson;
 import cn.baby.happyball.bean.Semester;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
-import cn.baby.happyball.vedio.VedioChoiceActiviy;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -162,32 +160,32 @@ public class AudioLessonActivity extends BaseActivity implements View.OnFocusCha
             switch (lesson.getId()) {
                 case 1:
                     tvChina.setText(lesson.getName());
-                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivChina);
+                    loadImage(imageUrl, ivChina, R.mipmap.ic_main_big_next);
                     break;
 
                 case 2:
                     tvWorld.setText(lesson.getName());
-                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivWorld);
+                    loadImage(imageUrl, ivWorld, R.mipmap.ic_main_middle_next);
                     break;
 
                 case 3:
                     tvPop.setText(lesson.getName());
-                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivPop);
+                    loadImage(imageUrl, ivPop, R.mipmap.ic_main_reception_next);
                     break;
 
                 case 4:
                     tvNation.setText(lesson.getName());
-                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivNation);
+                    loadImage(imageUrl, ivNation, R.mipmap.ic_main_big_last);
                     break;
 
                 case 5:
                     tvHygiene.setText(lesson.getName());
-                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivHygiene);
+                    loadImage(imageUrl, ivHygiene, R.mipmap.ic_main_middle_last);
                     break;
 
                 case 6 :
                     tvSafe.setText(lesson.getName());
-                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivSafe);
+                    loadImage(imageUrl, ivSafe, R.mipmap.ic_main_reception_last);
                     break;
 
                 default:break;

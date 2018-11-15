@@ -12,7 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -156,7 +155,7 @@ public class AudioChoiceActiviy extends BaseActivity implements View.OnFocusChan
             tvLastTimeValue.setText(mLastTime);
         }
         String imageUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mLesson.getImage())).toString();
-        Picasso.with(getApplicationContext()).load(imageUrl).into(ivCourseSemester);
+        loadImage(imageUrl, ivCourseSemester, R.mipmap.ic_choice_course_semester);
 
         cvCourse.setItemAnimator(new DefaultItemAnimator());
         mEpisodeAdapter = new EpisodeAdapter(AudioChoiceActiviy.this, mEpisodes);

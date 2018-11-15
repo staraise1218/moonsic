@@ -10,7 +10,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -176,32 +175,32 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             switch (semester.getId()) {
                 case 1:
                     tvBigNext.setText(semester.getName());
-                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivBigNext);
+                    loadImage(imageUrl, ivBigNext, R.mipmap.ic_main_big_next);
                     break;
 
                 case 2:
                     tvMiddleNext.setText(semester.getName());
-                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivMiddleNext);
+                    loadImage(imageUrl, ivMiddleNext, R.mipmap.ic_main_middle_next);
                     break;
 
                 case 3:
                     tvReceptionNext.setText(semester.getName());
-                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivReceptionNext);
+                    loadImage(imageUrl, ivReceptionNext, R.mipmap.ic_main_reception_next);
                     break;
 
                 case 4:
                     tvBigLast.setText(semester.getName());
-                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivBigLast);
+                    loadImage(imageUrl, ivBigLast, R.mipmap.ic_main_big_last);
                     break;
 
                 case 5:
                     tvMiddleLast.setText(semester.getName());
-                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivMiddleLast);
+                    loadImage(imageUrl, ivMiddleLast, R.mipmap.ic_main_middle_last);
                     break;
 
                 case 6:
                     tvReceptionLast.setText(semester.getName());
-                    Picasso.with(getApplicationContext()).load(imageUrl).into(ivReceptionLast);
+                    loadImage(imageUrl, ivReceptionLast, R.mipmap.ic_main_reception_last);
                     break;
 
                 default:
@@ -398,6 +397,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     }
 
     boolean isFirst = true;
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {

@@ -10,14 +10,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -28,7 +25,6 @@ import cn.baby.happyball.MainActivity;
 import cn.baby.happyball.R;
 import cn.baby.happyball.bean.Episode;
 import cn.baby.happyball.bean.Knowledge;
-import cn.baby.happyball.bean.SingleDance;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
 import okhttp3.Call;
@@ -159,9 +155,7 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
             if (!mKnowledge.getImages().isEmpty()) {
                 switch (mKnowledge.getImages().size()) {
                     case 1:
-                        Picasso.with(getApplicationContext())
-                                .load((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(0))).toString())
-                                .into(ivKnowledgeFirst);
+                        loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(0))).toString(), ivKnowledgeFirst);
                         ivKnowledgeSecond.setVisibility(View.GONE);
                         ivKnowledgeThird.setVisibility(View.GONE);
                         ivKnowledgeFour.setVisibility(View.GONE);
@@ -171,12 +165,8 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
                         tvKnowledgeFour.setVisibility(View.GONE);
                         break;
                     case 2:
-                        Picasso.with(getApplicationContext())
-                                .load((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(0))).toString())
-                                .into(ivKnowledgeFirst);
-                        Picasso.with(getApplicationContext())
-                                .load((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(1))).toString())
-                                .into(ivKnowledgeSecond);
+                        loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(0))).toString(), ivKnowledgeFirst);
+                        loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(1))).toString(), ivKnowledgeSecond);
                         ivKnowledgeThird.setVisibility(View.GONE);
                         ivKnowledgeFour.setVisibility(View.GONE);
                         tvKnowledgeFirst.setVisibility(View.GONE);
@@ -185,15 +175,9 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
                         tvKnowledgeFour.setVisibility(View.GONE);
                         break;
                     case 3:
-                        Picasso.with(getApplicationContext())
-                                .load((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(0))).toString())
-                                .into(ivKnowledgeFirst);
-                        Picasso.with(getApplicationContext())
-                                .load((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(1))).toString())
-                                .into(ivKnowledgeSecond);
-                        Picasso.with(getApplicationContext())
-                                .load((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(2))).toString())
-                                .into(ivKnowledgeThird);
+                        loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(0))).toString(), ivKnowledgeFirst);
+                        loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(1))).toString(), ivKnowledgeSecond);
+                        loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(2))).toString(), ivKnowledgeThird);
                         ivKnowledgeFour.setVisibility(View.GONE);
                         tvKnowledgeFirst.setVisibility(View.GONE);
                         tvKnowledgeSecond.setVisibility(View.GONE);
@@ -201,18 +185,10 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
                         tvKnowledgeFour.setVisibility(View.GONE);
                         break;
                     case 4:
-                        Picasso.with(getApplicationContext())
-                                .load((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(0))).toString())
-                                .into(ivKnowledgeFirst);
-                        Picasso.with(getApplicationContext())
-                                .load((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(1))).toString())
-                                .into(ivKnowledgeSecond);
-                        Picasso.with(getApplicationContext())
-                                .load((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(2))).toString())
-                                .into(ivKnowledgeThird);
-                        Picasso.with(getApplicationContext())
-                                .load((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(3))).toString())
-                                .into(ivKnowledgeFour);
+                        loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(0))).toString(), ivKnowledgeFirst);
+                        loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(1))).toString(), ivKnowledgeSecond);
+                        loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(2))).toString(), ivKnowledgeThird);
+                        loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(3))).toString(), ivKnowledgeFour);
                         tvKnowledgeFirst.setVisibility(View.GONE);
                         tvKnowledgeSecond.setVisibility(View.GONE);
                         tvKnowledgeThird.setVisibility(View.GONE);
@@ -251,18 +227,22 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
                 for (String s : mKnowledge.getAnswer()) {
                     switch (Integer.valueOf(s)) {
                         case 1:
+                            obtainViewFocus(rlKnowledgeFirst);
                             tvKnowledgeFirst.setVisibility(View.VISIBLE);
                             tvKnowledgeFirst.setText(s);
                             break;
                         case 2:
+                            obtainViewFocus(rlKnowledgeSecond);
                             tvKnowledgeSecond.setVisibility(View.VISIBLE);
                             tvKnowledgeSecond.setText(s);
                             break;
                         case 3:
+                            obtainViewFocus(rlKnowledgeThird);
                             tvKnowledgeThird.setVisibility(View.VISIBLE);
                             tvKnowledgeThird.setText(s);
                             break;
                         case 4:
+                            obtainViewFocus(rlKnowledgeFour);
                             tvKnowledgeFour.setVisibility(View.VISIBLE);
                             tvKnowledgeFour.setText(s);
                             break;

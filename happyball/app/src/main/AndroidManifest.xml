@@ -23,6 +23,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
             android:icon="@drawable/app_icon_your_company"
+            android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
@@ -34,66 +35,77 @@
             </intent-filter>
         </activity>
         <activity android:name=".vedio.VedioLessonActivity"
+            android:exported="true"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".vedio.VedioChoiceActiviy"
+            android:exported="true"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".vedio.VedioPlayActivity"
+            android:exported="true"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".vedio.VedioFinishActivity"
+            android:exported="true"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".vedio.VedioStudyActivity"
+            android:exported="true"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".vedio.VedioSongActivity"
+            android:exported="true"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".vedio.VedioDanceActivity"
+            android:exported="true"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".vedio.VedioKnowledgeActivity"
+            android:exported="true"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".audio.AudioLessonActivity"
+            android:exported="true"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".audio.AudioChoiceActiviy"
+            android:exported="true"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
         <activity android:name=".audio.AudioPlayActivity"
+            android:exported="true"
             android:icon="@drawable/app_icon_your_company"
             android:label="@string/app_name"
             android:launchMode="singleTask"

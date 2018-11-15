@@ -11,7 +11,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -185,9 +184,8 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
         switch (mSingleDances.size()) {
             case 1:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString())
-                        .into(ivDanceFirst);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
+                        ivDanceFirst, R.mipmap.ic_dance_boom);
                 tvDanceSecond.setVisibility(View.GONE);
                 ivDanceSecond.setVisibility(View.GONE);
                 tvDanceThird.setVisibility(View.GONE);
@@ -205,13 +203,11 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case 2:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString())
-                        .into(ivDanceFirst);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
+                        ivDanceFirst, R.mipmap.ic_dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString())
-                        .into(ivDanceSecond);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
+                        ivDanceSecond, R.mipmap.ic_dance_sky);
                 tvDanceThird.setVisibility(View.GONE);
                 ivDanceThird.setVisibility(View.GONE);
                 tvDanceFour.setVisibility(View.GONE);
@@ -227,17 +223,14 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case 3:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString())
-                        .into(ivDanceFirst);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
+                        ivDanceFirst, R.mipmap.ic_dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString())
-                        .into(ivDanceSecond);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
+                        ivDanceSecond, R.mipmap.ic_dance_sky);
                 tvDanceThird.setText(mSingleDances.get(2).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString())
-                        .into(ivDanceThird);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString(),
+                        ivDanceThird, R.mipmap.ic_dance_dark);
                 tvDanceFour.setVisibility(View.GONE);
                 ivDanceFour.setVisibility(View.GONE);
                 tvDanceFive.setVisibility(View.GONE);
@@ -251,21 +244,17 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case 4:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString())
-                        .into(ivDanceFirst);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
+                        ivDanceFirst, R.mipmap.ic_dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString())
-                        .into(ivDanceSecond);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
+                        ivDanceSecond, R.mipmap.ic_dance_sky);
                 tvDanceThird.setText(mSingleDances.get(2).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString())
-                        .into(ivDanceThird);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString(),
+                        ivDanceThird, R.mipmap.ic_dance_dark);
                 tvDanceFour.setText(mSingleDances.get(3).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString())
-                        .into(ivDanceFour);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString(),
+                        ivDanceFour, R.mipmap.ic_dance_clouds);
                 tvDanceFive.setVisibility(View.GONE);
                 ivDanceFive.setVisibility(View.GONE);
                 tvDanceSix.setVisibility(View.GONE);
@@ -277,25 +266,20 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case 5:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString())
-                        .into(ivDanceFirst);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
+                        ivDanceFirst, R.mipmap.ic_dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString())
-                        .into(ivDanceSecond);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
+                        ivDanceSecond, R.mipmap.ic_dance_sky);
                 tvDanceThird.setText(mSingleDances.get(2).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString())
-                        .into(ivDanceThird);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString(),
+                        ivDanceThird, R.mipmap.ic_dance_dark);
                 tvDanceFour.setText(mSingleDances.get(3).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString())
-                        .into(ivDanceFour);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString(),
+                        ivDanceFour, R.mipmap.ic_dance_clouds);
                 tvDanceFive.setText(mSingleDances.get(4).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(4).getImage())).toString())
-                        .into(ivDanceFive);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(4).getImage())).toString(),
+                        ivDanceFive, R.mipmap.ic_dance_safe);
                 tvDanceSix.setVisibility(View.GONE);
                 ivDanceSix.setVisibility(View.GONE);
                 tvDanceSeven.setVisibility(View.GONE);
@@ -305,29 +289,23 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case 6:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString())
-                        .into(ivDanceFirst);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
+                        ivDanceFirst, R.mipmap.ic_dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString())
-                        .into(ivDanceSecond);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
+                        ivDanceSecond, R.mipmap.ic_dance_sky);
                 tvDanceThird.setText(mSingleDances.get(2).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString())
-                        .into(ivDanceThird);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString(),
+                        ivDanceThird, R.mipmap.ic_dance_dark);
                 tvDanceFour.setText(mSingleDances.get(3).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString())
-                        .into(ivDanceFour);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString(),
+                        ivDanceFour, R.mipmap.ic_dance_clouds);
                 tvDanceFive.setText(mSingleDances.get(4).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(4).getImage())).toString())
-                        .into(ivDanceFive);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(4).getImage())).toString(),
+                        ivDanceFive, R.mipmap.ic_dance_safe);
                 tvDanceSix.setText(mSingleDances.get(5).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(5).getImage())).toString())
-                        .into(ivDanceSix);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(5).getImage())).toString(),
+                        ivDanceSix, R.mipmap.ic_dance_ipad);
                 tvDanceSeven.setVisibility(View.GONE);
                 ivDanceSeven.setVisibility(View.GONE);
                 tvDanceEight.setVisibility(View.GONE);
@@ -335,69 +313,54 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case 7:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString())
-                        .into(ivDanceFirst);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
+                        ivDanceFirst, R.mipmap.ic_dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString())
-                        .into(ivDanceSecond);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
+                        ivDanceSecond, R.mipmap.ic_dance_sky);
                 tvDanceThird.setText(mSingleDances.get(2).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString())
-                        .into(ivDanceThird);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString(),
+                        ivDanceThird, R.mipmap.ic_dance_dark);
                 tvDanceFour.setText(mSingleDances.get(3).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString())
-                        .into(ivDanceFour);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString(),
+                        ivDanceFour, R.mipmap.ic_dance_clouds);
                 tvDanceFive.setText(mSingleDances.get(4).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(4).getImage())).toString())
-                        .into(ivDanceFive);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(4).getImage())).toString(),
+                        ivDanceFive, R.mipmap.ic_dance_safe);
                 tvDanceSix.setText(mSingleDances.get(5).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(5).getImage())).toString())
-                        .into(ivDanceSix);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(5).getImage())).toString(),
+                        ivDanceSix, R.mipmap.ic_dance_ipad);
                 tvDanceSeven.setText(mSingleDances.get(6).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(6).getImage())).toString())
-                        .into(ivDanceSeven);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(6).getImage())).toString(),
+                        ivDanceSeven, R.mipmap.ic_dance_computer);
                 tvDanceEight.setVisibility(View.GONE);
                 ivDanceEight.setVisibility(View.GONE);
                 break;
             case 8:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString())
-                        .into(ivDanceFirst);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
+                        ivDanceFirst, R.mipmap.ic_dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString())
-                        .into(ivDanceSecond);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
+                        ivDanceSecond, R.mipmap.ic_dance_sky);
                 tvDanceThird.setText(mSingleDances.get(2).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString())
-                        .into(ivDanceThird);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString(),
+                        ivDanceThird, R.mipmap.ic_dance_dark);
                 tvDanceFour.setText(mSingleDances.get(3).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString())
-                        .into(ivDanceFour);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString(),
+                        ivDanceFour, R.mipmap.ic_dance_clouds);
                 tvDanceFive.setText(mSingleDances.get(4).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(4).getImage())).toString())
-                        .into(ivDanceFive);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(4).getImage())).toString(),
+                        ivDanceFive, R.mipmap.ic_dance_safe);
                 tvDanceSix.setText(mSingleDances.get(5).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(5).getImage())).toString())
-                        .into(ivDanceSix);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(5).getImage())).toString(),
+                        ivDanceSix, R.mipmap.ic_dance_ipad);
                 tvDanceSeven.setText(mSingleDances.get(6).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(6).getImage())).toString())
-                        .into(ivDanceSeven);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(6).getImage())).toString(),
+                        ivDanceSeven, R.mipmap.ic_dance_computer);
                 tvDanceEight.setText(mSingleDances.get(7).getTitle());
-                Picasso.with(getApplicationContext())
-                        .load((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(7).getImage())).toString())
-                        .into(ivDanceEight);
+                loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(7).getImage())).toString(),
+                        ivDanceEight, R.mipmap.ic_dance_thunder);
                 break;
                 default:
                     tvDanceFirst.setVisibility(View.GONE);

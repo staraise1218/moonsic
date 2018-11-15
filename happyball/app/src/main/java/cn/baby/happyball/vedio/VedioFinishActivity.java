@@ -1,6 +1,8 @@
 package cn.baby.happyball.vedio;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
@@ -18,6 +20,7 @@ import cn.baby.happyball.MainActivity;
 import cn.baby.happyball.R;
 import cn.baby.happyball.bean.Episode;
 import cn.baby.happyball.constant.SystemConfig;
+import cn.baby.happyball.util.AlphaFilter;
 
 /**
  * @author DRH
@@ -82,15 +85,26 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     }
 
     private void getData() {
+        showLoading(true);
         mEpisode = (Episode) getIntent().getSerializableExtra(SystemConfig.EPISODE);
     }
 
     private void initData() {
-//        obtainViewFocus(llReplay);
-//        llReplay.requestFocus();
-//        llReplay.setFocusable(true);
-//        llReplay.setNextFocusLeftId(R.id.rl_study);
-//        llReplay.setNextFocusRightId(R.id.rl_knowledge);
+        Bitmap studyFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_song);
+        Bitmap studyBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_study);
+        Bitmap study = AlphaFilter.overlay(studyBitmap, studyFrame);
+        ivStudy.setImageBitmap(study);
+        studyBitmap.recycle();
+        studyFrame.recycle();
+
+        Bitmap knowledgeFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_dance);
+        Bitmap knowledgeitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_knowledge);
+        Bitmap knowledge = AlphaFilter.overlay(knowledgeitmap, knowledgeFrame);
+        ivKnowledge.setImageBitmap(knowledge);
+        knowledgeitmap.recycle();
+        knowledgeFrame.recycle();
+
+        showLoading(false);
     }
 
     @OnClick(R.id.ll_replay)
@@ -110,13 +124,13 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     }
 
     @OnClick({R.id.iv_study, R.id.rl_study})
-    public void onSong() {
+    public void onStudy() {
         startActivity(new Intent(VedioFinishActivity.this, VedioStudyActivity.class)
                 .putExtra(SystemConfig.EPISODE, mEpisode));
     }
 
     @OnClick({R.id.iv_knowledge, R.id.rl_knowledge})
-    public void onDance() {
+    public void onKnowledge() {
         startActivity(new Intent(VedioFinishActivity.this, VedioKnowledgeActivity.class)
                 .putExtra(SystemConfig.EPISODE, mEpisode));
     }

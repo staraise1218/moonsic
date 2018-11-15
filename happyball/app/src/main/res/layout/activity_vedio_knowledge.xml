@@ -146,7 +146,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/rl_knowledge_first"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="40dp"
             android:layout_toRightOf="@+id/rl_knowledge_first"
             android:nextFocusLeft="@id/rl_knowledge_first"
             android:nextFocusRight="@id/rl_knowledge_third">
@@ -174,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/rl_knowledge_first"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="40dp"
             android:layout_toRightOf="@+id/rl_knowledge_second"
             android:nextFocusLeft="@id/rl_knowledge_second"
             android:nextFocusRight="@id/rl_knowledge_four">
@@ -202,7 +202,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/rl_knowledge_first"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="40dp"
             android:layout_toRightOf="@+id/rl_knowledge_third"
             android:nextFocusLeft="@id/rl_knowledge_third"
             android:nextFocusRight="@id/rl_homepage">
