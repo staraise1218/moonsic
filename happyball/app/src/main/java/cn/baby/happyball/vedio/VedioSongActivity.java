@@ -5,7 +5,6 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,9 +29,10 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
      * 主页
      */
     @BindView(R.id.rl_homepage)
-    RelativeLayout rlHomaPage;
+    RelativeLayout rlHomePage;
     @BindView(R.id.iv_homepage)
     ImageView ivHomePage;
+
     /**
      * 返回
      */
@@ -40,6 +40,7 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     RelativeLayout rlBack;
     @BindView(R.id.iv_back)
     ImageView ivBack;
+
     /**
      * 伴唱
      */
@@ -47,6 +48,7 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     RelativeLayout rlSongAccompaniment;
     @BindView(R.id.iv_song_accompaniment)
     ImageView ivSongAccompaniment;
+
     /**
      * 导唱
      */
@@ -54,6 +56,7 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     RelativeLayout rlSongSing;
     @BindView(R.id.iv_song_sing)
     ImageView ivSongSing;
+
     /**
      * 歌词
      */
@@ -73,6 +76,7 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     TextView tvSongTwoThird;
     @BindView(R.id.tv_song_two_four)
     TextView tvSongTwoFour;
+
     /**
      * 加载
      */
@@ -95,7 +99,7 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
 
     public void bindEvents() {
         rlBack.setOnFocusChangeListener(this);
-        rlHomaPage.setOnFocusChangeListener(this);
+        rlHomePage.setOnFocusChangeListener(this);
         rlSongAccompaniment.setOnFocusChangeListener(this);
         rlSongSing.setOnFocusChangeListener(this);
     }

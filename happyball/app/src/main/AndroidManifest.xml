@@ -83,6 +83,13 @@
             android:launchMode="singleTask"
             android:logo="@drawable/app_icon_your_company">
         </activity>
+        <activity android:name=".vedio.SingleDancePlayActivity"
+            android:exported="true"
+            android:icon="@drawable/app_icon_your_company"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:logo="@drawable/app_icon_your_company">
+        </activity>
         <activity android:name=".vedio.VedioKnowledgeActivity"
             android:exported="true"
             android:icon="@drawable/app_icon_your_company"

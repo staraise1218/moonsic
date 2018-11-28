@@ -58,9 +58,10 @@
 
         <RelativeLayout
             android:id="@+id/rl_song_lyrics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="580dp"
+            android:layout_height="640dp"
             android:layout_centerInParent="true"
+            android:layout_marginTop="21dp"
             android:background="@mipmap/ic_song_lyric_frame">
 
             <TextView
@@ -68,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/song_lyrics"
                 android:textSize="30sp" />
 
@@ -77,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="100dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -97,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl_song_one_first"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -117,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl_song_one_second"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -137,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl_song_one_third"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -157,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl_song_one_four"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -177,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl_song_two_first"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -197,7 +198,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl_song_two_second"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -217,6 +218,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/rl_song_two_third"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -225,7 +227,6 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginTop="8dp"
                     android:text="安 全 用 电 放 第 一"
                     android:textSize="@dimen/text_song"
                     android:textStyle="bold" />
@@ -240,10 +241,9 @@
             android:focusable="true"
             android:nextFocusUp="@id/rl_back"
             android:nextFocusDown="@id/rl_song_accompaniment"
-            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="180dp">
+            android:layout_toLeftOf="@+id/rl_song_lyrics"
+            android:layout_marginTop="254dp">
 
             <ImageView
                 android:id="@+id/iv_song_sing"

@@ -192,6 +192,7 @@ public class AudioLessonActivity extends BaseActivity implements View.OnFocusCha
             }
         }
         showLoading(false);
+
         obtainViewFocus(rlSafe);
         rlSafe.requestFocus();
         rlSafe.setFocusable(true);

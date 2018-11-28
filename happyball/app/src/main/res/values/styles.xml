@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <resources>
 
     <style name="AppTheme" parent="@style/Theme.Leanback" />
+
+    <style name="main_type_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_home</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="main_semester_image">
+        <item name="android:layout_width">240dp</item>
+        <item name="android:layout_height">180dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
+
+    <style name="main_semester_frame">
+        <item name="android:layout_width">160dp</item>
+        <item name="android:layout_height">58dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:src">@mipmap/ic_main_semester_frame</item>
+    </style>
+
+    <style name="main_semester_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textSize">@dimen/text_main</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="home_pager">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">120dp</item>
+        <item name="android:layout_marginTop">50dp</item>
+    </style>
+
+    <style name="home_pager_image">
+        <item name="android:layout_width">160dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:src">@mipmap/ic_play_homepage</item>
+    </style>
+
+    <style name="home_pager_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:text">@string/homepage</item>
+        <item name="android:textSize">@dimen/text_main</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
 </resources>

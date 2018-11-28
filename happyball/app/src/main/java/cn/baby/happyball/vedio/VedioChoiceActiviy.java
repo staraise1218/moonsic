@@ -57,6 +57,7 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
     RelativeLayout rlHomePage;
     @BindView(R.id.iv_homepage)
     ImageView ivHomePage;
+
     /**
      * 班级课程
      */
@@ -68,6 +69,7 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
     TextView tvSemeterName;
     @BindView(R.id.tv_lesson_name)
     TextView tvLessonName;
+
     /**
      * 班级课程描述
      */
@@ -81,6 +83,7 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
     TextView tvDetailTitleLesson;
     @BindView(R.id.tv_detail_content)
     TextView tvDetailContent;
+
     /**
      * 历史纪录
      */
@@ -90,6 +93,7 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
     TextView tvLastTime;
     @BindView(R.id.tv_last_time_value)
     TextView tvLastTimeValue;
+
     /**
      * 集数选择
      */

@@ -36,7 +36,7 @@ public class SingleDancePlayActivity extends BaseActivity {
      * 主页
      */
     @BindView(R.id.rl_homepage)
-    RelativeLayout rlHomaPage;
+    RelativeLayout rlHomePage;
     @BindView(R.id.iv_homepage)
     ImageView ivHomePage;
     /**
@@ -80,7 +80,7 @@ public class SingleDancePlayActivity extends BaseActivity {
 
     @OnClick({R.id.iv_back, R.id.rl_back})
     public void onBack() {
-        startActivity(new Intent(SingleDancePlayActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(SingleDancePlayActivity.this, VedioDanceActivity.class));
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})

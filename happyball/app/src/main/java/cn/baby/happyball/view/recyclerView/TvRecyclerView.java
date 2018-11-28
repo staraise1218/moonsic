@@ -260,31 +260,12 @@ public class TvRecyclerView extends RecyclerView {
                 return false;
             });
 
-            holder.itemView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (hasFocus) {
-                        focusStatus(v, position);
-                    } else {
-                        normalStatus(v, position);
-                    }
-                }
-            });
-
             if (mListener != null) {
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mListener.onItemClick(v, position);
-                    }
-                });
+                holder.itemView.setOnClickListener(view -> mListener.onItemClick(view, position) );
 
-                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        mListener.onItemLongClick(v, position);
+                holder.itemView.setOnLongClickListener(view -> {
+                        mListener.onItemLongClick(view, position);
                         return true;
-                    }
                 });
             }
         }
@@ -303,7 +284,7 @@ public class TvRecyclerView extends RecyclerView {
          * @param itemView view
          * @param position
          */
-        private void focusStatus(View itemView, int position) {
+        public void focusStatus(View itemView, int position) {
             if (itemView == null) {
                 return;
             }
@@ -325,7 +306,7 @@ public class TvRecyclerView extends RecyclerView {
          * @param itemView item对应的View
          * @param position
          */
-        private void normalStatus(View itemView, int position) {
+        public void normalStatus(View itemView, int position) {
             if (itemView == null) {
                 return;
             }

@@ -23,6 +23,9 @@ import cn.baby.happyball.bean.Episode;
 import cn.baby.happyball.constant.SystemConfig;
 import cn.baby.happyball.util.AlphaFilter;
 
+/**
+ * @author DRH
+ */
 public class VedioStudyActivity extends BaseActivity implements View.OnFocusChangeListener {
 
     /**
@@ -219,14 +222,14 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Bitmap songFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_song);
-            Bitmap songBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_study);
+            Bitmap songFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_song));
+            Bitmap songBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_study));
             song = AlphaFilter.overlay(songBitmap, songFrame);
             songBitmap.recycle();
             songFrame.recycle();
 
-            Bitmap danceFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_dance);
-            Bitmap danceBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_knowledge);
+            Bitmap danceFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_dance));
+            Bitmap danceBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_knowledge));
             dance = AlphaFilter.overlay(danceBitmap, danceFrame);
             danceBitmap.recycle();
             danceFrame.recycle();

@@ -44,9 +44,10 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
      * 主页
      */
     @BindView(R.id.rl_homepage)
-    RelativeLayout rlHomaPage;
+    RelativeLayout rlHomePage;
     @BindView(R.id.iv_homepage)
     ImageView ivHomePage;
+
     /**
      * 幼儿安全教育
      */
@@ -56,6 +57,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     ImageView ivSafe;
     @BindView(R.id.tv_safe_name)
     TextView tvSafe;
+
     /**
      * 幼儿卫生常识
      */
@@ -65,6 +67,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     ImageView ivHygiene;
     @BindView(R.id.tv_hygiene_name)
     TextView tvHygiene;
+
     /**
      * 民族列车
      */
@@ -74,6 +77,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     ImageView ivNation;
     @BindView(R.id.tv_nation_name)
     TextView tvNation;
+
     /**
      * 流行歌舞
      */
@@ -83,6 +87,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     ImageView ivPop;
     @BindView(R.id.tv_pop_name)
     TextView tvPop;
+
     /**
      * 世界魅力
      */
@@ -92,6 +97,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     ImageView ivWorld;
     @BindView(R.id.tv_world_name)
     TextView tvWorld;
+
     /**
      * 中国魅力
      */
@@ -101,6 +107,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     ImageView ivChina;
     @BindView(R.id.tv_china_name)
     TextView tvChina;
+
     /**
      *  加载
      */
@@ -196,11 +203,12 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
             }
         }
         showLoading(false);
-//        obtainViewFocus(rlSafe);
-//        rlSafe.requestFocus();
-//        rlSafe.setFocusable(true);
-//        rlSafe.setNextFocusDownId(R.id.rl_pop);
-//        rlSafe.setNextFocusRightId(R.id.rl_hygiene);
+
+        obtainViewFocus(rlSafe);
+        rlSafe.requestFocus();
+        rlSafe.setFocusable(true);
+        rlSafe.setNextFocusDownId(R.id.rl_pop);
+        rlSafe.setNextFocusRightId(R.id.rl_hygiene);
     }
 
     @Override
@@ -318,6 +326,8 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
                     isFirst = false;
                 }
                 break;
+                default:
+                    break;
         }
         return super.onKeyDown(keyCode, event);
     }

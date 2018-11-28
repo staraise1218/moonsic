@@ -138,7 +138,6 @@ public class AlphaFilter extends Filter {
         float scaleY = height * 1F / h;
         Matrix matrix = new Matrix();
         matrix.postScale(scaleX, scaleY);
-
         Bitmap overlayCopy = Bitmap.createBitmap(overlay, 0, 0, w, h, matrix, true);
 
         int[] srcPixels = new int[width * height];

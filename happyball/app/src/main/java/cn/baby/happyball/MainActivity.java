@@ -25,6 +25,7 @@ import cn.baby.happyball.bean.Semester;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
 import cn.baby.happyball.vedio.VedioLessonActivity;
+import cn.lankton.anyshape.AnyshapeImageView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     RelativeLayout rlVedio;
     @BindView(R.id.iv_vedio)
     ImageView ivVedio;
+
     /**
      * 音频
      */
@@ -51,6 +53,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     RelativeLayout rlAudio;
     @BindView(R.id.iv_audio)
     ImageView ivAudio;
+
     /**
      * 小班上学期
      */
@@ -60,6 +63,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     ImageView ivReceptionLast;
     @BindView(R.id.tv_reception_last_name)
     TextView tvReceptionLast;
+
     /**
      * 小班下学期
      */
@@ -69,6 +73,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     ImageView ivReceptionNext;
     @BindView(R.id.tv_reception_next_name)
     TextView tvReceptionNext;
+
     /**
      * 中班上学期
      */
@@ -78,6 +83,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     ImageView ivMiddleLast;
     @BindView(R.id.tv_middle_last_name)
     TextView tvMiddleLast;
+
     /**
      * 中班下学期
      */
@@ -87,6 +93,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     ImageView ivMiddleNext;
     @BindView(R.id.tv_middle_next_name)
     TextView tvMiddleNext;
+
     /**
      * 大班上学期
      */
@@ -96,6 +103,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     ImageView ivBigLast;
     @BindView(R.id.tv_big_last_name)
     TextView tvBigLast;
+
     /**
      * 大班下学期
      */
@@ -402,7 +410,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_CENTER:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && isFirst) {
                     obtainViewFocus(rlVedio);
                     loseViewFocus(rlAudio);
                     rlVedio.requestFocus();
@@ -413,7 +421,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && isFirst) {
                     obtainViewFocus(rlVedio);
                     loseViewFocus(rlAudio);
                     rlVedio.requestFocus();
@@ -424,7 +432,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && isFirst) {
                     obtainViewFocus(rlVedio);
                     loseViewFocus(rlAudio);
                     rlVedio.requestFocus();
@@ -435,7 +443,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && isFirst) {
                     obtainViewFocus(rlVedio);
                     loseViewFocus(rlAudio);
                     rlVedio.requestFocus();
@@ -446,7 +454,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && isFirst) {
                     obtainViewFocus(rlVedio);
                     loseViewFocus(rlAudio);
                     rlVedio.requestFocus();
@@ -456,6 +464,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                     isFirst = false;
                 }
                 break;
+                default:
+                    break;
         }
         return super.onKeyDown(keyCode, event);
     }

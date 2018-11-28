@@ -10,27 +10,14 @@
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="120dp"
-            android:layout_marginTop="50dp">
+            style="@style/home_pager">
 
             <ImageView
                 android:id="@+id/iv_homepage"
-                android:layout_width="170dp"
-                android:layout_height="80dp"
-                android:src="@mipmap/ic_choice_homepage" />
+                style="@style/home_pager_image" />
 
             <TextView
-                android:id="@+id/tv_homepage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:text="@string/homepage"
-                android:textSize="@dimen/text_home"
-                android:textStyle="bold" />
+                style="@style/home_pager_text" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -44,26 +31,16 @@
 
             <ImageView
                 android:id="@+id/iv_course_semester"
-                android:layout_width="240dp"
-                android:layout_height="180dp"
-                android:layout_marginTop="20dp"
+                style="@style/main_semester_image"
                 android:src="@mipmap/ic_choice_course_semester" />
 
             <ImageView
-                android:layout_width="160dp"
-                android:layout_height="58dp"
-                android:layout_centerHorizontal="true"
-                android:src="@mipmap/ic_main_semester_frame" />
+                style="@style/main_semester_frame" />
 
             <TextView
                 android:id="@+id/tv_semester_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="@string/reception_last_semester"
-                android:textSize="@dimen/text_main"
-                android:textStyle="bold" />
+                style="@style/main_semester_text"
+                android:text="@string/reception_last_semester" />
 
             <TextView
                 android:id="@+id/tv_lesson_name"

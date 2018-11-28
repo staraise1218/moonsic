@@ -40,9 +40,10 @@ public class VedioPlayActivity extends BaseActivity {
      * 主页
      */
     @BindView(R.id.rl_homepage)
-    RelativeLayout rlHomaPage;
+    RelativeLayout rlHomePage;
     @BindView(R.id.iv_homepage)
     ImageView ivHomePage;
+
     /**
      * 返回
      */
@@ -50,6 +51,7 @@ public class VedioPlayActivity extends BaseActivity {
     RelativeLayout rlBack;
     @BindView(R.id.iv_back)
     ImageView ivBack;
+
     /**
      * 视频播放
      */

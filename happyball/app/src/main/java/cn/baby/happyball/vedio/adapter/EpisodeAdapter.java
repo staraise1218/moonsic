@@ -7,6 +7,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -42,10 +43,19 @@ public class EpisodeAdapter extends TvRecyclerView.TvAdapter<Episode> {
 
     @Override
     protected void onSetItemData(RecyclerView.ViewHolder viewHolder, int position) {
-        EpisodeViewHolder holder = (EpisodeViewHolder) viewHolder;
+        final EpisodeViewHolder holder = (EpisodeViewHolder) viewHolder;
         Episode episode = mData.get(position);
         holder.tvEpisodeNum.setText(String.format(mContext.getString(R.string.the_number), episode.getEpisode()));
         holder.tvEpisodeNmae.setText(episode.getTitle());
+        holder.itemView.setOnFocusChangeListener(((view, b) -> {
+            if (b) {
+                holder.ivEpisode.setImageResource(R.mipmap.ic_choice_episode_focus);
+                focusStatus(view, position);
+            } else {
+                holder.ivEpisode.setImageResource(R.mipmap.ic_choice_episode);
+                normalStatus(view, position);
+            }
+        }));
     }
 
     @Override
@@ -81,12 +91,14 @@ public class EpisodeAdapter extends TvRecyclerView.TvAdapter<Episode> {
     private class EpisodeViewHolder extends RecyclerView.ViewHolder {
 
         RelativeLayout rlEpisode;
+        ImageView ivEpisode;
         TextView tvEpisodeNum;
         TextView tvEpisodeNmae;
 
         public EpisodeViewHolder(View itemView) {
             super(itemView);
             rlEpisode = itemView.findViewById(R.id.rl_episode);
+            ivEpisode = itemView.findViewById(R.id.iv_episode);
             tvEpisodeNum = itemView.findViewById(R.id.tv_episode_num);
             tvEpisodeNmae = itemView.findViewById(R.id.tv_episode_name);
         }

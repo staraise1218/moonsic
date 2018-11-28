@@ -244,14 +244,14 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Bitmap studyFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_song);
-            Bitmap studyBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_study);
+            Bitmap studyFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_song));
+            Bitmap studyBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_study));
             study = AlphaFilter.overlay(studyBitmap, studyFrame);
             studyBitmap.recycle();
             studyFrame.recycle();
 
-            Bitmap knowledgeFrame = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_dance);
-            Bitmap knowledgeitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_knowledge);
+            Bitmap knowledgeFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_dance));
+            Bitmap knowledgeitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_knowledge));
             knowledge = AlphaFilter.overlay(knowledgeitmap, knowledgeFrame);
             knowledgeitmap.recycle();
             knowledgeFrame.recycle();
