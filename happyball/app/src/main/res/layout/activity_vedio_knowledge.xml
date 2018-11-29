@@ -19,50 +19,26 @@
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="120dp"
-            android:layout_marginTop="50dp">
+            style="@style/home_pager" >
 
             <ImageView
                 android:id="@+id/iv_homepage"
-                android:layout_width="170dp"
-                android:layout_height="80dp"
-                android:src="@mipmap/ic_finish_homepage" />
+                style="@style/home_pager_image" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/homepage"
-                android:textSize="@dimen/text_home"
-                android:textStyle="bold" />
+                style="@style/home_pager_text" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="50dp">
+            style="@style/home_back">
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="170dp"
-                android:layout_height="80dp"
-                android:src="@mipmap/ic_finish_back" />
+                style="@style/home_back_image" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/back"
-                android:textSize="@dimen/text_home"
-                android:textStyle="bold" />
+                style="@style/home_back_text" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -80,13 +56,8 @@
                 android:src="@mipmap/ic_knowledge_answer" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/knowledge_answer"
-                android:textSize="@dimen/text_main"
-                android:textStyle="bold" />
+                style="@style/center_text_twenty_six"
+                android:text="@string/knowledge_answer" />
         </RelativeLayout>
 
         <TextView

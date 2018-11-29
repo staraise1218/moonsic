@@ -1,0 +1,7 @@
+<resources>
+    <!-- VedioPlay -->
+    <string name="playback">26.7万</string>
+    <string name="playlength">05:16</string>
+    <string name="played">已播放</string>
+
+</resources>

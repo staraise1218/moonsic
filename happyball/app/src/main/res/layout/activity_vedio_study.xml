@@ -12,50 +12,26 @@
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="120dp"
-            android:layout_marginTop="50dp">
+            style="@style/home_pager">
 
             <ImageView
                 android:id="@+id/iv_homepage"
-                android:layout_width="170dp"
-                android:layout_height="80dp"
-                android:src="@mipmap/ic_finish_homepage" />
+                style="@style/home_pager_image" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/homepage"
-                android:textSize="@dimen/text_home"
-                android:textStyle="bold" />
+                style="@style/home_pager_text" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="50dp">
+            style="@style/home_back" >
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="170dp"
-                android:layout_height="80dp"
-                android:src="@mipmap/ic_finish_back" />
+                style="@style/home_back_image" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/back"
-                android:textSize="@dimen/text_home"
-                android:textStyle="bold" />
+                style="@style/home_back_text" />
         </RelativeLayout>
 
         <LinearLayout
@@ -69,10 +45,7 @@
 
         <RelativeLayout
             android:id="@+id/rl_song"
-            android:layout_width="260dp"
-            android:layout_height="360dp"
-            android:focusable="true"
-            android:layout_centerVertical="true"
+            style="@style/study_layout"
             android:layout_toLeftOf="@+id/ll_center"
             android:layout_marginRight="160dp"
             android:nextFocusLeft="@id/rl_back"
@@ -80,27 +53,18 @@
 
             <ImageView
                 android:id="@+id/iv_song"
-                android:layout_width="250dp"
-                android:layout_height="350dp"
+                style="@style/study_image"
                 android:src="@mipmap/ic_finish_song" />
 
             <TextView
                 android:id="@+id/tv_song"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="35dp"
-                android:text="@string/study_song"
-                android:textSize="@dimen/text_lesson"
-                android:textStyle="bold" />
+                style="@style/study_text"
+                android:text="@string/study_song" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_dance"
-            android:layout_width="260dp"
-            android:layout_height="360dp"
-            android:layout_centerVertical="true"
+            style="@style/study_layout"
             android:layout_toRightOf="@+id/ll_center"
             android:layout_marginLeft="160dp"
             android:nextFocusRight="@id/rl_homepage"
@@ -108,34 +72,16 @@
 
             <ImageView
                 android:id="@+id/iv_dance"
-                android:layout_width="250dp"
-                android:layout_height="350dp"
+                style="@style/study_image"
                 android:src="@mipmap/ic_finish_dance" />
 
             <TextView
                 android:id="@+id/tv_dance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="35dp"
-                android:text="@string/study_dance"
-                android:textSize="@dimen/text_lesson"
-                android:textStyle="bold" />
+                style="@style/study_text"
+                android:text="@string/study_dance" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ProgressBar
-                android:id="@+id/pb_loading"
-                android:visibility="gone"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
-        </RelativeLayout>
+       <include layout="@layout/common_progress" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

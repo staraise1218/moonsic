@@ -137,8 +137,8 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final String responseStr = response.body().string();
                 try {
+                    final String responseStr = response.body().string();
                     String data = (new JSONObject(responseStr)).optString("data");
                     mEpisodes = JSON.parseArray(data, Episode.class);
                     runOnUiThread(() -> initData());

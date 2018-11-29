@@ -148,18 +148,18 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                String errString = e.toString();
+                runOnUiThread(() -> showLoading(false));
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final String responseStr = response.body().string();
                 try {
+                    final String responseStr = response.body().string();
                     String data = (new JSONObject(responseStr)).optString("data");
                     mLessons = JSON.parseArray(data, Lesson.class);
                     runOnUiThread(() -> initData());
                 } catch (Exception e) {
-
+                    runOnUiThread(() -> showLoading(false));
                 }
             }
         });

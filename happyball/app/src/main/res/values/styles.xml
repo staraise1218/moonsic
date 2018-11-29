@@ -4,6 +4,16 @@
 
     <style name="AppTheme" parent="@style/Theme.Leanback" />
 
+    <style name="main_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/main_type</item>
+    </style>
+
     <style name="main_type_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -57,5 +67,75 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="home_back">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_marginLeft">120dp</item>
+        <item name="android:layout_marginTop">50dp</item>
+    </style>
+
+    <style name="home_back_image">
+        <item name="android:layout_width">170dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:src">@mipmap/ic_play_back</item>
+    </style>
+
+    <style name="home_back_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:text">@string/back</item>
+        <item name="android:textSize">@dimen/text_home</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="study_layout">
+        <item name="android:layout_width">260dp</item>
+        <item name="android:layout_height">360dp</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="study_image">
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_height">350dp</item>
+    </style>
+
+    <style name="study_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginBottom">35dp</item>
+        <item name="android:textSize">@dimen/text_lesson</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="lyric_layout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="center_text_twenty_six">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">@dimen/text_home</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="center_text_twenty">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textSize">@dimen/text_song</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>

@@ -25,7 +25,6 @@ import cn.baby.happyball.bean.Semester;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
 import cn.baby.happyball.vedio.VedioLessonActivity;
-import cn.lankton.anyshape.AnyshapeImageView;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -37,6 +36,9 @@ import okhttp3.Response;
  * @author DRH
  */
 public class MainActivity extends BaseActivity implements View.OnFocusChangeListener {
+
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
 
     /**
      * 视频
@@ -122,6 +124,11 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     private int mMode = 0;
     List<Semester> mSemesters = new ArrayList<>(6);
 
+    /**
+     * 第一次按键事件处理
+     */
+    boolean isFirst = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,11 +151,14 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
 
     public void getData() {
         showLoading(true);
+
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(HttpConstant.URL);
         if (mMode == 0) {
+            tvTitle.setText(R.string.vedio_title);
             stringBuilder.append(HttpConstant.VIDEO_CLASSES);
         } else if (mMode == 1) {
+            tvTitle.setText(R.string.audio_title);
             stringBuilder.append(HttpConstant.AUDIO_CLASSES);
         }
         String url = stringBuilder.toString();
@@ -161,17 +171,18 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                runOnUiThread(() -> showLoading(false));
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final String responseStr = response.body().string();
                 try {
+                    final String responseStr = response.body().string();
                     String data = (new JSONObject(responseStr)).optString("data");
                     mSemesters = JSON.parseArray(data, Semester.class);
                     runOnUiThread(() -> initData());
                 } catch (Exception e) {
+                    runOnUiThread(() -> showLoading(false));
                 }
             }
         });
@@ -304,6 +315,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void onVedio() {
         if (mMode != 0) {
             mMode = 0;
+            mSemesters.clear();
             getData();
         }
     }
@@ -312,6 +324,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void onAudio() {
         if (mMode != 1) {
             mMode = 1;
+            mSemesters.clear();
             getData();
         }
     }
@@ -322,77 +335,34 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             case R.id.rl_vedio:
                 if (b && mMode != 0) {
                     mMode = 0;
+                    mSemesters.clear();
                     getData();
                 }
                 break;
             case R.id.rl_audio:
                 if (b && mMode != 1) {
                     mMode = 1;
+                    mSemesters.clear();
                     getData();
                 }
                 break;
             case R.id.rl_reception_last:
-                if (b) {
-                    obtainViewFocus(rlReceptionLast);
-                    if (mMode == 0) {
-                        rlReceptionLast.setNextFocusLeftId(R.id.rl_vedio);
-                    } else {
-                        rlReceptionLast.setNextFocusLeftId(R.id.rl_audio);
-                    }
-                    rlReceptionLast.setNextFocusRightId(R.id.rl_middle_last);
-                    rlReceptionLast.setNextFocusDownId(R.id.rl_reception_next);
-                } else {
-                    loseViewFocus(rlReceptionLast);
-                }
+                receptionLastFocusChange(b);
                 break;
             case R.id.rl_middle_last:
-                if (b) {
-                    obtainViewFocus(rlMiddleLast);
-                    rlMiddleLast.setNextFocusLeftId(R.id.rl_reception_last);
-                    rlMiddleLast.setNextFocusRightId(R.id.rl_big_last);
-                    rlMiddleLast.setNextFocusDownId(R.id.rl_middle_next);
-                } else {
-                    loseViewFocus(rlMiddleLast);
-                }
+                LastFocusChange(b, rlMiddleLast, R.id.rl_reception_last, R.id.rl_big_last, R.id.rl_middle_next);
                 break;
             case R.id.rl_big_last:
-                if (b) {
-                    obtainViewFocus(rlBigLast);
-                    rlBigLast.setNextFocusLeftId(R.id.rl_middle_last);
-                    rlBigLast.setNextFocusRightId(R.id.rl_reception_next);
-                    rlBigLast.setNextFocusDownId(R.id.rl_big_next);
-                } else {
-                    loseViewFocus(rlBigLast);
-                }
+                LastFocusChange(b, rlBigLast, R.id.rl_middle_last, R.id.rl_reception_next, R.id.rl_big_next);
                 break;
             case R.id.rl_reception_next:
-                if (b) {
-                    obtainViewFocus(rlReceptionNext);
-                    rlReceptionNext.setNextFocusLeftId(R.id.rl_big_last);
-                    rlReceptionNext.setNextFocusRightId(R.id.rl_middle_next);
-                    rlReceptionNext.setNextFocusUpId(R.id.rl_reception_last);
-                } else {
-                    loseViewFocus(rlReceptionNext);
-                }
+                NextFocusChange(b, rlReceptionNext, R.id.rl_big_last, R.id.rl_middle_next, R.id.rl_reception_last);
                 break;
             case R.id.rl_middle_next:
-                if (b) {
-                    obtainViewFocus(rlMiddleNext);
-                    rlMiddleNext.setNextFocusLeftId(R.id.rl_reception_next);
-                    rlMiddleNext.setNextFocusRightId(R.id.rl_big_next);
-                    rlMiddleNext.setNextFocusUpId(R.id.rl_middle_last);
-                } else {
-                    loseViewFocus(rlMiddleNext);
-                }
+                NextFocusChange(b, rlMiddleNext, R.id.rl_reception_next, R.id.rl_big_next, R.id.rl_middle_last);
                 break;
             case R.id.rl_big_next:
-                if (b) {
-                    obtainViewFocus(rlBigNext);
-                    rlBigNext.setNextFocusLeftId(R.id.rl_middle_next);
-                    rlBigNext.setNextFocusUpId(R.id.rl_big_last);
-                } else {
-                    loseViewFocus(rlBigNext);
-                }
+                bigNextFocusChange(b);
                 break;
             default:
                 if (b) {
@@ -404,7 +374,52 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         }
     }
 
-    boolean isFirst = true;
+    private void bigNextFocusChange(boolean b) {
+        if (b) {
+            obtainViewFocus(rlBigNext);
+            rlBigNext.setNextFocusLeftId(R.id.rl_middle_next);
+            rlBigNext.setNextFocusUpId(R.id.rl_big_last);
+        } else {
+            loseViewFocus(rlBigNext);
+        }
+    }
+
+    private void NextFocusChange(boolean b, RelativeLayout rlReceptionNext, int rl_big_last, int rl_middle_next, int rl_reception_last) {
+        if (b) {
+            obtainViewFocus(rlReceptionNext);
+            rlReceptionNext.setNextFocusLeftId(rl_big_last);
+            rlReceptionNext.setNextFocusRightId(rl_middle_next);
+            rlReceptionNext.setNextFocusUpId(rl_reception_last);
+        } else {
+            loseViewFocus(rlReceptionNext);
+        }
+    }
+
+    private void LastFocusChange(boolean b, RelativeLayout rlMiddleLast, int rl_reception_last, int rl_big_last, int rl_middle_next) {
+        if (b) {
+            obtainViewFocus(rlMiddleLast);
+            rlMiddleLast.setNextFocusLeftId(rl_reception_last);
+            rlMiddleLast.setNextFocusRightId(rl_big_last);
+            rlMiddleLast.setNextFocusDownId(rl_middle_next);
+        } else {
+            loseViewFocus(rlMiddleLast);
+        }
+    }
+
+    private void receptionLastFocusChange(boolean b) {
+        if (b) {
+            obtainViewFocus(rlReceptionLast);
+            if (mMode == 0) {
+                rlReceptionLast.setNextFocusLeftId(R.id.rl_vedio);
+            } else {
+                rlReceptionLast.setNextFocusLeftId(R.id.rl_audio);
+            }
+            rlReceptionLast.setNextFocusRightId(R.id.rl_middle_last);
+            rlReceptionLast.setNextFocusDownId(R.id.rl_reception_next);
+        } else {
+            loseViewFocus(rlReceptionLast);
+        }
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

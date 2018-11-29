@@ -210,6 +210,8 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
                     isFirst = false;
                 }
                 break;
+                default:
+                    break;
         }
         return super.onKeyDown(keyCode, event);
     }

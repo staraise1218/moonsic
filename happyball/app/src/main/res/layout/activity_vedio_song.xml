@@ -10,50 +10,24 @@
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="120dp"
-            android:layout_marginTop="50dp">
+            style="@style/home_pager">
 
             <ImageView
                 android:id="@+id/iv_homepage"
-                android:layout_width="170dp"
-                android:layout_height="80dp"
-                android:src="@mipmap/ic_finish_homepage" />
+                style="@style/home_pager_image" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/homepage"
-                android:textSize="@dimen/text_home"
-                android:textStyle="bold" />
+            <TextView style="@style/home_pager_text" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="50dp">
+            style="@style/home_back">
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="170dp"
-                android:layout_height="80dp"
-                android:src="@mipmap/ic_finish_back" />
+                style="@style/home_back_image" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/back"
-                android:textSize="@dimen/text_home"
-                android:textStyle="bold" />
+            <TextView style="@style/home_back_text" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -71,7 +45,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:text="@string/song_lyrics"
-                android:textSize="30sp" />
+                android:textSize="@dimen/text_title" />
 
             <LinearLayout
                 android:id="@+id/rl_song_one_first"
@@ -83,153 +57,89 @@
 
                 <TextView
                     android:id="@+id/tv_song_one_first"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="天 边 飘 来 一 片 云"
-                    android:textSize="@dimen/text_song"
-                    android:textStyle="bold" />
+                    style="@style/center_text_twenty"
+                    android:text="天 边 飘 来 一 片 云" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/rl_song_one_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_song_one_first"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                style="@style/lyric_layout"
+                android:layout_below="@+id/rl_song_one_first" >
 
                 <TextView
                     android:id="@+id/tv_song_one_second"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="突 然 变 得 黑 漆 漆"
-                    android:textSize="@dimen/text_song"
-                    android:textStyle="bold" />
+                    style="@style/center_text_twenty"
+                    android:text="突 然 变 得 黑 漆 漆" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/rl_song_one_third"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_song_one_second"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                style="@style/lyric_layout"
+                android:layout_below="@+id/rl_song_one_second" >
 
                 <TextView
                     android:id="@+id/tv_song_one_third"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="云 朵 闪 出 一 道 光"
-                    android:textSize="@dimen/text_song"
-                    android:textStyle="bold" />
+                    style="@style/center_text_twenty"
+                    android:text="云 朵 闪 出 一 道 光" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/rl_song_one_four"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_song_one_third"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                style="@style/lyric_layout"
+                android:layout_below="@+id/rl_song_one_third" >
 
                 <TextView
                     android:id="@+id/tv_song_one_four"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="轰 隆 轰 隆 震 天 响"
-                    android:textSize="@dimen/text_song"
-                    android:textStyle="bold" />
+                    style="@style/center_text_twenty"
+                    android:text="轰 隆 轰 隆 震 天 响" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/rl_song_two_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_song_one_four"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_below="@+id/rl_song_one_four" >
 
                 <TextView
                     android:id="@+id/tv_song_two_first"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="iPad 手 机 充 电 器"
-                    android:textSize="@dimen/text_song"
-                    android:textStyle="bold" />
+                    style="@style/center_text_twenty"
+                    android:text="iPad 手 机 充 电 器" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/rl_song_two_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_song_two_first"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                style="@style/lyric_layout"
+                android:layout_below="@+id/rl_song_two_first" >
 
                 <TextView
                     android:id="@+id/tv_song_two_second"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="电 脑 开 关 电 视 机"
-                    android:textSize="@dimen/text_song"
-                    android:textStyle="bold" />
+                    style="@style/center_text_twenty"
+                    android:text="电 脑 开 关 电 视 机" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/rl_song_two_third"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_song_two_second"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                style="@style/lyric_layout"
+                android:layout_below="@+id/rl_song_two_second" >
 
                 <TextView
                     android:id="@+id/tv_song_two_third"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="打 雷 下 雨 要 关 闭"
-                    android:textSize="@dimen/text_song"
-                    android:textStyle="bold" />
+                    style="@style/center_text_twenty"
+                    android:text="打 雷 下 雨 要 关 闭" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/rl_song_two_four"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_song_two_third"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                style="@style/lyric_layout"
+                android:layout_below="@+id/rl_song_two_third">
 
                 <TextView
                     android:id="@+id/tv_song_two_four"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:text="安 全 用 电 放 第 一"
-                    android:textSize="@dimen/text_song"
-                    android:textStyle="bold" />
+                    style="@style/center_text_twenty"
+                    android:text="安 全 用 电 放 第 一" />
             </LinearLayout>
 
         </RelativeLayout>
@@ -238,67 +148,46 @@
             android:id="@+id/rl_song_sing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="254dp"
+            android:layout_toLeftOf="@+id/rl_song_lyrics"
             android:focusable="true"
             android:nextFocusUp="@id/rl_back"
-            android:nextFocusDown="@id/rl_song_accompaniment"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/rl_song_lyrics"
-            android:layout_marginTop="254dp">
+            android:nextFocusDown="@id/rl_song_accompaniment">
 
             <ImageView
                 android:id="@+id/iv_song_sing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="64dp"
                 android:src="@mipmap/ic_song_sing" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/song_sing"
-                android:textSize="@dimen/text_main"
-                android:textStyle="bold" />
+                style="@style/center_text_twenty_six"
+                android:text="@string/song_sing" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_song_accompaniment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:nextFocusUp="@id/rl_song_sing"
-            android:nextFocusDown="@id/rl_homepage"
-            android:layout_alignStart="@+id/rl_song_sing"
             android:layout_below="@+id/rl_song_sing"
-            android:layout_marginTop="30dp">
+            android:layout_alignStart="@+id/rl_song_sing"
+            android:layout_marginTop="30dp"
+            android:nextFocusUp="@id/rl_song_sing"
+            android:nextFocusDown="@id/rl_homepage">
 
             <ImageView
                 android:id="@+id/iv_song_accompaniment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="64dp"
                 android:src="@mipmap/ic_song_accompaniment" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/song_accompaniment"
-                android:textSize="@dimen/text_main"
-                android:textStyle="bold" />
+                style="@style/center_text_twenty_six"
+                android:text="@string/song_accompaniment" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ProgressBar
-                android:id="@+id/pb_loading"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:visibility="gone" />
-        </RelativeLayout>
+        <include layout="@layout/common_progress" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

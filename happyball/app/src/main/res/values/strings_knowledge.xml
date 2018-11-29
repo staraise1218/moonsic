@@ -1,0 +1,7 @@
+<resources>
+
+    <!-- VedioKnowLedge -->
+    <string name="knowledge_answer">正确答案</string>
+    <string name="knowledge_title">乐球知识点</string>
+    <string name="knowledge_question">Q: %s</string>
+</resources>
