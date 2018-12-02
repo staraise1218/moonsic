@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/ic_bg_vedio_finish">
+    android:background="@mipmap/bg_vedio_finish">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:background="@mipmap/ic_finish_replay_frame"
+            android:background="@mipmap/finish_replay_frame"
             android:focusable="true"
             android:gravity="center"
             android:nextFocusLeft="@id/rl_study"
@@ -55,7 +55,7 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="22dp"
-                android:src="@mipmap/ic_finish_replay" />
+                android:src="@mipmap/finish_replay" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,7 +87,7 @@
             <ImageView
                 android:id="@+id/iv_study"
                 style="@style/study_image"
-                android:src="@mipmap/ic_finish_song" />
+                android:src="@mipmap/finish_song" />
 
             <TextView
                 android:id="@+id/tv_study"
@@ -107,7 +107,7 @@
             <ImageView
                 android:id="@+id/iv_knowledge"
                 style="@style/study_image"
-                android:src="@mipmap/ic_finish_dance" />
+                android:src="@mipmap/finish_dance" />
 
             <TextView
                 android:id="@+id/tv_knowledge"

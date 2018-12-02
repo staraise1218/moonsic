@@ -90,7 +90,7 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vedio_song);
+        setContentView(R.layout.vedio_song_activity);
         ButterKnife.bind(this);
         bindEvents();
         getData();

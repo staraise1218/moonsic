@@ -31,7 +31,7 @@
         <item name="android:layout_width">160dp</item>
         <item name="android:layout_height">58dp</item>
         <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:src">@mipmap/ic_main_semester_frame</item>
+        <item name="android:src">@mipmap/main_semester_frame</item>
     </style>
 
     <style name="main_semester_text">
@@ -54,7 +54,7 @@
     <style name="home_pager_image">
         <item name="android:layout_width">160dp</item>
         <item name="android:layout_height">60dp</item>
-        <item name="android:src">@mipmap/ic_play_homepage</item>
+        <item name="android:src">@mipmap/play_homepage</item>
     </style>
 
     <style name="home_pager_text">
@@ -73,12 +73,13 @@
         <item name="android:layout_alignParentLeft">true</item>
         <item name="android:layout_marginLeft">120dp</item>
         <item name="android:layout_marginTop">50dp</item>
+        <item name="android:visibility">gone</item>
     </style>
 
     <style name="home_back_image">
         <item name="android:layout_width">170dp</item>
         <item name="android:layout_height">80dp</item>
-        <item name="android:src">@mipmap/ic_play_back</item>
+        <item name="android:src">@mipmap/play_back</item>
     </style>
 
     <style name="home_back_text">

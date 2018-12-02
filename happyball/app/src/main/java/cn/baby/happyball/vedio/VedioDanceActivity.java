@@ -126,7 +126,7 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vedio_dance);
+        setContentView(R.layout.vedio_dance_activity);
         ButterKnife.bind(this);
         bindEvents();
         getData();
@@ -185,7 +185,7 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
             case 1:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
-                        ivDanceFirst, R.mipmap.ic_dance_boom);
+                        ivDanceFirst, R.mipmap.dance_boom);
                 tvDanceSecond.setVisibility(View.GONE);
                 ivDanceSecond.setVisibility(View.GONE);
                 tvDanceThird.setVisibility(View.GONE);
@@ -204,10 +204,10 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
             case 2:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
-                        ivDanceFirst, R.mipmap.ic_dance_boom);
+                        ivDanceFirst, R.mipmap.dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
-                        ivDanceSecond, R.mipmap.ic_dance_sky);
+                        ivDanceSecond, R.mipmap.dance_sky);
                 tvDanceThird.setVisibility(View.GONE);
                 ivDanceThird.setVisibility(View.GONE);
                 tvDanceFour.setVisibility(View.GONE);
@@ -224,13 +224,13 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
             case 3:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
-                        ivDanceFirst, R.mipmap.ic_dance_boom);
+                        ivDanceFirst, R.mipmap.dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
-                        ivDanceSecond, R.mipmap.ic_dance_sky);
+                        ivDanceSecond, R.mipmap.dance_sky);
                 tvDanceThird.setText(mSingleDances.get(2).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString(),
-                        ivDanceThird, R.mipmap.ic_dance_dark);
+                        ivDanceThird, R.mipmap.dance_dark);
                 tvDanceFour.setVisibility(View.GONE);
                 ivDanceFour.setVisibility(View.GONE);
                 tvDanceFive.setVisibility(View.GONE);
@@ -245,16 +245,16 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
             case 4:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
-                        ivDanceFirst, R.mipmap.ic_dance_boom);
+                        ivDanceFirst, R.mipmap.dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
-                        ivDanceSecond, R.mipmap.ic_dance_sky);
+                        ivDanceSecond, R.mipmap.dance_sky);
                 tvDanceThird.setText(mSingleDances.get(2).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString(),
-                        ivDanceThird, R.mipmap.ic_dance_dark);
+                        ivDanceThird, R.mipmap.dance_dark);
                 tvDanceFour.setText(mSingleDances.get(3).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString(),
-                        ivDanceFour, R.mipmap.ic_dance_clouds);
+                        ivDanceFour, R.mipmap.dance_clouds);
                 tvDanceFive.setVisibility(View.GONE);
                 ivDanceFive.setVisibility(View.GONE);
                 tvDanceSix.setVisibility(View.GONE);
@@ -267,19 +267,19 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
             case 5:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
-                        ivDanceFirst, R.mipmap.ic_dance_boom);
+                        ivDanceFirst, R.mipmap.dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
-                        ivDanceSecond, R.mipmap.ic_dance_sky);
+                        ivDanceSecond, R.mipmap.dance_sky);
                 tvDanceThird.setText(mSingleDances.get(2).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString(),
-                        ivDanceThird, R.mipmap.ic_dance_dark);
+                        ivDanceThird, R.mipmap.dance_dark);
                 tvDanceFour.setText(mSingleDances.get(3).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString(),
-                        ivDanceFour, R.mipmap.ic_dance_clouds);
+                        ivDanceFour, R.mipmap.dance_clouds);
                 tvDanceFive.setText(mSingleDances.get(4).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(4).getImage())).toString(),
-                        ivDanceFive, R.mipmap.ic_dance_safe);
+                        ivDanceFive, R.mipmap.dance_safe);
                 tvDanceSix.setVisibility(View.GONE);
                 ivDanceSix.setVisibility(View.GONE);
                 tvDanceSeven.setVisibility(View.GONE);
@@ -290,22 +290,22 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
             case 6:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
-                        ivDanceFirst, R.mipmap.ic_dance_boom);
+                        ivDanceFirst, R.mipmap.dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
-                        ivDanceSecond, R.mipmap.ic_dance_sky);
+                        ivDanceSecond, R.mipmap.dance_sky);
                 tvDanceThird.setText(mSingleDances.get(2).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString(),
-                        ivDanceThird, R.mipmap.ic_dance_dark);
+                        ivDanceThird, R.mipmap.dance_dark);
                 tvDanceFour.setText(mSingleDances.get(3).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString(),
-                        ivDanceFour, R.mipmap.ic_dance_clouds);
+                        ivDanceFour, R.mipmap.dance_clouds);
                 tvDanceFive.setText(mSingleDances.get(4).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(4).getImage())).toString(),
-                        ivDanceFive, R.mipmap.ic_dance_safe);
+                        ivDanceFive, R.mipmap.dance_safe);
                 tvDanceSix.setText(mSingleDances.get(5).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(5).getImage())).toString(),
-                        ivDanceSix, R.mipmap.ic_dance_ipad);
+                        ivDanceSix, R.mipmap.dance_ipad);
                 tvDanceSeven.setVisibility(View.GONE);
                 ivDanceSeven.setVisibility(View.GONE);
                 tvDanceEight.setVisibility(View.GONE);
@@ -314,53 +314,53 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
             case 7:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
-                        ivDanceFirst, R.mipmap.ic_dance_boom);
+                        ivDanceFirst, R.mipmap.dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
-                        ivDanceSecond, R.mipmap.ic_dance_sky);
+                        ivDanceSecond, R.mipmap.dance_sky);
                 tvDanceThird.setText(mSingleDances.get(2).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString(),
-                        ivDanceThird, R.mipmap.ic_dance_dark);
+                        ivDanceThird, R.mipmap.dance_dark);
                 tvDanceFour.setText(mSingleDances.get(3).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString(),
-                        ivDanceFour, R.mipmap.ic_dance_clouds);
+                        ivDanceFour, R.mipmap.dance_clouds);
                 tvDanceFive.setText(mSingleDances.get(4).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(4).getImage())).toString(),
-                        ivDanceFive, R.mipmap.ic_dance_safe);
+                        ivDanceFive, R.mipmap.dance_safe);
                 tvDanceSix.setText(mSingleDances.get(5).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(5).getImage())).toString(),
-                        ivDanceSix, R.mipmap.ic_dance_ipad);
+                        ivDanceSix, R.mipmap.dance_ipad);
                 tvDanceSeven.setText(mSingleDances.get(6).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(6).getImage())).toString(),
-                        ivDanceSeven, R.mipmap.ic_dance_computer);
+                        ivDanceSeven, R.mipmap.dance_computer);
                 tvDanceEight.setVisibility(View.GONE);
                 ivDanceEight.setVisibility(View.GONE);
                 break;
             case 8:
                 tvDanceFirst.setText(mSingleDances.get(0).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(0).getImage())).toString(),
-                        ivDanceFirst, R.mipmap.ic_dance_boom);
+                        ivDanceFirst, R.mipmap.dance_boom);
                 tvDanceSecond.setText(mSingleDances.get(1).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(1).getImage())).toString(),
-                        ivDanceSecond, R.mipmap.ic_dance_sky);
+                        ivDanceSecond, R.mipmap.dance_sky);
                 tvDanceThird.setText(mSingleDances.get(2).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(2).getImage())).toString(),
-                        ivDanceThird, R.mipmap.ic_dance_dark);
+                        ivDanceThird, R.mipmap.dance_dark);
                 tvDanceFour.setText(mSingleDances.get(3).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(3).getImage())).toString(),
-                        ivDanceFour, R.mipmap.ic_dance_clouds);
+                        ivDanceFour, R.mipmap.dance_clouds);
                 tvDanceFive.setText(mSingleDances.get(4).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(4).getImage())).toString(),
-                        ivDanceFive, R.mipmap.ic_dance_safe);
+                        ivDanceFive, R.mipmap.dance_safe);
                 tvDanceSix.setText(mSingleDances.get(5).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(5).getImage())).toString(),
-                        ivDanceSix, R.mipmap.ic_dance_ipad);
+                        ivDanceSix, R.mipmap.dance_ipad);
                 tvDanceSeven.setText(mSingleDances.get(6).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(6).getImage())).toString(),
-                        ivDanceSeven, R.mipmap.ic_dance_computer);
+                        ivDanceSeven, R.mipmap.dance_computer);
                 tvDanceEight.setText(mSingleDances.get(7).getTitle());
                 loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDances.get(7).getImage())).toString(),
-                        ivDanceEight, R.mipmap.ic_dance_thunder);
+                        ivDanceEight, R.mipmap.dance_thunder);
                 break;
                 default:
                     tvDanceFirst.setVisibility(View.GONE);

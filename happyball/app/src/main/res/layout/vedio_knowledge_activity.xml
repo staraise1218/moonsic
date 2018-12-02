@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/ic_bg_knowledge">
+    android:background="@mipmap/bg_knowledge">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="10dp"
-            android:src="@mipmap/ic_knowledge_frame" />
+            android:src="@mipmap/knowledge_frame" />
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
@@ -53,7 +53,7 @@
                 android:id="@+id/iv_answer"
                 android:layout_width="180dp"
                 android:layout_height="65dp"
-                android:src="@mipmap/ic_knowledge_answer" />
+                android:src="@mipmap/knowledge_answer" />
 
             <TextView
                 style="@style/center_text_twenty_six"
@@ -98,7 +98,7 @@
                 android:id="@+id/iv_knowledge_first"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@mipmap/ic_dance_boom" />
+                android:src="@mipmap/dance_boom" />
 
             <TextView
                 android:id="@+id/tv_knowledge_first"
@@ -126,7 +126,7 @@
                 android:id="@+id/iv_knowledge_second"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@mipmap/ic_dance_boom" />
+                android:src="@mipmap/dance_boom" />
 
             <TextView
                 android:id="@+id/tv_knowledge_second"
@@ -154,7 +154,7 @@
                 android:id="@+id/iv_knowledge_third"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@mipmap/ic_dance_boom" />
+                android:src="@mipmap/dance_boom" />
 
             <TextView
                 android:id="@+id/tv_knowledge_third"
@@ -182,7 +182,7 @@
                 android:id="@+id/iv_knowledge_four"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@mipmap/ic_dance_boom" />
+                android:src="@mipmap/dance_boom" />
 
             <TextView
                 android:id="@+id/tv_knowledge_four"

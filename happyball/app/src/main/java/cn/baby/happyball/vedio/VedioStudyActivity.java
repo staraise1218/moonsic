@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -67,7 +66,7 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vedio_study);
+        setContentView(R.layout.vedio_study_activity);
         ButterKnife.bind(this);
         bindEvents();
         getData();
@@ -224,14 +223,14 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Bitmap songFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_song));
-            Bitmap songBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_study));
+            Bitmap songFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.finish_song));
+            Bitmap songBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.study));
             song = AlphaFilter.overlay(songBitmap, songFrame);
             songBitmap.recycle();
             songFrame.recycle();
 
-            Bitmap danceFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_dance));
-            Bitmap danceBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_knowledge));
+            Bitmap danceFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.finish_dance));
+            Bitmap danceBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.knowledge));
             dance = AlphaFilter.overlay(danceBitmap, danceFrame);
             danceBitmap.recycle();
             danceFrame.recycle();

@@ -120,7 +120,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vedio_lesson);
+        setContentView(R.layout.vedio_lesson_activity);
         ButterKnife.bind(this);
         bindEvents();
         getData();
@@ -171,32 +171,32 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
             switch (lesson.getId()) {
                 case 1:
                     tvChina.setText(lesson.getName());
-                    loadImage(imageUrl, ivChina, R.mipmap.ic_main_big_next);
+                    loadImage(imageUrl, ivChina, R.mipmap.main_big_next);
                     break;
 
                 case 2:
                     tvWorld.setText(lesson.getName());
-                    loadImage(imageUrl, ivWorld, R.mipmap.ic_main_middle_next);
+                    loadImage(imageUrl, ivWorld, R.mipmap.main_middle_next);
                     break;
 
                 case 3:
                     tvPop.setText(lesson.getName());
-                    loadImage(imageUrl, ivPop, R.mipmap.ic_main_reception_next);
+                    loadImage(imageUrl, ivPop, R.mipmap.main_reception_next);
                     break;
 
                 case 4:
                     tvNation.setText(lesson.getName());
-                    loadImage(imageUrl, ivNation, R.mipmap.ic_main_big_last);
+                    loadImage(imageUrl, ivNation, R.mipmap.main_big_last);
                     break;
 
                 case 5:
                     tvHygiene.setText(lesson.getName());
-                    loadImage(imageUrl, ivHygiene, R.mipmap.ic_main_middle_last);
+                    loadImage(imageUrl, ivHygiene, R.mipmap.main_middle_last);
                     break;
 
                 case 6 :
                     tvSafe.setText(lesson.getName());
-                    loadImage(imageUrl, ivSafe, R.mipmap.ic_main_reception_last);
+                    loadImage(imageUrl, ivSafe, R.mipmap.main_reception_last);
                     break;
 
                 default:break;

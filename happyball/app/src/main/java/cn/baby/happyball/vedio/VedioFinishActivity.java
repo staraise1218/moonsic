@@ -13,8 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -74,7 +72,7 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vedio_finish);
+        setContentView(R.layout.vedio_finish_activity);
         ButterKnife.bind(this);
         bindEvnets();
         getData();
@@ -244,14 +242,14 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Bitmap studyFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_song));
-            Bitmap studyBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_study));
+            Bitmap studyFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.finish_song));
+            Bitmap studyBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.study));
             study = AlphaFilter.overlay(studyBitmap, studyFrame);
             studyBitmap.recycle();
             studyFrame.recycle();
 
-            Bitmap knowledgeFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_finish_dance));
-            Bitmap knowledgeitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_knowledge));
+            Bitmap knowledgeFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.finish_dance));
+            Bitmap knowledgeitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.knowledge));
             knowledge = AlphaFilter.overlay(knowledgeitmap, knowledgeFrame);
             knowledgeitmap.recycle();
             knowledgeFrame.recycle();

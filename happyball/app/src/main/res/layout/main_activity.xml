@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/ic_bg_class_selection"
+    android:background="@mipmap/bg_class_selection"
     tools:context=".MainActivity">
 
     <RelativeLayout
@@ -30,7 +30,7 @@
                 android:id="@+id/iv_vedio"
                 android:layout_width="200dp"
                 android:layout_height="106dp"
-                android:src="@mipmap/ic_main_vedio" />
+                android:src="@mipmap/main_vedio" />
 
             <TextView
                 android:id="@+id/tv_vedio_name"
@@ -53,7 +53,7 @@
                 android:id="@+id/iv_audio"
                 android:layout_width="235dp"
                 android:layout_height="106dp"
-                android:src="@mipmap/ic_main_audio" />
+                android:src="@mipmap/main_audio" />
 
             <TextView
                 android:id="@+id/tv_audio_name"
@@ -76,7 +76,7 @@
             <ImageView
                 android:id="@+id/iv_reception_last"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_main_reception_last" />
+                android:src="@mipmap/main_reception_last" />
 
             <ImageView style="@style/main_semester_frame" />
 
@@ -100,7 +100,7 @@
             <ImageView
                 android:id="@+id/iv_middle_last"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_main_middle_last" />
+                android:src="@mipmap/main_middle_last" />
 
             <ImageView style="@style/main_semester_frame" />
 
@@ -124,7 +124,7 @@
             <ImageView
                 android:id="@+id/iv_big_last"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_main_big_last" />
+                android:src="@mipmap/main_big_last" />
 
             <ImageView style="@style/main_semester_frame" />
 
@@ -148,7 +148,7 @@
             <ImageView
                 android:id="@+id/iv_reception_next"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_main_reception_next" />
+                android:src="@mipmap/main_reception_next" />
 
             <ImageView style="@style/main_semester_frame" />
 
@@ -171,7 +171,7 @@
             <ImageView
                 android:id="@+id/iv_middle_next"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_main_middle_next" />
+                android:src="@mipmap/main_middle_next" />
 
             <ImageView style="@style/main_semester_frame" />
 
@@ -194,7 +194,7 @@
             <ImageView
                 android:id="@+id/iv_big_next"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_main_big_next" />
+                android:src="@mipmap/main_big_next" />
 
             <ImageView style="@style/main_semester_frame" />
 

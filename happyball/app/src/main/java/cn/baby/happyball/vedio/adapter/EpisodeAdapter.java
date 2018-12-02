@@ -38,7 +38,7 @@ public class EpisodeAdapter extends TvRecyclerView.TvAdapter<Episode> {
     @NonNull
     @Override
     protected int onSetItemLayout() {
-        return R.layout.item_episode;
+        return R.layout.episode_recyle_item;
     }
 
     @Override
@@ -49,10 +49,10 @@ public class EpisodeAdapter extends TvRecyclerView.TvAdapter<Episode> {
         holder.tvEpisodeNmae.setText(episode.getTitle());
         holder.itemView.setOnFocusChangeListener(((view, b) -> {
             if (b) {
-                holder.ivEpisode.setImageResource(R.mipmap.ic_choice_episode_focus);
+                holder.ivEpisode.setImageResource(R.mipmap.choice_episode_focus);
                 focusStatus(view, position);
             } else {
-                holder.ivEpisode.setImageResource(R.mipmap.ic_choice_episode);
+                holder.ivEpisode.setImageResource(R.mipmap.choice_episode);
                 normalStatus(view, position);
             }
         }));

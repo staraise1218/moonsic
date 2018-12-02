@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/ic_bg_class_selection">
+    android:background="@mipmap/bg_class_selection">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
             <ImageView
                 android:id="@+id/iv_hygiene"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_main_middle_last" />
+                android:src="@mipmap/main_middle_last" />
 
             <ImageView
                 style="@style/main_semester_frame" />
@@ -59,7 +59,7 @@
             <ImageView
                 android:id="@+id/iv_world"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_main_middle_next" />
+                android:src="@mipmap/main_middle_next" />
 
             <ImageView
                 style="@style/main_semester_frame" />
@@ -84,7 +84,7 @@
             <ImageView
                 android:id="@+id/iv_safe"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_main_reception_last" />
+                android:src="@mipmap/main_reception_last" />
 
             <ImageView
                 style="@style/main_semester_frame" />
@@ -109,7 +109,7 @@
             <ImageView
                 android:id="@+id/iv_nation"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_main_big_last" />
+                android:src="@mipmap/main_big_last" />
 
             <ImageView
                 style="@style/main_semester_frame" />
@@ -134,7 +134,7 @@
             <ImageView
                 android:id="@+id/iv_pop"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_main_reception_next" />
+                android:src="@mipmap/main_reception_next" />
 
             <ImageView
                 style="@style/main_semester_frame" />
@@ -159,7 +159,7 @@
             <ImageView
                 android:id="@+id/iv_china"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_main_big_next" />
+                android:src="@mipmap/main_big_next" />
 
             <ImageView
                 style="@style/main_semester_frame" />

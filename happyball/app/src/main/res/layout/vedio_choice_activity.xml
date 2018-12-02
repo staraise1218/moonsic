@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/ic_bg_choice_course">
+    android:background="@mipmap/bg_choice_course">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
             <ImageView
                 android:id="@+id/iv_course_semester"
                 style="@style/main_semester_image"
-                android:src="@mipmap/ic_choice_course_semester" />
+                android:src="@mipmap/choice_course_semester" />
 
             <ImageView
                 style="@style/main_semester_frame" />
@@ -65,7 +65,7 @@
                 android:id="@+id/iv_course_semester_detail"
                 android:layout_width="645dp"
                 android:layout_height="210dp"
-                android:src="@mipmap/ic_choice_sourse_text" />
+                android:src="@mipmap/choice_sourse_text" />
 
             <LinearLayout
                 android:id="@+id/ll_detail_title"

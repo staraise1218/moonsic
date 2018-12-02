@@ -24,9 +24,7 @@ public class HttpConstant {
     public static final String VIDEO_QUESTION = "/Api/Video/question";
 
     /** 音频班级分类 **/
-    public static final String AUDIO_CLASSES = "/Api/Aidio/classes";
-    /** 音频课程列表 **/
     public static final String AUDIO_LESSON = "/Api/Audio/lesson";
-    /** 音频集数选择 **/
-    public static final String AUDIO_EPISODE = "/Api/Audio/episode";
+    /** 音频列表 **/
+    public static final String AUDIO_LIST = "/Api/Audio/audioList";
 }

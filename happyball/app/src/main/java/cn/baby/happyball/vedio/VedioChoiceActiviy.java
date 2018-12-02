@@ -110,7 +110,7 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vedio_choice);
+        setContentView(R.layout.vedio_choice_activity);
         ButterKnife.bind(this);
         getData();
     }
@@ -166,7 +166,7 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
             tvLastTimeValue.setText(mLastTime);
         }
         String imageUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mLesson.getImage())).toString();
-        loadImage(imageUrl, ivCourseSemester, R.mipmap.ic_choice_course_semester);
+        loadImage(imageUrl, ivCourseSemester, R.mipmap.choice_course_semester);
 
         cvCourse.setItemAnimator(new DefaultItemAnimator());
         mEpisodeAdapter = new EpisodeAdapter(VedioChoiceActiviy.this, mEpisodes);

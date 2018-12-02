@@ -20,9 +20,6 @@ import butterknife.OnClick;
 import cn.baby.happyball.BaseActivity;
 import cn.baby.happyball.MainActivity;
 import cn.baby.happyball.R;
-import cn.baby.happyball.bean.Episode;
-import cn.baby.happyball.bean.Lesson;
-import cn.baby.happyball.bean.Semester;
 import cn.baby.happyball.bean.SingleDance;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
@@ -72,7 +69,7 @@ public class SingleDancePlayActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vedio_play);
+        setContentView(R.layout.vedio_play_activity);
         ButterKnife.bind(this);
         getData();
         initData();

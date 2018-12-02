@@ -13,7 +13,7 @@
             android:layout_width="140dp"
             android:layout_height="56dp"
             android:layout_margin="10dp"
-            android:src="@mipmap/ic_choice_episode" />
+            android:src="@mipmap/choice_episode" />
 
         <TextView
             android:id="@+id/tv_episode_num"

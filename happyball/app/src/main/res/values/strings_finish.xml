@@ -1,9 +1,0 @@
-<resources>
-
-    <!-- VedioFinish -->
-    <string name="play_finish">播放结束</string>
-    <string name="study">音乐学习</string>
-    <string name="replay">重播</string>
-    <string name="knowledge">知识问答</string>
-
-</resources>

@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/ic_bg_song">
+    android:background="@mipmap/bg_song">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             android:layout_height="640dp"
             android:layout_centerInParent="true"
             android:layout_marginTop="21dp"
-            android:background="@mipmap/ic_song_lyric_frame">
+            android:background="@mipmap/song_lyric_frame">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -159,7 +159,7 @@
                 android:id="@+id/iv_song_sing"
                 android:layout_width="160dp"
                 android:layout_height="64dp"
-                android:src="@mipmap/ic_song_sing" />
+                android:src="@mipmap/song_sing" />
 
             <TextView
                 style="@style/center_text_twenty_six"
@@ -180,7 +180,7 @@
                 android:id="@+id/iv_song_accompaniment"
                 android:layout_width="160dp"
                 android:layout_height="64dp"
-                android:src="@mipmap/ic_song_accompaniment" />
+                android:src="@mipmap/song_accompaniment" />
 
             <TextView
                 style="@style/center_text_twenty_six"

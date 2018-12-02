@@ -100,7 +100,7 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vedio_knowledge);
+        setContentView(R.layout.vedio_knowledge_activity);
         ButterKnife.bind(this);
         bindEvents();
         getData();

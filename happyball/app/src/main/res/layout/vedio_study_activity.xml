@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/ic_bg_vedio_finish">
+    android:background="@mipmap/bg_vedio_finish">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
             <ImageView
                 android:id="@+id/iv_song"
                 style="@style/study_image"
-                android:src="@mipmap/ic_finish_song" />
+                android:src="@mipmap/finish_song" />
 
             <TextView
                 android:id="@+id/tv_song"
@@ -73,7 +73,7 @@
             <ImageView
                 android:id="@+id/iv_dance"
                 style="@style/study_image"
-                android:src="@mipmap/ic_finish_dance" />
+                android:src="@mipmap/finish_dance" />
 
             <TextView
                 android:id="@+id/tv_dance"

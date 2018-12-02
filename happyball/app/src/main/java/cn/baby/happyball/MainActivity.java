@@ -20,8 +20,10 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.baby.happyball.audio.AudioLessonActivity;
+import cn.baby.happyball.audio.AudioChoiceActiviy;
+import cn.baby.happyball.bean.Lesson;
 import cn.baby.happyball.bean.Semester;
+import cn.baby.happyball.constant.CommonConstant;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
 import cn.baby.happyball.vedio.VedioLessonActivity;
@@ -122,7 +124,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
      * 0:视频 1:音频
      **/
     private int mMode = 0;
-    List<Semester> mSemesters = new ArrayList<>(6);
+    List<Semester> mSemesters = new ArrayList<>(CommonConstant.NUM_SEMETER_LESSON);
+    List<Lesson> mLessons = new ArrayList<>(CommonConstant.NUM_SEMETER_LESSON);
 
     /**
      * 第一次按键事件处理
@@ -132,7 +135,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
         ButterKnife.bind(this);
         bindEvent();
         getData();
@@ -156,10 +159,12 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         stringBuilder.append(HttpConstant.URL);
         if (mMode == 0) {
             tvTitle.setText(R.string.vedio_title);
+            mLessons.clear();
             stringBuilder.append(HttpConstant.VIDEO_CLASSES);
         } else if (mMode == 1) {
             tvTitle.setText(R.string.audio_title);
-            stringBuilder.append(HttpConstant.AUDIO_CLASSES);
+            mSemesters.clear();
+            stringBuilder.append(HttpConstant.AUDIO_LESSON);
         }
         String url = stringBuilder.toString();
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -179,7 +184,11 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 try {
                     final String responseStr = response.body().string();
                     String data = (new JSONObject(responseStr)).optString("data");
-                    mSemesters = JSON.parseArray(data, Semester.class);
+                    if (mMode == 0) {
+                        mSemesters = JSON.parseArray(data, Semester.class);
+                    } else {
+                        mLessons =  JSON.parseArray(data, Lesson.class);
+                    }
                     runOnUiThread(() -> initData());
                 } catch (Exception e) {
                     runOnUiThread(() -> showLoading(false));
@@ -189,43 +198,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     }
 
     private void initData() {
-        for (Semester semester : mSemesters) {
-            String imageUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(semester.getImage())).toString();
-            switch (semester.getId()) {
-                case 1:
-                    tvBigNext.setText(semester.getName());
-                    loadImage(imageUrl, ivBigNext, R.mipmap.ic_main_big_next);
-                    break;
-
-                case 2:
-                    tvMiddleNext.setText(semester.getName());
-                    loadImage(imageUrl, ivMiddleNext, R.mipmap.ic_main_middle_next);
-                    break;
-
-                case 3:
-                    tvReceptionNext.setText(semester.getName());
-                    loadImage(imageUrl, ivReceptionNext, R.mipmap.ic_main_reception_next);
-                    break;
-
-                case 4:
-                    tvBigLast.setText(semester.getName());
-                    loadImage(imageUrl, ivBigLast, R.mipmap.ic_main_big_last);
-                    break;
-
-                case 5:
-                    tvMiddleLast.setText(semester.getName());
-                    loadImage(imageUrl, ivMiddleLast, R.mipmap.ic_main_middle_last);
-                    break;
-
-                case 6:
-                    tvReceptionLast.setText(semester.getName());
-                    loadImage(imageUrl, ivReceptionLast, R.mipmap.ic_main_reception_last);
-                    break;
-
-                default:
-                    break;
-            }
-        }
+        setTextAndImage();
         showLoading(false);
 
         if (mMode == 0) {
@@ -245,14 +218,90 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         }
     }
 
+    private void setTextAndImage() {
+        for (int i = 0; i < CommonConstant.NUM_SEMETER_LESSON; i++) {
+            int id;
+            String name;
+            String imageUrl;
+            if (mMode == 0) {
+                id = mSemesters.get(i).getId();
+                name = mSemesters.get(i).getName();
+                imageUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mSemesters.get(i).getImage())).toString();
+            } else {
+                id = mLessons.get(i).getId();
+                name = mLessons.get(i).getName();
+                imageUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mLessons.get(i).getImage())).toString();
+            }
+
+            switch (id) {
+                case 1:
+                    if (mMode == 0) {
+                        tvBigNext.setText(name);
+                        loadImage(imageUrl, ivBigNext, R.mipmap.main_big_next);
+                    } else {
+                        tvReceptionLast.setText(name);
+                        loadImage(imageUrl, ivReceptionLast,R.mipmap.main_big_next);
+                    }
+                    break;
+                case 2:
+                    if (mMode == 0) {
+                        tvMiddleNext.setText(name);
+                        loadImage(imageUrl, ivMiddleNext, R.mipmap.main_middle_next);
+                    } else {
+                        tvReceptionNext.setText(name);
+                        loadImage(imageUrl, ivReceptionLast, R.mipmap.main_middle_next);
+                    }
+                    break;
+                case 3:
+                    if (mMode == 0) {
+                        tvReceptionNext.setText(name);
+                        loadImage(imageUrl, ivReceptionNext, R.mipmap.main_reception_next);
+                    } else {
+                        tvMiddleLast.setText(name);
+                        loadImage(imageUrl, ivMiddleLast, R.mipmap.main_reception_next);
+                    }
+                    break;
+                case 4:
+                    if (mMode == 0) {
+                        tvBigLast.setText(name);
+                        loadImage(imageUrl, ivBigLast, R.mipmap.main_big_last);
+                    } else {
+                        tvMiddleNext.setText(name);
+                        loadImage(imageUrl, ivMiddleNext, R.mipmap.main_big_last);
+                    }
+                    break;
+                case 5:
+                    if (mMode == 0) {
+                        tvMiddleLast.setText(name);
+                        loadImage(imageUrl, ivMiddleLast, R.mipmap.main_middle_last);
+                    } else {
+                        tvBigLast.setText(name);
+                        loadImage(imageUrl, ivBigLast, R.mipmap.main_middle_last);
+                    }
+                    break;
+                case 6:
+                    if (mMode == 0) {
+                        tvReceptionLast.setText(name);
+                        loadImage(imageUrl, ivReceptionLast, R.mipmap.main_reception_last);
+                    } else {
+                        tvBigNext.setText(name);
+                        loadImage(imageUrl, ivBigNext, R.mipmap.main_reception_last);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     @OnClick({R.id.iv_reception_last, R.id.rl_reception_last})
     public void onReceptionLastSemester() {
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(0)));
         } else {
-            startActivity(new Intent(MainActivity.this, AudioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(0)));
+            startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
+                    .putExtra(SystemConfig.LESSON, mLessons.get(0)));
         }
     }
 
@@ -262,8 +311,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(3)));
         } else {
-            startActivity(new Intent(MainActivity.this, AudioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(3)));
+            startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
+                    .putExtra(SystemConfig.LESSON, mLessons.get(3)));
         }
     }
 
@@ -273,8 +322,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(1)));
         } else {
-            startActivity(new Intent(MainActivity.this, AudioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(1)));
+            startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
+                    .putExtra(SystemConfig.LESSON, mLessons.get(1)));
         }
     }
 
@@ -284,8 +333,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(4)));
         } else {
-            startActivity(new Intent(MainActivity.this, AudioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(4)));
+            startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
+                    .putExtra(SystemConfig.LESSON, mLessons.get(4)));
         }
     }
 
@@ -295,8 +344,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(2)));
         } else {
-            startActivity(new Intent(MainActivity.this, AudioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(2)));
+            startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
+                    .putExtra(SystemConfig.LESSON, mLessons.get(2)));
         }
     }
 
@@ -306,8 +355,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(5)));
         } else {
-            startActivity(new Intent(MainActivity.this, AudioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(5)));
+            startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
+                    .putExtra(SystemConfig.LESSON, mLessons.get(5)));
         }
     }
 
@@ -350,16 +399,16 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 receptionLastFocusChange(b);
                 break;
             case R.id.rl_middle_last:
-                LastFocusChange(b, rlMiddleLast, R.id.rl_reception_last, R.id.rl_big_last, R.id.rl_middle_next);
+                lastFocusChange(b, rlMiddleLast, R.id.rl_reception_last, R.id.rl_big_last, R.id.rl_middle_next);
                 break;
             case R.id.rl_big_last:
-                LastFocusChange(b, rlBigLast, R.id.rl_middle_last, R.id.rl_reception_next, R.id.rl_big_next);
+                lastFocusChange(b, rlBigLast, R.id.rl_middle_last, R.id.rl_reception_next, R.id.rl_big_next);
                 break;
             case R.id.rl_reception_next:
-                NextFocusChange(b, rlReceptionNext, R.id.rl_big_last, R.id.rl_middle_next, R.id.rl_reception_last);
+                nextFocusChange(b, rlReceptionNext, R.id.rl_big_last, R.id.rl_middle_next, R.id.rl_reception_last);
                 break;
             case R.id.rl_middle_next:
-                NextFocusChange(b, rlMiddleNext, R.id.rl_reception_next, R.id.rl_big_next, R.id.rl_middle_last);
+                nextFocusChange(b, rlMiddleNext, R.id.rl_reception_next, R.id.rl_big_next, R.id.rl_middle_last);
                 break;
             case R.id.rl_big_next:
                 bigNextFocusChange(b);
@@ -384,25 +433,25 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         }
     }
 
-    private void NextFocusChange(boolean b, RelativeLayout rlReceptionNext, int rl_big_last, int rl_middle_next, int rl_reception_last) {
+    private void nextFocusChange(boolean b, RelativeLayout rl, int rlLeftId, int rlRightId, int rlUpId) {
         if (b) {
-            obtainViewFocus(rlReceptionNext);
-            rlReceptionNext.setNextFocusLeftId(rl_big_last);
-            rlReceptionNext.setNextFocusRightId(rl_middle_next);
-            rlReceptionNext.setNextFocusUpId(rl_reception_last);
+            obtainViewFocus(rl);
+            rl.setNextFocusLeftId(rlLeftId);
+            rl.setNextFocusRightId(rlRightId);
+            rl.setNextFocusUpId(rlUpId);
         } else {
-            loseViewFocus(rlReceptionNext);
+            loseViewFocus(rl);
         }
     }
 
-    private void LastFocusChange(boolean b, RelativeLayout rlMiddleLast, int rl_reception_last, int rl_big_last, int rl_middle_next) {
+    private void lastFocusChange(boolean b, RelativeLayout rl, int rlLeftId, int rlRightId, int rlNextId) {
         if (b) {
-            obtainViewFocus(rlMiddleLast);
-            rlMiddleLast.setNextFocusLeftId(rl_reception_last);
-            rlMiddleLast.setNextFocusRightId(rl_big_last);
-            rlMiddleLast.setNextFocusDownId(rl_middle_next);
+            obtainViewFocus(rl);
+            rl.setNextFocusLeftId(rlLeftId);
+            rl.setNextFocusRightId(rlRightId);
+            rl.setNextFocusDownId(rlNextId);
         } else {
-            loseViewFocus(rlMiddleLast);
+            loseViewFocus(rl);
         }
     }
 
