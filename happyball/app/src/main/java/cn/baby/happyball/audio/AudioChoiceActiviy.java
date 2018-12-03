@@ -26,6 +26,7 @@ import butterknife.OnClick;
 import cn.baby.happyball.BaseActivity;
 import cn.baby.happyball.MainActivity;
 import cn.baby.happyball.R;
+import cn.baby.happyball.audio.adapter.AudioListAdapter;
 import cn.baby.happyball.bean.Audio;
 import cn.baby.happyball.bean.Episode;
 import cn.baby.happyball.bean.Lesson;
@@ -94,6 +95,7 @@ public class AudioChoiceActiviy extends BaseActivity implements View.OnFocusChan
 
     private Lesson mLesson;
     private List<Audio> mAudios = new ArrayList<>();
+    private AudioListAdapter mAudioListAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -129,6 +131,7 @@ public class AudioChoiceActiviy extends BaseActivity implements View.OnFocusChan
                     mAudios = JSON.parseArray(data, Audio.class);
                     runOnUiThread(() -> initData());
                 } catch (Exception e) {
+                    runOnUiThread(() -> initData());
                 }
             }
         });
@@ -140,6 +143,10 @@ public class AudioChoiceActiviy extends BaseActivity implements View.OnFocusChan
 
         tvDifficult.setText(mLesson.getName());
         tvDetailContent.setText(mLesson.getDescription());
+
+        lvAudioList.addHeaderView(getLayoutInflater().inflate(R.layout.audio_list_item, null));
+        mAudioListAdapter = new AudioListAdapter(getApplicationContext(), mAudios);
+        lvAudioList.setAdapter(mAudioListAdapter);
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})

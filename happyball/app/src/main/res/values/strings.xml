@@ -81,4 +81,8 @@
     <string name="diffcult_dtail_content">介绍： 2018上半年全站热度最高的50首新歌，歌单数据综合参考了2018上半年云音乐所有最新上架歌曲在全站的平均播放及收藏排行。（注：曲目均为2018上半年第一次上架新歌...</string>
     <string name="play">播放</string>
     <string name="pause">暂停</string>
+    <string name="audio_song_title">歌曲标题</string>
+    <string name="audio_duration">时长</string>
+    <string name="audio_singer">歌手</string>
+    <string name="audio_album">专辑</string>
 </resources>
