@@ -11,7 +11,7 @@
 
         <TextView
             android:id="@+id/audio_id"
-            style="@style/audio_list_item_text"
+            style="@style/audio_list_item_text_wrap"
             android:visibility="invisible"
             android:layout_marginLeft="20dp"
             android:layout_weight="0"
@@ -32,12 +32,14 @@
         <TextView
             android:id="@+id/audio_title"
             style="@style/audio_list_item_text"
+            android:maxLines="1"
             android:text="@string/audio_song_title"
             android:layout_weight="1"/>
 
         <TextView
             android:id="@+id/audio_duration"
             android:layout_weight="1"
+            android:maxLines="1"
             style="@style/audio_list_item_text"
             android:text="@string/audio_duration"/>
 
@@ -45,12 +47,14 @@
             android:id="@+id/audio_singer"
             style="@style/audio_list_item_text"
             android:layout_weight="1"
+            android:maxLines="1"
             android:text="@string/audio_singer"/>
 
         <TextView
             android:id="@+id/audio_album"
             style="@style/audio_list_item_text"
             android:layout_weight="1"
+            android:maxLines="1"
             android:text="@string/audio_album"/>
 
     </LinearLayout>

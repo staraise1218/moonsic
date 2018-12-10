@@ -104,11 +104,18 @@
     </style>
 
     <style name="study_text">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_alignParentBottom">true</item>
-        <item name="android:layout_marginBottom">35dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <!--
+        <item name="android:background">@color/text_bg</item>
+        -->
         <item name="android:textSize">@dimen/text_lesson</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -135,17 +142,26 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:textSize">@dimen/text_song</item>
+        <item name="android:textSize">@dimen/text_home</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="audio_list_item_text">
+    <style name="audio_list_item_text_wrap">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:textSize">@dimen/text_song</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
+    <style name="audio_list_item_text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">@dimen/text_song</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
 </resources>

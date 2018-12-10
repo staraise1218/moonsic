@@ -158,39 +158,56 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
 
     @OnClick({R.id.iv_song_accompaniment, R.id.rl_song_accompaniment})
     public void onSongAccompaniment() {
+        showLoading(true);
         if (mMediaPlayer != null) {
             mSeek = mMediaPlayer.getCurrentPosition();
         } else {
             mMediaPlayer = new MediaPlayer();
         }
-        mMediaPlayer.reset();
         String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getAccompaniment_file())).toString();
         try {
+            mMediaPlayer.reset();
+            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(songUrl));
+            mMediaPlayer.prepare();
         } catch (Exception e) {
             showLoading(false);
             Toast.makeText(VedioSongActivity.this, "音频加载失败", Toast.LENGTH_SHORT).show();
         }
-        mMediaPlayer.setOnCompletionListener(mediaPlayer -> play() );
+        mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
+            showLoading(false);
+            if (mSeek != 0) {
+                mediaPlayer.seekTo(mSeek);
+            }
+            mediaPlayer.start();
+        });
     }
 
     @OnClick({R.id.iv_song_sing, R.id.rl_song_sing})
     public void onSongSing() {
+        showLoading(true);
         if (mMediaPlayer != null) {
             mSeek = mMediaPlayer.getCurrentPosition();
         } else {
             mMediaPlayer = new MediaPlayer();
         }
-        mMediaPlayer.reset();
         String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
         try {
+            mMediaPlayer.reset();
             mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
             mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(songUrl));
+            mMediaPlayer.prepare();
         } catch (Exception e) {
             showLoading(false);
             Toast.makeText(VedioSongActivity.this, "音频加载失败", Toast.LENGTH_SHORT).show();
         }
-        mMediaPlayer.setOnCompletionListener(mediaPlayer -> play() );
+        mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
+            showLoading(false);
+            if (mSeek != 0) {
+                mediaPlayer.seekTo(mSeek);
+            }
+            mediaPlayer.start();
+        });
     }
 
     @Override

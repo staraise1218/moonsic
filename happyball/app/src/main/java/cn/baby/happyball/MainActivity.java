@@ -301,7 +301,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(0)));
         } else {
             startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
-                    .putExtra(SystemConfig.LESSON, mLessons.get(0)));
+                    .putExtra(SystemConfig.LESSON, mLessons.get(5)));
         }
     }
 
@@ -312,7 +312,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(3)));
         } else {
             startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
-                    .putExtra(SystemConfig.LESSON, mLessons.get(3)));
+                    .putExtra(SystemConfig.LESSON, mLessons.get(4)));
         }
     }
 
@@ -323,7 +323,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(1)));
         } else {
             startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
-                    .putExtra(SystemConfig.LESSON, mLessons.get(1)));
+                    .putExtra(SystemConfig.LESSON, mLessons.get(3)));
         }
     }
 
@@ -331,10 +331,10 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void onMiddleNextSemester() {
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(4)));
+                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(3)));
         } else {
             startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
-                    .putExtra(SystemConfig.LESSON, mLessons.get(4)));
+                    .putExtra(SystemConfig.LESSON, mLessons.get(2)));
         }
     }
 
@@ -345,7 +345,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(2)));
         } else {
             startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
-                    .putExtra(SystemConfig.LESSON, mLessons.get(2)));
+                    .putExtra(SystemConfig.LESSON, mLessons.get(1)));
         }
     }
 
@@ -356,7 +356,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                     .putExtra(SystemConfig.SEMESTER, mSemesters.get(5)));
         } else {
             startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
-                    .putExtra(SystemConfig.LESSON, mLessons.get(5)));
+                    .putExtra(SystemConfig.LESSON, mLessons.get(0)));
         }
     }
 

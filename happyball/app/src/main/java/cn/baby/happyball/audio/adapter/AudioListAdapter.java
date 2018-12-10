@@ -1,6 +1,7 @@
 package cn.baby.happyball.audio.adapter;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +40,7 @@ public class AudioListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mAudios.isEmpty() ? 0 : mAudios.size() - 1;
+        return mAudios.isEmpty() ? 0 : mAudios.size();
     }
 
     @Override
@@ -64,12 +65,14 @@ public class AudioListAdapter extends BaseAdapter {
 
         Audio audio = mAudios.get(i);
         viewHolder.audioId.setVisibility(View.VISIBLE);
-        viewHolder.audioId.setText(audio.getId());
+        viewHolder.audioId.setText(String.valueOf(audio.getId()));
         viewHolder.audioPlay.setVisibility(View.VISIBLE);
         if (playingIndex == i) {
             viewHolder.audioPlay.setImageResource(R.mipmap.audio_pause);
+            setPlayingTextStatus(viewHolder, R.color.playing_text);
         } else {
             viewHolder.audioPlay.setImageResource(R.mipmap.audio_play);
+            setPlayingTextStatus(viewHolder, R.color.white);
         }
         viewHolder.audioTitle.setText(audio.getTitle());
         viewHolder.audioDuration.setText(audio.getTimelong());
@@ -77,6 +80,14 @@ public class AudioListAdapter extends BaseAdapter {
         viewHolder.audioAlbum.setText(audio.getAlbum());
 
         return view;
+    }
+
+    private void setPlayingTextStatus(ViewHolder viewHolder, int playing_text) {
+        viewHolder.audioId.setTextColor(ContextCompat.getColor(mContext, playing_text));
+        viewHolder.audioTitle.setTextColor(ContextCompat.getColor(mContext, playing_text));
+        viewHolder.audioDuration.setTextColor(ContextCompat.getColor(mContext, playing_text));
+        viewHolder.audioSinger.setTextColor(ContextCompat.getColor(mContext, playing_text));
+        viewHolder.audioAlbum.setTextColor(ContextCompat.getColor(mContext, playing_text));
     }
 
     class ViewHolder {

@@ -50,10 +50,10 @@ public class EpisodeAdapter extends TvRecyclerView.TvAdapter<Episode> {
         holder.itemView.setOnFocusChangeListener(((view, b) -> {
             if (b) {
                 holder.ivEpisode.setImageResource(R.mipmap.choice_episode_focus);
-                focusStatus(view, position);
+//                focusStatus(view, position);
             } else {
                 holder.ivEpisode.setImageResource(R.mipmap.choice_episode);
-                normalStatus(view, position);
+//                normalStatus(view, position);
             }
         }));
     }

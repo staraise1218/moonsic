@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg_audio_chooice">
@@ -16,8 +18,7 @@
                 android:id="@+id/iv_homepage"
                 style="@style/home_pager_image" />
 
-            <TextView
-                style="@style/home_pager_text" />
+            <TextView style="@style/home_pager_text" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -34,8 +35,7 @@
                 style="@style/main_semester_image"
                 android:src="@mipmap/choice_course_semester" />
 
-            <ImageView
-                style="@style/main_semester_frame" />
+            <ImageView style="@style/main_semester_frame" />
 
             <TextView
                 android:id="@+id/tv_difficult"
@@ -77,10 +77,10 @@
                 android:id="@+id/tv_detail_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/ll_detail_title"
                 android:layout_below="@+id/ll_detail_title"
-                android:layout_marginRight="20dp"
+                android:layout_alignLeft="@+id/ll_detail_title"
                 android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
                 android:text="@string/diffcult_dtail_content"
                 android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
@@ -91,23 +91,24 @@
             android:id="@+id/rl_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/rl_difficult"
-            android:layout_alignRight="@+id/rl_difficult_detail"
             android:layout_below="@+id/rl_difficult_detail"
-            android:layout_marginTop="10dp">
+            android:layout_alignLeft="@+id/rl_difficult"
+            android:nextFocusDown="@id/iv_audio_left"
+            android:padding="10dp">
 
             <ImageView
                 android:id="@+id/iv_play"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/audio_play"/>
+                android:src="@mipmap/audio_play" />
 
             <TextView
                 android:id="@+id/tv_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/iv_play"
                 android:text="@string/play"
                 android:textSize="@dimen/text_song"
@@ -118,20 +119,48 @@
             android:id="@+id/lv_audio_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/rl_play"
             android:layout_below="@+id/rl_play"
-            android:layout_marginRight="180dp"
+            android:layout_alignLeft="@+id/rl_play"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="100dp"
             android:layout_marginBottom="100dp"
-            android:focusable="false" />
+            android:background="#00000000"
+            android:cacheColorHint="#00000000"
+            android:focusable="false"
+            android:overScrollMode="never" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-        </RelativeLayout>
+            <ImageView
+                android:id="@+id/iv_audio_left"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginRight="30dp"
+                android:nextFocusRight="@id/iv_audio_right"
+                android:nextFocusUp="@id/rl_play"
+                android:padding="5dp"
+                android:clickable="true"
+                android:src="@drawable/audio_left_selector" />
 
+            <ImageView
+                android:id="@+id/iv_audio_right"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="30dp"
+                android:nextFocusLeft="@id/iv_audio_left"
+                android:padding="5dp"
+                android:clickable="true"
+                android:src="@drawable/audio_right_selector" />
+        </LinearLayout>
+
+        <include layout="@layout/common_progress" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
