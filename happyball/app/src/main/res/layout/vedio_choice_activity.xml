@@ -32,7 +32,7 @@
             <ImageView
                 android:id="@+id/iv_course_semester"
                 style="@style/main_semester_image"
-                android:src="@mipmap/choice_course_semester" />
+                android:src="@mipmap/main_reception_last" />
 
             <ImageView
                 style="@style/main_semester_frame" />

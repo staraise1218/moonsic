@@ -82,7 +82,7 @@
                 android:id="@+id/iv_dance_first"
                 android:layout_width="200dp"
                 android:layout_height="140dp"
-                android:src="@mipmap/dance_boom" />
+                android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_first"
@@ -111,7 +111,7 @@
                 android:id="@+id/iv_dance_second"
                 android:layout_width="200dp"
                 android:layout_height="140dp"
-                android:src="@mipmap/dance_sky" />
+                android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_second"
@@ -140,7 +140,7 @@
                 android:id="@+id/iv_dance_third"
                 android:layout_width="200dp"
                 android:layout_height="140dp"
-                android:src="@mipmap/dance_dark" />
+                android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_third"
@@ -169,7 +169,7 @@
                 android:id="@+id/iv_dance_four"
                 android:layout_width="200dp"
                 android:layout_height="140dp"
-                android:src="@mipmap/dance_clouds" />
+                android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_four"
@@ -198,7 +198,7 @@
                 android:id="@+id/iv_dance_five"
                 android:layout_width="200dp"
                 android:layout_height="140dp"
-                android:src="@mipmap/dance_safe" />
+                android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_five"
@@ -227,7 +227,7 @@
                 android:id="@+id/iv_dance_six"
                 android:layout_width="200dp"
                 android:layout_height="140dp"
-                android:src="@mipmap/dance_ipad" />
+                android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_six"
@@ -256,7 +256,7 @@
                 android:id="@+id/iv_dance_seven"
                 android:layout_width="200dp"
                 android:layout_height="140dp"
-                android:src="@mipmap/dance_computer" />
+                android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_seven"
@@ -284,7 +284,7 @@
                 android:id="@+id/iv_dance_eight"
                 android:layout_width="200dp"
                 android:layout_height="140dp"
-                android:src="@mipmap/dance_thunder" />
+                android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_eight"
