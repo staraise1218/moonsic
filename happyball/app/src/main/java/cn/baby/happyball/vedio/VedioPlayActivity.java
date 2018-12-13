@@ -71,8 +71,8 @@ public class VedioPlayActivity extends BaseActivity {
 
     private MediaPlayer mMediaPlayer;
     private Episode mEpisode;
-    private Semester mSemester;
-    private Lesson mLesson;
+    private int mSemesterId;
+    private int mLessonId;
     private String mKey;
 
     @Override
@@ -104,10 +104,10 @@ public class VedioPlayActivity extends BaseActivity {
 
     private void getData() {
         mEpisode = (Episode) getIntent().getSerializableExtra(SystemConfig.EPISODE);
-        mSemester = (Semester) getIntent().getSerializableExtra(SystemConfig.SEMESTER);
-        mLesson = (Lesson) getIntent().getSerializableExtra(SystemConfig.LESSON);
+        mSemesterId = getIntent().getIntExtra(SystemConfig.SEMESTER, 1);
+        mLessonId = getIntent().getIntExtra(SystemConfig.LESSON, 1);
         StringBuilder builder = new StringBuilder();
-        builder.append(SystemConfig.EPISODE_TIME).append(mSemester.getId()).append(mLesson.getId());
+        builder.append(SystemConfig.EPISODE_TIME).append(mSemesterId).append(mLessonId);
         mKey = builder.toString();
     }
 

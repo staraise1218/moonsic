@@ -10,30 +10,13 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
-
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.baby.happyball.BaseActivity;
 import cn.baby.happyball.MainActivity;
 import cn.baby.happyball.R;
-import cn.baby.happyball.bean.Lesson;
-import cn.baby.happyball.bean.Semester;
-import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * @author DRH
@@ -114,8 +97,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
 
-    private Semester mSemester;
-    List<Lesson> mLessons = new ArrayList<>(6);
+    private int mSemesterId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -124,6 +106,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
         ButterKnife.bind(this);
         bindEvents();
         getData();
+        initData();
     }
 
     private void bindEvents() {
@@ -136,74 +119,11 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     }
 
     public void getData() {
-        showLoading(true);
-        mSemester = (Semester) getIntent().getSerializableExtra(SystemConfig.SEMESTER);
-        String url = (new StringBuilder().append(HttpConstant.URL).append(HttpConstant.VIDEO_LESSON)).toString();
-        OkHttpClient okHttpClient = new OkHttpClient();
-        final Request request = new Request.Builder()
-                .url(url)
-                .post(RequestBody.create(HttpConstant.JSON, ""))
-                .build();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                runOnUiThread(() -> showLoading(false));
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    final String responseStr = response.body().string();
-                    String data = (new JSONObject(responseStr)).optString("data");
-                    mLessons = JSON.parseArray(data, Lesson.class);
-                    runOnUiThread(() -> initData());
-                } catch (Exception e) {
-                    runOnUiThread(() -> showLoading(false));
-                }
-            }
-        });
+        new LoadBitmapAsyncTask(mLoadBitmepListener).execute();
+        mSemesterId = getIntent().getIntExtra(SystemConfig.SEMESTER, 1);
     }
 
     private void initData() {
-        for (Lesson lesson : mLessons) {
-            String imageUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(lesson.getImage())).toString();
-            switch (lesson.getId()) {
-                case 1:
-                    tvChina.setText(lesson.getName());
-                    loadImage(imageUrl, ivChina, R.mipmap.main_big_next);
-                    break;
-
-                case 2:
-                    tvWorld.setText(lesson.getName());
-                    loadImage(imageUrl, ivWorld, R.mipmap.main_middle_next);
-                    break;
-
-                case 3:
-                    tvPop.setText(lesson.getName());
-                    loadImage(imageUrl, ivPop, R.mipmap.main_reception_next);
-                    break;
-
-                case 4:
-                    tvNation.setText(lesson.getName());
-                    loadImage(imageUrl, ivNation, R.mipmap.main_big_last);
-                    break;
-
-                case 5:
-                    tvHygiene.setText(lesson.getName());
-                    loadImage(imageUrl, ivHygiene, R.mipmap.main_middle_last);
-                    break;
-
-                case 6 :
-                    tvSafe.setText(lesson.getName());
-                    loadImage(imageUrl, ivSafe, R.mipmap.main_reception_last);
-                    break;
-
-                default:break;
-            }
-        }
-        showLoading(false);
-
         obtainViewFocus(rlSafe);
         rlSafe.requestFocus();
         rlSafe.setFocusable(true);
@@ -340,46 +260,64 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     @OnClick({R.id.iv_safe, R.id.rl_safe})
     public void onSafe() {
         startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
-                .putExtra(SystemConfig.SEMESTER, mSemester)
-                .putExtra(SystemConfig.LESSON, mLessons.get(0)));
+                .putExtra(SystemConfig.SEMESTER, mSemesterId)
+                .putExtra(SystemConfig.LESSON, 1));
     }
 
     @OnClick({R.id.iv_hygiene, R.id.rl_hygiene})
     public void onHygiene() {
         startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
-                .putExtra(SystemConfig.SEMESTER, mSemester)
-                .putExtra(SystemConfig.LESSON, mLessons.get(1)));
+                .putExtra(SystemConfig.SEMESTER, mSemesterId)
+                .putExtra(SystemConfig.LESSON, 2));
     }
 
     @OnClick({R.id.iv_nation, R.id.rl_nation})
     public void onNation() {
         startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
-                .putExtra(SystemConfig.SEMESTER, mSemester)
-                .putExtra(SystemConfig.LESSON, mLessons.get(2)));
+                .putExtra(SystemConfig.SEMESTER, mSemesterId)
+                .putExtra(SystemConfig.LESSON, 3));
     }
 
     @OnClick({R.id.iv_pop, R.id.rl_pop})
     public void onPop() {
         startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
-                .putExtra(SystemConfig.SEMESTER, mSemester)
-                .putExtra(SystemConfig.LESSON, mLessons.get(3)));
+                .putExtra(SystemConfig.SEMESTER, mSemesterId)
+                .putExtra(SystemConfig.LESSON, 4));
     }
 
     @OnClick({R.id.iv_world, R.id.rl_world})
     public void onWorld() {
         startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
-                .putExtra(SystemConfig.SEMESTER, mSemester)
-                .putExtra(SystemConfig.LESSON, mLessons.get(4)));
+                .putExtra(SystemConfig.SEMESTER, mSemesterId)
+                .putExtra(SystemConfig.LESSON, 5));
     }
 
     @OnClick({R.id.iv_china, R.id.rl_china})
     public void onChina() {
         startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
-                .putExtra(SystemConfig.SEMESTER, mSemester)
-                .putExtra(SystemConfig.LESSON, mLessons.get(5)));
+                .putExtra(SystemConfig.SEMESTER, mSemesterId)
+                .putExtra(SystemConfig.LESSON, 6));
     }
 
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
+
+   private ILoadBitmapListener mLoadBitmepListener = new ILoadBitmapListener() {
+       @Override
+       public void onReady() {
+           showLoading(true);
+       }
+
+       @Override
+       public void onComplete() {
+           ivSafe.setImageBitmap(mReceptionLastBitmap);
+           ivHygiene.setImageBitmap(mReceptionNextBitmap);
+           ivNation.setImageBitmap(mMiddleLastBitmap);
+           ivPop.setImageBitmap(mMiddleNextBitmap);
+           ivWorld.setImageBitmap(mBigLastBitmap);
+           ivChina.setImageBitmap(mBigNextBitmap);
+           showLoading(false);
+       }
+   };
 }

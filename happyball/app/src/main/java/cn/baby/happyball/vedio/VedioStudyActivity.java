@@ -60,8 +60,6 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
     ProgressBar pbLoading;
 
     private Episode mEpisode;
-    private Bitmap song;
-    private Bitmap dance;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,7 +84,7 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
     }
 
     private void initData() {
-        new LoadImagerAsytask().execute();
+        new LoadStudyBitmap(mLoadBitmapListener).execute();
     }
 
     @OnClick({R.id.iv_song, R.id.rl_song})
@@ -219,31 +217,17 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
-    private class LoadImagerAsytask extends AsyncTask<Void, Void, Void> {
-
+    private ILoadBitmapListener mLoadBitmapListener = new ILoadBitmapListener() {
         @Override
-        protected Void doInBackground(Void... voids) {
-            Bitmap songFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.finish_song));
-            Bitmap songBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.study));
-            song = AlphaFilter.overlay(songBitmap, songFrame);
-            songBitmap.recycle();
-            songFrame.recycle();
-
-            Bitmap danceFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.finish_dance));
-            Bitmap danceBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.knowledge));
-            dance = AlphaFilter.overlay(danceBitmap, danceFrame);
-            danceBitmap.recycle();
-            danceFrame.recycle();
-
-            return null;
+        public void onReady() {
+            showLoading(true);
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            ivSong.setImageBitmap(song);
-            ivDance.setImageBitmap(dance);
+        public void onComplete() {
+            ivSong.setImageBitmap(mStudyBitmap);
+            ivDance.setImageBitmap(mKnowledgeBitmap);
             showLoading(false);
         }
-    }
+    };
 }

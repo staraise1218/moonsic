@@ -66,8 +66,6 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     ProgressBar pbLoading;
 
     private Episode mEpisode;
-    private Bitmap study;
-    private Bitmap knowledge;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -93,7 +91,7 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     }
 
     private void initData() {
-        new LoadImagerAsytask().execute();
+        new LoadStudyBitmap(mLoadBitmapListener).execute();
     }
 
     @OnClick(R.id.ll_replay)
@@ -238,31 +236,17 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
-    private class LoadImagerAsytask extends AsyncTask<Void, Void, Void> {
-
+    private ILoadBitmapListener mLoadBitmapListener = new ILoadBitmapListener() {
         @Override
-        protected Void doInBackground(Void... voids) {
-            Bitmap studyFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.finish_song));
-            Bitmap studyBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.study));
-            study = AlphaFilter.overlay(studyBitmap, studyFrame);
-            studyBitmap.recycle();
-            studyFrame.recycle();
-
-            Bitmap knowledgeFrame = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.finish_dance));
-            Bitmap knowledgeitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.knowledge));
-            knowledge = AlphaFilter.overlay(knowledgeitmap, knowledgeFrame);
-            knowledgeitmap.recycle();
-            knowledgeFrame.recycle();
-            return null;
+        public void onReady() {
+            showLoading(true);
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            ivStudy.setImageBitmap(study);
-            ivKnowledge.setImageBitmap(knowledge);
+        public void onComplete() {
+            ivStudy.setImageBitmap(mStudyBitmap);
+            ivKnowledge.setImageBitmap(mKnowledgeBitmap);
             showLoading(false);
-            super.onPostExecute(aVoid);
         }
-    }
-
+    };
 }

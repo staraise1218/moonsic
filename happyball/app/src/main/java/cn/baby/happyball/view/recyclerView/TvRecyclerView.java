@@ -244,7 +244,7 @@ public class TvRecyclerView extends RecyclerView {
                             //鼠标进入view，争取到焦点
                             v.requestFocusFromTouch();
                             v.requestFocus();
-                            focusStatus(v, position);
+//                            focusStatus(v, position);
                         }
                         break;
                     //鼠标在view上移动

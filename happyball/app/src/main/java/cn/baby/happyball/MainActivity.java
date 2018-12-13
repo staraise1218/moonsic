@@ -9,30 +9,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
-
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.baby.happyball.audio.AudioChoiceActiviy;
-import cn.baby.happyball.bean.Lesson;
-import cn.baby.happyball.bean.Semester;
-import cn.baby.happyball.constant.CommonConstant;
-import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
 import cn.baby.happyball.vedio.VedioLessonActivity;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 /**
  * @author DRH
@@ -124,8 +106,6 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
      * 0:视频 1:音频
      **/
     private int mMode = 0;
-    List<Semester> mSemesters = new ArrayList<>(CommonConstant.NUM_SEMETER_LESSON);
-    List<Lesson> mLessons = new ArrayList<>(CommonConstant.NUM_SEMETER_LESSON);
 
     /**
      * 第一次按键事件处理
@@ -139,6 +119,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         ButterKnife.bind(this);
         bindEvent();
         getData();
+        initData();
     }
 
     public void bindEvent() {
@@ -153,55 +134,12 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     }
 
     public void getData() {
-        showLoading(true);
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(HttpConstant.URL);
-        if (mMode == 0) {
-            tvTitle.setText(R.string.vedio_title);
-            mLessons.clear();
-            stringBuilder.append(HttpConstant.VIDEO_CLASSES);
-        } else if (mMode == 1) {
-            tvTitle.setText(R.string.audio_title);
-            mSemesters.clear();
-            stringBuilder.append(HttpConstant.AUDIO_LESSON);
-        }
-        String url = stringBuilder.toString();
-        OkHttpClient okHttpClient = new OkHttpClient();
-        final Request request = new Request.Builder()
-                .url(url)
-                .post(RequestBody.create(HttpConstant.JSON, ""))
-                .build();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                runOnUiThread(() -> showLoading(false));
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    final String responseStr = response.body().string();
-                    String data = (new JSONObject(responseStr)).optString("data");
-                    if (mMode == 0) {
-                        mSemesters = JSON.parseArray(data, Semester.class);
-                    } else {
-                        mLessons =  JSON.parseArray(data, Lesson.class);
-                    }
-                    runOnUiThread(() -> initData());
-                } catch (Exception e) {
-                    runOnUiThread(() -> showLoading(false));
-                }
-            }
-        });
+        new LoadBitmapAsyncTask(mLoadBitmapListener).execute();
     }
 
     private void initData() {
-        setTextAndImage();
-        showLoading(false);
-
         if (mMode == 0) {
+            tvTitle.setText(R.string.vedio_title);
             obtainViewFocus(rlVedio);
             loseViewFocus(rlAudio);
             rlVedio.requestFocus();
@@ -209,6 +147,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             rlVedio.setNextFocusRightId(R.id.rl_reception_last);
             rlVedio.setNextFocusDownId(R.id.rl_audio);
         } else {
+            tvTitle.setText(R.string.audio_title);
             obtainViewFocus(rlAudio);
             loseViewFocus(rlVedio);
             rlAudio.requestFocus();
@@ -218,90 +157,14 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         }
     }
 
-    private void setTextAndImage() {
-        for (int i = 0; i < CommonConstant.NUM_SEMETER_LESSON; i++) {
-            int id;
-            String name;
-            String imageUrl;
-            if (mMode == 0) {
-                id = mSemesters.get(i).getId();
-                name = mSemesters.get(i).getName();
-                imageUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mSemesters.get(i).getImage())).toString();
-            } else {
-                id = mLessons.get(i).getId();
-                name = mLessons.get(i).getName();
-                imageUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mLessons.get(i).getImage())).toString();
-            }
-
-            switch (id) {
-                case 1:
-                    if (mMode == 0) {
-                        tvBigNext.setText(name);
-                        loadImage(imageUrl, ivBigNext, R.mipmap.main_big_next);
-                    } else {
-                        tvReceptionLast.setText(name);
-                        loadImage(imageUrl, ivReceptionLast,R.mipmap.main_big_next);
-                    }
-                    break;
-                case 2:
-                    if (mMode == 0) {
-                        tvMiddleNext.setText(name);
-                        loadImage(imageUrl, ivMiddleNext, R.mipmap.main_middle_next);
-                    } else {
-                        tvReceptionNext.setText(name);
-                        loadImage(imageUrl, ivReceptionLast, R.mipmap.main_middle_next);
-                    }
-                    break;
-                case 3:
-                    if (mMode == 0) {
-                        tvReceptionNext.setText(name);
-                        loadImage(imageUrl, ivReceptionNext, R.mipmap.main_reception_next);
-                    } else {
-                        tvMiddleLast.setText(name);
-                        loadImage(imageUrl, ivMiddleLast, R.mipmap.main_reception_next);
-                    }
-                    break;
-                case 4:
-                    if (mMode == 0) {
-                        tvBigLast.setText(name);
-                        loadImage(imageUrl, ivBigLast, R.mipmap.main_big_last);
-                    } else {
-                        tvMiddleNext.setText(name);
-                        loadImage(imageUrl, ivMiddleNext, R.mipmap.main_big_last);
-                    }
-                    break;
-                case 5:
-                    if (mMode == 0) {
-                        tvMiddleLast.setText(name);
-                        loadImage(imageUrl, ivMiddleLast, R.mipmap.main_middle_last);
-                    } else {
-                        tvBigLast.setText(name);
-                        loadImage(imageUrl, ivBigLast, R.mipmap.main_middle_last);
-                    }
-                    break;
-                case 6:
-                    if (mMode == 0) {
-                        tvReceptionLast.setText(name);
-                        loadImage(imageUrl, ivReceptionLast, R.mipmap.main_reception_last);
-                    } else {
-                        tvBigNext.setText(name);
-                        loadImage(imageUrl, ivBigNext, R.mipmap.main_reception_last);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-    }
-
     @OnClick({R.id.iv_reception_last, R.id.rl_reception_last})
     public void onReceptionLastSemester() {
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(0)));
+                    .putExtra(SystemConfig.SEMESTER, 1));
         } else {
             startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
-                    .putExtra(SystemConfig.LESSON, mLessons.get(5)));
+                    .putExtra(SystemConfig.LESSON, 1));
         }
     }
 
@@ -309,10 +172,10 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void onReceptionNextSemester() {
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(3)));
+                    .putExtra(SystemConfig.SEMESTER, 4));
         } else {
             startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
-                    .putExtra(SystemConfig.LESSON, mLessons.get(4)));
+                    .putExtra(SystemConfig.LESSON, 4));
         }
     }
 
@@ -320,10 +183,10 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void onMiddleLastSemester() {
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(1)));
+                    .putExtra(SystemConfig.SEMESTER, 2));
         } else {
             startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
-                    .putExtra(SystemConfig.LESSON, mLessons.get(3)));
+                    .putExtra(SystemConfig.LESSON, 2));
         }
     }
 
@@ -331,10 +194,10 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void onMiddleNextSemester() {
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(3)));
+                    .putExtra(SystemConfig.SEMESTER, 5));
         } else {
             startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
-                    .putExtra(SystemConfig.LESSON, mLessons.get(2)));
+                    .putExtra(SystemConfig.LESSON, 5));
         }
     }
 
@@ -342,10 +205,10 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void onBigLastSemester() {
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(2)));
+                    .putExtra(SystemConfig.SEMESTER, 3));
         } else {
             startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
-                    .putExtra(SystemConfig.LESSON, mLessons.get(1)));
+                    .putExtra(SystemConfig.LESSON, 3));
         }
     }
 
@@ -353,10 +216,10 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void onBigNextSemester() {
         if (mMode == 0) {
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
-                    .putExtra(SystemConfig.SEMESTER, mSemesters.get(5)));
+                    .putExtra(SystemConfig.SEMESTER, 6));
         } else {
             startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
-                    .putExtra(SystemConfig.LESSON, mLessons.get(0)));
+                    .putExtra(SystemConfig.LESSON, 6));
         }
     }
 
@@ -364,8 +227,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void onVedio() {
         if (mMode != 0) {
             mMode = 0;
-            mSemesters.clear();
-            getData();
+            initData();
         }
     }
 
@@ -373,8 +235,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void onAudio() {
         if (mMode != 1) {
             mMode = 1;
-            mSemesters.clear();
-            getData();
+            initData();
         }
     }
 
@@ -384,15 +245,13 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             case R.id.rl_vedio:
                 if (b && mMode != 0) {
                     mMode = 0;
-                    mSemesters.clear();
-                    getData();
+                    initData();
                 }
                 break;
             case R.id.rl_audio:
                 if (b && mMode != 1) {
                     mMode = 1;
-                    mSemesters.clear();
-                    getData();
+                    initData();
                 }
                 break;
             case R.id.rl_reception_last:
@@ -471,10 +330,10 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_CENTER:
-                if (event.getAction() == KeyEvent.ACTION_DOWN && isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlVedio);
                     loseViewFocus(rlAudio);
                     rlVedio.requestFocus();
@@ -485,7 +344,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (event.getAction() == KeyEvent.ACTION_DOWN && isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlVedio);
                     loseViewFocus(rlAudio);
                     rlVedio.requestFocus();
@@ -496,7 +355,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (event.getAction() == KeyEvent.ACTION_DOWN && isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlVedio);
                     loseViewFocus(rlAudio);
                     rlVedio.requestFocus();
@@ -507,7 +366,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (event.getAction() == KeyEvent.ACTION_DOWN && isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlVedio);
                     loseViewFocus(rlAudio);
                     rlVedio.requestFocus();
@@ -518,7 +377,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
-                if (event.getAction() == KeyEvent.ACTION_DOWN && isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlVedio);
                     loseViewFocus(rlAudio);
                     rlVedio.requestFocus();
@@ -537,4 +396,22 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
+
+    private ILoadBitmapListener mLoadBitmapListener = new ILoadBitmapListener() {
+        @Override
+        public void onReady() {
+            showLoading(true);
+        }
+
+        @Override
+        public void onComplete() {
+            ivReceptionLast.setImageBitmap(mReceptionLastBitmap);
+            ivReceptionNext.setImageBitmap(mReceptionNextBitmap);
+            ivMiddleLast.setImageBitmap(mMiddleLastBitmap);
+            ivMiddleNext.setImageBitmap(mMiddleNextBitmap);
+            ivBigLast.setImageBitmap(mBigLastBitmap);
+            ivBigNext.setImageBitmap(mBigNextBitmap);
+            showLoading(false);
+        }
+    };
 }

@@ -25,12 +25,12 @@
     <string name="audio_title">难度选择</string>
     <string name="vedio">视频</string>
     <string name="audio">音频</string>
-    <string name="reception_last_semester">小班上学期</string>
-    <string name="reception_next_semester">小班下学期</string>
-    <string name="middle_last_semester">中班上学期</string>
-    <string name="middle_next_semester">中班下学期</string>
-    <string name="big_last_semester">大班上学期</string>
-    <string name="big_next_semester">大班下学期</string>
+    <string name="reception_last_semester">1阶上</string>
+    <string name="reception_next_semester">1阶下</string>
+    <string name="middle_last_semester">2阶上</string>
+    <string name="middle_next_semester">2阶下</string>
+    <string name="big_last_semester">3阶上</string>
+    <string name="big_next_semester">3阶下</string>
 
     <!-- VedioLesson -->
     <string name="lesson_safe">幼儿安全教育</string>

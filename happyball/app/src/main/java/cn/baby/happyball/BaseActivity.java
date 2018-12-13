@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -126,6 +127,22 @@ public class BaseActivity extends Activity {
         });
     }
 
+    /**
+     * 处理240*180图片
+     *
+     * @param bitmapRes
+     * @param frameRes
+     * @return
+     */
+    public Bitmap loadBitmap(int bitmapRes, int frameRes) {
+        Bitmap frameBitmap = createSemesterBitmap(BitmapFactory.decodeResource(getResources(), frameRes));
+        Bitmap urlBitmap = createSemesterBitmap(BitmapFactory.decodeResource(getResources(), bitmapRes));
+        Bitmap bitmap = AlphaFilter.overlay(urlBitmap, frameBitmap);
+        urlBitmap.recycle();
+        frameBitmap.recycle();
+        return bitmap;
+    }
+
     private static final int SEMESTER_BITMAP_WIDTH = 240;
     private static final int SEMESTER_BITMAP_HEIGHT = 180;
     public Bitmap createSemesterBitmap(Bitmap bitmap) {
@@ -180,6 +197,15 @@ public class BaseActivity extends Activity {
         });
     }
 
+    public Bitmap loadStudyBitmap(int bitmapRes, int frameRes) {
+        Bitmap frameBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), frameRes));
+        Bitmap studyBitmap = createStudyBitmap(BitmapFactory.decodeResource(getResources(), bitmapRes));
+        Bitmap bitmap = AlphaFilter.overlay(studyBitmap, frameBitmap);
+        studyBitmap.recycle();
+        frameBitmap.recycle();
+        return bitmap;
+    }
+
     private static final int STUDY_BITMAP_WIDTH = 250;
     private static final int STUDY_BITMAP_HEIGHT = 350;
     public Bitmap createStudyBitmap(Bitmap bitmap) {
@@ -202,4 +228,102 @@ public class BaseActivity extends Activity {
         bitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
         return bitmap;
     }
+
+    protected static Bitmap mReceptionLastBitmap;
+    protected static Bitmap mReceptionNextBitmap;
+    protected static Bitmap mMiddleLastBitmap;
+    protected static Bitmap mMiddleNextBitmap;
+    protected static Bitmap mBigLastBitmap;
+    protected static Bitmap mBigNextBitmap;
+    protected class LoadBitmapAsyncTask extends AsyncTask<Void, Void, Boolean> {
+
+        private ILoadBitmapListener mLoadBitmapListener;
+
+        public LoadBitmapAsyncTask(ILoadBitmapListener loadBitmapListener) {
+            mLoadBitmapListener = loadBitmapListener;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if (mLoadBitmapListener != null) {
+                mLoadBitmapListener.onReady();
+            }
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            if (mReceptionLastBitmap == null) {
+                mReceptionLastBitmap = loadBitmap(R.mipmap.timg_1, R.mipmap.main_reception_last);
+            }
+            if (mReceptionNextBitmap == null) {
+                mReceptionNextBitmap = loadBitmap(R.mipmap.timg_2, R.mipmap.main_reception_next);
+            }
+            if (mMiddleLastBitmap == null) {
+                mMiddleLastBitmap = loadBitmap(R.mipmap.timg_3, R.mipmap.main_middle_last);
+            }
+            if (mMiddleNextBitmap == null) {
+                mMiddleNextBitmap = loadBitmap(R.mipmap.timg_4, R.mipmap.main_middle_next);
+            }
+            if (mBigLastBitmap == null) {
+                mBigLastBitmap = loadBitmap(R.mipmap.timg_5, R.mipmap.main_big_last);
+            }
+            if (mBigNextBitmap == null) {
+                mBigNextBitmap = loadBitmap(R.mipmap.timg_6, R.mipmap.main_big_next);
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            if (mLoadBitmapListener != null) {
+                mLoadBitmapListener.onComplete();
+            }
+        }
+    }
+
+    protected static Bitmap mStudyBitmap;
+    protected static Bitmap mKnowledgeBitmap;
+    public class LoadStudyBitmap extends AsyncTask<Void, Void, Boolean> {
+
+        private ILoadBitmapListener mLoadBitmapListener;
+
+        public LoadStudyBitmap(ILoadBitmapListener loadBitmapListener) {
+            mLoadBitmapListener = loadBitmapListener;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if (mLoadBitmapListener != null) {
+                mLoadBitmapListener.onReady();
+            }
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            if (mStudyBitmap == null) {
+                mStudyBitmap = loadStudyBitmap(R.mipmap.study, R.mipmap.finish_song);
+            }
+            if (mKnowledgeBitmap == null) {
+                mKnowledgeBitmap = loadBitmap(R.mipmap.knowledge, R.mipmap.finish_dance);
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            if (mLoadBitmapListener != null) {
+                mLoadBitmapListener.onComplete();
+            }
+        }
+    }
+
+    public interface ILoadBitmapListener {
+        void onReady();
+        void onComplete();
+    }
+
 }

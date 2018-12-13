@@ -28,8 +28,6 @@ import cn.baby.happyball.BaseActivity;
 import cn.baby.happyball.MainActivity;
 import cn.baby.happyball.R;
 import cn.baby.happyball.bean.Episode;
-import cn.baby.happyball.bean.Lesson;
-import cn.baby.happyball.bean.Semester;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
 import cn.baby.happyball.vedio.adapter.EpisodeAdapter;
@@ -101,8 +99,8 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
     TvRecyclerView cvCourse;
 
     private StaggeredGridLayoutManager mLayoutManager;
-    private Semester mSemester;
-    private Lesson mLesson;
+    private int mSemesterId;
+    private int mLessonId;
     private List<Episode> mEpisodes = new ArrayList<>();
     private EpisodeAdapter mEpisodeAdapter;
     private String mLastNum, mLastTime;
@@ -116,12 +114,14 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
     }
 
     private void getData() {
-        mSemester = (Semester) getIntent().getSerializableExtra(SystemConfig.SEMESTER);
-        mLesson = (Lesson) getIntent().getSerializableExtra(SystemConfig.LESSON);
+        new LoadBitmapAsyncTask(mLoadBitmapListener).execute();
+
+        mSemesterId = getIntent().getIntExtra(SystemConfig.SEMESTER, 1);
+        mLessonId = getIntent().getIntExtra(SystemConfig.LESSON, 1);
 
         Map<String, Integer> map = new HashMap<>(2);
-        map.put(CLASSES_ID, mSemester.getId());
-        map.put(LESSON_ID, mLesson.getId());
+        map.put(CLASSES_ID, 6);
+        map.put(LESSON_ID, 6);
         String json = JSON.toJSONString(map);
         OkHttpClient okHttpClient = new OkHttpClient();
         final Request request = new Request.Builder()
@@ -149,11 +149,63 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
     }
 
     private void initData() {
-        tvSemeterName.setText(mSemester.getName());
-        tvDetailTitleSemester.setText(mSemester.getName());
-        tvLessonName.setText(mLesson.getName());
-        tvDetailTitleLesson.setText(mLesson.getName());
-        tvDetailContent.setText(mLesson.getDescription());
+        switch (mSemesterId) {
+            case 1:
+                tvSemeterName.setText(R.string.reception_last_semester);
+                tvDetailTitleSemester.setText(R.string.reception_last_semester);
+                break;
+            case 2:
+                tvSemeterName.setText(R.string.middle_last_semester);
+                tvDetailTitleSemester.setText(R.string.middle_last_semester);
+                break;
+            case 3:
+                tvSemeterName.setText(R.string.big_last_semester);
+                tvDetailTitleSemester.setText(R.string.big_last_semester);
+                break;
+            case 4:
+                tvSemeterName.setText(R.string.reception_next_semester);
+                tvDetailTitleSemester.setText(R.string.reception_next_semester);
+                break;
+            case 5:
+                tvSemeterName.setText(R.string.middle_next_semester);
+                tvDetailTitleSemester.setText(R.string.middle_next_semester);
+                break;
+            case 6:
+                tvSemeterName.setText(R.string.big_next_semester);
+                tvDetailTitleSemester.setText(R.string.big_next_semester);
+                break;
+            default:
+                break;
+        }
+        switch (mLessonId) {
+            case 1:
+                tvLessonName.setText(R.string.lesson_safe);
+                tvDetailTitleLesson.setText(R.string.lesson_safe);
+                break;
+            case 2:
+                tvLessonName.setText(R.string.lesson_hygiene);
+                tvDetailTitleLesson.setText(R.string.lesson_hygiene);
+                break;
+            case 3:
+                tvLessonName.setText(R.string.lesson_nation);
+                tvDetailTitleLesson.setText(R.string.lesson_nation);
+                break;
+            case 4:
+                tvLessonName.setText(R.string.lesson_pop);
+                tvDetailTitleLesson.setText(R.string.lesson_pop);
+                break;
+            case 5:
+                tvLessonName.setText(R.string.lesson_world);
+                tvDetailTitleLesson.setText(R.string.lesson_world);
+                break;
+            case 6:
+                tvLessonName.setText(R.string.lesson_china);
+                tvDetailTitleLesson.setText(R.string.lesson_china);
+                break;
+            default:
+                break;
+        }
+        
         tvNumber.setText(String.format(getString(R.string.number_value), mEpisodes.size()));
         mLastNum = getValue(SystemConfig.EPISODE_NUM);
         mLastTime = getValue(SystemConfig.EPISODE_TIME);
@@ -165,8 +217,6 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
             tvLastTimeValue.setVisibility(View.VISIBLE);
             tvLastTimeValue.setText(mLastTime);
         }
-        String imageUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mLesson.getImage())).toString();
-        loadImage(imageUrl, ivCourseSemester, R.mipmap.choice_course_semester);
 
         cvCourse.setItemAnimator(new DefaultItemAnimator());
         mEpisodeAdapter = new EpisodeAdapter(VedioChoiceActiviy.this, mEpisodes);
@@ -193,12 +243,12 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
         @Override
         public void onItemClick(View view, int position) {
             StringBuilder builder = new StringBuilder();
-            builder.append(SystemConfig.EPISODE_NUM).append(mSemester.getId()).append(mLesson.getId());
+            builder.append(SystemConfig.EPISODE_NUM).append(mSemesterId).append(mLessonId);
             setValue(builder.toString(), mEpisodes.get(position).getEpisode());
             startActivity(new Intent(VedioChoiceActiviy.this, VedioPlayActivity.class)
                     .putExtra(SystemConfig.EPISODE, mEpisodes.get(position))
-                    .putExtra(SystemConfig.SEMESTER, mSemester)
-                    .putExtra(SystemConfig.LESSON, mLesson));
+                    .putExtra(SystemConfig.SEMESTER, mSemesterId)
+                    .putExtra(SystemConfig.LESSON, mLessonId));
         }
 
         @Override
@@ -216,6 +266,18 @@ public class VedioChoiceActiviy extends BaseActivity implements View.OnFocusChan
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
+        }
+    };
+
+    private ILoadBitmapListener mLoadBitmapListener = new ILoadBitmapListener() {
+        @Override
+        public void onReady() {
+            // do nothing
+        }
+
+        @Override
+        public void onComplete() {
+            ivCourseSemester.setImageBitmap(mReceptionLastBitmap);
         }
     };
 }

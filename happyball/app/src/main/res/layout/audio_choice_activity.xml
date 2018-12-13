@@ -24,11 +24,11 @@
         <RelativeLayout
             android:id="@+id/rl_difficult"
             android:layout_width="260dp"
-            android:layout_height="230dp"
+            android:layout_height="210dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="190dp"
-            android:layout_marginTop="140dp">
+            android:layout_marginTop="100dp">
 
             <ImageView
                 android:id="@+id/iv_difficult"
@@ -46,7 +46,7 @@
         <RelativeLayout
             android:id="@+id/rl_difficult_detail"
             android:layout_width="645dp"
-            android:layout_height="210dp"
+            android:layout_height="190dp"
             android:layout_alignTop="@+id/rl_difficult"
             android:layout_toRightOf="@+id/rl_difficult">
 
