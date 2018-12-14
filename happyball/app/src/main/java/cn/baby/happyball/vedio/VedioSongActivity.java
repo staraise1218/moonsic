@@ -221,10 +221,10 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
 
     @Override
     protected void onDestroy() {
-        if (mMediaPlayer.isPlaying()) {
+        if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
             mMediaPlayer.stop();
+            mMediaPlayer.release();
         }
-        mMediaPlayer.release();
         super.onDestroy();
     }
 

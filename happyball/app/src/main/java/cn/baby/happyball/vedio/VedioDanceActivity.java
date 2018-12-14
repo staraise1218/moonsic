@@ -486,9 +486,6 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-
-                break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlDanceFirst);
@@ -527,6 +524,11 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                     rlDanceFirst.setNextFocusUpId(R.id.rl_back);
                     rlDanceFirst.setNextFocusRightId(R.id.rl_dance);
                     isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_BACK:
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    onBackPressed();
                 }
                 break;
                 default:

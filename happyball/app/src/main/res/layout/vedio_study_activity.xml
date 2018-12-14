@@ -12,6 +12,7 @@
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
+            android:focusable="true"
             style="@style/home_pager">
 
             <ImageView
@@ -47,6 +48,7 @@
             android:id="@+id/rl_song"
             style="@style/study_layout"
             android:layout_toLeftOf="@+id/ll_center"
+            android:focusable="true"
             android:layout_marginRight="160dp"
             android:nextFocusLeft="@id/rl_back"
             android:nextFocusRight="@id/rl_dance">
@@ -66,6 +68,7 @@
             android:id="@+id/rl_dance"
             style="@style/study_layout"
             android:layout_toRightOf="@+id/ll_center"
+            android:focusable="true"
             android:layout_marginLeft="160dp"
             android:nextFocusRight="@id/rl_homepage"
             android:nextFocusLeft="@id/rl_song">

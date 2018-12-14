@@ -15,55 +15,30 @@
             android:layout_alignTop="@+id/rl_homepage"
             android:layout_centerHorizontal="true"
             android:text="视频列表"
-            android:textStyle="bold"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="120dp"
-            android:layout_marginTop="50dp">
+            style="@style/home_pager"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/iv_homepage"
-                android:layout_width="170dp"
-                android:layout_height="80dp"
-                android:src="@mipmap/finish_homepage" />
+                style="@style/home_pager_image" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/homepage"
-                android:textSize="@dimen/text_home"
-                android:textStyle="bold" />
+            <TextView style="@style/home_pager_text" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="120dp"
-            android:layout_marginTop="50dp">
+            style="@style/home_back">
 
             <ImageView
                 android:id="@+id/iv_back"
-                android:layout_width="170dp"
-                android:layout_height="80dp"
-                android:src="@mipmap/finish_back" />
+                style="@style/home_back_image" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:text="@string/back"
-                android:textSize="@dimen/text_home"
-                android:textStyle="bold" />
+            <TextView style="@style/home_back_text" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -74,26 +49,21 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="175dp"
             android:layout_marginTop="163dp"
-            android:nextFocusDown="@id/rl_dance_five"
+            android:focusable="true"
             android:nextFocusRight="@id/rl_dance_second"
-            android:nextFocusUp="@id/rl_back">
+            android:nextFocusUp="@id/rl_back"
+            android:nextFocusDown="@id/rl_dance_five">
 
             <ImageView
                 android:id="@+id/iv_dance_first"
-                android:layout_width="200dp"
-                android:layout_height="140dp"
+                style="@style/dance_image"
                 android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/dance_text"
                 android:layout_below="@+id/iv_dance_first"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="轰轰隆隆整天响"
-                android:textSize="@dimen/text_song"
-                android:textStyle="bold" />
+                android:text="轰轰隆隆整天响" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -103,26 +73,21 @@
             android:layout_alignTop="@+id/rl_dance_first"
             android:layout_marginLeft="45dp"
             android:layout_toRightOf="@+id/rl_dance_first"
-            android:nextFocusDown="@id/rl_dance_six"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_dance_first"
-            android:nextFocusRight="@id/rl_dance_third">
+            android:nextFocusRight="@id/rl_dance_third"
+            android:nextFocusDown="@id/rl_dance_six">
 
             <ImageView
                 android:id="@+id/iv_dance_second"
-                android:layout_width="200dp"
-                android:layout_height="140dp"
+                style="@style/dance_image"
                 android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/dance_text"
                 android:layout_below="@+id/iv_dance_second"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="2dp"
-                android:text="天边飘来一朵云"
-                android:textSize="@dimen/text_song"
-                android:textStyle="bold" />
+                android:text="天边飘来一朵云" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -132,26 +97,21 @@
             android:layout_alignTop="@+id/rl_dance_first"
             android:layout_marginLeft="45dp"
             android:layout_toRightOf="@+id/rl_dance_second"
-            android:nextFocusDown="@id/rl_dance_seven"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_dance_second"
-            android:nextFocusRight="@id/rl_dance_four">
+            android:nextFocusRight="@id/rl_dance_four"
+            android:nextFocusDown="@id/rl_dance_seven">
 
             <ImageView
                 android:id="@+id/iv_dance_third"
-                android:layout_width="200dp"
-                android:layout_height="140dp"
+                style="@style/dance_image"
                 android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_third"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/dance_text"
                 android:layout_below="@+id/iv_dance_third"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="突然变得黑漆漆"
-                android:textSize="@dimen/text_song"
-                android:textStyle="bold" />
+                android:text="突然变得黑漆漆" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -161,55 +121,45 @@
             android:layout_alignTop="@+id/rl_dance_first"
             android:layout_marginLeft="45dp"
             android:layout_toRightOf="@+id/rl_dance_third"
-            android:nextFocusDown="@id/rl_dance_eight"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_dance_third"
-            android:nextFocusRight="@id/rl_dance_five">
+            android:nextFocusRight="@id/rl_dance_five"
+            android:nextFocusDown="@id/rl_dance_eight">
 
             <ImageView
                 android:id="@+id/iv_dance_four"
-                android:layout_width="200dp"
-                android:layout_height="140dp"
+                style="@style/dance_image"
                 android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_four"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/dance_text"
                 android:layout_below="@+id/iv_dance_four"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="云朵闪出一道光"
-                android:textSize="@dimen/text_song"
-                android:textStyle="bold" />
+                android:text="云朵闪出一道光" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_dance_five"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/rl_dance_first"
             android:layout_below="@+id/rl_dance_first"
+            android:layout_alignStart="@+id/rl_dance_first"
             android:layout_marginTop="90dp"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_dance_four"
             android:nextFocusRight="@id/rl_dance_six"
             android:nextFocusUp="@id/rl_dance_first">
 
             <ImageView
                 android:id="@+id/iv_dance_five"
-                android:layout_width="200dp"
-                android:layout_height="140dp"
+                style="@style/dance_image"
                 android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_five"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/dance_text"
                 android:layout_below="@+id/iv_dance_five"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="安全用电放第一"
-                android:textSize="@dimen/text_song"
-                android:textStyle="bold" />
+                android:text="安全用电放第一" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -219,26 +169,21 @@
             android:layout_alignTop="@+id/rl_dance_five"
             android:layout_marginLeft="45dp"
             android:layout_toRightOf="@+id/rl_dance_five"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_dance_five"
             android:nextFocusRight="@id/rl_dance_seven"
             android:nextFocusUp="@id/rl_dance_second">
 
             <ImageView
                 android:id="@+id/iv_dance_six"
-                android:layout_width="200dp"
-                android:layout_height="140dp"
+                style="@style/dance_image"
                 android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_six"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/dance_text"
                 android:layout_below="@+id/iv_dance_six"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="ipad手机充电器"
-                android:textSize="@dimen/text_song"
-                android:textStyle="bold" />
+                android:text="ipad手机充电器" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -248,26 +193,21 @@
             android:layout_alignTop="@+id/rl_dance_five"
             android:layout_marginLeft="45dp"
             android:layout_toRightOf="@+id/rl_dance_six"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_dance_six"
             android:nextFocusRight="@id/rl_dance_eight"
             android:nextFocusUp="@id/rl_dance_third">
 
             <ImageView
                 android:id="@+id/iv_dance_seven"
-                android:layout_width="200dp"
-                android:layout_height="140dp"
+                style="@style/dance_image"
                 android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_seven"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/dance_text"
                 android:layout_below="@+id/iv_dance_seven"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="电脑开关电视机"
-                android:textSize="@dimen/text_song"
-                android:textStyle="bold" />
+                android:text="电脑开关电视机" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -276,26 +216,21 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/rl_dance_five"
             android:layout_marginLeft="45dp"
+            android:focusable="true"
             android:layout_toRightOf="@+id/rl_dance_seven"
             android:nextFocusLeft="@id/rl_dance_seven"
             android:nextFocusUp="@id/rl_dance_four">
 
             <ImageView
                 android:id="@+id/iv_dance_eight"
-                android:layout_width="200dp"
-                android:layout_height="140dp"
+                style="@style/dance_image"
                 android:src="@mipmap/main_reception_last" />
 
             <TextView
                 android:id="@+id/tv_dance_eight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_dance_eight"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="打雷下雨要关闭"
-                android:textSize="@dimen/text_song"
-                android:textStyle="bold" />
+                style="@style/dance_text"
+                android:text="打雷下雨要关闭"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -304,11 +239,11 @@
 
             <ProgressBar
                 android:id="@+id/pb_loading"
-                android:visibility="gone"
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
         </RelativeLayout>
 
     </RelativeLayout>

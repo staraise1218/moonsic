@@ -161,14 +161,10 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
     boolean isFirst = true;
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-                startActivity(new Intent(VedioStudyActivity.this, VedioSongActivity.class)
-                        .putExtra(SystemConfig.EPISODE, mEpisode));
-                break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlSong);
                     rlSong.requestFocus();
                     rlSong.setFocusable(true);
@@ -178,7 +174,7 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlSong);
                     rlSong.requestFocus();
                     rlSong.setFocusable(true);
@@ -188,7 +184,7 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlSong);
                     rlSong.requestFocus();
                     rlSong.setFocusable(true);
@@ -198,13 +194,18 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlSong);
                     rlSong.requestFocus();
                     rlSong.setFocusable(true);
                     rlSong.setNextFocusUpId(R.id.rl_back);
                     rlSong.setNextFocusRightId(R.id.rl_dance);
                     isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_BACK:
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    onBackPressed();
                 }
                 break;
                 default:

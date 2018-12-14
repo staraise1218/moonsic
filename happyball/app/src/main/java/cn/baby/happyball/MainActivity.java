@@ -12,7 +12,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.baby.happyball.audio.AudioChoiceActiviy;
+import cn.baby.happyball.audio.AudioChoiceActivity;
 import cn.baby.happyball.constant.SystemConfig;
 import cn.baby.happyball.vedio.VedioLessonActivity;
 
@@ -163,7 +163,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, 1));
         } else {
-            startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
+            startActivity(new Intent(MainActivity.this, AudioChoiceActivity.class)
                     .putExtra(SystemConfig.LESSON, 1));
         }
     }
@@ -174,7 +174,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, 4));
         } else {
-            startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
+            startActivity(new Intent(MainActivity.this, AudioChoiceActivity.class)
                     .putExtra(SystemConfig.LESSON, 4));
         }
     }
@@ -185,7 +185,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, 2));
         } else {
-            startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
+            startActivity(new Intent(MainActivity.this, AudioChoiceActivity.class)
                     .putExtra(SystemConfig.LESSON, 2));
         }
     }
@@ -196,7 +196,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, 5));
         } else {
-            startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
+            startActivity(new Intent(MainActivity.this, AudioChoiceActivity.class)
                     .putExtra(SystemConfig.LESSON, 5));
         }
     }
@@ -207,7 +207,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, 3));
         } else {
-            startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
+            startActivity(new Intent(MainActivity.this, AudioChoiceActivity.class)
                     .putExtra(SystemConfig.LESSON, 3));
         }
     }
@@ -218,7 +218,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             startActivity(new Intent(MainActivity.this, VedioLessonActivity.class)
                     .putExtra(SystemConfig.SEMESTER, 6));
         } else {
-            startActivity(new Intent(MainActivity.this, AudioChoiceActiviy.class)
+            startActivity(new Intent(MainActivity.this, AudioChoiceActivity.class)
                     .putExtra(SystemConfig.LESSON, 6));
         }
     }
@@ -385,6 +385,11 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                     rlVedio.setNextFocusRightId(R.id.rl_reception_last);
                     rlVedio.setNextFocusDownId(R.id.rl_audio);
                     isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_BACK:
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    onBackPressed();
                 }
                 break;
                 default:

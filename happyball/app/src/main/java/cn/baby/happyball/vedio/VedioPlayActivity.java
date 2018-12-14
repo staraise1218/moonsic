@@ -21,8 +21,6 @@ import cn.baby.happyball.BaseActivity;
 import cn.baby.happyball.MainActivity;
 import cn.baby.happyball.R;
 import cn.baby.happyball.bean.Episode;
-import cn.baby.happyball.bean.Lesson;
-import cn.baby.happyball.bean.Semester;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
 
@@ -93,7 +91,7 @@ public class VedioPlayActivity extends BaseActivity {
     @OnClick({R.id.iv_back, R.id.rl_back})
     public void onBack() {
         setValue(mKey, String.valueOf(mMediaPlayer.getCurrentPosition()));
-        startActivity(new Intent(VedioPlayActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(VedioPlayActivity.this, VedioChoiceActivity.class));
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})
@@ -192,5 +190,14 @@ public class VedioPlayActivity extends BaseActivity {
 
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
+            mMediaPlayer.stop();
+            mMediaPlayer.release();
+        }
+        super.onDestroy();
     }
 }

@@ -19,6 +19,8 @@
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
+            android:focusable="true"
+            android:nextFocusDown="@id/rl_answer"
             style="@style/home_pager" >
 
             <ImageView
@@ -43,6 +45,7 @@
 
         <RelativeLayout
             android:id="@+id/rl_answer"
+            android:focusable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/rl_homepage"
@@ -91,6 +94,7 @@
             android:layout_alignLeft="@+id/tv_knowledge_question"
             android:layout_below="@+id/tv_knowledge_question"
             android:layout_marginTop="55dp"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_back"
             android:nextFocusRight="@id/rl_knowledge_second">
 
@@ -118,6 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/rl_knowledge_first"
             android:layout_marginLeft="40dp"
+            android:focusable="true"
             android:layout_toRightOf="@+id/rl_knowledge_first"
             android:nextFocusLeft="@id/rl_knowledge_first"
             android:nextFocusRight="@id/rl_knowledge_third">
@@ -146,6 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/rl_knowledge_first"
             android:layout_marginLeft="40dp"
+            android:focusable="true"
             android:layout_toRightOf="@+id/rl_knowledge_second"
             android:nextFocusLeft="@id/rl_knowledge_second"
             android:nextFocusRight="@id/rl_knowledge_four">
@@ -174,9 +180,10 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/rl_knowledge_first"
             android:layout_marginLeft="40dp"
+            android:focusable="true"
             android:layout_toRightOf="@+id/rl_knowledge_third"
             android:nextFocusLeft="@id/rl_knowledge_third"
-            android:nextFocusRight="@id/rl_homepage">
+            android:nextFocusRight="@id/rl_answer">
 
             <ImageView
                 android:id="@+id/iv_knowledge_four"
@@ -196,18 +203,7 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ProgressBar
-                android:id="@+id/pb_loading"
-                android:visibility="gone"
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true" />
-        </RelativeLayout>
+        <include layout="@layout/common_progress" />
 
     </RelativeLayout>
 

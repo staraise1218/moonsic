@@ -12,14 +12,14 @@
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
-            style="@style/home_pager">
+            style="@style/home_pager"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/iv_homepage"
                 style="@style/home_pager_image" />
 
-            <TextView
-                style="@style/home_pager_text" />
+            <TextView style="@style/home_pager_text" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -30,8 +30,7 @@
                 android:id="@+id/iv_back"
                 style="@style/home_back_image" />
 
-            <TextView
-                style="@style/home_back_text" />
+            <TextView style="@style/home_back_text" />
         </RelativeLayout>
 
         <LinearLayout
@@ -46,8 +45,8 @@
             android:focusable="true"
             android:gravity="center"
             android:nextFocusLeft="@id/rl_study"
-            android:nextFocusUp="@id/rl_study"
             android:nextFocusRight="@id/rl_knowledge"
+            android:nextFocusUp="@id/rl_study"
             android:nextFocusDown="@id/rl_knowledge"
             android:orientation="horizontal"
             android:padding="8dp">
@@ -70,16 +69,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/ll_replay"
-            android:layout_marginBottom="20dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
             android:text="@string/play_finish"
             android:textSize="@dimen/main_type" />
 
         <RelativeLayout
             android:id="@+id/rl_study"
             style="@style/study_layout"
-            android:layout_toLeftOf="@+id/ll_replay"
             android:layout_marginRight="80dp"
+            android:layout_toLeftOf="@+id/ll_replay"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_back"
             android:nextFocusRight="@id/ll_replay"
             android:nextFocusDown="@id/ll_replay">
@@ -92,16 +92,17 @@
             <TextView
                 android:id="@+id/tv_study"
                 style="@style/study_text"
-                android:text="@string/study"/>
+                android:text="@string/study" />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_knowledge"
             style="@style/study_layout"
-            android:layout_toRightOf="@+id/ll_replay"
             android:layout_marginLeft="80dp"
-            android:nextFocusRight="@id/rl_homepage"
+            android:layout_toRightOf="@+id/ll_replay"
+            android:focusable="true"
             android:nextFocusLeft="@id/ll_replay"
+            android:nextFocusRight="@id/rl_homepage"
             android:nextFocusUp="@id/ll_replay">
 
             <ImageView
@@ -112,7 +113,7 @@
             <TextView
                 android:id="@+id/tv_knowledge"
                 style="@style/study_text"
-                android:text="@string/knowledge"/>
+                android:text="@string/knowledge" />
         </RelativeLayout>
 
         <include layout="@layout/common_progress" />

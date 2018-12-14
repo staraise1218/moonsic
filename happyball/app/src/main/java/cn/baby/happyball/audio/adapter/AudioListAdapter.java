@@ -68,10 +68,10 @@ public class AudioListAdapter extends BaseAdapter {
         viewHolder.audioId.setText(String.valueOf(audio.getId()));
         viewHolder.audioPlay.setVisibility(View.VISIBLE);
         if (playingIndex == i) {
-            viewHolder.audioPlay.setImageResource(R.mipmap.audio_pause);
+            viewHolder.audioPlay.setImageResource(R.mipmap.audio_pause_pressed);
             setPlayingTextStatus(viewHolder, R.color.playing_text);
         } else {
-            viewHolder.audioPlay.setImageResource(R.mipmap.audio_play);
+            viewHolder.audioPlay.setImageResource(R.mipmap.audio_play_def);
             setPlayingTextStatus(viewHolder, R.color.white);
         }
         viewHolder.audioTitle.setText(audio.getTitle());

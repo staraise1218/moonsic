@@ -1,9 +1,6 @@
 package cn.baby.happyball.vedio;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
@@ -21,7 +18,6 @@ import cn.baby.happyball.MainActivity;
 import cn.baby.happyball.R;
 import cn.baby.happyball.bean.Episode;
 import cn.baby.happyball.constant.SystemConfig;
-import cn.baby.happyball.util.AlphaFilter;
 
 /**
  * @author DRH
@@ -102,7 +98,7 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
 
     @OnClick({R.id.iv_back, R.id.rl_back})
     public void onBack() {
-        startActivity(new Intent(VedioFinishActivity.this, VedioChoiceActiviy.class));
+        startActivity(new Intent(VedioFinishActivity.this, VedioChoiceActivity.class));
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})
@@ -182,14 +178,10 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
 
     boolean isFirst = true;
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-                startActivity(new Intent(VedioFinishActivity.this, VedioPlayActivity.class)
-                        .putExtra(SystemConfig.EPISODE, mEpisode));
-                break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(llReplay);
                     llReplay.requestFocus();
                     llReplay.setFocusable(true);
@@ -199,7 +191,7 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(llReplay);
                     llReplay.requestFocus();
                     llReplay.setFocusable(true);
@@ -209,7 +201,7 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(llReplay);
                     llReplay.requestFocus();
                     llReplay.setFocusable(true);
@@ -219,7 +211,7 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(llReplay);
                     llReplay.requestFocus();
                     llReplay.setFocusable(true);
@@ -228,6 +220,13 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
                     isFirst = false;
                 }
                 break;
+            case KeyEvent.KEYCODE_BACK:
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    onBackPressed();
+                }
+                break;
+                default:
+                    break;
         }
         return super.onKeyDown(keyCode, event);
     }

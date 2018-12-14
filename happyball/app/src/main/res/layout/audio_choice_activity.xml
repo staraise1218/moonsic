@@ -12,7 +12,8 @@
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
-            style="@style/home_pager">
+            style="@style/home_pager"
+            android:focusable="true">
 
             <ImageView
                 android:id="@+id/iv_homepage"
@@ -93,6 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rl_difficult_detail"
             android:layout_alignLeft="@+id/rl_difficult"
+            android:focusable="true"
             android:nextFocusDown="@id/iv_audio_left"
             android:padding="10dp">
 
@@ -101,7 +103,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/audio_play" />
+                android:src="@mipmap/audio_play_def" />
 
             <TextView
                 android:id="@+id/tv_play"
@@ -143,21 +145,23 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginRight="30dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:nextFocusRight="@id/iv_audio_right"
                 android:nextFocusUp="@id/rl_play"
                 android:padding="5dp"
-                android:clickable="true"
-                android:src="@drawable/audio_left_selector" />
+                android:src="@mipmap/audio_left_def" />
 
             <ImageView
                 android:id="@+id/iv_audio_right"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginLeft="30dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:nextFocusLeft="@id/iv_audio_left"
                 android:padding="5dp"
-                android:clickable="true"
-                android:src="@drawable/audio_right_selector" />
+                android:src="@mipmap/audio_right_def" />
         </LinearLayout>
 
         <include layout="@layout/common_progress" />

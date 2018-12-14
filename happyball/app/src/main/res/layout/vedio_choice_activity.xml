@@ -10,6 +10,7 @@
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
+            android:focusable="true"
             style="@style/home_pager">
 
             <ImageView
@@ -32,7 +33,7 @@
             <ImageView
                 android:id="@+id/iv_course_semester"
                 style="@style/main_semester_image"
-                android:src="@mipmap/main_reception_last" />
+                android:src="@mipmap/vedio_choice" />
 
             <ImageView
                 style="@style/main_semester_frame" />
@@ -171,6 +172,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/rl_number"
+            android:minHeight="60dp"
             android:layout_below="@+id/rl_number"
             android:layout_marginRight="100dp"
             android:layout_marginBottom="100dp"

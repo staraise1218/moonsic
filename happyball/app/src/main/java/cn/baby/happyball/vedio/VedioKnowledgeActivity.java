@@ -3,6 +3,7 @@ package cn.baby.happyball.vedio;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -87,7 +88,8 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
 
     @BindView(R.id.iv_answer)
     ImageView ivKnowledgeAnswer;
-
+    @BindView(R.id.rl_answer)
+    RelativeLayout rlAnswer;
     /**
      * 加载
      */
@@ -109,6 +111,7 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
     private void bindEvents() {
         rlBack.setOnFocusChangeListener(this);
         rlHomePage.setOnFocusChangeListener(this);
+        rlAnswer.setOnFocusChangeListener(this);
 
         rlKnowledgeFirst.setOnFocusChangeListener(this);
         rlKnowledgeSecond.setOnFocusChangeListener(this);
@@ -137,8 +140,8 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final String responseStr = response.body().string();
                 try {
+                    final String responseStr = response.body().string();
                     String data = (new JSONObject(responseStr)).optString("data");
                     mKnowledge = JSON.parseObject(data, Knowledge.class);
                     runOnUiThread(() -> initData());
@@ -284,14 +287,132 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
 
     @Override
     public void onFocusChange(View view, boolean b) {
-        if (b) {
-            obtainViewFocus(view);
-        } else {
-            loseViewFocus(view);
+        switch (view.getId()) {
+            case R.id.rl_homepage:
+                if (b) {
+                    obtainViewFocus(rlHomePage);
+                    rlHomePage.requestLayout();
+                    rlHomePage.setFocusable(true);
+                    rlHomePage.setNextFocusDownId(R.id.rl_answer);
+                    rlHomePage.setNextFocusLeftId(R.id.rl_knowledge_first);
+                } else {
+                    loseViewFocus(rlHomePage);
+                }
+            case R.id.rl_answer:
+                if (b) {
+                    obtainViewFocus(rlAnswer);
+                    rlAnswer.requestLayout();
+                    rlAnswer.setFocusable(true);
+                    rlAnswer.setNextFocusUpId(R.id.rl_homepage);
+                } else {
+                    loseViewFocus(rlAnswer);
+                }
+                break;
+            case R.id.rl_knowledge_first:
+                if (b) {
+                    obtainViewFocus(rlKnowledgeFirst);
+                    rlKnowledgeFirst.requestLayout();
+                    rlKnowledgeFirst.setFocusable(true);
+                    rlKnowledgeFirst.setNextFocusUpId(R.id.rl_homepage);
+                    rlKnowledgeFirst.setNextFocusRightId(R.id.rl_knowledge_second);
+                } else {
+                    loseViewFocus(rlKnowledgeFirst);
+                }
+                break;
+            case R.id.rl_knowledge_second:
+                if (b) {
+                    obtainViewFocus(rlKnowledgeSecond);
+                    rlKnowledgeSecond.requestLayout();
+                    rlKnowledgeSecond.setFocusable(true);
+                    rlKnowledgeSecond.setNextFocusLeftId(R.id.rl_knowledge_first);
+                    rlKnowledgeSecond.setNextFocusRightId(R.id.rl_knowledge_third);
+                } else {
+                    loseViewFocus(rlKnowledgeSecond);
+                }
+                break;
+            case R.id.rl_knowledge_third:
+                if (b) {
+                    obtainViewFocus(rlKnowledgeThird);
+                    rlKnowledgeThird.requestLayout();
+                    rlKnowledgeThird.setFocusable(true);
+                    rlKnowledgeSecond.setNextFocusLeftId(R.id.rl_knowledge_second);
+                    rlKnowledgeSecond.setNextFocusRightId(R.id.rl_knowledge_four);
+                } else {
+                    loseViewFocus(rlKnowledgeThird);
+                }
+                break;
+            case R.id.rl_knowledge_four:
+                if (b) {
+                    obtainViewFocus(rlKnowledgeFour);
+                    rlKnowledgeFour.requestLayout();
+                    rlKnowledgeFour.setFocusable(true);
+                    rlKnowledgeFour.setNextFocusLeftId(R.id.rl_knowledge_third);
+                    rlKnowledgeFour.setNextFocusRightId(R.id.rl_answer);
+                } else {
+                    loseViewFocus(rlKnowledgeFour);
+                }
+                break;
+            default:
+                break;
         }
     }
 
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    boolean isFirst = true;
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+                    obtainViewFocus(rlAnswer);
+                    rlAnswer.requestFocus();
+                    rlAnswer.setFocusable(true);
+                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
+                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+                    obtainViewFocus(rlAnswer);
+                    rlAnswer.requestFocus();
+                    rlAnswer.setFocusable(true);
+                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
+                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+                    obtainViewFocus(rlAnswer);
+                    rlAnswer.requestFocus();
+                    rlAnswer.setFocusable(true);
+                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
+                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+                    obtainViewFocus(rlAnswer);
+                    rlAnswer.requestFocus();
+                    rlAnswer.setFocusable(true);
+                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
+                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_BACK:
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    onBackPressed();
+                }
+                break;
+            default:
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -10,6 +10,7 @@
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
+            android:focusable="true"
             style="@style/home_pager">
 
             <ImageView
@@ -26,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="120dp"
+            android:focusable="true"
             android:nextFocusDown="@id/rl_world"
             android:nextFocusLeft="@id/rl_safe"
             android:nextFocusRight="@id/rl_nation">
@@ -48,6 +50,7 @@
             android:id="@+id/rl_world"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
             android:layout_alignStart="@+id/rl_hygiene"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/rl_hygiene"
@@ -101,6 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/rl_hygiene"
             android:layout_marginLeft="40dp"
+            android:focusable="true"
             android:layout_toRightOf="@+id/rl_hygiene"
             android:nextFocusDown="@id/rl_china"
             android:nextFocusLeft="@id/rl_hygiene"
@@ -124,6 +128,7 @@
             android:id="@+id/rl_pop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
             android:layout_toLeftOf="@+id/rl_world"
             android:layout_alignTop="@+id/rl_world"
             android:layout_marginRight="40dp"
@@ -149,6 +154,7 @@
             android:id="@+id/rl_china"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:focusable="true"
             android:layout_toRightOf="@+id/rl_world"
             android:layout_alignTop="@+id/rl_world"
             android:layout_marginLeft="40dp"

@@ -14,7 +14,7 @@
         <TextView
             android:id="@+id/tv_title"
             style="@style/main_title"
-            android:text=""/>
+            android:text="" />
 
         <RelativeLayout
             android:id="@+id/rl_vedio"
@@ -23,8 +23,8 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="238dp"
             android:focusable="true"
-            android:nextFocusDown="@id/rl_audio"
-            android:nextFocusRight="@id/rl_reception_last">
+            android:nextFocusRight="@id/rl_reception_last"
+            android:nextFocusDown="@id/rl_audio">
 
             <ImageView
                 android:id="@+id/iv_vedio"
@@ -35,8 +35,8 @@
             <TextView
                 android:id="@+id/tv_vedio_name"
                 style="@style/main_type_text"
-                android:layout_marginTop="15dp"
                 android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
                 android:text="@string/vedio" />
         </RelativeLayout>
 
@@ -46,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="67dp"
             android:layout_marginTop="358dp"
+            android:focusable="true"
             android:nextFocusRight="@id/rl_reception_last"
             android:nextFocusUp="@id/rl_vedio">
 
@@ -70,8 +71,9 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="380dp"
             android:layout_marginTop="110dp"
-            android:nextFocusDown="@id/rl_reception_next"
-            android:nextFocusRight="@id/rl_middle_last">
+            android:focusable="true"
+            android:nextFocusRight="@id/rl_middle_last"
+            android:nextFocusDown="@id/rl_reception_next">
 
             <ImageView
                 android:id="@+id/iv_reception_last"
@@ -93,9 +95,10 @@
             android:layout_alignBottom="@+id/rl_reception_last"
             android:layout_marginLeft="40dp"
             android:layout_toRightOf="@+id/rl_reception_last"
-            android:nextFocusDown="@id/rl_middle_next"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_reception_last"
-            android:nextFocusRight="@id/rl_big_last">
+            android:nextFocusRight="@id/rl_big_last"
+            android:nextFocusDown="@id/rl_middle_next">
 
             <ImageView
                 android:id="@+id/iv_middle_last"
@@ -117,9 +120,10 @@
             android:layout_alignBottom="@+id/rl_reception_last"
             android:layout_marginLeft="40dp"
             android:layout_toRightOf="@+id/rl_middle_last"
-            android:nextFocusDown="@id/rl_big_next"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_middle_last"
-            android:nextFocusRight="@id/rl_reception_next">
+            android:nextFocusRight="@id/rl_reception_next"
+            android:nextFocusDown="@id/rl_big_next">
 
             <ImageView
                 android:id="@+id/iv_big_last"
@@ -138,9 +142,10 @@
             android:id="@+id/rl_reception_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/rl_reception_last"
             android:layout_below="@+id/rl_reception_last"
+            android:layout_alignStart="@+id/rl_reception_last"
             android:layout_marginTop="70dp"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_big_last"
             android:nextFocusRight="@id/rl_middle_next"
             android:nextFocusUp="@id/rl_reception_last">
@@ -164,6 +169,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/rl_middle_last"
             android:layout_alignTop="@+id/rl_reception_next"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_reception_next"
             android:nextFocusRight="@id/rl_big_next"
             android:nextFocusUp="@id/rl_middle_last">
@@ -187,6 +193,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/rl_big_last"
             android:layout_alignTop="@+id/rl_reception_next"
+            android:focusable="true"
             android:nextFocusLeft="@id/rl_middle_next"
             android:nextFocusRight="@id/rl_reception_last"
             android:nextFocusUp="@id/rl_big_last">

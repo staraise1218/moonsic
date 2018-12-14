@@ -204,10 +204,10 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
 
     boolean isFirst = true;
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_CENTER:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlSafe);
                     rlSafe.setNextFocusRightId(R.id.rl_hygiene);
                     rlSafe.setNextFocusDownId(R.id.rl_pop);
@@ -215,7 +215,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlSafe);
                     rlSafe.setNextFocusRightId(R.id.rl_hygiene);
                     rlSafe.setNextFocusDownId(R.id.rl_pop);
@@ -223,7 +223,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlSafe);
                     rlSafe.setNextFocusRightId(R.id.rl_hygiene);
                     rlSafe.setNextFocusDownId(R.id.rl_pop);
@@ -231,7 +231,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlSafe);
                     rlSafe.setNextFocusRightId(R.id.rl_hygiene);
                     rlSafe.setNextFocusDownId(R.id.rl_pop);
@@ -239,11 +239,16 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
-                if (isFirst) {
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
                     obtainViewFocus(rlSafe);
                     rlSafe.setNextFocusRightId(R.id.rl_hygiene);
                     rlSafe.setNextFocusDownId(R.id.rl_pop);
                     isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_BACK:
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    onBackPressed();
                 }
                 break;
                 default:
@@ -259,42 +264,42 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
 
     @OnClick({R.id.iv_safe, R.id.rl_safe})
     public void onSafe() {
-        startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
+        startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActivity.class)
                 .putExtra(SystemConfig.SEMESTER, mSemesterId)
                 .putExtra(SystemConfig.LESSON, 1));
     }
 
     @OnClick({R.id.iv_hygiene, R.id.rl_hygiene})
     public void onHygiene() {
-        startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
+        startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActivity.class)
                 .putExtra(SystemConfig.SEMESTER, mSemesterId)
                 .putExtra(SystemConfig.LESSON, 2));
     }
 
     @OnClick({R.id.iv_nation, R.id.rl_nation})
     public void onNation() {
-        startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
+        startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActivity.class)
                 .putExtra(SystemConfig.SEMESTER, mSemesterId)
                 .putExtra(SystemConfig.LESSON, 3));
     }
 
     @OnClick({R.id.iv_pop, R.id.rl_pop})
     public void onPop() {
-        startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
+        startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActivity.class)
                 .putExtra(SystemConfig.SEMESTER, mSemesterId)
                 .putExtra(SystemConfig.LESSON, 4));
     }
 
     @OnClick({R.id.iv_world, R.id.rl_world})
     public void onWorld() {
-        startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
+        startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActivity.class)
                 .putExtra(SystemConfig.SEMESTER, mSemesterId)
                 .putExtra(SystemConfig.LESSON, 5));
     }
 
     @OnClick({R.id.iv_china, R.id.rl_china})
     public void onChina() {
-        startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActiviy.class)
+        startActivity(new Intent(VedioLessonActivity.this, VedioChoiceActivity.class)
                 .putExtra(SystemConfig.SEMESTER, mSemesterId)
                 .putExtra(SystemConfig.LESSON, 6));
     }
@@ -320,4 +325,9 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
            showLoading(false);
        }
    };
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
