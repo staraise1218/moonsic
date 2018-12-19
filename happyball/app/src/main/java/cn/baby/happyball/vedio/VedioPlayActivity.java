@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -27,7 +30,7 @@ import cn.baby.happyball.constant.SystemConfig;
 /**
  * @author DRH
  */
-public class VedioPlayActivity extends BaseActivity {
+public class VedioPlayActivity extends BaseActivity implements View.OnFocusChangeListener {
 
     /**
      * 主页
@@ -52,12 +55,10 @@ public class VedioPlayActivity extends BaseActivity {
     ImageView ivPlay;
     @BindView(R.id.tv_play_number)
     TextView tvPlayNumber;
-    @BindView(R.id.pb_play)
-    ProgressBar pbPlay;
+    @BindView(R.id.sb_play)
+    SeekBar sbPlay;
     @BindView(R.id.tv_play_time)
     TextView tvPlayTime;
-    //    @BindView(R.id.vv_play)
-//    VideoView videoPlay;
     @BindView(R.id.sv_play)
     SurfaceView svPlay;
 
@@ -78,8 +79,14 @@ public class VedioPlayActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vedio_play_activity);
         ButterKnife.bind(this);
+        bindEvents();
         getData();
         initData();
+    }
+
+    private void bindEvents() {
+        rlHomePage.setOnFocusChangeListener(this);
+        ivPlay.setOnFocusChangeListener(this);
     }
 
     public void onPlay() {
@@ -114,13 +121,19 @@ public class VedioPlayActivity extends BaseActivity {
         final String videoUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getVideofile())).toString();
         mMediaPlayer = new MediaPlayer();
         SurfaceHolder surfaceHolder = svPlay.getHolder();
-        // 使用唤醒锁
-//        mMediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
         mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
+            showDuration(mediaPlayer);
             showLoading(false);
             mediaPlayer.start();
+            mHandler.post(mTicker);
+            ivPlay.setImageResource(R.drawable.audio_pause_selector);
         });
-        mMediaPlayer.setOnCompletionListener(mp -> mMediaPlayer.start());
+        mMediaPlayer.setOnCompletionListener(mp -> {
+            showDuration(mMediaPlayer);
+            showLoading(false);
+            mMediaPlayer.start();
+            ivPlay.setImageResource(R.drawable.audio_pause_selector);
+        });
         mMediaPlayer.setOnCompletionListener(mediaPlayer -> onPlay());
         surfaceHolder.addCallback(new SurfaceHolder.Callback() {
             @Override
@@ -139,7 +152,6 @@ public class VedioPlayActivity extends BaseActivity {
                     mMediaPlayer.reset();
                     mMediaPlayer.setDisplay(surfaceHolder);
                     mMediaPlayer.setDataSource(VedioPlayActivity.this, Uri.parse(videoUrl));
-//                    mMediaPlayer.prepare();
                     mMediaPlayer.prepareAsync();
                 } catch (Exception e) {
                     showLoading(false);
@@ -161,31 +173,43 @@ public class VedioPlayActivity extends BaseActivity {
             }
         });
         svPlay.setOnTouchListener((view, motionEvent) -> {
-            switch (motionEvent.getAction()) {
-                case MotionEvent.ACTION_DOWN:
-                    if (mMediaPlayer.isPlaying()) {
-                        mMediaPlayer.pause();
-                    } else {
-                        mMediaPlayer.start();
-                    }
-                    break;
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                if (mMediaPlayer.isPlaying()) {
+                    mMediaPlayer.pause();
+                    ivPlay.setImageResource(R.drawable.audio_play_selector);
+                } else {
+                    mMediaPlayer.start();
+                    ivPlay.setImageResource(R.drawable.audio_pause_selector);
+                }
             }
             return true;
         });
-//        videoPlay.setVideoPath(videoUrl);
-//        videoPlay.setMediaController(new MediaController(this));
-//        videoPlay.setOnPreparedListener(mp -> {
-//            mp.setOnInfoListener((mp1, what, extra) ->  {
-//                    if (what == MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START) {
-//                        videoPlay.setBackgroundColor(Color.TRANSPARENT);
-//                    }
-//                return true;
-//            });
-//            videoPlay.start();
-//        });
-//        videoPlay.setOnCompletionListener(mp -> videoPlay.start());
-//        videoPlay.setOnCompletionListener(mediaPlayer -> onPlay());
-//        videoPlay.requestFocus();
+    }
+
+    private void showDuration(MediaPlayer mediaPlayer) {
+        int duration = mediaPlayer.getDuration() / 1000;
+        sbPlay.setMax(mediaPlayer.getDuration());
+        int minute = duration / 60;
+        int second = duration % 60;
+        StringBuilder builder = new StringBuilder();
+
+        if (minute == 0) {
+            builder.append("00:");
+        } else if (minute > 0 && minute < 10) {
+            builder.append("0").append(minute).append(":");
+        } else {
+            builder.append(minute).append(":");
+        }
+
+        if (second >= 0 && second < 10) {
+            builder.append("0").append(second);
+        } else {
+            builder.append(second);
+        }
+        tvPlayTime.setText(builder.toString());
+        ivPlay.requestFocus();
+        ivPlay.setFocusable(true);
+        obtainViewFocus(ivPlay);
     }
 
     public void showLoading(boolean show) {
@@ -194,10 +218,36 @@ public class VedioPlayActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
+        mHandler.removeCallbacks(mTicker);
         if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
             mMediaPlayer.stop();
             mMediaPlayer.release();
         }
         super.onDestroy();
     }
+
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        if (b) {
+            obtainViewFocus(view);
+        } else {
+            loseViewFocus(view);
+        }
+    }
+
+    private Handler mHandler = new Handler();
+
+    private final Runnable mTicker = new Runnable() {
+
+        @Override
+        public void run() {
+            if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
+                sbPlay.setProgress(mMediaPlayer.getCurrentPosition());
+            }
+
+            long now = SystemClock.uptimeMillis();
+            long next = now + (100 - now % 100);
+            mHandler.postAtTime(mTicker, next);
+        }
+    };
 }

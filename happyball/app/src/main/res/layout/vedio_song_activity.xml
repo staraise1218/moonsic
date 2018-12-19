@@ -11,6 +11,8 @@
         <RelativeLayout
             android:id="@+id/rl_homepage"
             android:focusable="true"
+            android:nextFocusUp="@id/rl_song_sing"
+            android:nextFocusDown="@id/iv_song_one_first"
             style="@style/home_pager">
 
             <ImageView
@@ -60,6 +62,12 @@
                     android:id="@+id/tv_song_one_first"
                     style="@style/center_text_twenty"
                     android:text="天 边 飘 来 一 片 云" />
+
+                <ImageView
+                    android:id="@+id/iv_song_one_first"
+                    android:nextFocusDown="@id/iv_song_one_second"
+                    android:nextFocusUp="@id/rl_song_accompaniment"
+                    style="@style/song_horn" />
             </LinearLayout>
 
             <LinearLayout
@@ -71,6 +79,12 @@
                     android:id="@+id/tv_song_one_second"
                     style="@style/center_text_twenty"
                     android:text="突 然 变 得 黑 漆 漆" />
+
+                <ImageView
+                    android:id="@+id/iv_song_one_second"
+                    android:nextFocusUp="@id/iv_song_one_first"
+                    android:nextFocusDown="@id/iv_song_one_third"
+                    style="@style/song_horn" />
             </LinearLayout>
 
             <LinearLayout
@@ -82,6 +96,12 @@
                     android:id="@+id/tv_song_one_third"
                     style="@style/center_text_twenty"
                     android:text="云 朵 闪 出 一 道 光" />
+
+                <ImageView
+                    android:id="@+id/iv_song_one_third"
+                    android:nextFocusUp="@id/iv_song_one_second"
+                    android:nextFocusDown="@id/iv_song_one_four"
+                    style="@style/song_horn" />
             </LinearLayout>
 
             <LinearLayout
@@ -93,6 +113,12 @@
                     android:id="@+id/tv_song_one_four"
                     style="@style/center_text_twenty"
                     android:text="轰 隆 轰 隆 震 天 响" />
+
+                <ImageView
+                    android:id="@+id/iv_song_one_four"
+                    android:nextFocusUp="@id/iv_song_one_third"
+                    android:nextFocusDown="@id/iv_song_two_first"
+                    style="@style/song_horn" />
             </LinearLayout>
 
             <LinearLayout
@@ -108,6 +134,12 @@
                     android:id="@+id/tv_song_two_first"
                     style="@style/center_text_twenty"
                     android:text="iPad 手 机 充 电 器" />
+
+                <ImageView
+                    android:id="@+id/iv_song_two_first"
+                    android:nextFocusUp="@id/iv_song_one_four"
+                    android:nextFocusDown="@id/iv_song_two_second"
+                    style="@style/song_horn" />
             </LinearLayout>
 
             <LinearLayout
@@ -119,6 +151,12 @@
                     android:id="@+id/tv_song_two_second"
                     style="@style/center_text_twenty"
                     android:text="电 脑 开 关 电 视 机" />
+
+                <ImageView
+                    android:id="@+id/iv_song_two_second"
+                    android:nextFocusUp="@id/iv_song_two_first"
+                    android:nextFocusDown="@id/iv_song_two_third"
+                    style="@style/song_horn" />
             </LinearLayout>
 
             <LinearLayout
@@ -130,6 +168,12 @@
                     android:id="@+id/tv_song_two_third"
                     style="@style/center_text_twenty"
                     android:text="打 雷 下 雨 要 关 闭" />
+
+                <ImageView
+                    android:id="@+id/iv_song_two_third"
+                    android:nextFocusUp="@id/iv_song_two_second"
+                    android:nextFocusDown="@id/iv_song_two_four"
+                    style="@style/song_horn" />
             </LinearLayout>
 
             <LinearLayout
@@ -141,6 +185,12 @@
                     android:id="@+id/tv_song_two_four"
                     style="@style/center_text_twenty"
                     android:text="安 全 用 电 放 第 一" />
+
+                <ImageView
+                    android:id="@+id/iv_song_two_four"
+                    android:nextFocusUp="@id/iv_song_two_third"
+                    android:nextFocusDown="@style/home_pager"
+                    style="@style/song_horn"/>
             </LinearLayout>
 
         </RelativeLayout>
@@ -153,13 +203,14 @@
             android:layout_marginTop="254dp"
             android:layout_toLeftOf="@+id/rl_song_lyrics"
             android:focusable="true"
-            android:nextFocusUp="@id/rl_back"
+            android:nextFocusUp="@id/rl_homepage"
             android:nextFocusDown="@id/rl_song_accompaniment">
 
             <ImageView
                 android:id="@+id/iv_song_sing"
                 android:layout_width="160dp"
                 android:layout_height="64dp"
+                android:padding="8dp"
                 android:src="@mipmap/song_sing" />
 
             <TextView
@@ -176,12 +227,14 @@
             android:layout_marginTop="30dp"
             android:focusable="true"
             android:nextFocusUp="@id/rl_song_sing"
-            android:nextFocusDown="@id/rl_homepage">
+            android:nextFocusRight="@id/iv_song_one_first"
+            android:nextFocusDown="@id/iv_song_one_first">
 
             <ImageView
                 android:id="@+id/iv_song_accompaniment"
                 android:layout_width="160dp"
                 android:layout_height="64dp"
+                android:padding="8dp"
                 android:src="@mipmap/song_accompaniment" />
 
             <TextView

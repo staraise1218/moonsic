@@ -122,6 +122,7 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
 
     private Episode mEpisode;
     private List<SingleDance> mSingleDances = new ArrayList<>(8);
+    private ArrayList<String> mSingleDanceUrls = new ArrayList<>(8);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -311,6 +312,11 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                     ivDanceEight.setVisibility(View.GONE);
                     break;
         }
+
+        for (SingleDance singleDance : mSingleDances) {
+            String videoUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(singleDance.getVideo())).toString();
+            mSingleDanceUrls.add(videoUrl);
+        }
         showLoading(false);
     }
 
@@ -327,49 +333,57 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
     @OnClick({R.id.rl_dance_first, R.id.iv_dance_first})
     public void onDanceFirst() {
         startActivity(new Intent(VedioDanceActivity.this, SingleDancePlayActivity.class)
-                                .putExtra(SystemConfig.SINGLEDANCE, mSingleDances.get(0)));
+                                .putStringArrayListExtra(SystemConfig.SINGLE_DANCE, mSingleDanceUrls)
+                                .putExtra(SystemConfig.SINGLE_DANCE_PLAYING_INDEXX, 0));
     }
 
     @OnClick({R.id.rl_dance_second, R.id.iv_dance_second})
     public void onDanceSecond() {
         startActivity(new Intent(VedioDanceActivity.this, SingleDancePlayActivity.class)
-                .putExtra(SystemConfig.SINGLEDANCE, mSingleDances.get(1)));
+                .putStringArrayListExtra(SystemConfig.SINGLE_DANCE, mSingleDanceUrls)
+                .putExtra(SystemConfig.SINGLE_DANCE_PLAYING_INDEXX, 1));
     }
 
     @OnClick({R.id.rl_dance_third, R.id.iv_dance_third})
     public void onDanceThird() {
         startActivity(new Intent(VedioDanceActivity.this, SingleDancePlayActivity.class)
-                .putExtra(SystemConfig.SINGLEDANCE, mSingleDances.get(2)));
+                .putStringArrayListExtra(SystemConfig.SINGLE_DANCE, mSingleDanceUrls)
+                .putExtra(SystemConfig.SINGLE_DANCE_PLAYING_INDEXX, 2));
     }
 
     @OnClick({R.id.rl_dance_four, R.id.iv_dance_four})
     public void onDanceFour() {
         startActivity(new Intent(VedioDanceActivity.this, SingleDancePlayActivity.class)
-                .putExtra(SystemConfig.SINGLEDANCE, mSingleDances.get(3)));
+                .putStringArrayListExtra(SystemConfig.SINGLE_DANCE, mSingleDanceUrls)
+                .putExtra(SystemConfig.SINGLE_DANCE_PLAYING_INDEXX, 3));
     }
 
     @OnClick({R.id.rl_dance_five, R.id.iv_dance_five})
     public void onDanceFive() {
         startActivity(new Intent(VedioDanceActivity.this, SingleDancePlayActivity.class)
-                .putExtra(SystemConfig.SINGLEDANCE, mSingleDances.get(4)));
+                .putStringArrayListExtra(SystemConfig.SINGLE_DANCE, mSingleDanceUrls)
+                .putExtra(SystemConfig.SINGLE_DANCE_PLAYING_INDEXX, 4));
     }
 
     @OnClick({R.id.rl_dance_six, R.id.iv_dance_six})
     public void onDanceSix() {
         startActivity(new Intent(VedioDanceActivity.this, SingleDancePlayActivity.class)
-                .putExtra(SystemConfig.SINGLEDANCE, mSingleDances.get(5)));
+                .putStringArrayListExtra(SystemConfig.SINGLE_DANCE, mSingleDanceUrls)
+                .putExtra(SystemConfig.SINGLE_DANCE_PLAYING_INDEXX, 5));
     }
 
     @OnClick({R.id.rl_dance_seven, R.id.iv_dance_seven})
     public void onDanceSeven() {
         startActivity(new Intent(VedioDanceActivity.this, SingleDancePlayActivity.class)
-                .putExtra(SystemConfig.SINGLEDANCE, mSingleDances.get(6)));
+                .putStringArrayListExtra(SystemConfig.SINGLE_DANCE, mSingleDanceUrls)
+                .putExtra(SystemConfig.SINGLE_DANCE_PLAYING_INDEXX, 6));
     }
 
     @OnClick({R.id.rl_dance_eight, R.id.iv_dance_eight})
     public void onDanceEight() {
         startActivity(new Intent(VedioDanceActivity.this, SingleDancePlayActivity.class)
-                .putExtra(SystemConfig.SINGLEDANCE, mSingleDances.get(7)));
+                .putStringArrayListExtra(SystemConfig.SINGLE_DANCE, mSingleDanceUrls)
+                .putExtra(SystemConfig.SINGLE_DANCE_PLAYING_INDEXX, 7));
     }
 
     @Override

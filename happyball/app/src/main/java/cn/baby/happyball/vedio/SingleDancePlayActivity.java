@@ -12,7 +12,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,14 +24,12 @@ import butterknife.OnClick;
 import cn.baby.happyball.BaseActivity;
 import cn.baby.happyball.MainActivity;
 import cn.baby.happyball.R;
-import cn.baby.happyball.bean.SingleDance;
-import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
 
 /**
  * @author DRH
  */
-public class SingleDancePlayActivity extends BaseActivity {
+public class SingleDancePlayActivity extends BaseActivity implements View.OnFocusChangeListener {
 
     /**
      * 主页
@@ -50,8 +52,8 @@ public class SingleDancePlayActivity extends BaseActivity {
     ImageView ivPlay;
     @BindView(R.id.tv_play_number)
     TextView tvPlayNumber;
-    @BindView(R.id.pb_play)
-    ProgressBar pbPlay;
+    @BindView(R.id.sb_play)
+    SeekBar sbPlay;
     @BindView(R.id.tv_play_time)
     TextView tvPlayTime;
     @BindView(R.id.sv_play)
@@ -63,16 +65,30 @@ public class SingleDancePlayActivity extends BaseActivity {
     @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
 
+    /**
+     * 下一个
+     */
+    @BindView(R.id.rl_dance_next)
+    RelativeLayout rlDanceNext;
+
     private MediaPlayer mMediaPlayer;
-    private SingleDance mSingleDance;
+    private SurfaceHolder mSurfaceHolder;
+    private List<String> mSingleDanceUrls = new ArrayList<>(8);
+    private int mPlayingIndex;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vedio_play_activity);
+        setContentView(R.layout.vedio_play_activity_dance);
         ButterKnife.bind(this);
+        bindEvents();
         getData();
         initData();
+    }
+
+    private void bindEvents() {
+        rlHomePage.setOnFocusChangeListener(this);
+        rlDanceNext.setOnFocusChangeListener(this);
     }
 
     @OnClick({R.id.iv_back, R.id.rl_back})
@@ -85,21 +101,60 @@ public class SingleDancePlayActivity extends BaseActivity {
         startActivity(new Intent(SingleDancePlayActivity.this, MainActivity.class));
     }
 
+    @OnClick(R.id.rl_dance_next)
+    public void onNext() {
+        mPlayingIndex = mPlayingIndex + 1;
+        if (mPlayingIndex == mSingleDanceUrls.size()) {
+            mPlayingIndex = 0;
+        }
+        playVedio(mSingleDanceUrls.get(mPlayingIndex));
+    }
+
+    /**
+     * 视频切换
+     *
+     * @param vedioUrl
+     */
+    private void playVedio(String vedioUrl) {
+        showLoading(true);
+        if (mMediaPlayer == null) {
+            mMediaPlayer = new MediaPlayer();
+            mSurfaceHolder = svPlay.getHolder();
+            mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
+                showLoading(false);
+                mediaPlayer.start();
+            });
+            mMediaPlayer.setOnCompletionListener(mp -> {
+                showLoading(false);
+                mMediaPlayer.start();
+            });
+        }
+        try {
+            mMediaPlayer.reset();
+            mMediaPlayer.setDisplay(mSurfaceHolder);
+            mMediaPlayer.setDataSource(SingleDancePlayActivity.this, Uri.parse(vedioUrl));
+            mMediaPlayer.prepareAsync();
+        } catch (Exception e) {
+            showLoading(false);
+        }
+    }
+
     private void getData() {
-        mSingleDance = (SingleDance) getIntent().getSerializableExtra(SystemConfig.SINGLEDANCE);
+        mSingleDanceUrls = getIntent().getStringArrayListExtra(SystemConfig.SINGLE_DANCE);
+        mPlayingIndex = getIntent().getIntExtra(SystemConfig.SINGLE_DANCE_PLAYING_INDEXX, 0);
     }
 
     private void initData() {
         showLoading(true);
-        final String videoUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mSingleDance.getVideo())).toString();
+
         mMediaPlayer = new MediaPlayer();
-        SurfaceHolder surfaceHolder = svPlay.getHolder();
+        mSurfaceHolder = svPlay.getHolder();
         mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
             showLoading(false);
             mediaPlayer.start();
         });
         mMediaPlayer.setOnCompletionListener(mp -> mMediaPlayer.start());
-        surfaceHolder.addCallback(new SurfaceHolder.Callback() {
+        mSurfaceHolder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
                 if (mMediaPlayer == null) {
@@ -114,7 +169,7 @@ public class SingleDancePlayActivity extends BaseActivity {
                 try {
                     mMediaPlayer.reset();
                     mMediaPlayer.setDisplay(surfaceHolder);
-                    mMediaPlayer.setDataSource(SingleDancePlayActivity.this, Uri.parse(videoUrl));
+                    mMediaPlayer.setDataSource(SingleDancePlayActivity.this, Uri.parse(mSingleDanceUrls.get(mPlayingIndex)));
                     mMediaPlayer.prepareAsync();
                 } catch (Exception e) {
                     showLoading(false);
@@ -151,5 +206,14 @@ public class SingleDancePlayActivity extends BaseActivity {
 
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void onFocusChange(View view, boolean b) {
+        if (b) {
+            obtainViewFocus(view);
+        } else{
+            loseViewFocus(view);
+        }
     }
 }

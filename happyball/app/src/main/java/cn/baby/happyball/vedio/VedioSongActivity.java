@@ -23,6 +23,9 @@ import cn.baby.happyball.bean.Episode;
 import cn.baby.happyball.constant.HttpConstant;
 import cn.baby.happyball.constant.SystemConfig;
 
+/**
+ * @author DRH
+ */
 public class VedioSongActivity extends BaseActivity implements View.OnFocusChangeListener {
 
     /**
@@ -62,20 +65,44 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
      */
     @BindView(R.id.tv_song_one_first)
     TextView tvSongOneFirst;
+    @BindView(R.id.iv_song_one_first)
+    ImageView ivSongOneFirst;
+
     @BindView(R.id.tv_song_one_second)
     TextView tvSongOneSecond;
+    @BindView(R.id.iv_song_one_second)
+    ImageView ivSongOneSecond;
+
     @BindView(R.id.tv_song_one_third)
     TextView tvSongOneThird;
+    @BindView(R.id.iv_song_one_third)
+    ImageView ivSongOneThird;
+
     @BindView(R.id.tv_song_one_four)
     TextView tvSongOneFour;
+    @BindView(R.id.iv_song_one_four)
+    ImageView ivSongOneFour;
+    ;
+
     @BindView(R.id.tv_song_two_first)
     TextView tvSongTwoFirst;
+    @BindView(R.id.iv_song_two_first)
+    ImageView ivSongTwoFirst;
+
     @BindView(R.id.tv_song_two_second)
     TextView tvSongTwoSecond;
+    @BindView(R.id.iv_song_two_second)
+    ImageView ivSongTwoSecond;
+
     @BindView(R.id.tv_song_two_third)
     TextView tvSongTwoThird;
+    @BindView(R.id.iv_song_two_third)
+    ImageView ivSongTwoThird;
+
     @BindView(R.id.tv_song_two_four)
     TextView tvSongTwoFour;
+    @BindView(R.id.iv_song_two_four)
+    ImageView ivSongTwoFour;
 
     /**
      * 加载
@@ -98,10 +125,18 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     }
 
     public void bindEvents() {
-        rlBack.setOnFocusChangeListener(this);
         rlHomePage.setOnFocusChangeListener(this);
         rlSongAccompaniment.setOnFocusChangeListener(this);
         rlSongSing.setOnFocusChangeListener(this);
+
+        ivSongOneFirst.setOnFocusChangeListener(this);
+        ivSongOneSecond.setOnFocusChangeListener(this);
+        ivSongOneThird.setOnFocusChangeListener(this);
+        ivSongOneFour.setOnFocusChangeListener(this);
+        ivSongTwoFirst.setOnFocusChangeListener(this);
+        ivSongTwoSecond.setOnFocusChangeListener(this);
+        ivSongTwoThird.setOnFocusChangeListener(this);
+        ivSongTwoFour.setOnFocusChangeListener(this);
     }
 
     public void getData() {
@@ -114,8 +149,6 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
         mMediaPlayer = new MediaPlayer();
         try {
             mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            // 使用唤醒锁
-//            mMediaPlayer.setWakeMode(getApplicationContext(), PowerManager.PARTIAL_WAKE_LOCK);
             mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(songUrl));
             mMediaPlayer.prepare();
         } catch (Exception e) {
@@ -126,10 +159,13 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
             showLoading(false);
             mediaPlayer.start();
         });
-        mMediaPlayer.setOnCompletionListener(mediaPlayer -> play() );
-//        obtainViewFocus(rlSongSing);
-//        rlSongSing.requestFocus();
-//        rlSongSing.setFocusable(true);
+        mMediaPlayer.setOnCompletionListener(mediaPlayer -> play());
+
+        obtainViewFocus(rlSongSing);
+        rlSongSing.requestFocus();
+        rlSongSing.setFocusable(true);
+        rlSongSing.setNextFocusUpId(R.id.rl_homepage);
+        rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
     }
 
     private void play() {
@@ -158,40 +194,41 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
 
     @OnClick({R.id.iv_song_accompaniment, R.id.rl_song_accompaniment})
     public void onSongAccompaniment() {
-        showLoading(true);
+        showHorn(false);
         if (mMediaPlayer != null) {
             mSeek = mMediaPlayer.getCurrentPosition();
         } else {
             mMediaPlayer = new MediaPlayer();
         }
         String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getAccompaniment_file())).toString();
-        try {
-            mMediaPlayer.reset();
-            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(songUrl));
-            mMediaPlayer.prepare();
-        } catch (Exception e) {
-            showLoading(false);
-            Toast.makeText(VedioSongActivity.this, "音频加载失败", Toast.LENGTH_SHORT).show();
-        }
-        mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
-            showLoading(false);
-            if (mSeek != 0) {
-                mediaPlayer.seekTo(mSeek);
-            }
-            mediaPlayer.start();
-        });
+        playMusic(songUrl);
     }
 
     @OnClick({R.id.iv_song_sing, R.id.rl_song_sing})
     public void onSongSing() {
-        showLoading(true);
+        showHorn(true);
         if (mMediaPlayer != null) {
             mSeek = mMediaPlayer.getCurrentPosition();
         } else {
             mMediaPlayer = new MediaPlayer();
         }
         String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+        playMusic(songUrl);
+    }
+
+    @OnClick({R.id.iv_song_one_first, R.id.rl_song_one_first})
+    public void onPlayOneFirst() {
+        if (ivSongOneFirst.getVisibility() == View.VISIBLE) {
+            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+            playMusic(songUrl);
+        }
+    }
+
+    private void playMusic(String songUrl) {
+        showLoading(true);
+        if (mMediaPlayer == null) {
+            mMediaPlayer = new MediaPlayer();
+        }
         try {
             mMediaPlayer.reset();
             mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -203,19 +240,185 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
         }
         mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
             showLoading(false);
-            if (mSeek != 0) {
-                mediaPlayer.seekTo(mSeek);
-            }
             mediaPlayer.start();
         });
     }
 
+    @OnClick({R.id.iv_song_one_second, R.id.rl_song_one_second})
+    public void onPlayOneSecond() {
+        if (ivSongOneSecond.getVisibility() == View.VISIBLE) {
+            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+            playMusic(songUrl);
+        }
+    }
+
+    @OnClick({R.id.iv_song_one_third, R.id.rl_song_one_third})
+    public void onPlayOneThird() {
+        if (ivSongOneThird.getVisibility() == View.VISIBLE) {
+            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+            playMusic(songUrl);
+        }
+    }
+
+    @OnClick({R.id.iv_song_one_four, R.id.rl_song_one_four})
+    public void onPlayOneFour() {
+        if (ivSongOneFour.getVisibility() == View.VISIBLE) {
+            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+            playMusic(songUrl);
+        }
+    }
+
+    @OnClick({R.id.iv_song_two_first, R.id.rl_song_two_first})
+    public void onPlayTwoFirst() {
+        if (ivSongTwoFirst.getVisibility() == View.VISIBLE) {
+            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+            playMusic(songUrl);
+        }
+    }
+
+    @OnClick({R.id.iv_song_two_second, R.id.rl_song_two_second})
+    public void onPlayTwoSecond() {
+        if (ivSongTwoSecond.getVisibility() == View.VISIBLE) {
+            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+            playMusic(songUrl);
+        }
+    }
+
+    @OnClick({R.id.iv_song_two_third, R.id.rl_song_two_third})
+    public void onPlayTwoThird() {
+        if (ivSongTwoThird.getVisibility() == View.VISIBLE) {
+            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+            playMusic(songUrl);
+        }
+    }
+
+    @OnClick({R.id.iv_song_two_four, R.id.rl_song_two_four})
+    public void onPlayTwoFour() {
+        if (ivSongTwoFour.getVisibility() == View.VISIBLE) {
+            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+            playMusic(songUrl);
+        }
+    }
+
     @Override
     public void onFocusChange(View view, boolean b) {
-        if (b) {
-            obtainViewFocus(view);
-        } else {
-            loseViewFocus(view);
+        switch (view.getId()) {
+            case R.id.rl_homepage:
+                if (b) {
+                    obtainViewFocus(rlHomePage);
+                    rlHomePage.setNextFocusDownId(R.id.rl_song_sing);
+                } else {
+                    loseViewFocus(rlHomePage);
+                }
+                break;
+            case R.id.rl_song_sing:
+                if (b) {
+                    obtainViewFocus(rlSongSing);
+                    rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
+                    rlSongSing.setNextFocusUpId(R.id.rl_homepage);
+                } else {
+                    loseViewFocus(rlSongSing);
+                }
+                break;
+            case R.id.rl_song_accompaniment:
+                if (b) {
+                    obtainViewFocus(rlSongAccompaniment);
+                    rlSongAccompaniment.setNextFocusUpId(R.id.rl_song_sing);
+                    rlSongAccompaniment.setNextFocusDownId(R.id.rl_song_one_first);
+                } else {
+                    loseViewFocus(rlSongAccompaniment);
+                }
+                break;
+            case R.id.iv_song_one_first:
+                if (b) {
+                    ivSongOneFirst.setImageResource(R.mipmap.song_playing_pressed);
+                    obtainViewFocus(ivSongOneFirst);
+                    ivSongOneFirst.setNextFocusUpId(R.id.iv_song_accompaniment);
+                    ivSongOneFirst.setNextFocusDownId(R.id.iv_song_one_second);
+                } else {
+                    ivSongOneFirst.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSongOneFirst);
+                }
+                break;
+            case R.id.iv_song_one_second:
+                if (b) {
+                    ivSongOneSecond.setImageResource(R.mipmap.song_playing_pressed);
+                    obtainViewFocus(ivSongOneSecond);
+                    ivSongOneSecond.setNextFocusUpId(R.id.iv_song_one_first);
+                    ivSongOneSecond.setNextFocusDownId(R.id.iv_song_one_third);
+                } else {
+                    ivSongOneSecond.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSongOneSecond);
+                }
+                break;
+            case R.id.iv_song_one_third:
+                if (b) {
+                    ivSongOneThird.setImageResource(R.mipmap.song_playing_pressed);
+                    obtainViewFocus(ivSongOneThird);
+                    ivSongOneThird.setNextFocusUpId(R.id.iv_song_one_second);
+                    ivSongOneThird.setNextFocusDownId(R.id.iv_song_one_four);
+                } else {
+                    ivSongOneThird.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSongOneThird);
+                }
+                break;
+            case R.id.iv_song_one_four:
+                if (b) {
+                    ivSongOneFour.setImageResource(R.mipmap.song_playing_pressed);
+                    obtainViewFocus(ivSongOneFour);
+                    ivSongOneFour.setNextFocusUpId(R.id.iv_song_one_third);
+                    ivSongOneFour.setNextFocusDownId(R.id.iv_song_two_first);
+                } else {
+                    ivSongOneFour.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSongOneFour);
+                }
+                break;
+            case R.id.iv_song_two_first:
+                if (b) {
+                    ivSongTwoFirst.setImageResource(R.mipmap.song_playing_pressed);
+                    obtainViewFocus(ivSongTwoFirst);
+                    ivSongTwoFirst.setNextFocusUpId(R.id.iv_song_one_four);
+                    ivSongTwoFirst.setNextFocusDownId(R.id.iv_song_two_second);
+                } else {
+                    ivSongTwoFirst.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSongTwoFirst);
+                }
+                break;
+            case R.id.iv_song_two_second:
+                if (b) {
+                    ivSongTwoSecond.setImageResource(R.mipmap.song_playing_pressed);
+                    obtainViewFocus(ivSongTwoSecond);
+                    ivSongTwoSecond.setNextFocusUpId(R.id.iv_song_two_first);
+                    ivSongTwoSecond.setNextFocusDownId(R.id.iv_song_two_third);
+                } else {
+                    ivSongTwoSecond.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSongTwoSecond);
+                }
+                break;
+            case R.id.iv_song_two_third:
+                if (b) {
+                    ivSongTwoThird.setImageResource(R.mipmap.song_playing_pressed);
+                    obtainViewFocus(ivSongTwoThird);
+                    ivSongTwoThird.setNextFocusUpId(R.id.iv_song_two_second);
+                    ivSongTwoThird.setNextFocusDownId(R.id.iv_song_two_four);
+                } else {
+                    ivSongTwoThird.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSongTwoThird);
+                }
+                break;
+            case R.id.iv_song_two_four:
+                if (b) {
+                    ivSongTwoFour.setImageResource(R.mipmap.song_playing_pressed);
+                    obtainViewFocus(ivSongTwoFour);
+                    ivSongTwoFour.setNextFocusUpId(R.id.iv_song_two_third);
+                    ivSongTwoFour.setNextFocusDownId(R.id.rl_homepage);
+                } else {
+                    ivSongTwoFour.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSongTwoFour);
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -230,5 +433,16 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
 
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    public void showHorn(boolean show) {
+        ivSongOneFirst.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        ivSongOneSecond.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        ivSongOneThird.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        ivSongOneFour.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        ivSongTwoFirst.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        ivSongTwoSecond.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        ivSongTwoThird.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        ivSongTwoFour.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
     }
 }

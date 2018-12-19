@@ -138,8 +138,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     }
 
     private void initData() {
+        tvTitle.setText(R.string.audio_title);
         if (mMode == 0) {
-            tvTitle.setText(R.string.vedio_title);
             obtainViewFocus(rlVedio);
             loseViewFocus(rlAudio);
             rlVedio.requestFocus();
@@ -147,7 +147,6 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             rlVedio.setNextFocusRightId(R.id.rl_reception_last);
             rlVedio.setNextFocusDownId(R.id.rl_audio);
         } else {
-            tvTitle.setText(R.string.audio_title);
             obtainViewFocus(rlAudio);
             loseViewFocus(rlVedio);
             rlAudio.requestFocus();

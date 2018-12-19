@@ -143,6 +143,7 @@ public class VedioChoiceActivity extends BaseActivity implements View.OnFocusCha
                     mEpisodes = JSON.parseArray(data, Episode.class);
                     runOnUiThread(() -> initData());
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });

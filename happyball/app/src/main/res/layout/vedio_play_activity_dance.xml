@@ -22,8 +22,9 @@
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
-            style="@style/home_pager"
-            android:nextFocusDown="@id/iv_play">
+            android:focusable="true"
+            android:nextFocusDown="@style/dance_next_text"
+            style="@style/home_pager">
 
             <ImageView
                 android:id="@+id/iv_homepage"
@@ -43,7 +44,19 @@
 
             <TextView
                 style="@style/home_back_text" />
+        </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/rl_dance_next"
+            android:focusable="true"
+            android:nextFocusUp="@id/rl_homepage"
+            style="@style/dance_next">
+
+            <ImageView
+                style="@style/dance_next_image" />
+
+            <TextView
+                style="@style/dance_next_text" />
         </RelativeLayout>
 
         <LinearLayout
@@ -53,17 +66,16 @@
             android:layout_marginBottom="50dp"
             android:layout_marginLeft="120dp"
             android:layout_marginRight="120dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/iv_play"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:focusable="true"
-                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
-                android:src="@drawable/audio_play_selector" />
+                android:src="@mipmap/play_vedio" />
 
             <TextView
                 android:id="@+id/tv_play_number"
@@ -74,7 +86,6 @@
                 android:layout_weight="0"
                 android:text="@string/playback"
                 android:textSize="@dimen/text_semester"
-                android:visibility="gone"
                 android:textStyle="bold" />
 
             <SeekBar
@@ -82,7 +93,6 @@
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="true"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1" />
@@ -92,10 +102,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="8dp"
                 android:layout_weight="0"
                 android:text="@string/playlength"
-                android:textSize="@dimen/text_song"
+                android:textSize="@dimen/text_semester"
                 android:textStyle="bold" />
         </LinearLayout>
 

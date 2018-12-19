@@ -1,6 +1,8 @@
 package cn.baby.happyball.vedio;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
@@ -57,6 +59,8 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
     TextView tvKnowledgeTitle;
     @BindView(R.id.tv_knowledge_question)
     TextView tvKnowledgeQuestion;
+    @BindView(R.id.iv_speak_question)
+    ImageView ivSpeakQuestion;
 
     @BindView(R.id.rl_knowledge_first)
     RelativeLayout rlKnowledgeFirst;
@@ -98,6 +102,7 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
 
     private Episode mEpisode;
     private Knowledge mKnowledge;
+    private MediaPlayer mMediaPlayer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -112,6 +117,7 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
         rlBack.setOnFocusChangeListener(this);
         rlHomePage.setOnFocusChangeListener(this);
         rlAnswer.setOnFocusChangeListener(this);
+        ivSpeakQuestion.setOnFocusChangeListener(this);
 
         rlKnowledgeFirst.setOnFocusChangeListener(this);
         rlKnowledgeSecond.setOnFocusChangeListener(this);
@@ -225,6 +231,21 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
 
     @OnClick(R.id.iv_answer)
     public void onAnswer() {
+        try {
+            //播放 assets/a2.mp3 音乐文件
+            AssetFileDescriptor fd = getAssets().openFd("biubiubiu.mp3");
+            if (mMediaPlayer != null) {
+                mMediaPlayer.pause();
+                mMediaPlayer.reset();
+            } else {
+                mMediaPlayer = new MediaPlayer();
+            }
+            mMediaPlayer.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(), fd.getLength());
+            mMediaPlayer.prepare();
+            mMediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (mKnowledge != null) {
             if (!mKnowledge.getAnswer().isEmpty()) {
                 for (String s : mKnowledge.getAnswer()) {
@@ -294,16 +315,29 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
                     rlHomePage.requestLayout();
                     rlHomePage.setFocusable(true);
                     rlHomePage.setNextFocusDownId(R.id.rl_answer);
-                    rlHomePage.setNextFocusLeftId(R.id.rl_knowledge_first);
+                    rlHomePage.setNextFocusLeftId(R.id.iv_speak_question);
                 } else {
                     loseViewFocus(rlHomePage);
                 }
+            case R.id.iv_speak_question:
+                if (b) {
+                    ivSpeakQuestion.setImageResource(R.mipmap.song_playing_pressed);
+                    obtainViewFocus(ivSpeakQuestion);
+                    ivSpeakQuestion.requestLayout();
+                    ivSpeakQuestion.setFocusable(true);
+                    ivSpeakQuestion.setNextFocusUpId(R.id.rl_homepage);
+                    ivSpeakQuestion.setNextFocusDownId(R.id.rl_knowledge_first);
+                } else {
+                    ivSpeakQuestion.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSpeakQuestion);
+                }
+                break;
             case R.id.rl_answer:
                 if (b) {
                     obtainViewFocus(rlAnswer);
                     rlAnswer.requestLayout();
                     rlAnswer.setFocusable(true);
-                    rlAnswer.setNextFocusUpId(R.id.rl_homepage);
+                    rlAnswer.setNextFocusUpId(R.id.rl_knowledge_four);
                 } else {
                     loseViewFocus(rlAnswer);
                 }
@@ -313,7 +347,7 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
                     obtainViewFocus(rlKnowledgeFirst);
                     rlKnowledgeFirst.requestLayout();
                     rlKnowledgeFirst.setFocusable(true);
-                    rlKnowledgeFirst.setNextFocusUpId(R.id.rl_homepage);
+                    rlKnowledgeFirst.setNextFocusUpId(R.id.iv_speak_question);
                     rlKnowledgeFirst.setNextFocusRightId(R.id.rl_knowledge_second);
                 } else {
                     loseViewFocus(rlKnowledgeFirst);
@@ -414,5 +448,19 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
                 break;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @OnClick(R.id.iv_speak_question)
+    public void onSpeakQuestion() {
+        try {
+            //播放 assets/a2.mp3 音乐文件
+            AssetFileDescriptor fd = getAssets().openFd("knowledgeQuestion.mp3");
+            mMediaPlayer = new MediaPlayer();
+            mMediaPlayer.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(), fd.getLength());
+            mMediaPlayer.prepare();
+            mMediaPlayer.start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

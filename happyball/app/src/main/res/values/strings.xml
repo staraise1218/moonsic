@@ -25,17 +25,17 @@
     <string name="audio_title">难度选择</string>
     <string name="vedio">视频</string>
     <string name="audio">音频</string>
-    <string name="reception_last_semester">1阶上</string>
-    <string name="reception_next_semester">1阶下</string>
-    <string name="middle_last_semester">2阶上</string>
-    <string name="middle_next_semester">2阶下</string>
-    <string name="big_last_semester">3阶上</string>
-    <string name="big_next_semester">3阶下</string>
+    <string name="reception_last_semester">1阶(上)</string>
+    <string name="reception_next_semester">1阶(下)</string>
+    <string name="middle_last_semester">2阶(上)</string>
+    <string name="middle_next_semester">2阶(下)</string>
+    <string name="big_last_semester">3阶(上)</string>
+    <string name="big_next_semester">3阶(下)</string>
 
     <!-- VedioLesson -->
     <string name="lesson_safe">幼儿安全教育</string>
     <string name="lesson_hygiene">幼儿卫生常识</string>
-    <string name="lesson_nation">名族列车</string>
+    <string name="lesson_nation">民族列车</string>
     <string name="lesson_pop">流行歌舞</string>
     <string name="lesson_world">世界魅力</string>
     <string name="lesson_china">中国魅力</string>
@@ -74,6 +74,9 @@
     <string name="song_lyrics">歌词列表</string>
     <string name="song_sing">导唱</string>
     <string name="song_accompaniment">伴奏</string>
+
+    <!-- VedioDance -->
+    <string name="dance_next">下一个动作</string>
 
     <!-- AudioPlay -->
     <string name="difficult_name">1阶上</string>
