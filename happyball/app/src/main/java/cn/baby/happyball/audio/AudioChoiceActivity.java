@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -131,6 +134,7 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         rlHomePage.setOnFocusChangeListener(this);
         ivAudioLeft.setOnFocusChangeListener(this);
         ivAudioRight.setOnFocusChangeListener(this);
+        lvAudioList.setOnFocusChangeListener(this);
     }
 
     private void getData() {
@@ -189,7 +193,6 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
             default:
                 break;
         }
-
         lvAudioList.addHeaderView(getLayoutInflater().inflate(R.layout.audio_list_item, null));
         Collections.sort(mAudios, (audio1, audio2) -> {
             int i = audio1.getId() - audio2.getId();
@@ -198,13 +201,14 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
             }
             return i;
         });
-        mAudioListAdapter = new AudioListAdapter(getApplicationContext(), mAudios);
+        mAudioListAdapter = new AudioListAdapter(getApplicationContext(), mAudios, mSongFouces);
         lvAudioList.setAdapter(mAudioListAdapter);
+        lvAudioList.setItemsCanFocus(true);
         lvAudioList.setFocusable(false);
 
-        obtainViewFocus(rlPlay);
-        rlPlay.setFocusable(true);
-        rlPlay.setNextFocusLeftId(R.id.iv_audio_left);
+//        obtainViewFocus(rlPlay);
+//        rlPlay.setFocusable(true);
+//        rlPlay.setNextFocusLeftId(R.id.iv_audio_left);
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})
@@ -218,7 +222,7 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
             pauseMusicState();
             mMediaPlayer.pause();
         } else {
-            if (currentPosition == -1) {
+            if (currentPosition == -1 && !mAudios.isEmpty()) {
                 currentPosition = 0;
                 String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mAudios.get(currentPosition).getAudiofile())).toString();
                 playingMusicState(currentPosition);
@@ -232,26 +236,26 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
 
     @OnClick(R.id.iv_audio_left)
     public void onPageLeft() {
-        if (currentPosition == 0 || currentPosition == -1) {
-            currentPosition = mAudios.size();
-        }
-
-        currentPosition = currentPosition - 1;
-        String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mAudios.get(currentPosition).getAudiofile())).toString();
-        playMusic(songUrl, currentPosition);
-        playingMusicState(currentPosition);
+//        if (currentPosition == 0 || currentPosition == -1) {
+//            currentPosition = mAudios.size();
+//        }
+//
+//        currentPosition = currentPosition - 1;
+//        String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mAudios.get(currentPosition).getAudiofile())).toString();
+//        playMusic(songUrl, currentPosition);
+//        playingMusicState(currentPosition);
     }
 
     @OnClick(R.id.iv_audio_right)
     public void onPageRight() {
-        if (currentPosition == mAudios.size() - 1) {
-            currentPosition = 0;
-        }
-
-        currentPosition = currentPosition + 1;
-        String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mAudios.get(currentPosition).getAudiofile())).toString();
-        playMusic(songUrl, currentPosition);
-        playingMusicState(currentPosition);
+//        if (currentPosition == mAudios.size() - 1) {
+//            currentPosition = 0;
+//        }
+//
+//        currentPosition = currentPosition + 1;
+//        String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mAudios.get(currentPosition).getAudiofile())).toString();
+//        playMusic(songUrl, currentPosition);
+//        playingMusicState(currentPosition);
     }
 
     private void pauseMusicState() {
@@ -271,23 +275,7 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
 
     private void playMusic(String songUrl, final int position) {
         showLoading(true);
-        if (mMediaPlayer == null){
-            mMediaPlayer = new MediaPlayer();
-        }
-        try {
-            mMediaPlayer.reset();
-            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(songUrl));
-            mMediaPlayer.prepare();
-        } catch (Exception e) {
-            showLoading(false);
-            Toast.makeText(AudioChoiceActivity.this, "音频加载失败", Toast.LENGTH_SHORT).show();
-        }
-        mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
-            showLoading(false);
-            mediaPlayer.start();
-        });
-        mMediaPlayer.setOnCompletionListener(mediaPlayer -> play(position) );
+        new PlayMusicAsyncTask(position).execute(songUrl);
     }
 
     private void play(int position) {
@@ -326,7 +314,8 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
                         ivPlay.setImageResource(R.mipmap.audio_play_pressed);
                     }
                     tvPlay.setTextColor(ContextCompat.getColor(AudioChoiceActivity.this, R.color.playing_text));
-                    rlPlay.setNextFocusLeftId(R.id.iv_audio_left);
+                    rlPlay.setNextFocusLeftId(R.id.lv_audio_list);
+                    rlPlay.setNextFocusDownId(R.id.lv_audio_list);
                 } else {
                     loseViewFocus(rlPlay);
                     if (isPlaying) {
@@ -446,5 +435,59 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    private AudioListAdapter.ISongFouces mSongFouces = position ->  {
+        if (pbLoading.getVisibility() != View.VISIBLE) {
+            currentPosition = position;
+            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mAudios.get(position).getAudiofile())).toString();
+            playMusic(songUrl, currentPosition);
+            playingMusicState(currentPosition);
+            lvAudioList.setItemsCanFocus(true);
+            lvAudioList.setFocusable(false);
+        }
+    };
+
+    public class PlayMusicAsyncTask extends AsyncTask<String, String, Boolean> {
+
+        private int position;
+
+        public PlayMusicAsyncTask(int position) {
+            this.position = position;
+        }
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+            if (mMediaPlayer == null){
+                mMediaPlayer = new MediaPlayer();
+            }
+            try {
+                mMediaPlayer.reset();
+                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(strings[0]));
+                mMediaPlayer.prepare();
+            } catch (Exception e) {
+                runOnUiThread(() -> {
+                    showLoading(false);
+                    Toast.makeText(AudioChoiceActivity.this, "音频加载失败", Toast.LENGTH_SHORT).show();
+                });
+            }
+            mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
+                runOnUiThread(() -> {
+                    showLoading(false);
+                    mediaPlayer.start();
+                });
+            });
+            mMediaPlayer.setOnCompletionListener(mediaPlayer -> {
+                        runOnUiThread(() ->  play(position));
+                    });
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            showLoading(false);
+        }
     }
 }

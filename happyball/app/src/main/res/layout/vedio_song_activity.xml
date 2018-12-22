@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="160dp"
+                android:layout_marginTop="100dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -117,7 +117,13 @@
                 <ImageView
                     android:id="@+id/iv_song_one_four"
                     android:nextFocusUp="@id/iv_song_one_third"
+                    android:nextFocusRight="@id/iv_song_one"
                     android:nextFocusDown="@id/iv_song_two_first"
+                    style="@style/song_horn" />
+
+                <ImageView
+                    android:id="@+id/iv_song_one"
+                    android:nextFocusLeft="@id/iv_song_one_four"
                     style="@style/song_horn" />
             </LinearLayout>
 
@@ -189,7 +195,13 @@
                 <ImageView
                     android:id="@+id/iv_song_two_four"
                     android:nextFocusUp="@id/iv_song_two_third"
+                    android:nextFocusRight="@id/iv_song_two"
                     android:nextFocusDown="@style/home_pager"
+                    style="@style/song_horn"/>
+
+                <ImageView
+                    android:id="@+id/iv_song_two"
+                    android:nextFocusLeft="@id/iv_song_two_four"
                     style="@style/song_horn"/>
             </LinearLayout>
 

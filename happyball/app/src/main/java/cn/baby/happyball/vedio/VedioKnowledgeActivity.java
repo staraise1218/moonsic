@@ -66,29 +66,21 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
     RelativeLayout rlKnowledgeFirst;
     @BindView(R.id.iv_knowledge_first)
     ImageView ivKnowledgeFirst;
-    @BindView(R.id.tv_knowledge_first)
-    TextView tvKnowledgeFirst;
 
     @BindView(R.id.rl_knowledge_second)
     RelativeLayout rlKnowledgeSecond;
     @BindView(R.id.iv_knowledge_second)
     ImageView ivKnowledgeSecond;
-    @BindView(R.id.tv_knowledge_second)
-    TextView tvKnowledgeSecond;
 
     @BindView(R.id.rl_knowledge_third)
     RelativeLayout rlKnowledgeThird;
     @BindView(R.id.iv_knowledge_third)
     ImageView ivKnowledgeThird;
-    @BindView(R.id.tv_knowledge_third)
-    TextView tvKnowledgeThird;
 
     @BindView(R.id.rl_knowledge_four)
     RelativeLayout rlKnowledgeFour;
     @BindView(R.id.iv_knowledge_four)
     ImageView ivKnowledgeFour;
-    @BindView(R.id.tv_knowledge_four)
-    TextView tvKnowledgeFour;
 
     @BindView(R.id.iv_answer)
     ImageView ivKnowledgeAnswer;
@@ -99,6 +91,14 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
      */
     @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
+    @BindView(R.id.iv_knowledge_first_answer)
+    ImageView ivKnowledgeFirstAnswer;
+    @BindView(R.id.iv_knowledge_second_answer)
+    ImageView ivKnowledgeSecondAnswer;
+    @BindView(R.id.iv_knowledge_third_answer)
+    ImageView ivKnowledgeThirdAnswer;
+    @BindView(R.id.iv_knowledge_four_answer)
+    ImageView ivKnowledgeFourAnswer;
 
     private Episode mEpisode;
     private Knowledge mKnowledge;
@@ -168,50 +168,50 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
                         ivKnowledgeSecond.setVisibility(View.GONE);
                         ivKnowledgeThird.setVisibility(View.GONE);
                         ivKnowledgeFour.setVisibility(View.GONE);
-                        tvKnowledgeFirst.setVisibility(View.GONE);
-                        tvKnowledgeSecond.setVisibility(View.GONE);
-                        tvKnowledgeThird.setVisibility(View.GONE);
-                        tvKnowledgeFour.setVisibility(View.GONE);
+                        ivKnowledgeFirstAnswer.setVisibility(View.GONE);
+                        ivKnowledgeSecondAnswer.setVisibility(View.GONE);
+                        ivKnowledgeThirdAnswer.setVisibility(View.GONE);
+                        ivKnowledgeFourAnswer.setVisibility(View.GONE);
                         break;
                     case 2:
                         loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(0))).toString(), ivKnowledgeFirst);
                         loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(1))).toString(), ivKnowledgeSecond);
                         ivKnowledgeThird.setVisibility(View.GONE);
                         ivKnowledgeFour.setVisibility(View.GONE);
-                        tvKnowledgeFirst.setVisibility(View.GONE);
-                        tvKnowledgeSecond.setVisibility(View.GONE);
-                        tvKnowledgeThird.setVisibility(View.GONE);
-                        tvKnowledgeFour.setVisibility(View.GONE);
+                        ivKnowledgeFirstAnswer.setVisibility(View.GONE);
+                        ivKnowledgeSecondAnswer.setVisibility(View.GONE);
+                        ivKnowledgeThirdAnswer.setVisibility(View.GONE);
+                        ivKnowledgeFourAnswer.setVisibility(View.GONE);
                         break;
                     case 3:
                         loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(0))).toString(), ivKnowledgeFirst);
                         loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(1))).toString(), ivKnowledgeSecond);
                         loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(2))).toString(), ivKnowledgeThird);
                         ivKnowledgeFour.setVisibility(View.GONE);
-                        tvKnowledgeFirst.setVisibility(View.GONE);
-                        tvKnowledgeSecond.setVisibility(View.GONE);
-                        tvKnowledgeThird.setVisibility(View.GONE);
-                        tvKnowledgeFour.setVisibility(View.GONE);
+                        ivKnowledgeFirstAnswer.setVisibility(View.GONE);
+                        ivKnowledgeSecondAnswer.setVisibility(View.GONE);
+                        ivKnowledgeThirdAnswer.setVisibility(View.GONE);
+                        ivKnowledgeFourAnswer.setVisibility(View.GONE);
                         break;
                     case 4:
                         loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(0))).toString(), ivKnowledgeFirst);
                         loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(1))).toString(), ivKnowledgeSecond);
                         loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(2))).toString(), ivKnowledgeThird);
                         loadImage((new StringBuilder().append(HttpConstant.RES_URL).append(mKnowledge.getImages().get(3))).toString(), ivKnowledgeFour);
-                        tvKnowledgeFirst.setVisibility(View.GONE);
-                        tvKnowledgeSecond.setVisibility(View.GONE);
-                        tvKnowledgeThird.setVisibility(View.GONE);
-                        tvKnowledgeFour.setVisibility(View.GONE);
+                        ivKnowledgeFirstAnswer.setVisibility(View.GONE);
+                        ivKnowledgeSecondAnswer.setVisibility(View.GONE);
+                        ivKnowledgeThirdAnswer.setVisibility(View.GONE);
+                        ivKnowledgeFourAnswer.setVisibility(View.GONE);
                         break;
                     default:
                         ivKnowledgeFirst.setVisibility(View.GONE);
                         ivKnowledgeSecond.setVisibility(View.GONE);
                         ivKnowledgeThird.setVisibility(View.GONE);
                         ivKnowledgeFour.setVisibility(View.GONE);
-                        tvKnowledgeFirst.setVisibility(View.GONE);
-                        tvKnowledgeSecond.setVisibility(View.GONE);
-                        tvKnowledgeThird.setVisibility(View.GONE);
-                        tvKnowledgeFour.setVisibility(View.GONE);
+                        ivKnowledgeFirstAnswer.setVisibility(View.GONE);
+                        ivKnowledgeSecondAnswer.setVisibility(View.GONE);
+                        ivKnowledgeThirdAnswer.setVisibility(View.GONE);
+                        ivKnowledgeFourAnswer.setVisibility(View.GONE);
                         break;
                 }
             }
@@ -252,33 +252,29 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
                     switch (Integer.valueOf(s)) {
                         case 1:
                             obtainViewFocus(rlKnowledgeFirst);
-                            tvKnowledgeFirst.setVisibility(View.VISIBLE);
-                            tvKnowledgeFirst.setText(s);
+                            ivKnowledgeFirstAnswer.setVisibility(View.VISIBLE);
                             break;
                         case 2:
                             obtainViewFocus(rlKnowledgeSecond);
-                            tvKnowledgeSecond.setVisibility(View.VISIBLE);
-                            tvKnowledgeSecond.setText(s);
+                            ivKnowledgeSecondAnswer.setVisibility(View.VISIBLE);
                             break;
                         case 3:
                             obtainViewFocus(rlKnowledgeThird);
-                            tvKnowledgeThird.setVisibility(View.VISIBLE);
-                            tvKnowledgeThird.setText(s);
+                            ivKnowledgeThirdAnswer.setVisibility(View.VISIBLE);
                             break;
                         case 4:
                             obtainViewFocus(rlKnowledgeFour);
-                            tvKnowledgeFour.setVisibility(View.VISIBLE);
-                            tvKnowledgeFour.setText(s);
+                            ivKnowledgeFourAnswer.setVisibility(View.VISIBLE);
                             break;
                         default:
                             ivKnowledgeFirst.setVisibility(View.GONE);
                             ivKnowledgeSecond.setVisibility(View.GONE);
                             ivKnowledgeThird.setVisibility(View.GONE);
                             ivKnowledgeFour.setVisibility(View.GONE);
-                            tvKnowledgeFirst.setVisibility(View.GONE);
-                            tvKnowledgeSecond.setVisibility(View.GONE);
-                            tvKnowledgeThird.setVisibility(View.GONE);
-                            tvKnowledgeFour.setVisibility(View.GONE);
+                            ivKnowledgeFirstAnswer.setVisibility(View.GONE);
+                            ivKnowledgeSecondAnswer.setVisibility(View.GONE);
+                            ivKnowledgeThirdAnswer.setVisibility(View.GONE);
+                            ivKnowledgeFourAnswer.setVisibility(View.GONE);
                             break;
                     }
                 }
@@ -396,6 +392,7 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
     }
 
     boolean isFirst = true;
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {

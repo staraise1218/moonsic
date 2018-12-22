@@ -61,9 +61,9 @@ public class BaseActivity extends Activity {
     public void obtainViewFocus(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             //抬高Z轴
-            ViewCompat.animate(view).scaleX(1.10f).scaleY(1.10f).translationZ(1).start();
+            ViewCompat.animate(view).scaleX(1.05f).scaleY(1.05f).translationZ(1).start();
         } else {
-            ViewCompat.animate(view).scaleX(1.10f).scaleY(1.10f).start();
+            ViewCompat.animate(view).scaleX(1.05f).scaleY(1.05f).start();
             ViewGroup parent = (ViewGroup) view.getParent();
             parent.requestLayout();
             parent.invalidate();
@@ -307,7 +307,7 @@ public class BaseActivity extends Activity {
                 mStudyBitmap = loadStudyBitmap(R.mipmap.study, R.mipmap.finish_song);
             }
             if (mKnowledgeBitmap == null) {
-                mKnowledgeBitmap = loadBitmap(R.mipmap.knowledge, R.mipmap.finish_dance);
+                mKnowledgeBitmap = loadStudyBitmap(R.mipmap.knowledge, R.mipmap.finish_dance);
             }
             return true;
         }

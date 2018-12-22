@@ -63,7 +63,7 @@
                 android:padding="10dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
-                android:src="@drawable/audio_play_selector" />
+                android:src="@drawable/vedio_play_selector" />
 
             <TextView
                 android:id="@+id/tv_play_number"

@@ -166,7 +166,7 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
             @Override
             public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
                 if (mMediaPlayer != null) {
-                    mMediaPlayer.stop();
+                    mMediaPlayer.reset();
                     mMediaPlayer.release();
                     mMediaPlayer = null;
                 }
@@ -176,14 +176,25 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 if (mMediaPlayer.isPlaying()) {
                     mMediaPlayer.pause();
-                    ivPlay.setImageResource(R.drawable.audio_play_selector);
+                    ivPlay.setImageResource(R.drawable.vedio_play_selector);
                 } else {
                     mMediaPlayer.start();
-                    ivPlay.setImageResource(R.drawable.audio_pause_selector);
+                    ivPlay.setImageResource(R.drawable.vedio_pause_selector);
                 }
             }
             return true;
         });
+    }
+
+    @OnClick(R.id.iv_play)
+    public void onPlaying() {
+        if (mMediaPlayer.isPlaying()) {
+            mMediaPlayer.pause();
+            ivPlay.setImageResource(R.drawable.vedio_play_selector);
+        } else {
+            mMediaPlayer.start();
+            ivPlay.setImageResource(R.drawable.vedio_pause_selector);
+        }
     }
 
     private void showDuration(MediaPlayer mediaPlayer) {

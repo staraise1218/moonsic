@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,11 +27,13 @@ public class AudioListAdapter extends BaseAdapter {
     private List<Audio> mAudios = new ArrayList<>();
     private LayoutInflater mInflater;
     private int playingIndex = -1;
+    private ISongFouces mSongFouces;
 
-    public AudioListAdapter(Context context, List<Audio> audios) {
+    public AudioListAdapter(Context context, List<Audio> audios, ISongFouces songFouces) {
         mContext = context;
         mAudios = audios;
         mInflater = LayoutInflater.from(mContext);
+        mSongFouces = songFouces;
     }
 
     public void setPlayingIndex(int playingIndex) {
@@ -38,23 +41,31 @@ public class AudioListAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    private void setPlayingTextStatus(ViewHolder viewHolder, int playing_text) {
+        viewHolder.audioId.setTextColor(ContextCompat.getColor(mContext, playing_text));
+        viewHolder.audioTitle.setTextColor(ContextCompat.getColor(mContext, playing_text));
+        viewHolder.audioDuration.setTextColor(ContextCompat.getColor(mContext, playing_text));
+        viewHolder.audioSinger.setTextColor(ContextCompat.getColor(mContext, playing_text));
+        viewHolder.audioAlbum.setTextColor(ContextCompat.getColor(mContext, playing_text));
+    }
+
     @Override
     public int getCount() {
-        return mAudios.isEmpty() ? 0 : mAudios.size();
+        return mAudios == null ? 0 : mAudios.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return mAudios.get(i);
+        return null;
     }
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return 0;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         ViewHolder viewHolder;
         if (view == null) {
             view = mInflater.inflate(R.layout.audio_list_item, null);
@@ -78,16 +89,16 @@ public class AudioListAdapter extends BaseAdapter {
         viewHolder.audioDuration.setText(audio.getTimelong());
         viewHolder.audioSinger.setText(audio.getSinger());
         viewHolder.audioAlbum.setText(audio.getAlbum());
-
+        viewHolder.llAudioListItem.setOnFocusChangeListener((v, b) -> {
+            if (b && mSongFouces != null) {
+                mSongFouces.onPlayMusic(i);
+            }
+        });
         return view;
     }
 
-    private void setPlayingTextStatus(ViewHolder viewHolder, int playing_text) {
-        viewHolder.audioId.setTextColor(ContextCompat.getColor(mContext, playing_text));
-        viewHolder.audioTitle.setTextColor(ContextCompat.getColor(mContext, playing_text));
-        viewHolder.audioDuration.setTextColor(ContextCompat.getColor(mContext, playing_text));
-        viewHolder.audioSinger.setTextColor(ContextCompat.getColor(mContext, playing_text));
-        viewHolder.audioAlbum.setTextColor(ContextCompat.getColor(mContext, playing_text));
+    public interface ISongFouces {
+        void onPlayMusic(int position);
     }
 
     class ViewHolder {
@@ -103,6 +114,8 @@ public class AudioListAdapter extends BaseAdapter {
         TextView audioSinger;
         @BindView(R.id.audio_album)
         TextView audioAlbum;
+        @BindView(R.id.ll_audio_list_item)
+        LinearLayout llAudioListItem;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);

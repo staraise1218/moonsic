@@ -1,9 +1,13 @@
 package cn.baby.happyball.util;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Bitmap.Config;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.widget.Filter;
 
 /**
@@ -177,4 +181,18 @@ public class AlphaFilter extends Filter {
     protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
         //do nothings
     }
+
+    public static Bitmap processBitmap(Bitmap bitmap, Bitmap frame) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        Bitmap resultBitmap = Bitmap.createBitmap(width, height, Config.ARGB_8888);
+        Paint paint = new Paint();
+        Canvas canvas = new Canvas(resultBitmap);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.ADD));
+        canvas.drawBitmap(frame, 0, 0, null);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OUT));
+        canvas.drawBitmap(bitmap, 0 ,0, paint);
+        return resultBitmap;
+    }
+
 }

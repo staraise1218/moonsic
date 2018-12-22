@@ -18,18 +18,12 @@
             android:src="@mipmap/knowledge_frame" />
 
         <ImageView
-            android:layout_width="180dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="324dp"
-            android:layout_marginLeft="1419dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="160dp"
+            android:layout_marginRight="160dp"
             android:src="@mipmap/sun"/>
-
-        <ImageView
-            android:layout_width="214dp"
-            android:layout_height="201dp"
-            android:layout_marginTop="507dp"
-            android:layout_marginLeft="971dp"
-            android:src="@mipmap/star"/>
 
         <RelativeLayout
             android:id="@+id/rl_homepage"
@@ -128,16 +122,10 @@
                 android:layout_height="120dp"
                 android:src="@mipmap/dance_boom" />
 
-            <TextView
-                android:id="@+id/tv_knowledge_first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/iv_knowledge_first_answer"
                 android:layout_below="@+id/iv_knowledge_first"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="电视机"
-                android:textSize="@dimen/text_lesson"
-                android:textStyle="bold" />
+                style="@style/knowledge_answer_image"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -157,16 +145,10 @@
                 android:layout_height="120dp"
                 android:src="@mipmap/dance_boom" />
 
-            <TextView
-                android:id="@+id/tv_knowledge_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/iv_knowledge_second_answer"
                 android:layout_below="@+id/iv_knowledge_second"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="冰箱"
-                android:textSize="@dimen/text_lesson"
-                android:textStyle="bold" />
+                style="@style/knowledge_answer_image" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -186,16 +168,10 @@
                 android:layout_height="120dp"
                 android:src="@mipmap/dance_boom" />
 
-            <TextView
-                android:id="@+id/tv_knowledge_third"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/iv_knowledge_third_answer"
                 android:layout_below="@+id/iv_knowledge_third"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="话筒"
-                android:textSize="@dimen/text_lesson"
-                android:textStyle="bold" />
+                style="@style/knowledge_answer_image" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -215,16 +191,10 @@
                 android:layout_height="120dp"
                 android:src="@mipmap/dance_boom" />
 
-            <TextView
-                android:id="@+id/tv_knowledge_four"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/iv_knowledge_four_answer"
                 android:layout_below="@+id/iv_knowledge_four"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
-                android:text="洗衣机"
-                android:textSize="@dimen/text_lesson"
-                android:textStyle="bold" />
+                style="@style/knowledge_answer_image" />
         </RelativeLayout>
 
         <include layout="@layout/common_progress" />

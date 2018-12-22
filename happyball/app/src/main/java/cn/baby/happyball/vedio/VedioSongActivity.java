@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -109,6 +110,10 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
      */
     @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
+    @BindView(R.id.iv_song_one)
+    ImageView ivSongOne;
+    @BindView(R.id.iv_song_two)
+    ImageView ivSongTwo;
 
     private Episode mEpisode;
     private MediaPlayer mMediaPlayer;
@@ -137,6 +142,8 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
         ivSongTwoSecond.setOnFocusChangeListener(this);
         ivSongTwoThird.setOnFocusChangeListener(this);
         ivSongTwoFour.setOnFocusChangeListener(this);
+        ivSongOne.setOnFocusChangeListener(this);
+        ivSongTwo.setOnFocusChangeListener(this);
     }
 
     public void getData() {
@@ -144,28 +151,15 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     }
 
     public void initData() {
-        showLoading(true);
-        final String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
-        mMediaPlayer = new MediaPlayer();
-        try {
-            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(songUrl));
-            mMediaPlayer.prepare();
-        } catch (Exception e) {
-            showLoading(false);
-            Toast.makeText(VedioSongActivity.this, "音频加载失败", Toast.LENGTH_SHORT).show();
-        }
-        mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
-            showLoading(false);
-            mediaPlayer.start();
-        });
-        mMediaPlayer.setOnCompletionListener(mediaPlayer -> play());
-
         obtainViewFocus(rlSongSing);
         rlSongSing.requestFocus();
         rlSongSing.setFocusable(true);
         rlSongSing.setNextFocusUpId(R.id.rl_homepage);
         rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
+
+        showLoading(true);
+        final String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+        new PlayMusicAsyncTask().execute(songUrl);
     }
 
     private void play() {
@@ -226,22 +220,7 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
 
     private void playMusic(String songUrl) {
         showLoading(true);
-        if (mMediaPlayer == null) {
-            mMediaPlayer = new MediaPlayer();
-        }
-        try {
-            mMediaPlayer.reset();
-            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(songUrl));
-            mMediaPlayer.prepare();
-        } catch (Exception e) {
-            showLoading(false);
-            Toast.makeText(VedioSongActivity.this, "音频加载失败", Toast.LENGTH_SHORT).show();
-        }
-        mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
-            showLoading(false);
-            mediaPlayer.start();
-        });
+        new PlayMusicAsyncTask().execute(songUrl);
     }
 
     @OnClick({R.id.iv_song_one_second, R.id.rl_song_one_second})
@@ -260,9 +239,17 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
         }
     }
 
-    @OnClick({R.id.iv_song_one_four, R.id.rl_song_one_four})
+    @OnClick({R.id.iv_song_one_four})
     public void onPlayOneFour() {
         if (ivSongOneFour.getVisibility() == View.VISIBLE) {
+            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+            playMusic(songUrl);
+        }
+    }
+
+    @OnClick(R.id.iv_song_one)
+    public void onPlayOne() {
+        if (ivSongOne.getVisibility() == View.VISIBLE) {
             String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
             playMusic(songUrl);
         }
@@ -292,9 +279,17 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
         }
     }
 
-    @OnClick({R.id.iv_song_two_four, R.id.rl_song_two_four})
+    @OnClick({R.id.iv_song_two_four})
     public void onPlayTwoFour() {
         if (ivSongTwoFour.getVisibility() == View.VISIBLE) {
+            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+            playMusic(songUrl);
+        }
+    }
+
+    @OnClick(R.id.iv_song_two)
+    public void onPlayTwo() {
+        if (ivSongTwo.getVisibility() == View.VISIBLE) {
             String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
             playMusic(songUrl);
         }
@@ -367,7 +362,18 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
                     ivSongOneFour.setImageResource(R.mipmap.song_playing_pressed);
                     obtainViewFocus(ivSongOneFour);
                     ivSongOneFour.setNextFocusUpId(R.id.iv_song_one_third);
+                    ivSongOneFour.setNextFocusRightId(R.id.iv_song_one);
                     ivSongOneFour.setNextFocusDownId(R.id.iv_song_two_first);
+                } else {
+                    ivSongOneFour.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSongOneFour);
+                }
+                break;
+            case R.id.iv_song_one:
+                if (b) {
+                    ivSongOne.setImageResource(R.mipmap.song_playing_pressed);
+                    obtainViewFocus(ivSongOne);
+                    ivSongOne.setNextFocusLeftId(R.id.iv_song_one_four);
                 } else {
                     ivSongOneFour.setImageResource(R.mipmap.song_playing_def);
                     loseViewFocus(ivSongOneFour);
@@ -417,6 +423,16 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
                     loseViewFocus(ivSongTwoFour);
                 }
                 break;
+            case R.id.iv_song_two:
+                if (b) {
+                    ivSongTwo.setImageResource(R.mipmap.song_playing_pressed);
+                    obtainViewFocus(ivSongTwo);
+                    ivSongTwo.setNextFocusLeftId(R.id.tv_song_two_four);
+                } else {
+                    ivSongOneFour.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSongOneFour);
+                }
+                break;
             default:
                 break;
         }
@@ -425,7 +441,7 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     @Override
     protected void onDestroy() {
         if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
-            mMediaPlayer.stop();
+            mMediaPlayer.reset();
             mMediaPlayer.release();
         }
         super.onDestroy();
@@ -436,13 +452,50 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     }
 
     public void showHorn(boolean show) {
-        ivSongOneFirst.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-        ivSongOneSecond.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-        ivSongOneThird.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-        ivSongOneFour.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-        ivSongTwoFirst.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-        ivSongTwoSecond.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-        ivSongTwoThird.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
-        ivSongTwoFour.setVisibility(show ? View.VISIBLE : View.INVISIBLE);
+        ivSongOneFirst.setVisibility(show ? View.VISIBLE : View.GONE);
+        ivSongOneSecond.setVisibility(show ? View.VISIBLE : View.GONE);
+        ivSongOneThird.setVisibility(show ? View.VISIBLE : View.GONE);
+        ivSongOneFour.setVisibility(show ? View.VISIBLE : View.GONE);
+        ivSongTwoFirst.setVisibility(show ? View.VISIBLE : View.GONE);
+        ivSongTwoSecond.setVisibility(show ? View.VISIBLE : View.GONE);
+        ivSongTwoThird.setVisibility(show ? View.VISIBLE : View.GONE);
+        ivSongTwoFour.setVisibility(show ? View.VISIBLE : View.GONE);
+        ivSongOne.setVisibility(show ? View.VISIBLE : View.GONE);
+        ivSongTwo.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+
+    public class PlayMusicAsyncTask extends AsyncTask<String, String, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+            if (mMediaPlayer == null){
+                mMediaPlayer = new MediaPlayer();
+            }
+            try {
+                mMediaPlayer.reset();
+                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(strings[0]));
+                mMediaPlayer.prepare();
+            } catch (Exception e) {
+                runOnUiThread(() -> {
+                    showLoading(false);
+                    Toast.makeText(VedioSongActivity.this, "音频加载失败", Toast.LENGTH_SHORT).show();
+                });
+            }
+            mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
+                runOnUiThread(() -> {
+                    showLoading(false);
+                    mediaPlayer.start();
+                });
+            });
+            mMediaPlayer.setOnCompletionListener(mediaPlayer -> play());
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            showLoading(false);
+        }
     }
 }

@@ -13,6 +13,7 @@
         <RelativeLayout
             android:id="@+id/rl_homepage"
             style="@style/home_pager"
+            android:nextFocusDown="@id/lv_audio_list"
             android:focusable="true">
 
             <ImageView
@@ -25,11 +26,11 @@
         <RelativeLayout
             android:id="@+id/rl_difficult"
             android:layout_width="260dp"
-            android:layout_height="210dp"
+            android:layout_height="190dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="190dp"
-            android:layout_marginTop="100dp">
+            android:layout_marginTop="120dp">
 
             <ImageView
                 android:id="@+id/iv_difficult"
@@ -47,7 +48,7 @@
         <RelativeLayout
             android:id="@+id/rl_difficult_detail"
             android:layout_width="645dp"
-            android:layout_height="190dp"
+            android:layout_height="180dp"
             android:layout_alignTop="@+id/rl_difficult"
             android:layout_toRightOf="@+id/rl_difficult">
 
@@ -61,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="65dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -94,7 +95,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rl_difficult_detail"
             android:layout_alignLeft="@+id/rl_difficult"
-            android:focusable="true"
             android:nextFocusDown="@id/iv_audio_left"
             android:padding="10dp">
 
@@ -123,13 +123,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/rl_play"
             android:layout_alignLeft="@+id/rl_play"
-            android:layout_marginTop="10dp"
             android:layout_marginRight="100dp"
-            android:layout_marginBottom="100dp"
             android:background="#00000000"
             android:cacheColorHint="#00000000"
             android:focusable="false"
-            android:overScrollMode="never" />
+            android:scrollbars="vertical" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -138,6 +136,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="40dp"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:padding="10dp">
 
             <ImageView
@@ -145,8 +144,6 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginRight="30dp"
-                android:clickable="true"
-                android:focusable="true"
                 android:nextFocusRight="@id/iv_audio_right"
                 android:nextFocusUp="@id/rl_play"
                 android:padding="5dp"
@@ -157,8 +154,6 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginLeft="30dp"
-                android:clickable="true"
-                android:focusable="true"
                 android:nextFocusLeft="@id/iv_audio_left"
                 android:padding="5dp"
                 android:src="@mipmap/audio_right_def" />

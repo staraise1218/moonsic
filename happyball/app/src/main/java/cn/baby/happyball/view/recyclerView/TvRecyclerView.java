@@ -47,35 +47,37 @@ public class TvRecyclerView extends RecyclerView {
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        int dx = this.getChildAt(0).getWidth();
-        View focusView = this.getFocusedChild();
-        if (focusView != null) {
-            //处理左右方向键移动Item到边之后RecyclerView跟着移动
-            if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_RIGHT) {
-                if (event.getAction() == KeyEvent.ACTION_UP) {
-                    return true;
-                } else {
-                    View rightView = FocusFinder.getInstance().findNextFocus(this, focusView, View.FOCUS_RIGHT);
-                    if (rightView != null) {
-                        rightView.requestFocusFromTouch();
+        if (this.getChildCount() > 0) {
+            int dx = this.getChildAt(0).getWidth();
+            View focusView = this.getFocusedChild();
+            if (focusView != null) {
+                //处理左右方向键移动Item到边之后RecyclerView跟着移动
+                if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_RIGHT) {
+                    if (event.getAction() == KeyEvent.ACTION_UP) {
                         return true;
                     } else {
-                        this.smoothScrollBy(dx, 0);
-                        //移动之后获得焦点，是在scroll方法中处理的。
-                        return true;
+                        View rightView = FocusFinder.getInstance().findNextFocus(this, focusView, View.FOCUS_RIGHT);
+                        if (rightView != null) {
+                            rightView.requestFocusFromTouch();
+                            return true;
+                        } else {
+                            this.smoothScrollBy(dx, 0);
+                            //移动之后获得焦点，是在scroll方法中处理的。
+                            return true;
+                        }
                     }
-                }
-            } else if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_LEFT) {
-                View leftView = FocusFinder.getInstance().findNextFocus(this, focusView, View.FOCUS_LEFT);
-                if (event.getAction() == KeyEvent.ACTION_UP) {
-                    return true;
-                } else {
-                    if (leftView != null) {
-                        leftView.requestFocusFromTouch();
+                } else if (event.getKeyCode() == KeyEvent.KEYCODE_DPAD_LEFT) {
+                    View leftView = FocusFinder.getInstance().findNextFocus(this, focusView, View.FOCUS_LEFT);
+                    if (event.getAction() == KeyEvent.ACTION_UP) {
                         return true;
                     } else {
-                        this.smoothScrollBy(-dx, 0);
-                        return true;
+                        if (leftView != null) {
+                            leftView.requestFocusFromTouch();
+                            return true;
+                        } else {
+                            this.smoothScrollBy(-dx, 0);
+                            return true;
+                        }
                     }
                 }
             }
@@ -93,15 +95,16 @@ public class TvRecyclerView extends RecyclerView {
                 View rightView = FocusFinder.getInstance().findNextFocus(this, focusView, View.FOCUS_RIGHT);
                 if (rightView != null) {
                     rightView.requestFocusFromTouch();
+                    return;
                 }
             } else {
                 View rightView = FocusFinder.getInstance().findNextFocus(this, focusView, View.FOCUS_LEFT);
                 if (rightView != null) {
                     rightView.requestFocusFromTouch();
+                    return;
                 }
             }
         }
-
     }
 
 

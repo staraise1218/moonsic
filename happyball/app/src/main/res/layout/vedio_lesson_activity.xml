@@ -42,7 +42,7 @@
 
             <TextView
                 android:id="@+id/tv_hygiene_name"
-                style="@style/main_semester_text"
+                style="@style/lesson_semester_text"
                 android:text="@string/lesson_hygiene"/>
         </RelativeLayout>
 
@@ -69,7 +69,7 @@
 
             <TextView
                 android:id="@+id/tv_world_name"
-                style="@style/main_semester_text"
+                style="@style/lesson_semester_text"
                 android:text="@string/lesson_world" />
         </RelativeLayout>
 
@@ -94,7 +94,7 @@
 
             <TextView
                 android:id="@+id/tv_safe_name"
-                style="@style/main_semester_text"
+                style="@style/lesson_semester_text"
                 android:text="@string/lesson_safe" />
         </RelativeLayout>
 
@@ -120,7 +120,7 @@
 
             <TextView
                 android:id="@+id/tv_nation_name"
-                style="@style/main_semester_text"
+                style="@style/lesson_semester_text"
                 android:text="@string/lesson_nation" />
         </RelativeLayout>
 
@@ -146,7 +146,7 @@
 
             <TextView
                 android:id="@+id/tv_pop_name"
-                style="@style/main_semester_text"
+                style="@style/lesson_semester_text"
                 android:text="@string/lesson_pop" />
         </RelativeLayout>
 
@@ -172,7 +172,7 @@
 
             <TextView
                 android:id="@+id/tv_china_name"
-                style="@style/main_semester_text"
+                style="@style/lesson_semester_text"
                 android:text="@string/lesson_china" />
         </RelativeLayout>
 

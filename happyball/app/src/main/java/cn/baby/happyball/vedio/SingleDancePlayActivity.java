@@ -1,8 +1,10 @@
 package cn.baby.happyball.vedio;
 
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.MotionEvent;
@@ -14,6 +16,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,26 +120,7 @@ public class SingleDancePlayActivity extends BaseActivity implements View.OnFocu
      */
     private void playVedio(String vedioUrl) {
         showLoading(true);
-        if (mMediaPlayer == null) {
-            mMediaPlayer = new MediaPlayer();
-            mSurfaceHolder = svPlay.getHolder();
-            mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
-                showLoading(false);
-                mediaPlayer.start();
-            });
-            mMediaPlayer.setOnCompletionListener(mp -> {
-                showLoading(false);
-                mMediaPlayer.start();
-            });
-        }
-        try {
-            mMediaPlayer.reset();
-            mMediaPlayer.setDisplay(mSurfaceHolder);
-            mMediaPlayer.setDataSource(SingleDancePlayActivity.this, Uri.parse(vedioUrl));
-            mMediaPlayer.prepareAsync();
-        } catch (Exception e) {
-            showLoading(false);
-        }
+
     }
 
     private void getData() {
@@ -214,6 +198,47 @@ public class SingleDancePlayActivity extends BaseActivity implements View.OnFocu
             obtainViewFocus(view);
         } else{
             loseViewFocus(view);
+        }
+    }
+
+    public class PlayMusicAsyncTask extends AsyncTask<String, String, Boolean> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            if (mSurfaceHolder == null) {
+                mSurfaceHolder = svPlay.getHolder();
+            }
+        }
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+            if (mMediaPlayer == null) {
+                mMediaPlayer = new MediaPlayer();
+                mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
+                    showLoading(false);
+                    mediaPlayer.start();
+                });
+                mMediaPlayer.setOnCompletionListener(mp -> {
+                    showLoading(false);
+                    mMediaPlayer.start();
+                });
+            }
+            try {
+                mMediaPlayer.reset();
+                mMediaPlayer.setDisplay(mSurfaceHolder);
+                mMediaPlayer.setDataSource(SingleDancePlayActivity.this, Uri.parse(strings[0]));
+                mMediaPlayer.prepareAsync();
+            } catch (Exception e) {
+                showLoading(false);
+            }
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            showLoading(false);
         }
     }
 }

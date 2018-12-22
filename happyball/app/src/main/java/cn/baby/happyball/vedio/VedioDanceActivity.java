@@ -3,6 +3,7 @@ package cn.baby.happyball.vedio;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -391,81 +392,97 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
         switch (view.getId()) {
             case R.id.rl_dance_first:
                 if (b) {
-                    obtainViewFocus(rlDanceFirst);
+//                    obtainViewFocus(rlDanceFirst);
+                    tvDanceFirst.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFirst.setNextFocusUpId(R.id.rl_back);
                     rlDanceFirst.setNextFocusRightId(R.id.rl_dance_second);
                     rlDanceFirst.setNextFocusDownId(R.id.rl_dance_five);
                 } else {
                     loseViewFocus(rlDanceFirst);
+                    tvDanceFirst.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_second:
                 if (b) {
-                    obtainViewFocus(rlDanceSecond);
+//                    obtainViewFocus(rlDanceSecond);
+                    tvDanceSecond.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceSecond.setNextFocusLeftId(R.id.rl_dance_first);
                     rlDanceSecond.setNextFocusRightId(R.id.rl_dance_third);
                     rlDanceSecond.setNextFocusDownId(R.id.rl_dance_six);
                 } else {
                     loseViewFocus(rlDanceSecond);
+                    tvDanceSecond.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_third:
                 if (b) {
-                    obtainViewFocus(rlDanceThird);
+//                    obtainViewFocus(rlDanceThird);
+                    tvDanceThird.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceThird.setNextFocusLeftId(R.id.rl_dance_second);
                     rlDanceThird.setNextFocusRightId(R.id.rl_dance_four);
                     rlDanceThird.setNextFocusDownId(R.id.rl_dance_seven);
                 } else {
                     loseViewFocus(rlDanceThird);
+                    tvDanceThird.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_four:
                 if (b) {
-                    obtainViewFocus(rlDanceFour);
+//                    obtainViewFocus(rlDanceFour);
+                    tvDanceFour.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFour.setNextFocusLeftId(R.id.rl_dance_third);
                     rlDanceFour.setNextFocusRightId(R.id.rl_dance_five);
                     rlDanceFour.setNextFocusDownId(R.id.rl_dance_eight);
                 } else {
                     loseViewFocus(rlDanceFour);
+                    tvDanceFour.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_five:
                 if (b) {
-                    obtainViewFocus(rlDanceFive);
+//                    obtainViewFocus(rlDanceFive);
+                    tvDanceFive.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFive.setNextFocusLeftId(R.id.rl_dance_four);
                     rlDanceFive.setNextFocusRightId(R.id.rl_dance_six);
                     rlDanceFive.setNextFocusUpId(R.id.rl_dance_first);
                 } else {
                     loseViewFocus(rlDanceFive);
+                    tvDanceFive.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_six:
                 if (b) {
-                    obtainViewFocus(rlDanceSix);
+//                    obtainViewFocus(rlDanceSix);
+                    tvDanceSix.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceSix.setNextFocusLeftId(R.id.rl_dance_five);
                     rlDanceSix.setNextFocusRightId(R.id.rl_dance_seven);
                     rlDanceSix.setNextFocusUpId(R.id.rl_dance_second);
                 } else {
                     loseViewFocus(rlDanceSix);
+                    tvDanceSix.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_seven:
                 if (b) {
-                    obtainViewFocus(rlDanceSeven);
+//                    obtainViewFocus(rlDanceSeven);
+                    tvDanceSeven.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceSeven.setNextFocusLeftId(R.id.rl_dance_six);
                     rlDanceSeven.setNextFocusRightId(R.id.rl_dance_eight);
                     rlDanceSeven.setNextFocusUpId(R.id.rl_dance_third);
                 } else {
                     loseViewFocus(rlDanceSeven);
+                    tvDanceSeven.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_eight:
                 if (b) {
-                    obtainViewFocus(rlDanceEight);
+//                    obtainViewFocus(rlDanceEight);
+                    tvDanceEight.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceEight.setNextFocusLeftId(R.id.rl_dance_seven);
                     rlDanceEight.setNextFocusUpId(R.id.rl_dance_four);
                 } else {
                     loseViewFocus(rlDanceEight);
+                    tvDanceEight.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_back:
@@ -502,7 +519,8 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlDanceFirst);
+//                    obtainViewFocus(rlDanceFirst);
+                    tvDanceFirst.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFirst.requestFocus();
                     rlDanceFirst.setFocusable(true);
                     rlDanceFirst.setNextFocusUpId(R.id.rl_back);
@@ -512,7 +530,8 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlDanceFirst);
+//                    obtainViewFocus(rlDanceFirst);
+                    tvDanceFirst.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFirst.requestFocus();
                     rlDanceFirst.setFocusable(true);
                     rlDanceFirst.setNextFocusUpId(R.id.rl_back);
@@ -522,7 +541,8 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlDanceFirst);
+//                    obtainViewFocus(rlDanceFirst);
+                    tvDanceFirst.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFirst.requestFocus();
                     rlDanceFirst.setFocusable(true);
                     rlDanceFirst.setNextFocusUpId(R.id.rl_back);
@@ -532,7 +552,8 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlDanceFirst);
+//                    obtainViewFocus(rlDanceFirst);
+                    tvDanceFirst.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFirst.requestFocus();
                     rlDanceFirst.setFocusable(true);
                     rlDanceFirst.setNextFocusUpId(R.id.rl_back);

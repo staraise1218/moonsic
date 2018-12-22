@@ -43,6 +43,15 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="lesson_semester_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">13dp</item>
+        <item name="android:textSize">@dimen/text_lesson</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="home_pager">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -141,9 +150,10 @@
     <style name="center_text_twenty">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_centerVertical">true</item>
-        <item name="android:textSize">@dimen/text_home</item>
+        <item name="android:textSize">@dimen/text_title</item>
         <item name="android:textStyle">bold</item>
     </style>
 
@@ -206,12 +216,21 @@
     </style>
 
     <style name="song_horn">
-        <item name="android:layout_width">60dp</item>
-        <item name="android:layout_height">55dp</item>
-        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
         <item name="android:padding">5dp</item>
         <item name="android:focusable">true</item>
         <item name="android:src">@mipmap/song_playing_def</item>
+    </style>
+
+    <style name="knowledge_answer_image">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:src">@mipmap/star</item>
+        <item name="android:visibility">gone</item>
     </style>
 
 </resources>
