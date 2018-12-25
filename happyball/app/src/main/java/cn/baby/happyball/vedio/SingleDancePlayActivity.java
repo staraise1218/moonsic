@@ -1,7 +1,6 @@
 package cn.baby.happyball.vedio;
 
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -16,7 +15,6 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +71,8 @@ public class SingleDancePlayActivity extends BaseActivity implements View.OnFocu
      */
     @BindView(R.id.rl_dance_next)
     RelativeLayout rlDanceNext;
+    @BindView(R.id.iv_dance_next)
+    ImageView ivDanceNext;
 
     private MediaPlayer mMediaPlayer;
     private SurfaceHolder mSurfaceHolder;
@@ -194,10 +194,23 @@ public class SingleDancePlayActivity extends BaseActivity implements View.OnFocu
 
     @Override
     public void onFocusChange(View view, boolean b) {
-        if (b) {
-            obtainViewFocus(view);
-        } else{
-            loseViewFocus(view);
+        switch (view.getId()) {
+            case R.id.rl_homepage:
+                if (b) {
+                    ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
+                } else {
+                    ivHomePage.setImageResource(R.mipmap.choice_episode);
+                }
+                break;
+            case R.id.rl_dance_next:
+                if (b) {
+                    ivDanceNext.setImageResource(R.mipmap.choice_episode_focus);
+                } else {
+                    ivDanceNext.setImageResource(R.mipmap.choice_episode);
+                }
+                break;
+            default:
+                break;
         }
     }
 

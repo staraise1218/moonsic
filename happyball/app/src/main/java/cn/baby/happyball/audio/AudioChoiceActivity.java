@@ -1,6 +1,7 @@
 package cn.baby.happyball.audio;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -53,6 +54,7 @@ import okhttp3.Response;
 public class AudioChoiceActivity extends BaseActivity implements View.OnFocusChangeListener {
 
     private static final String LESSON_ID = "lesson_id";
+    private String[] mMusics = new String[]{"pay_attention_to_thunder_and_rain.mp3", "don_t_talk_to_strangers.mp3"};
 
     /**
      * 主页
@@ -127,10 +129,11 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         ButterKnife.bind(this);
         bindEvents();
         getData();
+
     }
 
     private void bindEvents() {
-        rlPlay.setOnFocusChangeListener(this);
+//        rlPlay.setOnFocusChangeListener(this);
         rlHomePage.setOnFocusChangeListener(this);
         ivAudioLeft.setOnFocusChangeListener(this);
         ivAudioRight.setOnFocusChangeListener(this);
@@ -141,33 +144,50 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         mLessonId = getIntent().getIntExtra(SystemConfig.LESSON, 1);
         loadBitmap();
 
-        Map<String, Integer> map = new HashMap<>(1);
-        map.put(LESSON_ID, 1);
-        String json = JSON.toJSONString(map);
-        OkHttpClient okHttpClient = new OkHttpClient();
-        final Request request = new Request.Builder()
-                .url(HttpConstant.URL + HttpConstant.AUDIO_LIST)
-                .post(RequestBody.create(HttpConstant.JSON, json))
-                .build();
-        Call call = okHttpClient.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                runOnUiThread(() -> initData());
-            }
+        Audio audio = new Audio();
+        audio.setId(1);
+        audio.setTitle("打雷下雨要注意");
+        audio.setSinger("某某");
+        audio.setAlbum("打雷下雨要注意");
+        audio.setTimelong("01:39");
+        mAudios.add(audio);
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    final String responseStr = response.body().string();
-                    String data = (new JSONObject(responseStr)).optString("data");
-                    mAudios = JSON.parseArray(data, Audio.class);
-                    runOnUiThread(() -> initData());
-                } catch (Exception e) {
-                    runOnUiThread(() -> initData());
-                }
-            }
-        });
+        Audio audio1 = new Audio();
+        audio1.setId(1);
+        audio1.setTitle("不要跟陌生人说话");
+        audio1.setSinger("某某");
+        audio1.setAlbum("不要跟陌生人说话");
+        audio1.setTimelong("02:48");
+        mAudios.add(audio1);
+        initData();
+
+//        Map<String, Integer> map = new HashMap<>(1);
+//        map.put(LESSON_ID, 1);
+//        String json = JSON.toJSONString(map);
+//        OkHttpClient okHttpClient = new OkHttpClient();
+//        final Request request = new Request.Builder()
+//                .url(HttpConstant.URL + HttpConstant.AUDIO_LIST)
+//                .post(RequestBody.create(HttpConstant.JSON, json))
+//                .build();
+//        Call call = okHttpClient.newCall(request);
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                runOnUiThread(() -> initData());
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                try {
+//                    final String responseStr = response.body().string();
+//                    String data = (new JSONObject(responseStr)).optString("data");
+//                    mAudios = JSON.parseArray(data, Audio.class);
+//                    runOnUiThread(() -> initData());
+//                } catch (Exception e) {
+//                    runOnUiThread(() -> initData());
+//                }
+//            }
+//        });
     }
 
     private void initData() {
@@ -224,9 +244,8 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         } else {
             if (currentPosition == -1 && !mAudios.isEmpty()) {
                 currentPosition = 0;
-                String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mAudios.get(currentPosition).getAudiofile())).toString();
                 playingMusicState(currentPosition);
-                playMusic(songUrl, currentPosition);
+                playMusic(currentPosition);
                 return;
             }
             playingMusicState(currentPosition);
@@ -270,24 +289,30 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         ivPlay.setImageResource(R.drawable.audio_pause_selector);
         tvPlay.setText(R.string.pause);
         mAudioListAdapter.setPlayingIndex(position);
-        lvAudioList.post(() -> lvAudioList.smoothScrollToPosition(position + 1) );
+//        mAudioListAdapter = new AudioListAdapter(getApplicationContext(), mAudios, mSongFouces);
+//        lvAudioList.setAdapter(mAudioListAdapter);
+//        lvAudioList.post(() -> lvAudioList.smoothScrollToPosition(position + 1));
     }
 
-    private void playMusic(String songUrl, final int position) {
-        showLoading(true);
+    private void playMusic(final int position) {
+        String songUrl = "";
+        if (position % 2 == 0) {
+            songUrl = mMusics[0];
+        } else {
+            songUrl = mMusics[1];
+        }
         new PlayMusicAsyncTask(position).execute(songUrl);
     }
 
     private void play(int position) {
         try {
-            showLoading(true);
+             showLoading(true);
             if (position == mAudios.size()) {
                 position = 0;
             }
 
             currentPosition = position + 1;
-            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mAudios.get(currentPosition).getAudiofile())).toString();
-            playMusic(songUrl, currentPosition);
+            playMusic(currentPosition);
             playingMusicState(currentPosition);
         } catch (Exception e) {
 
@@ -299,10 +324,19 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         switch (view.getId()) {
             case R.id.rl_homepage:
                 if (b) {
-                    obtainViewFocus(rlHomePage);
-                    rlHomePage.setNextFocusDownId(R.id.rl_play);
+//                    obtainViewFocus(rlHomePage);
+                    if (mMediaPlayer != null) {
+                        mMediaPlayer.pause();
+                    }
+                    if (mAudioListAdapter != null) {
+                        mAudioListAdapter.setPlayingIndex(-1);
+                    }
+                    rlHomePage.setFocusable(true);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
+                    rlHomePage.setNextFocusDownId(R.id.lv_audio_list);
                 } else {
-                    loseViewFocus(rlHomePage);
+//                    loseViewFocus(rlHomePage);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.rl_play:
@@ -347,12 +381,13 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
                     loseViewFocus(ivAudioRight);
                 }
                 break;
-                default:
-                    break;
+            default:
+                break;
         }
     }
 
     private boolean isFirst = true;
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
@@ -437,14 +472,17 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         super.onBackPressed();
     }
 
-    private AudioListAdapter.ISongFouces mSongFouces = position ->  {
+    private AudioListAdapter.ISongFouces mSongFouces = position -> {
         if (pbLoading.getVisibility() != View.VISIBLE) {
-            currentPosition = position;
-            String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mAudios.get(position).getAudiofile())).toString();
-            playMusic(songUrl, currentPosition);
-            playingMusicState(currentPosition);
-            lvAudioList.setItemsCanFocus(true);
-            lvAudioList.setFocusable(false);
+            showLoading(true);
+            if (currentPosition != position) {
+                currentPosition = position;
+                playMusic(currentPosition);
+                playingMusicState(currentPosition);
+                lvAudioList.setItemsCanFocus(true);
+                lvAudioList.setFocusable(false);
+            }
+            showLoading(false);
         }
     };
 
@@ -458,13 +496,15 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
 
         @Override
         protected Boolean doInBackground(String... strings) {
-            if (mMediaPlayer == null){
+            if (mMediaPlayer == null) {
                 mMediaPlayer = new MediaPlayer();
             }
             try {
+                //播放 assets 音乐文件
+                AssetFileDescriptor fd = getAssets().openFd(strings[0]);
                 mMediaPlayer.reset();
                 mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(strings[0]));
+                mMediaPlayer.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(), fd.getLength());
                 mMediaPlayer.prepare();
             } catch (Exception e) {
                 runOnUiThread(() -> {
@@ -472,15 +512,13 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
                     Toast.makeText(AudioChoiceActivity.this, "音频加载失败", Toast.LENGTH_SHORT).show();
                 });
             }
-            mMediaPlayer.setOnPreparedListener(mediaPlayer -> {
-                runOnUiThread(() -> {
-                    showLoading(false);
-                    mediaPlayer.start();
-                });
-            });
-            mMediaPlayer.setOnCompletionListener(mediaPlayer -> {
-                        runOnUiThread(() ->  play(position));
-                    });
+            mMediaPlayer.setOnPreparedListener(mediaPlayer ->
+                    runOnUiThread(() -> {
+                        showLoading(false);
+                        mediaPlayer.start();
+                    })
+            );
+            mMediaPlayer.setOnCompletionListener(mediaPlayer -> runOnUiThread(() -> play(position)));
             return true;
         }
 

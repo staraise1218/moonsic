@@ -1,6 +1,7 @@
 package cn.baby.happyball.vedio;
 
 import android.content.Intent;
+import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -158,7 +159,8 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
         rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
 
         showLoading(true);
-        final String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+//        final String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
+        final String songUrl = "pay_attention_to_thunder_and_rain.mp3";
         new PlayMusicAsyncTask().execute(songUrl);
     }
 
@@ -220,6 +222,7 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
 
     private void playMusic(String songUrl) {
         showLoading(true);
+        songUrl = "pay_attention_to_thunder_and_rain.mp3";
         new PlayMusicAsyncTask().execute(songUrl);
     }
 
@@ -300,28 +303,35 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
         switch (view.getId()) {
             case R.id.rl_homepage:
                 if (b) {
-                    obtainViewFocus(rlHomePage);
+//                    obtainViewFocus(rlHomePage);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
                     rlHomePage.setNextFocusDownId(R.id.rl_song_sing);
                 } else {
-                    loseViewFocus(rlHomePage);
+//                    loseViewFocus(rlHomePage);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.rl_song_sing:
                 if (b) {
-                    obtainViewFocus(rlSongSing);
+//                    obtainViewFocus(rlSongSing);
+                    ivSongSing.setImageResource(R.mipmap.choice_episode_focus);
                     rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
                     rlSongSing.setNextFocusUpId(R.id.rl_homepage);
                 } else {
-                    loseViewFocus(rlSongSing);
+//                    loseViewFocus(rlSongSing);
+                    ivSongSing.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.rl_song_accompaniment:
                 if (b) {
-                    obtainViewFocus(rlSongAccompaniment);
+//                    obtainViewFocus(rlSongAccompaniment);
+                    ivSongAccompaniment.setImageResource(R.mipmap.choice_episode_focus);
                     rlSongAccompaniment.setNextFocusUpId(R.id.rl_song_sing);
-                    rlSongAccompaniment.setNextFocusDownId(R.id.rl_song_one_first);
+                    rlSongAccompaniment.setNextFocusDownId(R.id.iv_song_one_first);
+                    rlSongAccompaniment.setNextFocusRightId(R.id.iv_song_one_first);
                 } else {
-                    loseViewFocus(rlSongAccompaniment);
+//                    loseViewFocus(rlSongAccompaniment);
+                    ivSongAccompaniment.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.iv_song_one_first:
@@ -375,8 +385,8 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
                     obtainViewFocus(ivSongOne);
                     ivSongOne.setNextFocusLeftId(R.id.iv_song_one_four);
                 } else {
-                    ivSongOneFour.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSongOneFour);
+                    ivSongOne.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSongOne);
                 }
                 break;
             case R.id.iv_song_two_first:
@@ -429,8 +439,8 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
                     obtainViewFocus(ivSongTwo);
                     ivSongTwo.setNextFocusLeftId(R.id.tv_song_two_four);
                 } else {
-                    ivSongOneFour.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSongOneFour);
+                    ivSongTwo.setImageResource(R.mipmap.song_playing_def);
+                    loseViewFocus(ivSongTwo);
                 }
                 break;
             default:
@@ -472,9 +482,11 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
                 mMediaPlayer = new MediaPlayer();
             }
             try {
+                //播放 assets 音乐文件
+                AssetFileDescriptor fd = getAssets().openFd(strings[0]);
                 mMediaPlayer.reset();
                 mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                mMediaPlayer.setDataSource(getApplicationContext(), Uri.parse(strings[0]));
+                mMediaPlayer.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(), fd.getLength());
                 mMediaPlayer.prepare();
             } catch (Exception e) {
                 runOnUiThread(() -> {

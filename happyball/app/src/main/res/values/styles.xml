@@ -64,7 +64,7 @@
         <item name="android:layout_width">160dp</item>
         <item name="android:layout_height">60dp</item>
         <item name="android:layout_margin">20dp</item>
-        <item name="android:src">@mipmap/play_homepage</item>
+        <item name="android:src">@mipmap/choice_episode</item>
     </style>
 
     <style name="home_pager_text">
@@ -132,8 +132,8 @@
     <style name="lyric_layout">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">90dp</item>
         <item name="android:focusable">true</item>
         <item name="android:orientation">horizontal</item>
     </style>
@@ -202,7 +202,7 @@
         <item name="android:layout_width">299dp</item>
         <item name="android:layout_height">97dp</item>
         <item name="android:padding">10dp</item>
-        <item name="android:src">@mipmap/dance_next</item>
+        <item name="android:src">@mipmap/choice_episode</item>
     </style>
 
     <style name="dance_next_text">
@@ -228,7 +228,7 @@
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_centerHorizontal">true</item>
-        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginTop">10dp</item>
         <item name="android:src">@mipmap/star</item>
         <item name="android:visibility">gone</item>
     </style>

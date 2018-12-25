@@ -61,9 +61,9 @@ public class BaseActivity extends Activity {
     public void obtainViewFocus(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             //抬高Z轴
-            ViewCompat.animate(view).scaleX(1.05f).scaleY(1.05f).translationZ(1).start();
+            ViewCompat.animate(view).scaleX(1.00f).scaleY(1.00f).translationZ(1).start();
         } else {
-            ViewCompat.animate(view).scaleX(1.05f).scaleY(1.05f).start();
+            ViewCompat.animate(view).scaleX(1.00f).scaleY(1.00f).start();
             ViewGroup parent = (ViewGroup) view.getParent();
             parent.requestLayout();
             parent.invalidate();

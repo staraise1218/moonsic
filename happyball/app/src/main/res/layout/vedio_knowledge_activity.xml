@@ -65,7 +65,7 @@
                 android:id="@+id/iv_answer"
                 android:layout_width="180dp"
                 android:layout_height="65dp"
-                android:src="@mipmap/knowledge_answer" />
+                android:src="@mipmap/choice_episode" />
 
             <TextView
                 style="@style/center_text_twenty_six"

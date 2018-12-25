@@ -123,11 +123,13 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case R.id.rl_homepage:
                 if (b) {
-                    obtainViewFocus(rlHomePage);
+//                    obtainViewFocus(rlHomePage);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
                     rlHomePage.setNextFocusLeftId(R.id.rl_back);
                     rlHomePage.setNextFocusDownId(R.id.rl_dance);
                 } else {
-                    loseViewFocus(rlHomePage);
+//                    loseViewFocus(rlHomePage);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.rl_song:

@@ -54,8 +54,8 @@
                 android:id="@+id/rl_song_one_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="100dp"
+                android:layout_marginLeft="90dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -131,7 +131,7 @@
                 android:id="@+id/rl_song_two_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="90dp"
                 android:layout_marginTop="40dp"
                 android:orientation="horizontal"
                 android:layout_below="@+id/rl_song_one_four" >
@@ -139,7 +139,7 @@
                 <TextView
                     android:id="@+id/tv_song_two_first"
                     style="@style/center_text_twenty"
-                    android:text="iPad 手 机 充 电 器" />
+                    android:text="i Pad 手 机 充 电 器" />
 
                 <ImageView
                     android:id="@+id/iv_song_two_first"
@@ -223,7 +223,7 @@
                 android:layout_width="160dp"
                 android:layout_height="64dp"
                 android:padding="8dp"
-                android:src="@mipmap/song_sing" />
+                android:src="@mipmap/choice_episode" />
 
             <TextView
                 style="@style/center_text_twenty_six"
@@ -247,7 +247,7 @@
                 android:layout_width="160dp"
                 android:layout_height="64dp"
                 android:padding="8dp"
-                android:src="@mipmap/song_accompaniment" />
+                android:src="@mipmap/choice_episode" />
 
             <TextView
                 style="@style/center_text_twenty_six"

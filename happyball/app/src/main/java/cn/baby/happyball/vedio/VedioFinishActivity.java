@@ -92,6 +92,7 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
 
     @OnClick(R.id.ll_replay)
     public void onReplay() {
+        VedioPlayActivity.isReplay = true;
         startActivity(new Intent(VedioFinishActivity.this, VedioPlayActivity.class)
                             .putExtra(SystemConfig.EPISODE, mEpisode));
     }
@@ -132,20 +133,24 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
                 break;
             case R.id.rl_homepage:
                 if (b) {
-                    obtainViewFocus(rlHomePage);
+//                    obtainViewFocus(rlHomePage);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
                     rlHomePage.setNextFocusLeftId(R.id.rl_back);
                     rlHomePage.setNextFocusDownId(R.id.rl_knowledge);
                 } else {
-                    loseViewFocus(rlHomePage);
+//                    loseViewFocus(rlHomePage);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.ll_replay:
                 if (b) {
-                    obtainViewFocus(llReplay);
+//                    obtainViewFocus(llReplay);
+                    llReplay.setBackgroundResource(R.mipmap.choice_episode_focus);
                     llReplay.setNextFocusLeftId(R.id.rl_study);
                     llReplay.setNextFocusRightId(R.id.rl_knowledge);
                 } else {
-                    loseViewFocus(llReplay);
+//                    loseViewFocus(llReplay);
+                    llReplay.setBackgroundResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.rl_study:

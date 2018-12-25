@@ -53,6 +53,7 @@
             style="@style/dance_next">
 
             <ImageView
+                android:id="@+id/iv_dance_next"
                 style="@style/dance_next_image" />
 
             <TextView

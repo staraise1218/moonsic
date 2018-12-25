@@ -496,11 +496,13 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case R.id.rl_homepage:
                 if (b) {
-                    obtainViewFocus(rlHomePage);
+//                    obtainViewFocus(rlHomePage);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
                     rlHomePage.setNextFocusDownId(R.id.rl_dance_four);
                     rlHomePage.setNextFocusLeftId(R.id.rl_back);
                 } else {
-                    loseViewFocus(rlHomePage);
+//                    loseViewFocus(rlHomePage);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             default:

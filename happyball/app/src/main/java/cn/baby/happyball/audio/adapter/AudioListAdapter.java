@@ -66,21 +66,19 @@ public class AudioListAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
-        ViewHolder viewHolder;
-        if (view == null) {
-            view = mInflater.inflate(R.layout.audio_list_item, null);
-            viewHolder = new ViewHolder(view);
-            view.setTag(viewHolder);
-        }
-        viewHolder = (ViewHolder) view.getTag();
+        view = mInflater.inflate(R.layout.audio_list_item, null);
+        ViewHolder viewHolder = new ViewHolder(view);
 
         Audio audio = mAudios.get(i);
+        view.requestFocus();
         viewHolder.audioId.setVisibility(View.VISIBLE);
         viewHolder.audioId.setText(String.valueOf(audio.getId()));
         viewHolder.audioPlay.setVisibility(View.VISIBLE);
         if (playingIndex == i) {
             viewHolder.audioPlay.setImageResource(R.mipmap.audio_pause_pressed);
             setPlayingTextStatus(viewHolder, R.color.playing_text);
+            viewHolder.llAudioListItem.requestLayout();
+            viewHolder.llAudioListItem.setFocusable(true);
         } else {
             viewHolder.audioPlay.setImageResource(R.mipmap.audio_play_def);
             setPlayingTextStatus(viewHolder, R.color.white);
@@ -89,6 +87,7 @@ public class AudioListAdapter extends BaseAdapter {
         viewHolder.audioDuration.setText(audio.getTimelong());
         viewHolder.audioSinger.setText(audio.getSinger());
         viewHolder.audioAlbum.setText(audio.getAlbum());
+        viewHolder.llAudioListItem.setFocusable(true);
         viewHolder.llAudioListItem.setOnFocusChangeListener((v, b) -> {
             if (b && mSongFouces != null) {
                 mSongFouces.onPlayMusic(i);

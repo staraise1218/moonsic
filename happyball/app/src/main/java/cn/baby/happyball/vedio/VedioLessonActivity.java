@@ -110,6 +110,7 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     }
 
     private void bindEvents() {
+        rlHomePage.setOnFocusChangeListener(this);
         rlSafe.setOnFocusChangeListener(this);
         rlHygiene.setOnFocusChangeListener(this);
         rlNation.setOnFocusChangeListener(this);
@@ -190,6 +191,13 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
                     rlChina.setNextFocusUpId(R.id.rl_nation);
                 } else {
                     loseViewFocus(rlChina);
+                }
+                break;
+            case R.id.rl_homepage:
+                if (b) {
+                    ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
+                } else {
+                    ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             default:

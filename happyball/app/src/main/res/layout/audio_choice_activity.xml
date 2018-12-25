@@ -30,7 +30,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="190dp"
-            android:layout_marginTop="120dp">
+            android:layout_marginTop="130dp">
 
             <ImageView
                 android:id="@+id/iv_difficult"
@@ -53,7 +53,7 @@
             android:layout_toRightOf="@+id/rl_difficult">
 
             <ImageView
-                android:layout_width="645dp"
+                android:layout_width="660dp"
                 android:layout_height="210dp"
                 android:src="@mipmap/choice_sourse_text" />
 
@@ -61,7 +61,7 @@
                 android:id="@+id/ll_detail_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="65dp"
+                android:layout_marginLeft="70dp"
                 android:layout_marginTop="30dp"
                 android:orientation="horizontal">
 
@@ -96,6 +96,7 @@
             android:layout_below="@+id/rl_difficult_detail"
             android:layout_alignLeft="@+id/rl_difficult"
             android:nextFocusDown="@id/iv_audio_left"
+            android:visibility="gone"
             android:padding="10dp">
 
             <ImageView
@@ -126,7 +127,10 @@
             android:layout_marginRight="100dp"
             android:background="#00000000"
             android:cacheColorHint="#00000000"
-            android:focusable="false"
+            android:transcriptMode="disabled"
+            android:descendantFocusability="afterDescendants"
+            android:layout_marginBottom="100dp"
+            android:layout_marginTop="20dp"
             android:scrollbars="vertical" />
 
         <LinearLayout

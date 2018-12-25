@@ -74,6 +74,8 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
     private int mLessonId;
     private String mKey;
 
+    public static boolean isReplay = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +84,15 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
         bindEvents();
         getData();
         initData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(isReplay) {
+            initData();
+            isReplay = false;
+        }
     }
 
     private void bindEvents() {
@@ -118,7 +129,8 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
 
     private void initData() {
         showLoading(true);
-        final String videoUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getVideofile())).toString();
+//      final  String videoUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getVideofile())).toString();
+        final String videoUrl = "http://leqiubaobei.staraise.com.cn/uploads/20181224/5af3e1a4641d3946183e641fac36e20c.mp4";
         mMediaPlayer = new MediaPlayer();
         SurfaceHolder surfaceHolder = svPlay.getHolder();
         mMediaPlayer.setOnPreparedListener(mediaPlayer -> {

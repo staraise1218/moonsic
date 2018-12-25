@@ -41,7 +41,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:background="@mipmap/finish_replay_frame"
+            android:background="@mipmap/choice_episode"
             android:focusable="true"
             android:gravity="center"
             android:nextFocusLeft="@id/rl_study"

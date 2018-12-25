@@ -17,7 +17,9 @@ import com.alibaba.fastjson.JSON;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -229,10 +231,10 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
         startActivity(new Intent(VedioKnowledgeActivity.this, MainActivity.class));
     }
 
-    @OnClick(R.id.iv_answer)
+    @OnClick({R.id.iv_answer, R.id.rl_answer})
     public void onAnswer() {
         try {
-            //播放 assets/a2.mp3 音乐文件
+            //播放 assets 音乐文件
             AssetFileDescriptor fd = getAssets().openFd("biubiubiu.mp3");
             if (mMediaPlayer != null) {
                 mMediaPlayer.pause();
@@ -246,40 +248,76 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (mKnowledge != null) {
-            if (!mKnowledge.getAnswer().isEmpty()) {
-                for (String s : mKnowledge.getAnswer()) {
-                    switch (Integer.valueOf(s)) {
-                        case 1:
-                            obtainViewFocus(rlKnowledgeFirst);
-                            ivKnowledgeFirstAnswer.setVisibility(View.VISIBLE);
-                            break;
-                        case 2:
-                            obtainViewFocus(rlKnowledgeSecond);
-                            ivKnowledgeSecondAnswer.setVisibility(View.VISIBLE);
-                            break;
-                        case 3:
-                            obtainViewFocus(rlKnowledgeThird);
-                            ivKnowledgeThirdAnswer.setVisibility(View.VISIBLE);
-                            break;
-                        case 4:
-                            obtainViewFocus(rlKnowledgeFour);
-                            ivKnowledgeFourAnswer.setVisibility(View.VISIBLE);
-                            break;
-                        default:
-                            ivKnowledgeFirst.setVisibility(View.GONE);
-                            ivKnowledgeSecond.setVisibility(View.GONE);
-                            ivKnowledgeThird.setVisibility(View.GONE);
-                            ivKnowledgeFour.setVisibility(View.GONE);
-                            ivKnowledgeFirstAnswer.setVisibility(View.GONE);
-                            ivKnowledgeSecondAnswer.setVisibility(View.GONE);
-                            ivKnowledgeThirdAnswer.setVisibility(View.GONE);
-                            ivKnowledgeFourAnswer.setVisibility(View.GONE);
-                            break;
-                    }
-                }
+        // 测试代码
+        List<String> answers = new ArrayList<>(3);
+        answers.add("1");
+        answers.add("2");
+        answers.add("3");
+        for (String s : answers) {
+            switch (Integer.valueOf(s)) {
+                case 1:
+                    obtainViewFocus(rlKnowledgeFirst);
+                    ivKnowledgeFirstAnswer.setVisibility(View.VISIBLE);
+                    break;
+                case 2:
+                    obtainViewFocus(rlKnowledgeSecond);
+                    ivKnowledgeSecondAnswer.setVisibility(View.VISIBLE);
+                    break;
+                case 3:
+                    obtainViewFocus(rlKnowledgeThird);
+                    ivKnowledgeThirdAnswer.setVisibility(View.VISIBLE);
+                    break;
+                case 4:
+                    obtainViewFocus(rlKnowledgeFour);
+                    ivKnowledgeFourAnswer.setVisibility(View.VISIBLE);
+                    break;
+                default:
+                    ivKnowledgeFirst.setVisibility(View.GONE);
+                    ivKnowledgeSecond.setVisibility(View.GONE);
+                    ivKnowledgeThird.setVisibility(View.GONE);
+                    ivKnowledgeFour.setVisibility(View.GONE);
+                    ivKnowledgeFirstAnswer.setVisibility(View.GONE);
+                    ivKnowledgeSecondAnswer.setVisibility(View.GONE);
+                    ivKnowledgeThirdAnswer.setVisibility(View.GONE);
+                    ivKnowledgeFourAnswer.setVisibility(View.GONE);
+                    break;
             }
         }
+
+//        if (mKnowledge != null) {
+//            if (!mKnowledge.getAnswer().isEmpty()) {
+//                for (String s : answers) {
+//                    switch (Integer.valueOf(s)) {
+//                        case 1:
+//                            obtainViewFocus(rlKnowledgeFirst);
+//                            ivKnowledgeFirstAnswer.setVisibility(View.VISIBLE);
+//                            break;
+//                        case 2:
+//                            obtainViewFocus(rlKnowledgeSecond);
+//                            ivKnowledgeSecondAnswer.setVisibility(View.VISIBLE);
+//                            break;
+//                        case 3:
+//                            obtainViewFocus(rlKnowledgeThird);
+//                            ivKnowledgeThirdAnswer.setVisibility(View.VISIBLE);
+//                            break;
+//                        case 4:
+//                            obtainViewFocus(rlKnowledgeFour);
+//                            ivKnowledgeFourAnswer.setVisibility(View.VISIBLE);
+//                            break;
+//                        default:
+//                            ivKnowledgeFirst.setVisibility(View.GONE);
+//                            ivKnowledgeSecond.setVisibility(View.GONE);
+//                            ivKnowledgeThird.setVisibility(View.GONE);
+//                            ivKnowledgeFour.setVisibility(View.GONE);
+//                            ivKnowledgeFirstAnswer.setVisibility(View.GONE);
+//                            ivKnowledgeSecondAnswer.setVisibility(View.GONE);
+//                            ivKnowledgeThirdAnswer.setVisibility(View.GONE);
+//                            ivKnowledgeFourAnswer.setVisibility(View.GONE);
+//                            break;
+//                    }
+//                }
+//            }
+//        }
     }
 
     @OnClick({R.id.rl_knowledge_first, R.id.iv_knowledge_first})
@@ -307,35 +345,39 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
         switch (view.getId()) {
             case R.id.rl_homepage:
                 if (b) {
-                    obtainViewFocus(rlHomePage);
+//                    obtainViewFocus(rlHomePage);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
                     rlHomePage.requestLayout();
                     rlHomePage.setFocusable(true);
                     rlHomePage.setNextFocusDownId(R.id.rl_answer);
                     rlHomePage.setNextFocusLeftId(R.id.iv_speak_question);
                 } else {
-                    loseViewFocus(rlHomePage);
+//                    loseViewFocus(rlHomePage);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
             case R.id.iv_speak_question:
                 if (b) {
                     ivSpeakQuestion.setImageResource(R.mipmap.song_playing_pressed);
-                    obtainViewFocus(ivSpeakQuestion);
+//                    obtainViewFocus(ivSpeakQuestion);
                     ivSpeakQuestion.requestLayout();
                     ivSpeakQuestion.setFocusable(true);
                     ivSpeakQuestion.setNextFocusUpId(R.id.rl_homepage);
                     ivSpeakQuestion.setNextFocusDownId(R.id.rl_knowledge_first);
                 } else {
                     ivSpeakQuestion.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSpeakQuestion);
+//                    loseViewFocus(ivSpeakQuestion);
                 }
                 break;
             case R.id.rl_answer:
                 if (b) {
-                    obtainViewFocus(rlAnswer);
+//                    obtainViewFocus(rlAnswer);
+                    ivKnowledgeAnswer.setImageResource(R.mipmap.choice_episode_focus);
                     rlAnswer.requestLayout();
                     rlAnswer.setFocusable(true);
                     rlAnswer.setNextFocusUpId(R.id.rl_knowledge_four);
                 } else {
-                    loseViewFocus(rlAnswer);
+//                    loseViewFocus(rlAnswer);
+                    ivKnowledgeAnswer.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.rl_knowledge_first:
@@ -396,46 +438,46 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlAnswer);
-                    rlAnswer.requestFocus();
-                    rlAnswer.setFocusable(true);
-                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
-                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlAnswer);
-                    rlAnswer.requestFocus();
-                    rlAnswer.setFocusable(true);
-                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
-                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlAnswer);
-                    rlAnswer.requestFocus();
-                    rlAnswer.setFocusable(true);
-                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
-                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlAnswer);
-                    rlAnswer.requestFocus();
-                    rlAnswer.setFocusable(true);
-                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
-                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
-                    isFirst = false;
-                }
-                break;
+//            case KeyEvent.KEYCODE_DPAD_DOWN:
+//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+//                    obtainViewFocus(rlAnswer);
+//                    rlAnswer.requestFocus();
+//                    rlAnswer.setFocusable(true);
+//                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
+//                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
+//                    isFirst = false;
+//                }
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_LEFT:
+//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+//                    obtainViewFocus(rlAnswer);
+//                    rlAnswer.requestFocus();
+//                    rlAnswer.setFocusable(true);
+//                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
+//                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
+//                    isFirst = false;
+//                }
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_RIGHT:
+//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+//                    obtainViewFocus(rlAnswer);
+//                    rlAnswer.requestFocus();
+//                    rlAnswer.setFocusable(true);
+//                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
+//                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
+//                    isFirst = false;
+//                }
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_UP:
+//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+//                    obtainViewFocus(rlAnswer);
+//                    rlAnswer.requestFocus();
+//                    rlAnswer.setFocusable(true);
+//                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
+//                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
+//                    isFirst = false;
+//                }
+//                break;
             case KeyEvent.KEYCODE_BACK:
                 if (event.getAction() == KeyEvent.ACTION_UP) {
                     onBackPressed();
