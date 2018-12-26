@@ -28,6 +28,7 @@ public class AudioListAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private int playingIndex = -1;
     private ISongFouces mSongFouces;
+    private boolean isPlaying = false;
 
     public AudioListAdapter(Context context, List<Audio> audios, ISongFouces songFouces) {
         mContext = context;
@@ -38,6 +39,11 @@ public class AudioListAdapter extends BaseAdapter {
 
     public void setPlayingIndex(int playingIndex) {
         this.playingIndex = playingIndex;
+        notifyDataSetChanged();
+    }
+
+    public void setPlaying(boolean playing) {
+        isPlaying = playing;
         notifyDataSetChanged();
     }
 
@@ -75,7 +81,11 @@ public class AudioListAdapter extends BaseAdapter {
         viewHolder.audioId.setText(String.valueOf(audio.getId()));
         viewHolder.audioPlay.setVisibility(View.VISIBLE);
         if (playingIndex == i) {
-            viewHolder.audioPlay.setImageResource(R.mipmap.audio_pause_pressed);
+            if (isPlaying) {
+                viewHolder.audioPlay.setImageResource(R.mipmap.audio_pause_pressed);
+            } else {
+                viewHolder.audioPlay.setImageResource(R.mipmap.audio_play_pressed);
+            }
             setPlayingTextStatus(viewHolder, R.color.playing_text);
             viewHolder.llAudioListItem.requestLayout();
             viewHolder.llAudioListItem.setFocusable(true);
@@ -88,16 +98,16 @@ public class AudioListAdapter extends BaseAdapter {
         viewHolder.audioSinger.setText(audio.getSinger());
         viewHolder.audioAlbum.setText(audio.getAlbum());
         viewHolder.llAudioListItem.setFocusable(true);
-        viewHolder.llAudioListItem.setOnFocusChangeListener((v, b) -> {
-            if (b && mSongFouces != null) {
-                mSongFouces.onPlayMusic(i);
+        viewHolder.llAudioListItem.setOnClickListener(view1 -> {
+            if (mSongFouces != null) {
+                mSongFouces.onPlaying(i);
             }
         });
         return view;
     }
 
     public interface ISongFouces {
-        void onPlayMusic(int position);
+        void onPlaying(int position);
     }
 
     class ViewHolder {

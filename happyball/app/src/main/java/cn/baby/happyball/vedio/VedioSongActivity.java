@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -503,5 +504,75 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
             super.onPostExecute(aBoolean);
             showLoading(false);
         }
+    }
+
+    private boolean isFirst = true;
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+                    ivSongSing.setImageResource(R.mipmap.choice_episode_focus);
+                    rlSongSing.requestLayout();
+                    rlSongSing.setFocusable(true);
+                    rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
+                    rlSongSing.setNextFocusRightId(R.id.iv_song_one_first);
+                    rlSongSing.setNextFocusUpId(R.id.rl_homepage);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+                    ivSongSing.setImageResource(R.mipmap.choice_episode_focus);
+                    rlSongSing.requestLayout();
+                    rlSongSing.setFocusable(true);
+                    rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
+                    rlSongSing.setNextFocusRightId(R.id.iv_song_one_first);
+                    rlSongSing.setNextFocusUpId(R.id.rl_homepage);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+                    ivSongSing.setImageResource(R.mipmap.choice_episode_focus);
+                    rlSongSing.requestLayout();
+                    rlSongSing.setFocusable(true);
+                    rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
+                    rlSongSing.setNextFocusRightId(R.id.iv_song_one_first);
+                    rlSongSing.setNextFocusUpId(R.id.rl_homepage);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+                    ivSongSing.setImageResource(R.mipmap.choice_episode_focus);
+                    rlSongSing.requestLayout();
+                    rlSongSing.setFocusable(true);
+                    rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
+                    rlSongSing.setNextFocusRightId(R.id.iv_song_one_first);
+                    rlSongSing.setNextFocusUpId(R.id.rl_homepage);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+                    ivSongSing.setImageResource(R.mipmap.choice_episode_focus);
+                    rlSongSing.requestLayout();
+                    rlSongSing.setFocusable(true);
+                    rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
+                    rlSongSing.setNextFocusRightId(R.id.iv_song_one_first);
+                    rlSongSing.setNextFocusUpId(R.id.rl_homepage);
+                    isFirst = false;
+                }
+                break;
+            case KeyEvent.KEYCODE_BACK:
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    onBackPressed();
+                }
+                break;
+            default:
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

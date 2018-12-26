@@ -57,14 +57,6 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
     private String[] mMusics = new String[]{"pay_attention_to_thunder_and_rain.mp3", "don_t_talk_to_strangers.mp3"};
 
     /**
-     * 主页
-     */
-    @BindView(R.id.rl_homepage)
-    RelativeLayout rlHomePage;
-    @BindView(R.id.iv_homepage)
-    ImageView ivHomePage;
-
-    /**
      * 难度
      */
     @BindView(R.id.iv_difficult)
@@ -134,9 +126,8 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
 
     private void bindEvents() {
 //        rlPlay.setOnFocusChangeListener(this);
-        rlHomePage.setOnFocusChangeListener(this);
-        ivAudioLeft.setOnFocusChangeListener(this);
-        ivAudioRight.setOnFocusChangeListener(this);
+//        ivAudioLeft.setOnFocusChangeListener(this);
+//        ivAudioRight.setOnFocusChangeListener(this);
     }
 
     private void getData() {
@@ -241,10 +232,8 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         lvAudioList.setAdapter(mAudioListAdapter);
         lvAudioList.setItemsCanFocus(true);
         lvAudioList.setFocusable(false);
-
-//        obtainViewFocus(rlPlay);
-//        rlPlay.setFocusable(true);
-//        rlPlay.setNextFocusLeftId(R.id.iv_audio_left);
+        currentPosition = 0;
+        mAudioListAdapter.setPlayingIndex(currentPosition);
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})
@@ -269,30 +258,6 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         }
     }
 
-    @OnClick(R.id.iv_audio_left)
-    public void onPageLeft() {
-//        if (currentPosition == 0 || currentPosition == -1) {
-//            currentPosition = mAudios.size();
-//        }
-//
-//        currentPosition = currentPosition - 1;
-//        String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mAudios.get(currentPosition).getAudiofile())).toString();
-//        playMusic(songUrl, currentPosition);
-//        playingMusicState(currentPosition);
-    }
-
-    @OnClick(R.id.iv_audio_right)
-    public void onPageRight() {
-//        if (currentPosition == mAudios.size() - 1) {
-//            currentPosition = 0;
-//        }
-//
-//        currentPosition = currentPosition + 1;
-//        String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mAudios.get(currentPosition).getAudiofile())).toString();
-//        playMusic(songUrl, currentPosition);
-//        playingMusicState(currentPosition);
-    }
-
     private void pauseMusicState() {
         isPlaying = false;
         ivPlay.setImageResource(R.drawable.audio_play_selector);
@@ -315,12 +280,13 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         } else {
             songUrl = mMusics[1];
         }
+        mAudioListAdapter.setPlaying(true);
         new PlayMusicAsyncTask(position).execute(songUrl);
     }
 
     private void play(int position) {
         try {
-             showLoading(true);
+            showLoading(true);
             if (position == mAudios.size()) {
                 position = 0;
             }
@@ -336,21 +302,6 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
     @Override
     public void onFocusChange(View view, boolean b) {
         switch (view.getId()) {
-            case R.id.rl_homepage:
-                if (b) {
-                    if (mMediaPlayer != null) {
-                        mMediaPlayer.pause();
-                    }
-                    if (mAudioListAdapter != null) {
-                        mAudioListAdapter.setPlayingIndex(-1);
-                    }
-                    rlHomePage.setFocusable(true);
-                    ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
-                    rlHomePage.setNextFocusDownId(R.id.lv_audio_list);
-                } else {
-                    ivHomePage.setImageResource(R.mipmap.choice_episode);
-                }
-                break;
             case R.id.rl_play:
                 if (b) {
                     obtainViewFocus(rlPlay);
@@ -398,29 +349,31 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         }
     }
 
-    private boolean isFirst = true;
-
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    getFocusRlPlay();
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    getFocusRlPlay();
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    getFocusRlPlay();
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    if (currentPosition == mAudios.size() - 1) {
+                        currentPosition = -1;
+                    }
+
+                    seek = 0;
+                    currentPosition = currentPosition + 1;
+                    playMusic(currentPosition);
+                    playingMusicState(currentPosition);
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    getFocusRlPlay();
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    if (currentPosition == 0 || currentPosition == -1) {
+                        currentPosition = mAudios.size();
+                    }
+
+                    seek = 0;
+                    currentPosition = currentPosition - 1;
+                    playMusic(currentPosition);
+                    playingMusicState(currentPosition);
                 }
                 break;
             case KeyEvent.KEYCODE_BACK:
@@ -432,12 +385,6 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
                 break;
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    private void getFocusRlPlay() {
-        obtainViewFocus(rlPlay);
-        rlPlay.setNextFocusLeftId(R.id.iv_audio_left);
-        isFirst = false;
     }
 
     @Override
@@ -478,19 +425,29 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         super.onBackPressed();
     }
 
-    private AudioListAdapter.ISongFouces mSongFouces = position -> {
-        if (pbLoading.getVisibility() != View.VISIBLE) {
-            showLoading(true);
-            if (currentPosition != position) {
+    private AudioListAdapter.ISongFouces mSongFouces = new AudioListAdapter.ISongFouces() {
+        @Override
+        public void onPlaying(int position) {
+            if (mMediaPlayer != null) {
+                if (mMediaPlayer.isPlaying()) {
+                    seek = mMediaPlayer.getCurrentPosition();
+                    mAudioListAdapter.setPlaying(false);
+                    mMediaPlayer.pause();
+                } else {
+                    playMusic(currentPosition);
+                    mAudioListAdapter.setPlaying(true);
+                }
+            } else {
                 currentPosition = position;
                 lvAudioList.setItemsCanFocus(true);
                 lvAudioList.setFocusable(false);
                 playMusic(currentPosition);
                 playingMusicState(currentPosition);
             }
-            showLoading(false);
         }
     };
+
+    private int seek;
 
     public class PlayMusicAsyncTask extends AsyncTask<String, String, Boolean> {
 
@@ -521,6 +478,7 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
             mMediaPlayer.setOnPreparedListener(mediaPlayer ->
                     runOnUiThread(() -> {
                         showLoading(false);
+                        mMediaPlayer.seekTo(seek);
                         mediaPlayer.start();
                     })
             );
