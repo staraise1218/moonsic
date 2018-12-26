@@ -120,7 +120,7 @@ public class SingleDancePlayActivity extends BaseActivity implements View.OnFocu
      */
     private void playVedio(String vedioUrl) {
         showLoading(true);
-
+        new PlayMusicAsyncTask().execute(vedioUrl);
     }
 
     private void getData() {

@@ -58,10 +58,6 @@
                 style="@style/study_image"
                 android:src="@mipmap/finish_song" />
 
-            <TextView
-                android:id="@+id/tv_song"
-                style="@style/study_text"
-                android:text="@string/study_song" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -78,10 +74,6 @@
                 style="@style/study_image"
                 android:src="@mipmap/finish_dance" />
 
-            <TextView
-                android:id="@+id/tv_dance"
-                style="@style/study_text"
-                android:text="@string/study_dance" />
         </RelativeLayout>
 
        <include layout="@layout/common_progress" />

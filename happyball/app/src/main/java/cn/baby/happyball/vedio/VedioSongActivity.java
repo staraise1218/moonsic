@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -115,6 +114,10 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     ImageView ivSongOne;
     @BindView(R.id.iv_song_two)
     ImageView ivSongTwo;
+    @BindView(R.id.rl_song_lyrics)
+    RelativeLayout rlSongLyrics;
+    @BindView(R.id.rl_song_lyrics_other)
+    RelativeLayout rlSongLyricsOther;
 
     private Episode mEpisode;
     private MediaPlayer mMediaPlayer;
@@ -303,34 +306,28 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
         switch (view.getId()) {
             case R.id.rl_homepage:
                 if (b) {
-//                    obtainViewFocus(rlHomePage);
                     ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
                     rlHomePage.setNextFocusDownId(R.id.rl_song_sing);
                 } else {
-//                    loseViewFocus(rlHomePage);
                     ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.rl_song_sing:
                 if (b) {
-//                    obtainViewFocus(rlSongSing);
                     ivSongSing.setImageResource(R.mipmap.choice_episode_focus);
                     rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
                     rlSongSing.setNextFocusUpId(R.id.rl_homepage);
                 } else {
-//                    loseViewFocus(rlSongSing);
                     ivSongSing.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.rl_song_accompaniment:
                 if (b) {
-//                    obtainViewFocus(rlSongAccompaniment);
                     ivSongAccompaniment.setImageResource(R.mipmap.choice_episode_focus);
                     rlSongAccompaniment.setNextFocusUpId(R.id.rl_song_sing);
                     rlSongAccompaniment.setNextFocusDownId(R.id.iv_song_one_first);
                     rlSongAccompaniment.setNextFocusRightId(R.id.iv_song_one_first);
                 } else {
-//                    loseViewFocus(rlSongAccompaniment);
                     ivSongAccompaniment.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
@@ -462,23 +459,20 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     }
 
     public void showHorn(boolean show) {
-        ivSongOneFirst.setVisibility(show ? View.VISIBLE : View.GONE);
-        ivSongOneSecond.setVisibility(show ? View.VISIBLE : View.GONE);
-        ivSongOneThird.setVisibility(show ? View.VISIBLE : View.GONE);
-        ivSongOneFour.setVisibility(show ? View.VISIBLE : View.GONE);
-        ivSongTwoFirst.setVisibility(show ? View.VISIBLE : View.GONE);
-        ivSongTwoSecond.setVisibility(show ? View.VISIBLE : View.GONE);
-        ivSongTwoThird.setVisibility(show ? View.VISIBLE : View.GONE);
-        ivSongTwoFour.setVisibility(show ? View.VISIBLE : View.GONE);
-        ivSongOne.setVisibility(show ? View.VISIBLE : View.GONE);
-        ivSongTwo.setVisibility(show ? View.VISIBLE : View.GONE);
+        if (show) {
+            rlSongLyrics.setVisibility(View.VISIBLE);
+            rlSongLyricsOther.setVisibility(View.GONE);
+        } else {
+            rlSongLyrics.setVisibility(View.GONE);
+            rlSongLyricsOther.setVisibility(View.VISIBLE);
+        }
     }
 
     public class PlayMusicAsyncTask extends AsyncTask<String, String, Boolean> {
 
         @Override
         protected Boolean doInBackground(String... strings) {
-            if (mMediaPlayer == null){
+            if (mMediaPlayer == null) {
                 mMediaPlayer = new MediaPlayer();
             }
             try {

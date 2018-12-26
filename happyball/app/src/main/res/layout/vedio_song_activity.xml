@@ -54,7 +54,7 @@
                 android:id="@+id/rl_song_one_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="120dp"
                 android:layout_marginLeft="90dp"
                 android:orientation="horizontal">
 
@@ -208,6 +208,121 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_song_lyrics_other"
+            android:layout_width="580dp"
+            android:layout_height="620dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="31dp"
+            android:visibility="gone"
+            android:background="@mipmap/song_lyric_frame">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="@string/song_lyrics"
+                android:textSize="@dimen/main_type" />
+
+            <LinearLayout
+                android:id="@+id/rl_song_one_first_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/center_text_twenty"
+                    android:text="天 边 飘 来 一 片 云" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_song_one_second_other"
+                style="@style/lyric_layout_other"
+                android:layout_below="@+id/rl_song_one_first_other" >
+
+                <TextView
+                    style="@style/center_text_twenty"
+                    android:text="突 然 变 得 黑 漆 漆" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_song_one_third_other"
+                style="@style/lyric_layout_other"
+                android:layout_below="@+id/rl_song_one_second_other" >
+
+                <TextView
+                    style="@style/center_text_twenty"
+                    android:text="云 朵 闪 出 一 道 光" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_song_one_four_other"
+                style="@style/lyric_layout_other"
+                android:layout_below="@+id/rl_song_one_third_other" >
+
+                <TextView
+                    style="@style/center_text_twenty"
+                    android:text="轰 隆 轰 隆 震 天 响" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_song_two_first_other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal"
+                android:layout_below="@+id/rl_song_one_four_other" >
+
+                <TextView
+                    style="@style/center_text_twenty"
+                    android:text="i Pad 手 机 充 电 器" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_song_two_second_other"
+                style="@style/lyric_layout_other"
+                android:layout_below="@+id/rl_song_two_first_other" >
+
+                <TextView
+                    style="@style/center_text_twenty"
+                    android:text="电 脑 开 关 电 视 机" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rl_song_two_third_other"
+                style="@style/lyric_layout_other"
+                android:layout_below="@+id/rl_song_two_second_other" >
+
+                <TextView
+                    style="@style/center_text_twenty"
+                    android:text="打 雷 下 雨 要 关 闭" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/lyric_layout_other"
+                android:layout_below="@+id/rl_song_two_third_other">
+
+                <TextView
+                    style="@style/center_text_twenty"
+                    android:text="安 全 用 电 放 第 一" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/rl_song_sing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -216,6 +331,7 @@
             android:layout_toLeftOf="@+id/rl_song_lyrics"
             android:focusable="true"
             android:nextFocusUp="@id/rl_homepage"
+            android:nextFocusRight="@id/iv_song_one_first"
             android:nextFocusDown="@id/rl_song_accompaniment">
 
             <ImageView

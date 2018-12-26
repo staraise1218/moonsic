@@ -3,6 +3,6 @@
 
     <item android:drawable="@mipmap/audio_play_pressed" android:state_pressed="true"/>
     <item android:drawable="@mipmap/audio_play_pressed" android:state_focused="true"/>
-    <item android:drawable="@mipmap/vedio_play_def" />
+    <item android:drawable="@mipmap/audio_play_pressed" />
 
 </selector>

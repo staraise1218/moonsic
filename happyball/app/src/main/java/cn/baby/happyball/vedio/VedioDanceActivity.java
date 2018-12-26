@@ -150,9 +150,6 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
     }
 
     public void getData() {
-        showLoading(true);
-        new LoadBitmapAsyncTask(mLoadBitmapListener).execute();
-
         mEpisode = (Episode) getIntent().getSerializableExtra(SystemConfig.EPISODE);
 
         Map<String, Integer> map = new HashMap<>(1);
@@ -392,96 +389,96 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
         switch (view.getId()) {
             case R.id.rl_dance_first:
                 if (b) {
-//                    obtainViewFocus(rlDanceFirst);
+                    ivDanceFirst.setImageResource(R.mipmap.main_reception_focus);
                     tvDanceFirst.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFirst.setNextFocusUpId(R.id.rl_back);
                     rlDanceFirst.setNextFocusRightId(R.id.rl_dance_second);
                     rlDanceFirst.setNextFocusDownId(R.id.rl_dance_five);
                 } else {
-                    loseViewFocus(rlDanceFirst);
+                    ivDanceFirst.setImageResource(R.mipmap.main_reception);
                     tvDanceFirst.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_second:
                 if (b) {
-//                    obtainViewFocus(rlDanceSecond);
+                    ivDanceSecond.setImageResource(R.mipmap.main_middle_focus);
                     tvDanceSecond.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceSecond.setNextFocusLeftId(R.id.rl_dance_first);
                     rlDanceSecond.setNextFocusRightId(R.id.rl_dance_third);
                     rlDanceSecond.setNextFocusDownId(R.id.rl_dance_six);
                 } else {
-                    loseViewFocus(rlDanceSecond);
+                    ivDanceSecond.setImageResource(R.mipmap.main_middle);
                     tvDanceSecond.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_third:
                 if (b) {
-//                    obtainViewFocus(rlDanceThird);
+                    ivDanceThird.setImageResource(R.mipmap.main_big_focus);
                     tvDanceThird.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceThird.setNextFocusLeftId(R.id.rl_dance_second);
                     rlDanceThird.setNextFocusRightId(R.id.rl_dance_four);
                     rlDanceThird.setNextFocusDownId(R.id.rl_dance_seven);
                 } else {
-                    loseViewFocus(rlDanceThird);
+                    ivDanceThird.setImageResource(R.mipmap.main_big);
                     tvDanceThird.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_four:
                 if (b) {
-//                    obtainViewFocus(rlDanceFour);
+                    ivDanceFour.setImageResource(R.mipmap.main_reception_focus);
                     tvDanceFour.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFour.setNextFocusLeftId(R.id.rl_dance_third);
                     rlDanceFour.setNextFocusRightId(R.id.rl_dance_five);
                     rlDanceFour.setNextFocusDownId(R.id.rl_dance_eight);
                 } else {
-                    loseViewFocus(rlDanceFour);
+                    ivDanceFour.setImageResource(R.mipmap.main_reception);
                     tvDanceFour.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_five:
                 if (b) {
-//                    obtainViewFocus(rlDanceFive);
+                    ivDanceFive.setImageResource(R.mipmap.main_reception_focus);
                     tvDanceFive.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFive.setNextFocusLeftId(R.id.rl_dance_four);
                     rlDanceFive.setNextFocusRightId(R.id.rl_dance_six);
                     rlDanceFive.setNextFocusUpId(R.id.rl_dance_first);
                 } else {
-                    loseViewFocus(rlDanceFive);
+                    ivDanceFive.setImageResource(R.mipmap.main_reception);
                     tvDanceFive.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_six:
                 if (b) {
-//                    obtainViewFocus(rlDanceSix);
+                    ivDanceSix.setImageResource(R.mipmap.main_middle_focus);
                     tvDanceSix.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceSix.setNextFocusLeftId(R.id.rl_dance_five);
                     rlDanceSix.setNextFocusRightId(R.id.rl_dance_seven);
                     rlDanceSix.setNextFocusUpId(R.id.rl_dance_second);
                 } else {
-                    loseViewFocus(rlDanceSix);
+                    ivDanceSix.setImageResource(R.mipmap.main_middle);
                     tvDanceSix.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_seven:
                 if (b) {
-//                    obtainViewFocus(rlDanceSeven);
+                    ivDanceSeven.setImageResource(R.mipmap.main_big_focus);
                     tvDanceSeven.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceSeven.setNextFocusLeftId(R.id.rl_dance_six);
                     rlDanceSeven.setNextFocusRightId(R.id.rl_dance_eight);
                     rlDanceSeven.setNextFocusUpId(R.id.rl_dance_third);
                 } else {
-                    loseViewFocus(rlDanceSeven);
+                    ivDanceSeven.setImageResource(R.mipmap.main_big);
                     tvDanceSeven.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
             case R.id.rl_dance_eight:
                 if (b) {
-//                    obtainViewFocus(rlDanceEight);
+                    ivDanceEight.setImageResource(R.mipmap.main_middle_focus);
                     tvDanceEight.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceEight.setNextFocusLeftId(R.id.rl_dance_seven);
                     rlDanceEight.setNextFocusUpId(R.id.rl_dance_four);
                 } else {
-                    loseViewFocus(rlDanceEight);
+                    ivDanceEight.setImageResource(R.mipmap.main_middle);
                     tvDanceEight.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.white));
                 }
                 break;
@@ -496,12 +493,10 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case R.id.rl_homepage:
                 if (b) {
-//                    obtainViewFocus(rlHomePage);
                     ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
                     rlHomePage.setNextFocusDownId(R.id.rl_dance_four);
                     rlHomePage.setNextFocusLeftId(R.id.rl_back);
                 } else {
-//                    loseViewFocus(rlHomePage);
                     ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
@@ -577,24 +572,4 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
-
-    private ILoadBitmapListener mLoadBitmapListener = new ILoadBitmapListener() {
-        @Override
-        public void onReady() {
-            showLoading(true);
-        }
-
-        @Override
-        public void onComplete() {
-            ivDanceFirst.setImageBitmap(mReceptionLastBitmap);
-            ivDanceSecond.setImageBitmap(mReceptionNextBitmap);
-            ivDanceThird.setImageBitmap(mMiddleLastBitmap);
-            ivDanceFour.setImageBitmap(mMiddleNextBitmap);
-            ivDanceFive.setImageBitmap(mBigLastBitmap);
-            ivDanceSix.setImageBitmap(mBigNextBitmap);
-            ivDanceSeven.setImageBitmap(mReceptionLastBitmap);
-            ivDanceEight.setImageBitmap(mReceptionNextBitmap);
-            showLoading(false);
-        }
-    };
 }

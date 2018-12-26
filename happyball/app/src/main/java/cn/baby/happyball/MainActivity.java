@@ -134,21 +134,21 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     }
 
     public void getData() {
-        new LoadBitmapAsyncTask(mLoadBitmapListener).execute();
+        // do nothing
     }
 
     private void initData() {
         tvTitle.setText(R.string.audio_title);
         if (mMode == 0) {
-            obtainViewFocus(rlVedio);
-            loseViewFocus(rlAudio);
+            ivVedio.setImageResource(R.mipmap.main_vedio_focus);
+            ivAudio.setImageResource(R.mipmap.main_audio);
             rlVedio.requestFocus();
             rlVedio.setFocusable(true);
             rlVedio.setNextFocusRightId(R.id.rl_reception_last);
             rlVedio.setNextFocusDownId(R.id.rl_audio);
         } else {
-            obtainViewFocus(rlAudio);
-            loseViewFocus(rlVedio);
+            ivAudio.setImageResource(R.mipmap.main_audio_focus);
+            ivVedio.setImageResource(R.mipmap.main_vedio);
             rlAudio.requestFocus();
             rlAudio.setFocusable(true);
             rlAudio.setNextFocusRightId(R.id.rl_reception_last);
@@ -257,15 +257,35 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 receptionLastFocusChange(b);
                 break;
             case R.id.rl_middle_last:
+                if (b) {
+                    ivMiddleLast.setImageResource(R.mipmap.main_middle_focus);
+                } else {
+                    ivMiddleLast.setImageResource(R.mipmap.main_middle);
+                }
                 lastFocusChange(b, rlMiddleLast, R.id.rl_reception_last, R.id.rl_big_last, R.id.rl_middle_next);
                 break;
             case R.id.rl_big_last:
+                if (b) {
+                    ivBigLast.setImageResource(R.mipmap.main_big_focus);
+                } else {
+                    ivBigLast.setImageResource(R.mipmap.main_big);
+                }
                 lastFocusChange(b, rlBigLast, R.id.rl_middle_last, R.id.rl_reception_next, R.id.rl_big_next);
                 break;
             case R.id.rl_reception_next:
+                if (b) {
+                    ivReceptionNext.setImageResource(R.mipmap.main_reception_focus);
+                } else {
+                    ivReceptionNext.setImageResource(R.mipmap.main_reception);
+                }
                 nextFocusChange(b, rlReceptionNext, R.id.rl_big_last, R.id.rl_middle_next, R.id.rl_reception_last);
                 break;
             case R.id.rl_middle_next:
+                if (b) {
+                    ivMiddleNext.setImageResource(R.mipmap.main_middle_focus);
+                } else {
+                    ivMiddleNext.setImageResource(R.mipmap.main_middle);
+                }
                 nextFocusChange(b, rlMiddleNext, R.id.rl_reception_next, R.id.rl_big_next, R.id.rl_middle_last);
                 break;
             case R.id.rl_big_next:
@@ -283,39 +303,33 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
 
     private void bigNextFocusChange(boolean b) {
         if (b) {
-            obtainViewFocus(rlBigNext);
+            ivBigNext.setImageResource(R.mipmap.main_big_focus);
             rlBigNext.setNextFocusLeftId(R.id.rl_middle_next);
             rlBigNext.setNextFocusUpId(R.id.rl_big_last);
         } else {
-            loseViewFocus(rlBigNext);
+            ivBigNext.setImageResource(R.mipmap.main_big);
         }
     }
 
     private void nextFocusChange(boolean b, RelativeLayout rl, int rlLeftId, int rlRightId, int rlUpId) {
         if (b) {
-            obtainViewFocus(rl);
             rl.setNextFocusLeftId(rlLeftId);
             rl.setNextFocusRightId(rlRightId);
             rl.setNextFocusUpId(rlUpId);
-        } else {
-            loseViewFocus(rl);
         }
     }
 
     private void lastFocusChange(boolean b, RelativeLayout rl, int rlLeftId, int rlRightId, int rlNextId) {
         if (b) {
-            obtainViewFocus(rl);
             rl.setNextFocusLeftId(rlLeftId);
             rl.setNextFocusRightId(rlRightId);
             rl.setNextFocusDownId(rlNextId);
-        } else {
-            loseViewFocus(rl);
         }
     }
 
     private void receptionLastFocusChange(boolean b) {
         if (b) {
-            obtainViewFocus(rlReceptionLast);
+            ivReceptionLast.setImageResource(R.mipmap.main_reception_focus);
             if (mMode == 0) {
                 rlReceptionLast.setNextFocusLeftId(R.id.rl_vedio);
             } else {
@@ -324,7 +338,7 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
             rlReceptionLast.setNextFocusRightId(R.id.rl_middle_last);
             rlReceptionLast.setNextFocusDownId(R.id.rl_reception_next);
         } else {
-            loseViewFocus(rlReceptionLast);
+            ivReceptionLast.setImageResource(R.mipmap.main_reception);
         }
     }
 
@@ -333,8 +347,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_CENTER:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlVedio);
-                    loseViewFocus(rlAudio);
+                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
+                    ivAudio.setImageResource(R.mipmap.main_audio);
                     rlVedio.requestFocus();
                     rlVedio.setFocusable(true);
                     rlVedio.setNextFocusRightId(R.id.rl_reception_last);
@@ -344,8 +358,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlVedio);
-                    loseViewFocus(rlAudio);
+                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
+                    ivAudio.setImageResource(R.mipmap.main_audio);
                     rlVedio.requestFocus();
                     rlVedio.setFocusable(true);
                     rlVedio.setNextFocusRightId(R.id.rl_reception_last);
@@ -355,8 +369,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlVedio);
-                    loseViewFocus(rlAudio);
+                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
+                    ivAudio.setImageResource(R.mipmap.main_audio);
                     rlVedio.requestFocus();
                     rlVedio.setFocusable(true);
                     rlVedio.setNextFocusRightId(R.id.rl_reception_last);
@@ -366,8 +380,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlVedio);
-                    loseViewFocus(rlAudio);
+                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
+                    ivAudio.setImageResource(R.mipmap.main_audio);
                     rlVedio.requestFocus();
                     rlVedio.setFocusable(true);
                     rlVedio.setNextFocusRightId(R.id.rl_reception_last);
@@ -377,8 +391,8 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlVedio);
-                    loseViewFocus(rlAudio);
+                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
+                    ivAudio.setImageResource(R.mipmap.main_audio);
                     rlVedio.requestFocus();
                     rlVedio.setFocusable(true);
                     rlVedio.setNextFocusRightId(R.id.rl_reception_last);
@@ -400,22 +414,4 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
-
-    private ILoadBitmapListener mLoadBitmapListener = new ILoadBitmapListener() {
-        @Override
-        public void onReady() {
-            showLoading(true);
-        }
-
-        @Override
-        public void onComplete() {
-            ivReceptionLast.setImageBitmap(mReceptionLastBitmap);
-            ivReceptionNext.setImageBitmap(mReceptionNextBitmap);
-            ivMiddleLast.setImageBitmap(mMiddleLastBitmap);
-            ivMiddleNext.setImageBitmap(mMiddleNextBitmap);
-            ivBigLast.setImageBitmap(mBigLastBitmap);
-            ivBigNext.setImageBitmap(mBigNextBitmap);
-            showLoading(false);
-        }
-    };
 }

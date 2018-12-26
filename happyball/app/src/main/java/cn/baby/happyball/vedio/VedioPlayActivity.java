@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -114,8 +115,17 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})
     public void onHomepage() {
-        setValue(mKey, String.valueOf(mMediaPlayer.getCurrentPosition()));
-        startActivity(new Intent(VedioPlayActivity.this, MainActivity.class));
+        if (mMediaPlayer.isPlaying()) {
+            mMediaPlayer.pause();
+            ivPlay.requestLayout();
+            ivPlay.setFocusable(true);
+            ivPlay.setImageResource(R.drawable.vedio_play_selector);
+        } else {
+            mMediaPlayer.start();
+            ivPlay.requestLayout();
+            ivPlay.setFocusable(true);
+            ivPlay.setImageResource(R.drawable.vedio_pause_selector);
+        }
     }
 
     private void getData() {
@@ -251,11 +261,28 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
 
     @Override
     public void onFocusChange(View view, boolean b) {
-        if (b) {
-            obtainViewFocus(view);
-        } else {
-            loseViewFocus(view);
+        if (view.getId() == R.id.rl_homepage) {
+            if (b) {
+                ivPlay.requestLayout();
+                ivPlay.setFocusable(true);
+            }
+            if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
+                ivPlay.setImageResource(R.drawable.vedio_pause_selector);
+            } else {
+                ivPlay.setImageResource(R.drawable.vedio_play_selector);
+            }
+        } else if (view.getId() == R.id.iv_play) {
+            if (b) {
+                ivPlay.requestLayout();
+                ivPlay.setFocusable(true);
+            }
+            if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
+                ivPlay.setImageResource(R.drawable.vedio_pause_selector);
+            } else {
+                ivPlay.setImageResource(R.drawable.vedio_play_selector);
+            }
         }
+
     }
 
     private Handler mHandler = new Handler();
@@ -273,4 +300,51 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
             mHandler.postAtTime(mTicker, next);
         }
     };
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return false;
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
+                        mMediaPlayer.pause();
+                        mMediaPlayer.seekTo(mMediaPlayer.getCurrentPosition() - 2000);
+                        mMediaPlayer.start();
+
+                        ivPlay.requestLayout();
+                        ivPlay.setFocusable(true);
+                        ivPlay.setImageResource(R.drawable.vedio_pause_selector);
+                    }
+                }
+                return false;
+
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
+                        mMediaPlayer.pause();
+                        mMediaPlayer.seekTo(mMediaPlayer.getCurrentPosition() + 2000);
+                        mMediaPlayer.start();
+
+                        ivPlay.requestLayout();
+                        ivPlay.setFocusable(true);
+                        ivPlay.setImageResource(R.drawable.vedio_pause_selector);
+                    }
+                }
+                return false;
+
+            case KeyEvent.KEYCODE_BACK:
+                if (event.getAction() == KeyEvent.ACTION_UP) {
+                    onBackPressed();
+                }
+                break;
+            default:
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

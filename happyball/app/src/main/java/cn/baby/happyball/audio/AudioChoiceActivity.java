@@ -137,7 +137,6 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         rlHomePage.setOnFocusChangeListener(this);
         ivAudioLeft.setOnFocusChangeListener(this);
         ivAudioRight.setOnFocusChangeListener(this);
-        lvAudioList.setOnFocusChangeListener(this);
     }
 
     private void getData() {
@@ -153,12 +152,29 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         mAudios.add(audio);
 
         Audio audio1 = new Audio();
-        audio1.setId(1);
+        audio1.setId(2);
         audio1.setTitle("不要跟陌生人说话");
         audio1.setSinger("某某");
         audio1.setAlbum("不要跟陌生人说话");
         audio1.setTimelong("02:48");
         mAudios.add(audio1);
+
+        Audio audio2 = new Audio();
+        audio2.setId(3);
+        audio2.setTitle("打雷下雨要注意");
+        audio2.setSinger("某某");
+        audio2.setAlbum("打雷下雨要注意");
+        audio2.setTimelong("01:39");
+        mAudios.add(audio2);
+
+        Audio audio3 = new Audio();
+        audio3.setId(4);
+        audio3.setTitle("不要跟陌生人说话");
+        audio3.setSinger("某某");
+        audio3.setAlbum("不要跟陌生人说话");
+        audio3.setTimelong("02:48");
+        mAudios.add(audio3);
+
         initData();
 
 //        Map<String, Integer> map = new HashMap<>(1);
@@ -289,9 +305,7 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         ivPlay.setImageResource(R.drawable.audio_pause_selector);
         tvPlay.setText(R.string.pause);
         mAudioListAdapter.setPlayingIndex(position);
-//        mAudioListAdapter = new AudioListAdapter(getApplicationContext(), mAudios, mSongFouces);
-//        lvAudioList.setAdapter(mAudioListAdapter);
-//        lvAudioList.post(() -> lvAudioList.smoothScrollToPosition(position + 1));
+        lvAudioList.post(() -> lvAudioList.smoothScrollToPosition(position + 1));
     }
 
     private void playMusic(final int position) {
@@ -324,7 +338,6 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         switch (view.getId()) {
             case R.id.rl_homepage:
                 if (b) {
-//                    obtainViewFocus(rlHomePage);
                     if (mMediaPlayer != null) {
                         mMediaPlayer.pause();
                     }
@@ -335,7 +348,6 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
                     ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
                     rlHomePage.setNextFocusDownId(R.id.lv_audio_list);
                 } else {
-//                    loseViewFocus(rlHomePage);
                     ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
@@ -444,25 +456,19 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
     private void loadBitmap() {
         switch (mLessonId) {
             case 1:
-                ivDifficult.setImageBitmap(loadBitmap(R.mipmap.timg_1, R.mipmap.vedio_choice));
+            case 4:
+                ivDifficult.setImageResource(R.mipmap.main_reception);
                 break;
             case 2:
-                ivDifficult.setImageBitmap(loadBitmap(R.mipmap.timg_2, R.mipmap.vedio_choice));
+            case 5:
+                ivDifficult.setImageResource(R.mipmap.main_middle);
                 break;
             case 3:
-                ivDifficult.setImageBitmap(loadBitmap(R.mipmap.timg_3, R.mipmap.vedio_choice));
-                break;
-            case 4:
-                ivDifficult.setImageBitmap(loadBitmap(R.mipmap.timg_4, R.mipmap.vedio_choice));
-                break;
-            case 5:
-                ivDifficult.setImageBitmap(loadBitmap(R.mipmap.timg_5, R.mipmap.vedio_choice));
-                break;
             case 6:
-                ivDifficult.setImageBitmap(loadBitmap(R.mipmap.timg_6, R.mipmap.vedio_choice));
+                ivDifficult.setImageResource(R.mipmap.main_big);
                 break;
             default:
-                ivDifficult.setImageBitmap(loadBitmap(R.mipmap.timg_1, R.mipmap.vedio_choice));
+                ivDifficult.setImageResource(R.mipmap.main_reception);
                 break;
         }
     }
@@ -477,10 +483,10 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
             showLoading(true);
             if (currentPosition != position) {
                 currentPosition = position;
-                playMusic(currentPosition);
-                playingMusicState(currentPosition);
                 lvAudioList.setItemsCanFocus(true);
                 lvAudioList.setFocusable(false);
+                playMusic(currentPosition);
+                playingMusicState(currentPosition);
             }
             showLoading(false);
         }

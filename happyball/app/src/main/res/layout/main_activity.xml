@@ -78,7 +78,7 @@
             <ImageView
                 android:id="@+id/iv_reception_last"
                 style="@style/main_semester_image"
-                android:src="@mipmap/main_reception_last" />
+                android:src="@mipmap/main_reception" />
 
             <ImageView style="@style/main_semester_frame" />
 
@@ -103,7 +103,7 @@
             <ImageView
                 android:id="@+id/iv_middle_last"
                 style="@style/main_semester_image"
-                android:src="@mipmap/main_middle_last" />
+                android:src="@mipmap/main_middle" />
 
             <ImageView style="@style/main_semester_frame" />
 
@@ -128,7 +128,7 @@
             <ImageView
                 android:id="@+id/iv_big_last"
                 style="@style/main_semester_image"
-                android:src="@mipmap/main_big_last" />
+                android:src="@mipmap/main_big" />
 
             <ImageView style="@style/main_semester_frame" />
 
@@ -153,7 +153,7 @@
             <ImageView
                 android:id="@+id/iv_reception_next"
                 style="@style/main_semester_image"
-                android:src="@mipmap/main_reception_next" />
+                android:src="@mipmap/main_reception" />
 
             <ImageView style="@style/main_semester_frame" />
 
@@ -177,7 +177,7 @@
             <ImageView
                 android:id="@+id/iv_middle_next"
                 style="@style/main_semester_image"
-                android:src="@mipmap/main_middle_next" />
+                android:src="@mipmap/main_middle" />
 
             <ImageView style="@style/main_semester_frame" />
 
@@ -201,7 +201,7 @@
             <ImageView
                 android:id="@+id/iv_big_next"
                 style="@style/main_semester_image"
-                android:src="@mipmap/main_big_next" />
+                android:src="@mipmap/main_big" />
 
             <ImageView style="@style/main_semester_frame" />
 

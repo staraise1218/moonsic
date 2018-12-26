@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/bg_dance">
+    android:background="@mipmap/bg_class_selection">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             <ImageView
                 android:id="@+id/iv_dance_first"
                 style="@style/dance_image"
-                android:src="@mipmap/main_reception_last" />
+                android:src="@mipmap/main_reception" />
 
             <TextView
                 android:id="@+id/tv_dance_first"
@@ -81,7 +81,7 @@
             <ImageView
                 android:id="@+id/iv_dance_second"
                 style="@style/dance_image"
-                android:src="@mipmap/main_reception_last" />
+                android:src="@mipmap/main_middle" />
 
             <TextView
                 android:id="@+id/tv_dance_second"
@@ -105,7 +105,7 @@
             <ImageView
                 android:id="@+id/iv_dance_third"
                 style="@style/dance_image"
-                android:src="@mipmap/main_reception_last" />
+                android:src="@mipmap/main_big" />
 
             <TextView
                 android:id="@+id/tv_dance_third"
@@ -129,7 +129,7 @@
             <ImageView
                 android:id="@+id/iv_dance_four"
                 style="@style/dance_image"
-                android:src="@mipmap/main_reception_last" />
+                android:src="@mipmap/main_reception" />
 
             <TextView
                 android:id="@+id/tv_dance_four"
@@ -153,7 +153,7 @@
             <ImageView
                 android:id="@+id/iv_dance_five"
                 style="@style/dance_image"
-                android:src="@mipmap/main_reception_last" />
+                android:src="@mipmap/main_reception" />
 
             <TextView
                 android:id="@+id/tv_dance_five"
@@ -177,7 +177,7 @@
             <ImageView
                 android:id="@+id/iv_dance_six"
                 style="@style/dance_image"
-                android:src="@mipmap/main_reception_last" />
+                android:src="@mipmap/main_middle" />
 
             <TextView
                 android:id="@+id/tv_dance_six"
@@ -201,7 +201,7 @@
             <ImageView
                 android:id="@+id/iv_dance_seven"
                 style="@style/dance_image"
-                android:src="@mipmap/main_reception_last" />
+                android:src="@mipmap/main_big" />
 
             <TextView
                 android:id="@+id/tv_dance_seven"
@@ -224,7 +224,7 @@
             <ImageView
                 android:id="@+id/iv_dance_eight"
                 style="@style/dance_image"
-                android:src="@mipmap/main_reception_last" />
+                android:src="@mipmap/main_middle" />
 
             <TextView
                 android:id="@+id/tv_dance_eight"

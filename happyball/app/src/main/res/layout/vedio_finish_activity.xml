@@ -87,12 +87,8 @@
             <ImageView
                 android:id="@+id/iv_study"
                 style="@style/study_image"
-                android:src="@mipmap/finish_song" />
+                android:src="@mipmap/finish_study" />
 
-            <TextView
-                android:id="@+id/tv_study"
-                style="@style/study_text"
-                android:text="@string/study" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -108,12 +104,8 @@
             <ImageView
                 android:id="@+id/iv_knowledge"
                 style="@style/study_image"
-                android:src="@mipmap/finish_dance" />
+                android:src="@mipmap/finish_knowledge" />
 
-            <TextView
-                android:id="@+id/tv_knowledge"
-                style="@style/study_text"
-                android:text="@string/knowledge" />
         </RelativeLayout>
 
         <include layout="@layout/common_progress" />

@@ -82,12 +82,11 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     }
 
     private void getData() {
-        showLoading(true);
         mEpisode = (Episode) getIntent().getSerializableExtra(SystemConfig.EPISODE);
     }
 
     private void initData() {
-        new LoadStudyBitmap(mLoadBitmapListener).execute();
+        // do nothing
     }
 
     @OnClick(R.id.ll_replay)
@@ -133,42 +132,37 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
                 break;
             case R.id.rl_homepage:
                 if (b) {
-//                    obtainViewFocus(rlHomePage);
                     ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
                     rlHomePage.setNextFocusLeftId(R.id.rl_back);
                     rlHomePage.setNextFocusDownId(R.id.rl_knowledge);
                 } else {
-//                    loseViewFocus(rlHomePage);
                     ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.ll_replay:
                 if (b) {
-//                    obtainViewFocus(llReplay);
                     llReplay.setBackgroundResource(R.mipmap.choice_episode_focus);
                     llReplay.setNextFocusLeftId(R.id.rl_study);
                     llReplay.setNextFocusRightId(R.id.rl_knowledge);
                 } else {
-//                    loseViewFocus(llReplay);
                     llReplay.setBackgroundResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.rl_study:
                 if (b) {
-                    obtainViewFocus(rlStudy);
+                    ivStudy.setImageResource(R.mipmap.finish_study_focus);
                     rlStudy.setNextFocusUpId(R.id.rl_back);
                     rlStudy.setNextFocusRightId(R.id.ll_replay);
                 } else {
-                    loseViewFocus(rlStudy);
+                    ivStudy.setImageResource(R.mipmap.finish_study);
                 }
                 break;
             case R.id.rl_knowledge:
                 if (b) {
-                    obtainViewFocus(rlKnowledge);
+                    ivKnowledge.setImageResource(R.mipmap.finish_knowledge_focus);
                     rlKnowledge.setNextFocusLeftId(R.id.ll_replay);
                     rlKnowledge.setNextFocusUpId(R.id.rl_homepage);
-                } else {
-                    loseViewFocus(rlKnowledge);
+                } else {ivKnowledge.setImageResource(R.mipmap.finish_knowledge);
                 }
                 break;
             default:
@@ -187,41 +181,41 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(llReplay);
                     llReplay.requestFocus();
                     llReplay.setFocusable(true);
                     llReplay.setNextFocusLeftId(R.id.rl_study);
                     llReplay.setNextFocusRightId(R.id.rl_knowledge);
+                    llReplay.setBackgroundResource(R.mipmap.choice_episode_focus);
                     isFirst = false;
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(llReplay);
                     llReplay.requestFocus();
                     llReplay.setFocusable(true);
                     llReplay.setNextFocusLeftId(R.id.rl_study);
                     llReplay.setNextFocusRightId(R.id.rl_knowledge);
+                    llReplay.setBackgroundResource(R.mipmap.choice_episode_focus);
                     isFirst = false;
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(llReplay);
                     llReplay.requestFocus();
                     llReplay.setFocusable(true);
                     llReplay.setNextFocusLeftId(R.id.rl_study);
                     llReplay.setNextFocusRightId(R.id.rl_knowledge);
+                    llReplay.setBackgroundResource(R.mipmap.choice_episode_focus);
                     isFirst = false;
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(llReplay);
                     llReplay.requestFocus();
                     llReplay.setFocusable(true);
                     llReplay.setNextFocusLeftId(R.id.rl_study);
                     llReplay.setNextFocusRightId(R.id.rl_knowledge);
+                    llReplay.setBackgroundResource(R.mipmap.choice_episode_focus);
                     isFirst = false;
                 }
                 break;
@@ -239,18 +233,4 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
-
-    private ILoadBitmapListener mLoadBitmapListener = new ILoadBitmapListener() {
-        @Override
-        public void onReady() {
-            showLoading(true);
-        }
-
-        @Override
-        public void onComplete() {
-            ivStudy.setImageBitmap(mStudyBitmap);
-            ivKnowledge.setImageBitmap(mKnowledgeBitmap);
-            showLoading(false);
-        }
-    };
 }

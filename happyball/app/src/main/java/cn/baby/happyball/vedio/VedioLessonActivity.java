@@ -120,7 +120,6 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     }
 
     public void getData() {
-        new LoadBitmapAsyncTask(mLoadBitmepListener).execute();
         mSemesterId = getIntent().getIntExtra(SystemConfig.SEMESTER, 1);
     }
 
@@ -137,60 +136,60 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
         switch (view.getId()) {
             case R.id.rl_safe:
                 if (b) {
-                    obtainViewFocus(rlSafe);
+                    ivSafe.setImageResource(R.mipmap.main_reception_focus);
                     rlSafe.setNextFocusRightId(R.id.rl_hygiene);
                     rlSafe.setNextFocusDownId(R.id.rl_pop);
                 } else {
-                    loseViewFocus(rlSafe);
+                    ivSafe.setImageResource(R.mipmap.main_reception);
                 }
                 break;
             case R.id.rl_hygiene:
                 if (b) {
-                    obtainViewFocus(rlHygiene);
+                    ivHygiene.setImageResource(R.mipmap.main_middle_focus);
                     rlHygiene.setNextFocusLeftId(R.id.rl_safe);
                     rlHygiene.setNextFocusRightId(R.id.rl_nation);
                     rlHygiene.setNextFocusDownId(R.id.rl_world);
                 } else {
-                    loseViewFocus(rlHygiene);
+                    ivHygiene.setImageResource(R.mipmap.main_middle);
                 }
                 break;
             case R.id.rl_nation:
                 if (b) {
-                    obtainViewFocus(rlNation);
+                    ivNation.setImageResource(R.mipmap.main_big_focus);
                     rlNation.setNextFocusLeftId(R.id.rl_hygiene);
                     rlNation.setNextFocusRightId(R.id.rl_pop);
                     rlNation.setNextFocusDownId(R.id.rl_china);
                 } else {
-                    loseViewFocus(rlNation);
+                    ivNation.setImageResource(R.mipmap.main_big);
                 }
                 break;
             case R.id.rl_pop:
                 if (b) {
-                    obtainViewFocus(rlPop);
+                    ivPop.setImageResource(R.mipmap.main_reception_focus);
                     rlPop.setNextFocusLeftId(R.id.rl_nation);
                     rlPop.setNextFocusRightId(R.id.rl_world);
                     rlPop.setNextFocusUpId(R.id.rl_safe);
                 } else {
-                    loseViewFocus(rlPop);
+                    ivPop.setImageResource(R.mipmap.main_reception);
                 }
                 break;
             case R.id.rl_world:
                 if (b) {
-                    obtainViewFocus(rlWorld);
+                    ivWorld.setImageResource(R.mipmap.main_middle_focus);
                     rlWorld.setNextFocusLeftId(R.id.rl_pop);
                     rlWorld.setNextFocusRightId(R.id.rl_china);
                     rlWorld.setNextFocusUpId(R.id.rl_hygiene);
                 } else {
-                    loseViewFocus(rlWorld);
+                    ivWorld.setImageResource(R.mipmap.main_middle);
                 }
                 break;
             case R.id.rl_china:
                 if (b) {
-                    obtainViewFocus(rlChina);
+                    ivChina.setImageResource(R.mipmap.main_big_focus);
                     rlChina.setNextFocusLeftId(R.id.rl_world);
                     rlChina.setNextFocusUpId(R.id.rl_nation);
                 } else {
-                    loseViewFocus(rlChina);
+                    ivChina.setImageResource(R.mipmap.main_big);
                 }
                 break;
             case R.id.rl_homepage:
@@ -315,24 +314,6 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
-
-   private ILoadBitmapListener mLoadBitmepListener = new ILoadBitmapListener() {
-       @Override
-       public void onReady() {
-           showLoading(true);
-       }
-
-       @Override
-       public void onComplete() {
-           ivSafe.setImageBitmap(mReceptionLastBitmap);
-           ivHygiene.setImageBitmap(mReceptionNextBitmap);
-           ivNation.setImageBitmap(mMiddleLastBitmap);
-           ivPop.setImageBitmap(mMiddleNextBitmap);
-           ivWorld.setImageBitmap(mBigLastBitmap);
-           ivChina.setImageBitmap(mBigNextBitmap);
-           showLoading(false);
-       }
-   };
 
     @Override
     public void onBackPressed() {

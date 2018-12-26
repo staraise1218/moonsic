@@ -110,6 +110,7 @@ public class VedioChoiceActivity extends BaseActivity implements View.OnFocusCha
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vedio_choice_activity);
         ButterKnife.bind(this);
+        rlHomePage.setOnFocusChangeListener(this);
         getData();
     }
 
@@ -150,6 +151,40 @@ public class VedioChoiceActivity extends BaseActivity implements View.OnFocusCha
     }
 
     private void initData() {
+        setTittle();
+
+        if (!mEpisodes.isEmpty()) {
+            tvNumber.setVisibility(View.VISIBLE);
+            tvNumber.setText(String.format(getString(R.string.number_value), mEpisodes.size()));
+            mLastNum = getValue(SystemConfig.EPISODE_NUM);
+            mLastTime = getValue(SystemConfig.EPISODE_TIME);
+            if ("".equalsIgnoreCase(mLastNum)) {
+                tvLastTime.setVisibility(View.VISIBLE);
+                tvLastTime.setText(R.string.last_no_playing);
+                tvLastTimeValue.setVisibility(View.INVISIBLE);
+            } else {
+                tvLastTime.setVisibility(View.VISIBLE);
+                tvLastTime.setText(String.format(getString(R.string.last_time), Integer.valueOf(mLastNum)));
+                tvLastTimeValue.setVisibility(View.VISIBLE);
+                tvLastTimeValue.setText(mLastTime);
+            }
+
+            cvCourse.setItemAnimator(new DefaultItemAnimator());
+            mEpisodeAdapter = new EpisodeAdapter(VedioChoiceActivity.this, mEpisodes);
+            mLayoutManager = new StaggeredGridLayoutManager(LINE_NUM, StaggeredGridLayoutManager.HORIZONTAL);
+            mLayoutManager.setAutoMeasureEnabled(true);
+            cvCourse.setLayoutManager(mLayoutManager);
+            cvCourse.setAdapter(mEpisodeAdapter);
+            mEpisodeAdapter.setOnItemClickListener(mItemClickListener);
+            cvCourse.setOnScrollListener(mScrollListener);
+        } else {
+            tvNumber.setVisibility(View.INVISIBLE);
+            tvLastTime.setVisibility(View.INVISIBLE);
+            tvLastTimeValue.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void setTittle() {
         switch (mSemesterId) {
             case 1:
                 tvSemeterName.setText(R.string.reception_last_semester);
@@ -206,36 +241,6 @@ public class VedioChoiceActivity extends BaseActivity implements View.OnFocusCha
             default:
                 break;
         }
-
-        if (!mEpisodes.isEmpty()) {
-            tvNumber.setVisibility(View.VISIBLE);
-            tvNumber.setText(String.format(getString(R.string.number_value), mEpisodes.size()));
-            mLastNum = getValue(SystemConfig.EPISODE_NUM);
-            mLastTime = getValue(SystemConfig.EPISODE_TIME);
-            if ("".equalsIgnoreCase(mLastNum)) {
-                tvLastTime.setVisibility(View.VISIBLE);
-                tvLastTime.setText(R.string.last_no_playing);
-                tvLastTimeValue.setVisibility(View.INVISIBLE);
-            } else {
-                tvLastTime.setVisibility(View.VISIBLE);
-                tvLastTime.setText(String.format(getString(R.string.last_time), Integer.valueOf(mLastNum)));
-                tvLastTimeValue.setVisibility(View.VISIBLE);
-                tvLastTimeValue.setText(mLastTime);
-            }
-
-            cvCourse.setItemAnimator(new DefaultItemAnimator());
-            mEpisodeAdapter = new EpisodeAdapter(VedioChoiceActivity.this, mEpisodes);
-            mLayoutManager = new StaggeredGridLayoutManager(LINE_NUM, StaggeredGridLayoutManager.HORIZONTAL);
-            mLayoutManager.setAutoMeasureEnabled(true);
-            cvCourse.setLayoutManager(mLayoutManager);
-            cvCourse.setAdapter(mEpisodeAdapter);
-            mEpisodeAdapter.setOnItemClickListener(mItemClickListener);
-            cvCourse.setOnScrollListener(mScrollListener);
-        } else {
-            tvNumber.setVisibility(View.INVISIBLE);
-            tvLastTime.setVisibility(View.INVISIBLE);
-            tvLastTimeValue.setVisibility(View.INVISIBLE);
-        }
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})
@@ -245,7 +250,13 @@ public class VedioChoiceActivity extends BaseActivity implements View.OnFocusCha
 
     @Override
     public void onFocusChange(View view, boolean b) {
-
+        if (view.getId() == R.id.rl_homepage) {
+            if (b) {
+                ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
+            } else {
+                ivHomePage.setImageResource(R.mipmap.choice_episode);
+            }
+        }
     }
 
     private EpisodeAdapter.OnItemClickListener mItemClickListener = new EpisodeAdapter.OnItemClickListener() {
@@ -282,25 +293,19 @@ public class VedioChoiceActivity extends BaseActivity implements View.OnFocusCha
     private void loadBitmap() {
         switch (mSemesterId) {
             case 1:
-                ivCourseSemester.setImageBitmap(loadBitmap(R.mipmap.timg_1, R.mipmap.vedio_choice));
+            case 4:
+                ivCourseSemester.setImageResource(R.mipmap.main_reception);
                 break;
             case 2:
-                ivCourseSemester.setImageBitmap(loadBitmap(R.mipmap.timg_2, R.mipmap.vedio_choice));
+            case 5:
+                ivCourseSemester.setImageResource(R.mipmap.main_middle);
                 break;
             case 3:
-                ivCourseSemester.setImageBitmap(loadBitmap(R.mipmap.timg_3, R.mipmap.vedio_choice));
-                break;
-            case 4:
-                ivCourseSemester.setImageBitmap(loadBitmap(R.mipmap.timg_4, R.mipmap.vedio_choice));
-                break;
-            case 5:
-                ivCourseSemester.setImageBitmap(loadBitmap(R.mipmap.timg_5, R.mipmap.vedio_choice));
-                break;
             case 6:
-                ivCourseSemester.setImageBitmap(loadBitmap(R.mipmap.timg_6, R.mipmap.vedio_choice));
+                ivCourseSemester.setImageResource(R.mipmap.main_big);
                 break;
             default:
-                ivCourseSemester.setImageBitmap(loadBitmap(R.mipmap.timg_1, R.mipmap.vedio_choice));
+                ivCourseSemester.setImageResource(R.mipmap.main_reception);
                 break;
         }
     }

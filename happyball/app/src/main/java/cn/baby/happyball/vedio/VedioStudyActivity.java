@@ -79,12 +79,11 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
     }
 
     private void getData() {
-        showLoading(true);
         mEpisode = (Episode) getIntent().getSerializableExtra(SystemConfig.EPISODE);
     }
 
     private void initData() {
-        new LoadStudyBitmap(mLoadBitmapListener).execute();
+        // do nothing
     }
 
     @OnClick({R.id.iv_song, R.id.rl_song})
@@ -123,31 +122,29 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case R.id.rl_homepage:
                 if (b) {
-//                    obtainViewFocus(rlHomePage);
                     ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
                     rlHomePage.setNextFocusLeftId(R.id.rl_back);
                     rlHomePage.setNextFocusDownId(R.id.rl_dance);
                 } else {
-//                    loseViewFocus(rlHomePage);
                     ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             case R.id.rl_song:
                 if (b) {
-                    obtainViewFocus(rlSong);
+                    ivSong.setImageResource(R.mipmap.finish_song_focus);
                     rlSong.setNextFocusUpId(R.id.rl_back);
                     rlSong.setNextFocusRightId(R.id.rl_dance);
                 } else {
-                    loseViewFocus(rlSong);
+                    ivSong.setImageResource(R.mipmap.finish_song);
                 }
                 break;
             case R.id.rl_dance:
                 if (b) {
-                    obtainViewFocus(rlDance);
+                    ivDance.setImageResource(R.mipmap.finish_dance_focus);
                     rlDance.setNextFocusUpId(R.id.rl_homepage);
                     rlDance.setNextFocusLeftId(R.id.rl_song);
                 } else {
-                    loseViewFocus(rlDance);
+                    ivDance.setImageResource(R.mipmap.finish_dance);
                 }
                 break;
             default:
@@ -167,7 +164,7 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlSong);
+                    ivSong.setImageResource(R.mipmap.finish_song_focus);
                     rlSong.requestFocus();
                     rlSong.setFocusable(true);
                     rlSong.setNextFocusUpId(R.id.rl_back);
@@ -177,7 +174,7 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlSong);
+                    ivSong.setImageResource(R.mipmap.finish_song_focus);
                     rlSong.requestFocus();
                     rlSong.setFocusable(true);
                     rlSong.setNextFocusUpId(R.id.rl_back);
@@ -187,7 +184,7 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlSong);
+                    ivSong.setImageResource(R.mipmap.finish_song_focus);
                     rlSong.requestFocus();
                     rlSong.setFocusable(true);
                     rlSong.setNextFocusUpId(R.id.rl_back);
@@ -197,7 +194,7 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlSong);
+                    ivSong.setImageResource(R.mipmap.finish_song_focus);
                     rlSong.requestFocus();
                     rlSong.setFocusable(true);
                     rlSong.setNextFocusUpId(R.id.rl_back);
@@ -219,18 +216,4 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
-
-    private ILoadBitmapListener mLoadBitmapListener = new ILoadBitmapListener() {
-        @Override
-        public void onReady() {
-            showLoading(true);
-        }
-
-        @Override
-        public void onComplete() {
-            ivSong.setImageBitmap(mStudyBitmap);
-            ivDance.setImageBitmap(mKnowledgeBitmap);
-            showLoading(false);
-        }
-    };
 }
