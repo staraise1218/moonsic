@@ -117,12 +117,10 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
     public void onHomepage() {
         if (mMediaPlayer.isPlaying()) {
             mMediaPlayer.pause();
-            ivPlay.requestLayout();
             ivPlay.setFocusable(true);
             ivPlay.setImageResource(R.drawable.vedio_play_selector);
         } else {
             mMediaPlayer.start();
-            ivPlay.requestLayout();
             ivPlay.setFocusable(true);
             ivPlay.setImageResource(R.drawable.vedio_pause_selector);
         }
@@ -240,9 +238,7 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
             builder.append(second);
         }
         tvPlayTime.setText(builder.toString());
-        ivPlay.requestFocus();
         ivPlay.setFocusable(true);
-        obtainViewFocus(ivPlay);
     }
 
     public void showLoading(boolean show) {
@@ -253,9 +249,11 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
     protected void onDestroy() {
         mHandler.removeCallbacks(mTicker);
         if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
+            mMediaPlayer.reset();
             mMediaPlayer.stop();
             mMediaPlayer.release();
         }
+        mMediaPlayer = null;
         super.onDestroy();
     }
 
@@ -263,7 +261,6 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
     public void onFocusChange(View view, boolean b) {
         if (view.getId() == R.id.rl_homepage) {
             if (b) {
-                ivPlay.requestLayout();
                 ivPlay.setFocusable(true);
             }
             if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
@@ -273,7 +270,6 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
             }
         } else if (view.getId() == R.id.iv_play) {
             if (b) {
-                ivPlay.requestLayout();
                 ivPlay.setFocusable(true);
             }
             if (mMediaPlayer != null && mMediaPlayer.isPlaying()) {
@@ -316,7 +312,6 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
                         mMediaPlayer.seekTo(mMediaPlayer.getCurrentPosition() - 2000);
                         mMediaPlayer.start();
 
-                        ivPlay.requestLayout();
                         ivPlay.setFocusable(true);
                         ivPlay.setImageResource(R.drawable.vedio_pause_selector);
                     }
@@ -330,7 +325,6 @@ public class VedioPlayActivity extends BaseActivity implements View.OnFocusChang
                         mMediaPlayer.seekTo(mMediaPlayer.getCurrentPosition() + 2000);
                         mMediaPlayer.start();
 
-                        ivPlay.requestLayout();
                         ivPlay.setFocusable(true);
                         ivPlay.setImageResource(R.drawable.vedio_pause_selector);
                     }

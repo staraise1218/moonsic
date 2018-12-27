@@ -113,11 +113,9 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
         switch (view.getId()) {
             case R.id.rl_back:
                 if (b) {
-                    obtainViewFocus(rlBack);
                     rlBack.setNextFocusRightId(R.id.rl_homepage);
                     rlBack.setNextFocusDownId(R.id.rl_song);
                 } else {
-                    loseViewFocus(rlBack);
                 }
                 break;
             case R.id.rl_homepage:
@@ -148,11 +146,6 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
                 }
                 break;
             default:
-                if (b) {
-                    obtainViewFocus(view);
-                } else {
-                    loseViewFocus(view);
-                }
                 break;
         }
     }

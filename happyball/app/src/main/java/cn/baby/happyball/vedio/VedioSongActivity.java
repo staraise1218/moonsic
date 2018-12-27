@@ -156,12 +156,6 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
     }
 
     public void initData() {
-        obtainViewFocus(rlSongSing);
-        rlSongSing.requestFocus();
-        rlSongSing.setFocusable(true);
-        rlSongSing.setNextFocusUpId(R.id.rl_homepage);
-        rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
-
         showLoading(true);
 //        final String songUrl = (new StringBuilder().append(HttpConstant.RES_URL).append(mEpisode.getGuide_melody_file())).toString();
         final String songUrl = "pay_attention_to_thunder_and_rain.mp3";
@@ -335,110 +329,90 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
             case R.id.iv_song_one_first:
                 if (b) {
                     ivSongOneFirst.setImageResource(R.mipmap.song_playing_pressed);
-                    obtainViewFocus(ivSongOneFirst);
                     ivSongOneFirst.setNextFocusUpId(R.id.iv_song_accompaniment);
                     ivSongOneFirst.setNextFocusDownId(R.id.iv_song_one_second);
                 } else {
                     ivSongOneFirst.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSongOneFirst);
                 }
                 break;
             case R.id.iv_song_one_second:
                 if (b) {
                     ivSongOneSecond.setImageResource(R.mipmap.song_playing_pressed);
-                    obtainViewFocus(ivSongOneSecond);
                     ivSongOneSecond.setNextFocusUpId(R.id.iv_song_one_first);
                     ivSongOneSecond.setNextFocusDownId(R.id.iv_song_one_third);
                 } else {
                     ivSongOneSecond.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSongOneSecond);
                 }
                 break;
             case R.id.iv_song_one_third:
                 if (b) {
                     ivSongOneThird.setImageResource(R.mipmap.song_playing_pressed);
-                    obtainViewFocus(ivSongOneThird);
                     ivSongOneThird.setNextFocusUpId(R.id.iv_song_one_second);
                     ivSongOneThird.setNextFocusDownId(R.id.iv_song_one_four);
                 } else {
                     ivSongOneThird.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSongOneThird);
                 }
                 break;
             case R.id.iv_song_one_four:
                 if (b) {
                     ivSongOneFour.setImageResource(R.mipmap.song_playing_pressed);
-                    obtainViewFocus(ivSongOneFour);
                     ivSongOneFour.setNextFocusUpId(R.id.iv_song_one_third);
                     ivSongOneFour.setNextFocusRightId(R.id.iv_song_one);
                     ivSongOneFour.setNextFocusDownId(R.id.iv_song_two_first);
                 } else {
                     ivSongOneFour.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSongOneFour);
                 }
                 break;
             case R.id.iv_song_one:
                 if (b) {
                     ivSongOne.setImageResource(R.mipmap.song_playing_pressed);
-                    obtainViewFocus(ivSongOne);
                     ivSongOne.setNextFocusLeftId(R.id.iv_song_one_four);
                 } else {
                     ivSongOne.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSongOne);
                 }
                 break;
             case R.id.iv_song_two_first:
                 if (b) {
                     ivSongTwoFirst.setImageResource(R.mipmap.song_playing_pressed);
-                    obtainViewFocus(ivSongTwoFirst);
                     ivSongTwoFirst.setNextFocusUpId(R.id.iv_song_one_four);
                     ivSongTwoFirst.setNextFocusDownId(R.id.iv_song_two_second);
                 } else {
                     ivSongTwoFirst.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSongTwoFirst);
                 }
                 break;
             case R.id.iv_song_two_second:
                 if (b) {
                     ivSongTwoSecond.setImageResource(R.mipmap.song_playing_pressed);
-                    obtainViewFocus(ivSongTwoSecond);
                     ivSongTwoSecond.setNextFocusUpId(R.id.iv_song_two_first);
                     ivSongTwoSecond.setNextFocusDownId(R.id.iv_song_two_third);
                 } else {
                     ivSongTwoSecond.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSongTwoSecond);
                 }
                 break;
             case R.id.iv_song_two_third:
                 if (b) {
                     ivSongTwoThird.setImageResource(R.mipmap.song_playing_pressed);
-                    obtainViewFocus(ivSongTwoThird);
                     ivSongTwoThird.setNextFocusUpId(R.id.iv_song_two_second);
                     ivSongTwoThird.setNextFocusDownId(R.id.iv_song_two_four);
                 } else {
                     ivSongTwoThird.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSongTwoThird);
                 }
                 break;
             case R.id.iv_song_two_four:
                 if (b) {
                     ivSongTwoFour.setImageResource(R.mipmap.song_playing_pressed);
-                    obtainViewFocus(ivSongTwoFour);
                     ivSongTwoFour.setNextFocusUpId(R.id.iv_song_two_third);
                     ivSongTwoFour.setNextFocusDownId(R.id.rl_homepage);
                 } else {
                     ivSongTwoFour.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSongTwoFour);
                 }
                 break;
             case R.id.iv_song_two:
                 if (b) {
                     ivSongTwo.setImageResource(R.mipmap.song_playing_pressed);
-                    obtainViewFocus(ivSongTwo);
                     ivSongTwo.setNextFocusLeftId(R.id.tv_song_two_four);
                 } else {
                     ivSongTwo.setImageResource(R.mipmap.song_playing_def);
-                    loseViewFocus(ivSongTwo);
                 }
                 break;
             default:

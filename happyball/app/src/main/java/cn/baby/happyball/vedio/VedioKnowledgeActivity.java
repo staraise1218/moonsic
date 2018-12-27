@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -43,13 +44,6 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
 
     private static final String EPISODE_ID = "episode_id";
     /**
-     * 返回
-     */
-    @BindView(R.id.rl_back)
-    RelativeLayout rlBack;
-    @BindView(R.id.iv_back)
-    ImageView ivBack;
-    /**
      * 主页
      */
     @BindView(R.id.rl_homepage)
@@ -61,8 +55,11 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
     TextView tvKnowledgeTitle;
     @BindView(R.id.tv_knowledge_question)
     TextView tvKnowledgeQuestion;
+
     @BindView(R.id.iv_speak_question)
     ImageView ivSpeakQuestion;
+    @BindView(R.id.ll_song_horn)
+    RelativeLayout llSongHorn;
 
     @BindView(R.id.rl_knowledge_first)
     RelativeLayout rlKnowledgeFirst;
@@ -93,6 +90,7 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
      */
     @BindView(R.id.pb_loading)
     ProgressBar pbLoading;
+
     @BindView(R.id.iv_knowledge_first_answer)
     ImageView ivKnowledgeFirstAnswer;
     @BindView(R.id.iv_knowledge_second_answer)
@@ -116,15 +114,9 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
     }
 
     private void bindEvents() {
-        rlBack.setOnFocusChangeListener(this);
         rlHomePage.setOnFocusChangeListener(this);
         rlAnswer.setOnFocusChangeListener(this);
-        ivSpeakQuestion.setOnFocusChangeListener(this);
-
-        rlKnowledgeFirst.setOnFocusChangeListener(this);
-        rlKnowledgeSecond.setOnFocusChangeListener(this);
-        rlKnowledgeThird.setOnFocusChangeListener(this);
-        rlKnowledgeFour.setOnFocusChangeListener(this);
+        llSongHorn.setOnFocusChangeListener(this);
     }
 
     private void getData() {
@@ -219,11 +211,14 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
             }
         }
         showLoading(false);
-    }
 
-    @OnClick({R.id.iv_back, R.id.rl_back})
-    public void onBack() {
-        startActivity(new Intent(VedioKnowledgeActivity.this, VedioFinishActivity.class));
+        obtainViewFocus(rlHomePage);
+        rlHomePage.requestLayout();
+        rlHomePage.setFocusable(true);
+        ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
+        ivSpeakQuestion.setImageResource(R.mipmap.song_playing_def);
+        rlHomePage.setNextFocusDownId(R.id.rl_answer);
+        rlHomePage.setNextFocusLeftId(R.id.ll_song_horn);
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})
@@ -256,19 +251,15 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
         for (String s : answers) {
             switch (Integer.valueOf(s)) {
                 case 1:
-                    obtainViewFocus(rlKnowledgeFirst);
                     ivKnowledgeFirstAnswer.setVisibility(View.VISIBLE);
                     break;
                 case 2:
-                    obtainViewFocus(rlKnowledgeSecond);
                     ivKnowledgeSecondAnswer.setVisibility(View.VISIBLE);
                     break;
                 case 3:
-                    obtainViewFocus(rlKnowledgeThird);
                     ivKnowledgeThirdAnswer.setVisibility(View.VISIBLE);
                     break;
                 case 4:
-                    obtainViewFocus(rlKnowledgeFour);
                     ivKnowledgeFourAnswer.setVisibility(View.VISIBLE);
                     break;
                 default:
@@ -320,108 +311,44 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
 //        }
     }
 
-    @OnClick({R.id.rl_knowledge_first, R.id.iv_knowledge_first})
-    public void onKnowledgeFirst() {
-
-    }
-
-    @OnClick({R.id.rl_knowledge_second, R.id.iv_knowledge_second})
-    public void onKnowledgeSecond() {
-
-    }
-
-    @OnClick({R.id.rl_knowledge_third, R.id.iv_knowledge_third})
-    public void onKnowledgeThird() {
-
-    }
-
-    @OnClick({R.id.rl_knowledge_four, R.id.iv_knowledge_four})
-    public void onKnowledgeFour() {
-
-    }
-
     @Override
     public void onFocusChange(View view, boolean b) {
         switch (view.getId()) {
             case R.id.rl_homepage:
                 if (b) {
-//                    obtainViewFocus(rlHomePage);
-                    ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
                     rlHomePage.requestLayout();
                     rlHomePage.setFocusable(true);
+                    ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
+                    ivSpeakQuestion.setImageResource(R.mipmap.song_playing_def);
                     rlHomePage.setNextFocusDownId(R.id.rl_answer);
-                    rlHomePage.setNextFocusLeftId(R.id.iv_speak_question);
+                    rlHomePage.setNextFocusLeftId(R.id.ll_song_horn);
                 } else {
-//                    loseViewFocus(rlHomePage);
                     ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
-            case R.id.iv_speak_question:
+                break;
+            case R.id.ll_song_horn:
                 if (b) {
+                    llSongHorn.requestLayout();
+                    llSongHorn.setFocusable(true);
                     ivSpeakQuestion.setImageResource(R.mipmap.song_playing_pressed);
-//                    obtainViewFocus(ivSpeakQuestion);
-                    ivSpeakQuestion.requestLayout();
-                    ivSpeakQuestion.setFocusable(true);
-                    ivSpeakQuestion.setNextFocusUpId(R.id.rl_homepage);
-                    ivSpeakQuestion.setNextFocusDownId(R.id.rl_knowledge_first);
+                    llSongHorn.setNextFocusRightId(R.id.rl_answer);
+                    llSongHorn.setNextFocusDownId(R.id.rl_answer);
+                    llSongHorn.setNextFocusUpId(R.id.rl_homepage);
+                    llSongHorn.setNextFocusLeftId(R.id.rl_homepage);
                 } else {
                     ivSpeakQuestion.setImageResource(R.mipmap.song_playing_def);
-//                    loseViewFocus(ivSpeakQuestion);
                 }
                 break;
             case R.id.rl_answer:
                 if (b) {
-//                    obtainViewFocus(rlAnswer);
-                    ivKnowledgeAnswer.setImageResource(R.mipmap.choice_episode_focus);
                     rlAnswer.requestLayout();
                     rlAnswer.setFocusable(true);
-                    rlAnswer.setNextFocusUpId(R.id.rl_knowledge_four);
+                    ivKnowledgeAnswer.setImageResource(R.mipmap.choice_episode_focus);
+                    rlAnswer.setNextFocusLeftId(R.id.ll_song_horn);
+                    rlAnswer.setNextFocusRightId(R.id.rl_homepage);
+                    rlAnswer.setNextFocusUpId(R.id.rl_homepage);
                 } else {
-//                    loseViewFocus(rlAnswer);
                     ivKnowledgeAnswer.setImageResource(R.mipmap.choice_episode);
-                }
-                break;
-            case R.id.rl_knowledge_first:
-                if (b) {
-                    obtainViewFocus(rlKnowledgeFirst);
-                    rlKnowledgeFirst.requestLayout();
-                    rlKnowledgeFirst.setFocusable(true);
-                    rlKnowledgeFirst.setNextFocusUpId(R.id.iv_speak_question);
-                    rlKnowledgeFirst.setNextFocusRightId(R.id.rl_knowledge_second);
-                } else {
-                    loseViewFocus(rlKnowledgeFirst);
-                }
-                break;
-            case R.id.rl_knowledge_second:
-                if (b) {
-                    obtainViewFocus(rlKnowledgeSecond);
-                    rlKnowledgeSecond.requestLayout();
-                    rlKnowledgeSecond.setFocusable(true);
-                    rlKnowledgeSecond.setNextFocusLeftId(R.id.rl_knowledge_first);
-                    rlKnowledgeSecond.setNextFocusRightId(R.id.rl_knowledge_third);
-                } else {
-                    loseViewFocus(rlKnowledgeSecond);
-                }
-                break;
-            case R.id.rl_knowledge_third:
-                if (b) {
-                    obtainViewFocus(rlKnowledgeThird);
-                    rlKnowledgeThird.requestLayout();
-                    rlKnowledgeThird.setFocusable(true);
-                    rlKnowledgeSecond.setNextFocusLeftId(R.id.rl_knowledge_second);
-                    rlKnowledgeSecond.setNextFocusRightId(R.id.rl_knowledge_four);
-                } else {
-                    loseViewFocus(rlKnowledgeThird);
-                }
-                break;
-            case R.id.rl_knowledge_four:
-                if (b) {
-                    obtainViewFocus(rlKnowledgeFour);
-                    rlKnowledgeFour.requestLayout();
-                    rlKnowledgeFour.setFocusable(true);
-                    rlKnowledgeFour.setNextFocusLeftId(R.id.rl_knowledge_third);
-                    rlKnowledgeFour.setNextFocusRightId(R.id.rl_answer);
-                } else {
-                    loseViewFocus(rlKnowledgeFour);
                 }
                 break;
             default:
@@ -433,51 +360,9 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
     }
 
-    boolean isFirst = true;
-
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
-//            case KeyEvent.KEYCODE_DPAD_DOWN:
-//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-//                    obtainViewFocus(rlAnswer);
-//                    rlAnswer.requestFocus();
-//                    rlAnswer.setFocusable(true);
-//                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
-//                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
-//                    isFirst = false;
-//                }
-//                break;
-//            case KeyEvent.KEYCODE_DPAD_LEFT:
-//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-//                    obtainViewFocus(rlAnswer);
-//                    rlAnswer.requestFocus();
-//                    rlAnswer.setFocusable(true);
-//                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
-//                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
-//                    isFirst = false;
-//                }
-//                break;
-//            case KeyEvent.KEYCODE_DPAD_RIGHT:
-//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-//                    obtainViewFocus(rlAnswer);
-//                    rlAnswer.requestFocus();
-//                    rlAnswer.setFocusable(true);
-//                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
-//                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
-//                    isFirst = false;
-//                }
-//                break;
-//            case KeyEvent.KEYCODE_DPAD_UP:
-//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-//                    obtainViewFocus(rlAnswer);
-//                    rlAnswer.requestFocus();
-//                    rlAnswer.setFocusable(true);
-//                    rlAnswer.setNextFocusLeftId(R.id.rl_study);
-//                    rlAnswer.setNextFocusRightId(R.id.rl_knowledge);
-//                    isFirst = false;
-//                }
-//                break;
             case KeyEvent.KEYCODE_BACK:
                 if (event.getAction() == KeyEvent.ACTION_UP) {
                     onBackPressed();
@@ -489,7 +374,7 @@ public class VedioKnowledgeActivity extends BaseActivity implements View.OnFocus
         return super.onKeyDown(keyCode, event);
     }
 
-    @OnClick(R.id.iv_speak_question)
+    @OnClick(R.id.ll_song_horn)
     public void onSpeakQuestion() {
         try {
             //播放 assets/a2.mp3 音乐文件

@@ -50,6 +50,7 @@
             android:id="@+id/rl_dance_next"
             android:focusable="true"
             android:nextFocusUp="@id/rl_homepage"
+            android:nextFocusLeft="@id/rl_dance_last"
             style="@style/dance_next">
 
             <ImageView
@@ -58,6 +59,22 @@
 
             <TextView
                 style="@style/dance_next_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_dance_last"
+            android:focusable="true"
+            android:nextFocusLeft="@id/rl_homepage"
+            android:nextFocusUp="@id/rl_homepage"
+            android:nextFocusRight="@id/rl_dance_next"
+            style="@style/dance_last">
+
+            <ImageView
+                android:id="@+id/iv_dance_last"
+                style="@style/dance_next_image" />
+
+            <TextView
+                style="@style/dance_next_last" />
         </RelativeLayout>
 
         <LinearLayout

@@ -304,7 +304,6 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         switch (view.getId()) {
             case R.id.rl_play:
                 if (b) {
-                    obtainViewFocus(rlPlay);
                     if (isPlaying) {
                         ivPlay.setImageResource(R.mipmap.audio_pause_pressed);
                     } else {
@@ -314,7 +313,6 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
                     rlPlay.setNextFocusLeftId(R.id.lv_audio_list);
                     rlPlay.setNextFocusDownId(R.id.lv_audio_list);
                 } else {
-                    loseViewFocus(rlPlay);
                     if (isPlaying) {
                         ivPlay.setImageResource(R.mipmap.audio_pause_def);
                     } else {
@@ -326,22 +324,18 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
             case R.id.iv_audio_left:
                 if (b) {
                     ivAudioLeft.setImageResource(R.mipmap.audio_left_pressed);
-                    obtainViewFocus(ivAudioLeft);
                     ivAudioLeft.setNextFocusUpId(R.id.rl_play);
                     ivAudioLeft.setNextFocusRightId(R.id.iv_audio_right);
                 } else {
                     ivAudioLeft.setImageResource(R.mipmap.audio_left_def);
-                    loseViewFocus(ivAudioLeft);
                 }
                 break;
             case R.id.iv_audio_right:
                 if (b) {
                     ivAudioRight.setImageResource(R.mipmap.audio_right_pressed);
-                    obtainViewFocus(ivAudioRight);
                     ivAudioRight.setNextFocusLeftId(R.id.iv_audio_left);
                 } else {
                     ivAudioRight.setImageResource(R.mipmap.audio_right_def);
-                    loseViewFocus(ivAudioRight);
                 }
                 break;
             default:

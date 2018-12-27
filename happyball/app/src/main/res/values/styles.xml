@@ -207,6 +207,15 @@
         <item name="android:layout_alignParentBottom">true</item>
     </style>
 
+    <style name="dance_last">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_marginLeft">120dp</item>
+        <item name="android:layout_marginBottom">50dp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+    </style>
+
     <style name="dance_next_image">
         <item name="android:layout_width">299dp</item>
         <item name="android:layout_height">97dp</item>
@@ -224,12 +233,20 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="dance_next_last">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:text">@string/dance_last</item>
+        <item name="android:textSize">@dimen/text_main</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="song_horn">
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">40dp</item>
-        <item name="android:layout_marginLeft">20dp</item>
         <item name="android:padding">5dp</item>
-        <item name="android:focusable">true</item>
         <item name="android:src">@mipmap/song_playing_def</item>
     </style>
 

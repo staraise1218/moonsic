@@ -73,6 +73,13 @@ public class SingleDancePlayActivity extends BaseActivity implements View.OnFocu
     RelativeLayout rlDanceNext;
     @BindView(R.id.iv_dance_next)
     ImageView ivDanceNext;
+    /**
+     * 上一个
+     */
+    @BindView(R.id.iv_dance_last)
+    ImageView ivDanceLast;
+    @BindView(R.id.rl_dance_last)
+    RelativeLayout rlDanceLast;
 
     private MediaPlayer mMediaPlayer;
     private SurfaceHolder mSurfaceHolder;
@@ -92,6 +99,7 @@ public class SingleDancePlayActivity extends BaseActivity implements View.OnFocu
     private void bindEvents() {
         rlHomePage.setOnFocusChangeListener(this);
         rlDanceNext.setOnFocusChangeListener(this);
+        rlDanceLast.setOnFocusChangeListener(this);
     }
 
     @OnClick({R.id.iv_back, R.id.rl_back})
@@ -104,11 +112,20 @@ public class SingleDancePlayActivity extends BaseActivity implements View.OnFocu
         startActivity(new Intent(SingleDancePlayActivity.this, MainActivity.class));
     }
 
-    @OnClick(R.id.rl_dance_next)
+    @OnClick({R.id.rl_dance_next, R.id.iv_dance_next})
     public void onNext() {
         mPlayingIndex = mPlayingIndex + 1;
         if (mPlayingIndex == mSingleDanceUrls.size()) {
             mPlayingIndex = 0;
+        }
+        playVedio(mSingleDanceUrls.get(mPlayingIndex));
+    }
+
+    @OnClick({R.id.rl_dance_last, R.id.iv_dance_last})
+    public void onLast() {
+        mPlayingIndex = mPlayingIndex - 1;
+        if (mPlayingIndex == -1) {
+            mPlayingIndex = mSingleDanceUrls.size() - 1;
         }
         playVedio(mSingleDanceUrls.get(mPlayingIndex));
     }
@@ -207,6 +224,13 @@ public class SingleDancePlayActivity extends BaseActivity implements View.OnFocu
                     ivDanceNext.setImageResource(R.mipmap.choice_episode_focus);
                 } else {
                     ivDanceNext.setImageResource(R.mipmap.choice_episode);
+                }
+                break;
+            case R.id.rl_dance_last:
+                if (b) {
+                    ivDanceLast.setImageResource(R.mipmap.choice_episode_focus);
+                } else {
+                    ivDanceLast.setImageResource(R.mipmap.choice_episode);
                 }
                 break;
             default:

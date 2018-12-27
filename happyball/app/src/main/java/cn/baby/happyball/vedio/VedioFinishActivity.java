@@ -93,7 +93,7 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
     public void onReplay() {
         VedioPlayActivity.isReplay = true;
         startActivity(new Intent(VedioFinishActivity.this, VedioPlayActivity.class)
-                            .putExtra(SystemConfig.EPISODE, mEpisode));
+                .putExtra(SystemConfig.EPISODE, mEpisode));
     }
 
     @OnClick({R.id.iv_back, R.id.rl_back})
@@ -123,11 +123,9 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
         switch (view.getId()) {
             case R.id.rl_back:
                 if (b) {
-                    obtainViewFocus(rlBack);
                     rlBack.setNextFocusRightId(R.id.rl_homepage);
                     rlBack.setNextFocusDownId(R.id.rl_study);
                 } else {
-                    loseViewFocus(rlBack);
                 }
                 break;
             case R.id.rl_homepage:
@@ -162,72 +160,13 @@ public class VedioFinishActivity extends BaseActivity implements View.OnFocusCha
                     ivKnowledge.setImageResource(R.mipmap.finish_knowledge_focus);
                     rlKnowledge.setNextFocusLeftId(R.id.ll_replay);
                     rlKnowledge.setNextFocusUpId(R.id.rl_homepage);
-                } else {ivKnowledge.setImageResource(R.mipmap.finish_knowledge);
+                } else {
+                    ivKnowledge.setImageResource(R.mipmap.finish_knowledge);
                 }
                 break;
             default:
-                if (b) {
-                    obtainViewFocus(view);
-                } else {
-                    loseViewFocus(view);
-                }
                 break;
         }
-    }
-
-    boolean isFirst = true;
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    llReplay.requestFocus();
-                    llReplay.setFocusable(true);
-                    llReplay.setNextFocusLeftId(R.id.rl_study);
-                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
-                    llReplay.setBackgroundResource(R.mipmap.choice_episode_focus);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    llReplay.requestFocus();
-                    llReplay.setFocusable(true);
-                    llReplay.setNextFocusLeftId(R.id.rl_study);
-                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
-                    llReplay.setBackgroundResource(R.mipmap.choice_episode_focus);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    llReplay.requestFocus();
-                    llReplay.setFocusable(true);
-                    llReplay.setNextFocusLeftId(R.id.rl_study);
-                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
-                    llReplay.setBackgroundResource(R.mipmap.choice_episode_focus);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    llReplay.requestFocus();
-                    llReplay.setFocusable(true);
-                    llReplay.setNextFocusLeftId(R.id.rl_study);
-                    llReplay.setNextFocusRightId(R.id.rl_knowledge);
-                    llReplay.setBackgroundResource(R.mipmap.choice_episode_focus);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_BACK:
-                if (event.getAction() == KeyEvent.ACTION_UP) {
-                    onBackPressed();
-                }
-                break;
-                default:
-                    break;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 
     public void showLoading(boolean show) {

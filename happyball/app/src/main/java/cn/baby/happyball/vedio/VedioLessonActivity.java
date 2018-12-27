@@ -124,7 +124,6 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
     }
 
     private void initData() {
-        obtainViewFocus(rlSafe);
         rlSafe.requestFocus();
         rlSafe.setFocusable(true);
         rlSafe.setNextFocusDownId(R.id.rl_pop);
@@ -200,68 +199,8 @@ public class VedioLessonActivity extends BaseActivity implements View.OnFocusCha
                 }
                 break;
             default:
-                if (b) {
-                    obtainViewFocus(view);
-                } else {
-                    loseViewFocus(view);
-                }
                 break;
         }
-    }
-
-    boolean isFirst = true;
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlSafe);
-                    rlSafe.setNextFocusRightId(R.id.rl_hygiene);
-                    rlSafe.setNextFocusDownId(R.id.rl_pop);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlSafe);
-                    rlSafe.setNextFocusRightId(R.id.rl_hygiene);
-                    rlSafe.setNextFocusDownId(R.id.rl_pop);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlSafe);
-                    rlSafe.setNextFocusRightId(R.id.rl_hygiene);
-                    rlSafe.setNextFocusDownId(R.id.rl_pop);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlSafe);
-                    rlSafe.setNextFocusRightId(R.id.rl_hygiene);
-                    rlSafe.setNextFocusDownId(R.id.rl_pop);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    obtainViewFocus(rlSafe);
-                    rlSafe.setNextFocusRightId(R.id.rl_hygiene);
-                    rlSafe.setNextFocusDownId(R.id.rl_pop);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_BACK:
-                if (event.getAction() == KeyEvent.ACTION_UP) {
-                    onBackPressed();
-                }
-                break;
-                default:
-                    break;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 
     @OnClick({R.id.rl_homepage, R.id.iv_homepage})

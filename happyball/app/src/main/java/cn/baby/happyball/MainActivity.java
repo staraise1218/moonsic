@@ -292,11 +292,6 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
                 bigNextFocusChange(b);
                 break;
             default:
-                if (b) {
-                    obtainViewFocus(view);
-                } else {
-                    loseViewFocus(view);
-                }
                 break;
         }
     }

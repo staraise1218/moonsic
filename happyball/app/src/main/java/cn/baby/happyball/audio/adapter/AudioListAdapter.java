@@ -87,7 +87,6 @@ public class AudioListAdapter extends BaseAdapter {
                 viewHolder.audioPlay.setImageResource(R.mipmap.audio_play_pressed);
             }
             setPlayingTextStatus(viewHolder, R.color.playing_text);
-            viewHolder.llAudioListItem.requestLayout();
             viewHolder.llAudioListItem.setFocusable(true);
         } else {
             viewHolder.audioPlay.setImageResource(R.mipmap.audio_play_def);

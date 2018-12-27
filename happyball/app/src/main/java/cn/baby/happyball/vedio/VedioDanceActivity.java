@@ -484,11 +484,9 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case R.id.rl_back:
                 if (b) {
-                    obtainViewFocus(rlBack);
                     rlBack.setNextFocusDownId(R.id.rl_dance_first);
                     rlBack.setNextFocusUpId(R.id.rl_homepage);
                 } else {
-                    loseViewFocus(rlBack);
                 }
                 break;
             case R.id.rl_homepage:
@@ -501,11 +499,6 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 }
                 break;
             default:
-                if (b) {
-                    obtainViewFocus(view);
-                } else {
-                    loseViewFocus(view);
-                }
                 break;
         }
     }
@@ -516,7 +509,6 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-//                    obtainViewFocus(rlDanceFirst);
                     tvDanceFirst.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFirst.requestFocus();
                     rlDanceFirst.setFocusable(true);
@@ -527,7 +519,6 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-//                    obtainViewFocus(rlDanceFirst);
                     tvDanceFirst.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFirst.requestFocus();
                     rlDanceFirst.setFocusable(true);
@@ -538,7 +529,6 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-//                    obtainViewFocus(rlDanceFirst);
                     tvDanceFirst.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFirst.requestFocus();
                     rlDanceFirst.setFocusable(true);
@@ -549,7 +539,6 @@ public class VedioDanceActivity extends BaseActivity implements View.OnFocusChan
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-//                    obtainViewFocus(rlDanceFirst);
                     tvDanceFirst.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.playing_text));
                     rlDanceFirst.requestFocus();
                     rlDanceFirst.setFocusable(true);
