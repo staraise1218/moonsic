@@ -2,12 +2,14 @@ package cn.baby.happyball;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -117,6 +119,12 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         ButterKnife.bind(this);
+
+        DisplayMetrics dm = getResources().getDisplayMetrics();
+        int screenWidth = dm.widthPixels;
+        int screenHeight = dm.heightPixels;
+        Toast.makeText(MainActivity.this, screenWidth + "*" + screenHeight, Toast.LENGTH_SHORT).show();
+
         bindEvent();
         getData();
         initData();
