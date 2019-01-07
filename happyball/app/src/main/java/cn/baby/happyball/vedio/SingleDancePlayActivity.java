@@ -115,19 +115,25 @@ public class SingleDancePlayActivity extends BaseActivity implements View.OnFocu
     @OnClick({R.id.rl_dance_next, R.id.iv_dance_next})
     public void onNext() {
         mPlayingIndex = mPlayingIndex + 1;
-        if (mPlayingIndex == mSingleDanceUrls.size()) {
-            mPlayingIndex = 0;
-        }
         playVedio(mSingleDanceUrls.get(mPlayingIndex));
+        if (mPlayingIndex == mSingleDanceUrls.size() - 1) {
+            rlDanceNext.setVisibility(View.GONE);
+        } else {
+            rlDanceNext.setVisibility(View.VISIBLE);
+        }
+        rlDanceLast.setVisibility(View.VISIBLE);
     }
 
     @OnClick({R.id.rl_dance_last, R.id.iv_dance_last})
     public void onLast() {
         mPlayingIndex = mPlayingIndex - 1;
-        if (mPlayingIndex == -1) {
-            mPlayingIndex = mSingleDanceUrls.size() - 1;
-        }
         playVedio(mSingleDanceUrls.get(mPlayingIndex));
+        if (mPlayingIndex == 0) {
+            rlDanceLast.setVisibility(View.GONE);
+        } else {
+            rlDanceLast.setVisibility(View.VISIBLE);
+        }
+        rlDanceNext.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -143,6 +149,16 @@ public class SingleDancePlayActivity extends BaseActivity implements View.OnFocu
     private void getData() {
         mSingleDanceUrls = getIntent().getStringArrayListExtra(SystemConfig.SINGLE_DANCE);
         mPlayingIndex = getIntent().getIntExtra(SystemConfig.SINGLE_DANCE_PLAYING_INDEXX, 0);
+        if (mPlayingIndex == 0) {
+            rlDanceLast.setVisibility(View.GONE);
+            rlDanceNext.setVisibility(View.VISIBLE);
+        } else if (mPlayingIndex == mSingleDanceUrls.size() - 1) {
+            rlDanceLast.setVisibility(View.VISIBLE);
+            rlDanceNext.setVisibility(View.GONE);
+        } else {
+            rlDanceNext.setVisibility(View.VISIBLE);
+            rlDanceLast.setVisibility(View.VISIBLE);
+        }
     }
 
     private void initData() {

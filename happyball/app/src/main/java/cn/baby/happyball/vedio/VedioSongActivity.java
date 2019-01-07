@@ -311,6 +311,7 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
                 if (b) {
                     ivSongSing.setImageResource(R.mipmap.choice_episode_focus);
                     rlSongSing.setNextFocusDownId(R.id.rl_song_accompaniment);
+                    rlSongSing.setNextFocusRightId(R.id.iv_song_one_first);
                     rlSongSing.setNextFocusUpId(R.id.rl_homepage);
                 } else {
                     ivSongSing.setImageResource(R.mipmap.choice_episode);
@@ -327,6 +328,7 @@ public class VedioSongActivity extends BaseActivity implements View.OnFocusChang
                 }
                 break;
             case R.id.iv_song_one_first:
+            case R.id.rl_song_one_first:
                 if (b) {
                     ivSongOneFirst.setImageResource(R.mipmap.song_playing_pressed);
                     ivSongOneFirst.setNextFocusUpId(R.id.iv_song_accompaniment);

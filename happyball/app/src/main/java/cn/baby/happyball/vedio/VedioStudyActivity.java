@@ -122,7 +122,8 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
                 if (b) {
                     ivHomePage.setImageResource(R.mipmap.choice_episode_focus);
                     rlHomePage.setNextFocusLeftId(R.id.rl_back);
-                    rlHomePage.setNextFocusDownId(R.id.rl_dance);
+                    rlHomePage.setNextFocusDownId(R.id.rl_song);
+                    rlHomePage.setNextFocusRightId(R.id.rl_song);
                 } else {
                     ivHomePage.setImageResource(R.mipmap.choice_episode);
                 }
@@ -130,7 +131,7 @@ public class VedioStudyActivity extends BaseActivity implements View.OnFocusChan
             case R.id.rl_song:
                 if (b) {
                     ivSong.setImageResource(R.mipmap.finish_song_focus);
-                    rlSong.setNextFocusUpId(R.id.rl_back);
+                    rlSong.setNextFocusUpId(R.id.rl_homepage);
                     rlSong.setNextFocusRightId(R.id.rl_dance);
                 } else {
                     ivSong.setImageResource(R.mipmap.finish_song);

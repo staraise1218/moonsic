@@ -234,6 +234,7 @@ public class AudioChoiceActivity extends BaseActivity implements View.OnFocusCha
         lvAudioList.setFocusable(false);
         currentPosition = 0;
         mAudioListAdapter.setPlayingIndex(currentPosition);
+        playMusic(currentPosition);
     }
 
     @OnClick({R.id.iv_homepage, R.id.rl_homepage})

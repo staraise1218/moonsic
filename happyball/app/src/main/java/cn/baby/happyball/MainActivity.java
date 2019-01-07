@@ -345,74 +345,74 @@ public class MainActivity extends BaseActivity implements View.OnFocusChangeList
         }
     }
 
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
-                    ivAudio.setImageResource(R.mipmap.main_audio);
-                    rlVedio.requestFocus();
-                    rlVedio.setFocusable(true);
-                    rlVedio.setNextFocusRightId(R.id.rl_reception_last);
-                    rlVedio.setNextFocusDownId(R.id.rl_audio);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
-                    ivAudio.setImageResource(R.mipmap.main_audio);
-                    rlVedio.requestFocus();
-                    rlVedio.setFocusable(true);
-                    rlVedio.setNextFocusRightId(R.id.rl_reception_last);
-                    rlVedio.setNextFocusDownId(R.id.rl_audio);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_LEFT:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
-                    ivAudio.setImageResource(R.mipmap.main_audio);
-                    rlVedio.requestFocus();
-                    rlVedio.setFocusable(true);
-                    rlVedio.setNextFocusRightId(R.id.rl_reception_last);
-                    rlVedio.setNextFocusDownId(R.id.rl_audio);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_RIGHT:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
-                    ivAudio.setImageResource(R.mipmap.main_audio);
-                    rlVedio.requestFocus();
-                    rlVedio.setFocusable(true);
-                    rlVedio.setNextFocusRightId(R.id.rl_reception_last);
-                    rlVedio.setNextFocusDownId(R.id.rl_audio);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_DPAD_UP:
-                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
-                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
-                    ivAudio.setImageResource(R.mipmap.main_audio);
-                    rlVedio.requestFocus();
-                    rlVedio.setFocusable(true);
-                    rlVedio.setNextFocusRightId(R.id.rl_reception_last);
-                    rlVedio.setNextFocusDownId(R.id.rl_audio);
-                    isFirst = false;
-                }
-                break;
-            case KeyEvent.KEYCODE_BACK:
-                if (event.getAction() == KeyEvent.ACTION_UP) {
-                    onBackPressed();
-                }
-                break;
-                default:
-                    break;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+//    @Override
+//    public boolean onKeyUp(int keyCode, KeyEvent event) {
+//        switch (keyCode) {
+//            case KeyEvent.KEYCODE_DPAD_CENTER:
+//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+//                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
+//                    ivAudio.setImageResource(R.mipmap.main_audio);
+//                    rlVedio.requestFocus();
+//                    rlVedio.setFocusable(true);
+//                    rlVedio.setNextFocusRightId(R.id.rl_reception_last);
+//                    rlVedio.setNextFocusDownId(R.id.rl_audio);
+//                    isFirst = false;
+//                }
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_DOWN:
+//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+//                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
+//                    ivAudio.setImageResource(R.mipmap.main_audio);
+//                    rlVedio.requestFocus();
+//                    rlVedio.setFocusable(true);
+//                    rlVedio.setNextFocusRightId(R.id.rl_reception_last);
+//                    rlVedio.setNextFocusDownId(R.id.rl_audio);
+//                    isFirst = false;
+//                }
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_LEFT:
+//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+//                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
+//                    ivAudio.setImageResource(R.mipmap.main_audio);
+//                    rlVedio.requestFocus();
+//                    rlVedio.setFocusable(true);
+//                    rlVedio.setNextFocusRightId(R.id.rl_reception_last);
+//                    rlVedio.setNextFocusDownId(R.id.rl_audio);
+//                    isFirst = false;
+//                }
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_RIGHT:
+//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+//                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
+//                    ivAudio.setImageResource(R.mipmap.main_audio);
+//                    rlVedio.requestFocus();
+//                    rlVedio.setFocusable(true);
+//                    rlVedio.setNextFocusRightId(R.id.rl_reception_last);
+//                    rlVedio.setNextFocusDownId(R.id.rl_audio);
+//                    isFirst = false;
+//                }
+//                break;
+//            case KeyEvent.KEYCODE_DPAD_UP:
+//                if (event.getAction() == KeyEvent.ACTION_UP && isFirst) {
+//                    ivVedio.setImageResource(R.mipmap.main_vedio_focus);
+//                    ivAudio.setImageResource(R.mipmap.main_audio);
+//                    rlVedio.requestFocus();
+//                    rlVedio.setFocusable(true);
+//                    rlVedio.setNextFocusRightId(R.id.rl_reception_last);
+//                    rlVedio.setNextFocusDownId(R.id.rl_audio);
+//                    isFirst = false;
+//                }
+//                break;
+//            case KeyEvent.KEYCODE_BACK:
+//                if (event.getAction() == KeyEvent.ACTION_UP) {
+//                    onBackPressed();
+//                }
+//                break;
+//                default:
+//                    break;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
 
     public void showLoading(boolean show) {
         pbLoading.setVisibility(show ? View.VISIBLE : View.GONE);
